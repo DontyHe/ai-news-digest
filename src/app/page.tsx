@@ -1,3 +1,5 @@
+"use client";
+
 import Link from 'next/link';
 import papers, { Paper } from '../data/papers';
 
