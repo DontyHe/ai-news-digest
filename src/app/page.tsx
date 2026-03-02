@@ -1,4 +1,4 @@
-function ArrowIcon() {
+import Link from 'next/link';
   return (
     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -156,15 +156,17 @@ export default function Home() {
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {papers.map((paper) => (
             <article key={paper.id} className="card flex flex-col">
-              <div className="flex gap-2 mb-3">
-                <span className={`tag ${getCategoryTagClass(paper.category)}`}>
-                  {getCategoryLabel(paper.category)}
-                </span>
-                <span className="tag">{paper.date}</span>
-              </div>
-              <h4 className="card-title text-base">{paper.title}</h4>
-              <p className="text-sm text-muted mb-3">{paper.authors}</p>
-              <p className="text-sm flex-grow">{paper.summary}</p>
+              <Link href={`/paper/${paper.id}`}>
+                <div className="flex gap-2 mb-3">
+                  <span className={`tag ${getCategoryTagClass(paper.category)}`}>
+                    {getCategoryLabel(paper.category)}
+                  </span>
+                  <span className="tag">{paper.date}</span>
+                </div>
+                <h4 className="card-title text-base">{paper.title}</h4>
+                <p className="text-sm text-muted mb-3">{paper.authors}</p>
+                <p className="text-sm flex-grow">{paper.summary}</p>
+              </Link>
               <div className="flex gap-3 mt-4 pt-4 border-t border-accent/30">
                 <a href={paper.pdfUrl} target="_blank" className="a-link text-sm flex items-center gap-1">
                   PDF <ArrowIcon />
@@ -172,6 +174,9 @@ export default function Home() {
                 <a href={paper.htmlUrl} target="_blank" className="a-link text-sm flex items-center gap-1">
                   ArXiv <ArrowIcon />
                 </a>
+                <Link href={`/paper/${paper.id}`} className="a-link text-sm flex items-center gap-1 ml-auto">
+                  详情 →
+                </Link>
               </div>
             </article>
           ))}
@@ -207,8 +212,11 @@ export default function Home() {
         </div>
         
         <div className="grid gap-4 md:grid-cols-2">
-          {socialPosts.map((post) => (
+          {socialPosts.map((post) => {
+            const authorKey = post.handle.replace('@', '').toLowerCase();
+            return (
             <article key={post.id} className="card">
+              <Link href={`/social/${authorKey}`}>
               <div className="flex items-center gap-2 mb-3">
                 <div className="w-8 h-8 rounded-full bg-accent flex items-center justify-center text-sm">
                   {post.author[0]}
@@ -220,8 +228,10 @@ export default function Home() {
                 <span className="ml-auto tag">{post.platform}</span>
               </div>
               <p className="text-sm">{post.content}</p>
+              </Link>
             </article>
-          ))}
+            );
+          })}
         </div>
       </section>
     </div>
