@@ -1,5 +1,3 @@
-"use client";
-
 // 论文详情页 - 动态路由
 // 路径: src/app/paper/[id]/page.tsx
 
