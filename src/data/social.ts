@@ -22,6 +22,28 @@ export interface Influencer {
 }
 
 export const socialData: Record<string, Influencer> = {
+  "elvissun": {
+    id: "elvissun",
+    name: "Elvis",
+    platform: "X (Twitter)",
+    handle: "@elvissun",
+    bio: "科技领域知名博主，专注于AI、加密货币等前沿科技话题。",
+    avatar: "",
+    followers: "",
+    categories: ["科技", "AI", "加密货币"],
+    recentPosts: []
+  },
+  "trg212": {
+    id: "trg212",
+    name: "Tharig",
+    platform: "X (Twitter)",
+    handle: "@trg212",
+    bio: "科技领域知名博主。",
+    avatar: "",
+    followers: "",
+    categories: ["科技", "AI"],
+    recentPosts: []
+  },
   "karpathy": {
     id: "karpathy",
     name: "Andrej Karpathy",
