@@ -3,7 +3,7 @@
 
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import papers, { Paper } from '../../data/papers';
+import papers, { Paper } from '../../../data/papers';
 
 interface PageProps {
   params: Promise<{ id: string }>;
