@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from 'next/link';
 import papers, { Paper } from '../data/papers';
 
@@ -31,11 +32,33 @@ function getCategoryTagClass(category: Paper["category"]) {
   return classes[category] || "";
 }
 
+type FilterCategory = "all" | "worldmodel" | "embodied" | "vla";
+
 export default function Home() {
   // 按日期排序，最新的在前
   const sortedPapers = [...papers].sort((a, b) => 
     new Date(b.date).getTime() - new Date(a.date).getTime()
   );
+
+  const [showAll, setShowAll] = useState(false);
+  const [filterCategory, setFilterCategory] = useState<FilterCategory>("all");
+
+  // 过滤论文
+  const filteredPapers = sortedPapers.filter(paper => {
+    if (filterCategory === "all") return true;
+    return paper.category === filterCategory;
+  });
+
+  // 默认显示6篇，其他折叠
+  const displayedPapers = showAll ? filteredPapers : filteredPapers.slice(0, 6);
+  const hasMore = filteredPapers.length > 6;
+
+  const filterButtons: { key: FilterCategory; label: string }[] = [
+    { key: "all", label: "全部" },
+    { key: "worldmodel", label: "世界模型" },
+    { key: "embodied", label: "具身智能" },
+    { key: "vla", label: "VLA模型" },
+  ];
 
   return (
     <div className="space-y-16">
@@ -54,13 +77,35 @@ export default function Home() {
 
       {/* ArXiv Papers Section */}
       <section id="arxiv">
-        <div className="flex items-center gap-3 mb-6">
-          <h3 className="text-2xl font-semibold">ArXiv 最新论文</h3>
-          <span className="tag">每日更新 · {papers.length} 篇</span>
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-3">
+            <h3 className="text-2xl font-semibold">ArXiv 最新论文</h3>
+            <span className="tag">每日更新 · {papers.length} 篇</span>
+          </div>
+        </div>
+
+        {/* 分类标签筛选 */}
+        <div className="flex flex-wrap gap-2 mb-6">
+          {filterButtons.map((btn) => (
+            <button
+              key={btn.key}
+              onClick={() => {
+                setFilterCategory(btn.key);
+                setShowAll(false);
+              }}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                filterCategory === btn.key
+                  ? "bg-primary text-white"
+                  : "bg-card border border-accent/30 text-muted hover:border-primary/50"
+              }`}
+            >
+              {btn.label}
+            </button>
+          ))}
         </div>
         
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {sortedPapers.map((paper) => (
+          {displayedPapers.map((paper) => (
             <article key={paper.id} className="card flex flex-col">
               <Link href={`/paper/${paper.id}`}>
                 <div className="flex gap-2 mb-3">
@@ -88,6 +133,34 @@ export default function Home() {
             </article>
           ))}
         </div>
+
+        {/* 更多按钮 */}
+        {hasMore && filterCategory === "all" && (
+          <div className="flex justify-center mt-8">
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="px-6 py-3 bg-primary/10 border border-primary/30 rounded-lg text-primary font-medium hover:bg-primary/20 transition-colors"
+            >
+              {showAll ? "收起 ▲" : `更多 ${filteredPapers.length - 6} 篇 ▼`}
+            </button>
+          </div>
+        )}
+
+        {/* 筛选结果提示 */}
+        {filterCategory !== "all" && (
+          <div className="flex items-center justify-between mt-6 text-sm text-muted">
+            <span>筛选结果: {filteredPapers.length} 篇</span>
+            <button
+              onClick={() => {
+                setFilterCategory("all");
+                setShowAll(false);
+              }}
+              className="text-primary hover:underline"
+            >
+              清除筛选
+            </button>
+          </div>
+        )}
       </section>
 
       {/* Research News Section */}
