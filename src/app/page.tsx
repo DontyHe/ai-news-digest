@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from 'next/link';
 import papers, { Paper } from '../data/papers';
 import companies from '../data/companies';
+import socialData from '../data/social';
 
 function ArrowIcon() {
   return (
@@ -208,36 +209,41 @@ export default function Home() {
         </div>
         
         <div className="grid gap-4 md:grid-cols-2">
-          <article className="card">
-            <Link href="/social/karpathy">
-              <div className="flex items-center gap-2 mb-3">
-                <div className="w-8 h-8 rounded-full bg-accent flex items-center justify-center text-sm">
-                  A
-                </div>
-                <div>
-                  <p className="text-sm font-medium">Andrej Karpathy</p>
-                  <p className="text-xs text-muted">@karpathy · 2h ago</p>
-                </div>
-                <span className="ml-auto tag">X</span>
-              </div>
-              <p className="text-sm">关于世界模型在机器人学习中的重要性，最新的研究表明...</p>
-            </Link>
-          </article>
-          <article className="card">
-            <Link href="/social/ylecun">
-              <div className="flex items-center gap-2 mb-3">
-                <div className="w-8 h-8 rounded-full bg-accent flex items-center justify-center text-sm">
-                  Y
-                </div>
-                <div>
-                  <p className="text-sm font-medium">Yann LeCun</p>
-                  <p className="text-xs text-muted">@ylecun · 5h ago</p>
-                </div>
-                <span className="ml-auto tag">X</span>
-              </div>
-              <p className="text-sm">AI 的未来在于自主智能系统，我们需要重新思考学习范式...</p>
-            </Link>
-          </article>
+          {Object.values(socialData).map((influencer) => {
+            const latestPost = influencer.recentPosts[0];
+            return (
+              <article key={influencer.id} className="card">
+                <Link href={`/social/${influencer.id}`}>
+                  <div className="flex items-center gap-2 mb-3">
+                    {influencer.avatar ? (
+                      <img 
+                        src={influencer.avatar} 
+                        alt={influencer.name}
+                        className="w-8 h-8 rounded-full"
+                      />
+                    ) : (
+                      <div className="w-8 h-8 rounded-full bg-accent flex items-center justify-center text-sm">
+                        {influencer.name.charAt(0)}
+                      </div>
+                    )}
+                    <div>
+                      <p className="text-sm font-medium">{influencer.name}</p>
+                      <p className="text-xs text-muted">{influencer.handle} · {latestPost?.date || ''}</p>
+                    </div>
+                    <span className="ml-auto tag">X</span>
+                  </div>
+                  <p className="text-sm">{latestPost?.content || '暂无推文'}</p>
+                </Link>
+                {latestPost?.url && latestPost.url !== `https://x.com/${influencer.id}` && (
+                  <div className="flex gap-3 mt-4 pt-4 border-t border-accent/30">
+                    <a href={latestPost.url} target="_blank" className="a-link text-sm flex items-center gap-1">
+                      原文 <ArrowIcon />
+                    </a>
+                  </div>
+                )}
+              </article>
+            );
+          })}
         </div>
       </section>
     </div>
