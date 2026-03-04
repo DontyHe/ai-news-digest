@@ -28,10 +28,35 @@ export const socialData: Record<string, Influencer> = {
     platform: "X (Twitter)",
     handle: "@elvissun",
     bio: "科技领域知名博主，专注于AI、加密货币等前沿科技话题。",
-    avatar: "",
+    avatar: "https://pbs.twimg.com/profile_images/1886389973236011008/7EZHFw9k_200x200.jpg",
     followers: "",
     categories: ["科技", "AI", "加密货币"],
-    recentPosts: []
+    recentPosts: [
+      {
+        id: "1",
+        content: "2.9M views in one day. Karpathy called my agent swarm setup 'brilliant or severe AI psychosis.' Building a $17k/mo SaaS as a solo founder with a 4-year-old and 6-month-old.",
+        date: "2026-03-04",
+        likes: 0,
+        reposts: 0,
+        url: "https://x.com/elvissun/status/2026628017158762790"
+      },
+      {
+        id: "2",
+        content: "Unpopular opinion: The best founders now are devs who learned marketing.",
+        date: "2026-03-04",
+        likes: 0,
+        reposts: 0,
+        url: "https://x.com/elvissun"
+      },
+      {
+        id: "3",
+        content: "If you can code + understand marketing, you'll never go broke.",
+        date: "2026-03-04",
+        likes: 0,
+        reposts: 0,
+        url: "https://x.com/elvissun"
+      }
+    ]
   },
   "trg212": {
     id: "trg212",
@@ -50,25 +75,49 @@ export const socialData: Record<string, Influencer> = {
     platform: "X (Twitter)",
     handle: "@karpathy",
     bio: "特斯拉前AI总监，OpenAI创始成员。专注于自动驾驶、神经网络和计算机视觉。",
-    avatar: "https://pbs.twimg.com/profile_images/1594518828893073408/0mqrk5rv_400x400.jpg",
+    avatar: "https://pbs.twimg.com/profile_images/1296667294148382721/9Pr6XrPB_200x200.jpg",
     followers: "120万",
     categories: ["自动驾驶", "深度学习", "VLA模型", "教育"],
     recentPosts: [
       {
         id: "1",
-        content: "关于VLA模型的最新思考：端到端架构正在改变机器人学习的范式...",
-        date: "2026-03-01",
-        likes: 5200,
-        reposts: 890,
-        url: "https://twitter.com/karpathy/status/xxx"
+        content: "The hottest new programming language is English. Agency > Intelligence. Agency is significantly more powerful and significantly more scarce.",
+        date: "2026-03-04",
+        likes: 0,
+        reposts: 0,
+        url: "https://x.com/karpathy"
       },
       {
         id: "2",
-        content: "教育改革：让每个人都学会编程的时代已经到来",
-        date: "2026-02-28",
-        likes: 3800,
-        reposts: 420,
-        url: "https://twitter.com/karpathy/status/xxx"
+        content: "Excited to announce Eureka Labs - building a new kind of school that is AI native.",
+        date: "2026-03-04",
+        likes: 0,
+        reposts: 0,
+        url: "https://x.com/karpathy/status/1813263734707790301"
+      },
+      {
+        id: "3",
+        content: "There's a new kind of coding I call 'vibe coding', where you fully give in to the vibes, embrace exponentials, and forget that the code even exists.",
+        date: "2026-03-04",
+        likes: 0,
+        reposts: 0,
+        url: "https://x.com/karpathy"
+      },
+      {
+        id: "4",
+        content: "Just vibe coded a whole iOS app in Swift (without having programmed in Swift before) in ~1 hour and it's running on my physical phone.",
+        date: "2026-03-04",
+        likes: 0,
+        reposts: 0,
+        url: "https://x.com/karpathy"
+      },
+      {
+        id: "5",
+        content: "Took delivery of a new HW4 Tesla Model X. FSD test drive - it drives really, really well, smooth, confident, noticeably better.",
+        date: "2026-03-04",
+        likes: 0,
+        reposts: 0,
+        url: "https://x.com/karpathy"
       }
     ]
   },
@@ -78,19 +127,54 @@ export const socialData: Record<string, Influencer> = {
     platform: "X (Twitter)",
     handle: "@ylecun",
     bio: "Meta AI首席科学家，NYU教授，图灵奖得主。对深度学习和AI有着独特的见解。",
-    avatar: "https://pbs.twimg.com/profile_images/1438663072583655425/xs-Fpz0z_400x400.jpg",
+    avatar: "https://pbs.twimg.com/profile_images/1483577865056702469/rWA-3_T7_200x200.jpg",
     followers: "100万",
     categories: ["深度学习", "AI理论", "开源", "VLA模型"],
     recentPosts: [
       {
         id: "1",
-        content: "关于自主智能的思考：我们需要能够学习的AI，而不是仅仅记忆的AI...",
-        date: "2026-03-01",
-        likes: 4800,
-        reposts: 720,
-        url: "https://twitter.com/ylecun/status/xxx"
+        content: "Over 80 technical papers published since January 2022. What about you?",
+        date: "2026-03-04",
+        likes: 0,
+        reposts: 0,
+        url: "https://x.com/ylecun"
+      },
+      {
+        id: "2",
+        content: "X is a $44 billion propaganda machine. Yet it attempts to disguise itself as a defender of unfettered free speech.",
+        date: "2026-03-04",
+        likes: 0,
+        reposts: 0,
+        url: "https://x.com/ylecun"
+      },
+      {
+        id: "3",
+        content: "Llama-v2 is open source with commercial license. This is going to change the landscape of the LLM market.",
+        date: "2026-03-04",
+        likes: 0,
+        reposts: 0,
+        url: "https://x.com/ylecun"
+      },
+      {
+        id: "4",
+        content: "The best defense against a mind virus is intelligence, knowledge, and science.",
+        date: "2026-03-04",
+        likes: 0,
+        reposts: 0,
+        url: "https://x.com/ylecun"
       }
     ]
+  },
+  "kaiming": {
+    id: "kaiming",
+    name: "Kaiming He",
+    platform: "X (Twitter)",
+    handle: "@kaiming",
+    bio: "FAIR研究科学家，Mask R-CNN, ResNet作者。",
+    avatar: "",
+    followers: "3",
+    categories: ["深度学习", "计算机视觉"],
+    recentPosts: []
   },
   "sanjay": {
     id: "sanjay",
