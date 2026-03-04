@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from 'next/link';
 import papers, { Paper } from '../data/papers';
+import companies from '../data/companies';
 
 function ArrowIcon() {
   return (
@@ -170,23 +171,32 @@ export default function Home() {
           <span className="tag">Research Updates</span>
         </div>
         
-        <div className="grid gap-4 md:grid-cols-2">
-          <article className="card">
-            <div className="flex items-center justify-between mb-3">
-              <span className="tag tag-ai">OpenFang</span>
-              <span className="text-xs text-muted">2026-02-27</span>
-            </div>
-            <h4 className="card-title">v2026.2.26 Release</h4>
-            <p className="text-sm text-muted">External Secrets Management 新增完整 openclaw secrets 工作流</p>
-          </article>
-          <article className="card">
-            <div className="flex items-center justify-between mb-3">
-              <span className="tag tag-ai">NVIDIA</span>
-              <span className="text-xs text-muted">2026-02-28</span>
-            </div>
-            <h4 className="card-title">GR00T N1 发布</h4>
-            <p className="text-sm text-muted">NVIDIA 发布新版人形机器人基础模型，支持实时动作生成</p>
-          </article>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {Object.values(companies).map((company) => (
+            <Link key={company.id} href={`/company/${company.id}`}>
+              <article className="card hover:border-cyan-500/50 transition-colors">
+                <div className="flex items-center gap-3 mb-3">
+                  <img 
+                    src={company.logo} 
+                    alt={company.shortName}
+                    className="w-8 h-8 rounded"
+                  />
+                  <div className="flex-grow">
+                    <h4 className="card-title text-base">{company.shortName}</h4>
+                  </div>
+                  <span className="text-xs text-muted">{company.lastUpdated}</span>
+                </div>
+                <p className="text-sm text-muted mb-3 line-clamp-2">{company.description}</p>
+                <div className="flex flex-wrap gap-1">
+                  {company.highlights.slice(0, 2).map((h, i) => (
+                    <span key={i} className="text-xs px-2 py-1 bg-gray-800 text-gray-400 rounded">
+                      {h}
+                    </span>
+                  ))}
+                </div>
+              </article>
+            </Link>
+          ))}
         </div>
       </section>
 
