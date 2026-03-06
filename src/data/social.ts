@@ -35,7 +35,7 @@ export const socialData: Record<string, Influencer> = {
       {
         id: "1",
         content: "2.9M views in one day. Karpathy called my agent swarm setup 'brilliant or severe AI psychosis.' Building a $17k/mo SaaS as a solo founder with a 4-year-old and 6-month-old.",
-        date: "2026-03-04",
+        date: "2026-03-06",
         likes: 0,
         reposts: 0,
         url: "https://x.com/elvissun/status/2026628017158762790"
@@ -43,7 +43,7 @@ export const socialData: Record<string, Influencer> = {
       {
         id: "2",
         content: "Unpopular opinion: The best founders now are devs who learned marketing.",
-        date: "2026-03-04",
+        date: "2026-03-06",
         likes: 0,
         reposts: 0,
         url: "https://x.com/elvissun"
@@ -51,7 +51,7 @@ export const socialData: Record<string, Influencer> = {
       {
         id: "3",
         content: "If you can code + understand marketing, you'll never go broke.",
-        date: "2026-03-04",
+        date: "2026-03-06",
         likes: 0,
         reposts: 0,
         url: "https://x.com/elvissun"
@@ -82,7 +82,7 @@ export const socialData: Record<string, Influencer> = {
       {
         id: "1",
         content: "The hottest new programming language is English. Agency > Intelligence. Agency is significantly more powerful and significantly more scarce.",
-        date: "2026-03-04",
+        date: "2026-03-06",
         likes: 0,
         reposts: 0,
         url: "https://x.com/karpathy"
@@ -90,7 +90,7 @@ export const socialData: Record<string, Influencer> = {
       {
         id: "2",
         content: "Excited to announce Eureka Labs - building a new kind of school that is AI native.",
-        date: "2026-03-04",
+        date: "2026-03-06",
         likes: 0,
         reposts: 0,
         url: "https://x.com/karpathy/status/1813263734707790301"
@@ -98,7 +98,7 @@ export const socialData: Record<string, Influencer> = {
       {
         id: "3",
         content: "There's a new kind of coding I call 'vibe coding', where you fully give in to the vibes, embrace exponentials, and forget that the code even exists.",
-        date: "2026-03-04",
+        date: "2026-03-06",
         likes: 0,
         reposts: 0,
         url: "https://x.com/karpathy"
@@ -106,7 +106,7 @@ export const socialData: Record<string, Influencer> = {
       {
         id: "4",
         content: "Just vibe coded a whole iOS app in Swift (without having programmed in Swift before) in ~1 hour and it's running on my physical phone.",
-        date: "2026-03-04",
+        date: "2026-03-06",
         likes: 0,
         reposts: 0,
         url: "https://x.com/karpathy"
@@ -114,7 +114,7 @@ export const socialData: Record<string, Influencer> = {
       {
         id: "5",
         content: "Took delivery of a new HW4 Tesla Model X. FSD test drive - it drives really, really well, smooth, confident, noticeably better.",
-        date: "2026-03-04",
+        date: "2026-03-06",
         likes: 0,
         reposts: 0,
         url: "https://x.com/karpathy"
@@ -134,7 +134,7 @@ export const socialData: Record<string, Influencer> = {
       {
         id: "1",
         content: "Over 80 technical papers published since January 2022. What about you?",
-        date: "2026-03-04",
+        date: "2026-03-06",
         likes: 0,
         reposts: 0,
         url: "https://x.com/ylecun"
@@ -142,7 +142,7 @@ export const socialData: Record<string, Influencer> = {
       {
         id: "2",
         content: "X is a $44 billion propaganda machine. Yet it attempts to disguise itself as a defender of unfettered free speech.",
-        date: "2026-03-04",
+        date: "2026-03-06",
         likes: 0,
         reposts: 0,
         url: "https://x.com/ylecun"
@@ -150,7 +150,7 @@ export const socialData: Record<string, Influencer> = {
       {
         id: "3",
         content: "Llama-v2 is open source with commercial license. This is going to change the landscape of the LLM market.",
-        date: "2026-03-04",
+        date: "2026-03-06",
         likes: 0,
         reposts: 0,
         url: "https://x.com/ylecun"
@@ -158,7 +158,7 @@ export const socialData: Record<string, Influencer> = {
       {
         id: "4",
         content: "The best defense against a mind virus is intelligence, knowledge, and science.",
-        date: "2026-03-04",
+        date: "2026-03-06",
         likes: 0,
         reposts: 0,
         url: "https://x.com/ylecun"
