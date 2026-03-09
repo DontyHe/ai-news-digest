@@ -1,0 +1,25 @@
+# Social Media Tracker - Yann LeCun (@ylecun)
+
+**Date:** 2026-03-09
+
+## Latest Posts
+
+### Pinned Post
+**"My opinion of Elon Musk"**: "I like his cars (I own a 2015 S, and 2023 S), his rockets, his solar energy systems, and his satellite communication system. I also like his positions on open source and patents. But I very much disagree with him on a number of issues..."
+
+### Other Notable Posts
+
+- **On Elon**: "Elon has apparently one genuine technical paper indexed by Google Scholar... I'm sure the scientists at SpaceX, Tesla, and Neuralink are just as proud."
+
+- **On Open Source**: "This is huge: Llama-v2 is open source, with a license that authorizes commercial use! This is going to change the landscape of the LLM market."
+
+- **On xAI**: "Join xAI if you can stand a boss who: - claims that what you are working on will be solved next year (no pressure). - claims that what you are working on will kill everyone and must be stopped or paused..."
+
+- **On X Platform**: "X is a $44 billion propaganda machine. Yet it attempts to disguise itself as a defender of unfettered free speech, a source of factual information, and a substitute for professional journalism."
+
+- **On PhD Value**: "This dude has absolutely no idea WTF he's talking about. The total net worth of my former PhD students alone would make any silvery Wall Street dude turn green with envy."
+
+- **Defense of Science**: "You know, I really feel sorry for you and your family to have been infected by a mind virus. But the best defense against a mind virus is intelligence, knowledge, and science."
+
+---
+*Source: X (Twitter) @ylecun*
