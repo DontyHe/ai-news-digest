@@ -20,7 +20,7 @@ export interface Paper {
 
 export const papers: Paper[] = [
   {
-    id: "compact-2026-03-07",
+    id: "planning-in-8-tokens-2026-03-07",
     title: "Planning in 8 Tokens: A Compact Discrete Tokenizer for Latent World Model",
     authors: "Dongwon Kim, Gawon Seo, Jinsung Lee, Minsu Cho, Suha Kwak",
     institution: "KAIST",
