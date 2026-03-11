@@ -692,6 +692,75 @@ export const papers: Paper[] = [
     htmlUrl: "https://arxiv.org/abs/2603.09961",
     figures: []
   },
+
+  {
+    id: "paper-20260310-0",
+    title: "1. TiPToP: A Modular Open-Vocabulary Planning System for Robotic Manipulation",
+    authors: "MIT, UPenn et al.",
+    institution: "MIT, UPenn",
+    date: "2026-03-10",
+    category: "embodied",
+    summary: "TiPToP 是一个模块化的开环规划系统，结合预训练的视觉基础模型和任务运动规划器 (TAMP)，无需任何机器人数据即可在真实环境中完成多步骤操作任务，性能可匹配或超越使用350小时示教数据微调的 π0.5-DROID VLA模型。",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.09971",
+    htmlUrl: "https://arxiv.org/abs/2603.09971",
+    figures: []
+  },
+
+  {
+    id: "paper-20260310-1",
+    title: "2. Emerging Extrinsic Dexterity in Cluttered Scenes via Dynamics-aware Policy Le",
+    authors: "MIT, UPenn et al.",
+    institution: "MIT, UPenn",
+    date: "2026-03-10",
+    category: "embodied",
+    summary: "本文提出 Dynamics-Aware Policy Learning (DAPL) 框架，通过学习接触诱导的物体动力学表示，让机器人在杂乱场景中自然涌现出 extrinsic dexterity（利用环境接触完成抓取无法完成的操作），在模拟和真实环境中均显著优于现有方法。",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.09882",
+    htmlUrl: "https://arxiv.org/abs/2603.09882",
+    figures: []
+  },
+
+  {
+    id: "paper-20260310-2",
+    title: "3. Robotic Scene Cloning: Advancing Zero-Shot Robotic Scene Adaptation in Manipu",
+    authors: "MIT, UPenn et al.",
+    institution: "MIT, UPenn",
+    date: "2026-03-10",
+    category: "embodied",
+    summary: "Robotic Scene Cloning (RSC) 通过视觉提示编辑技术实现场景特定适配，能够在无需现场数据收集的情况下，将预训练的机器人策略迁移到新的真实场景中。",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.09712",
+    htmlUrl: "https://arxiv.org/abs/2603.09712",
+    figures: []
+  },
+
+  {
+    id: "paper-20260310-3",
+    title: "4. BEACON: Language-Conditioned Navigation Affordance Prediction under Occlusion",
+    authors: "MIT, UPenn et al.",
+    institution: "MIT, UPenn",
+    date: "2026-03-10",
+    category: "embodied",
+    summary: "BEACON 提出在鸟瞰视图 (BEV) 空间中进行语言条件下的导航可供性预测，能够推理被遮挡区域的目标位置，解决了现有 VLM 方法仅在图像空间预测、无法推断遮挡区域的问题。",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.09961",
+    htmlUrl: "https://arxiv.org/abs/2603.09961",
+    figures: []
+  },
+
 ];
 
 export default papers;
