@@ -627,6 +627,71 @@ export const papers: Paper[] = [
     htmlUrl: "https://arxiv.org/abs/2602.22663",
     figures: []
   }
+
+  {
+    id: "tiptop-20260310",
+    title: "1. TiPToP: A Modular Open-Vocabulary Planning System for Robotic Manipulation",
+    authors: "MIT, UPenn et al.",
+    institution: "MIT, UPenn",
+    date: "2026-03-10",
+    category: "embodied",
+    summary: "模块化开环规划系统，结合预训练视觉基础模型和TAMP，无需机器人数据即可完成多步骤操作。",
+    background: "机器人领域追求开箱即用的操作系统，能在任意机器人上执行任意物体的自然语言指令。",
+    architecture: "模块化架构：感知模块(FoundationStereo深度估计+M2T2抓取位姿+Gemini VLM) + 规划模块(cuTAMP) + 执行模块(阻抗控制器)",
+    innovations: "零机器人数据、快速部署(<1小时)、可解释性强、无需微调",
+    inspiration: "VLA模型的模块化设计思路值得关注，可参考其处理sim2real gap的方法",
+    pdfUrl: "https://arxiv.org/pdf/2603.09971",
+    htmlUrl: "https://arxiv.org/abs/2603.09971",
+    figures: []
+  },
+  {
+    id: "tiptop-20260310",
+    title: "2. Emerging Extrinsic Dexterity in Cluttered Scenes via Dynamics-aware Policy Learning",
+    authors: "MIT, UPenn et al.",
+    institution: "MIT, UPenn",
+    date: "2026-03-10",
+    category: "embodied",
+    summary: "模块化开环规划系统，结合预训练视觉基础模型和TAMP，无需机器人数据即可完成多步骤操作。",
+    background: "机器人领域追求开箱即用的操作系统，能在任意机器人上执行任意物体的自然语言指令。",
+    architecture: "模块化架构：感知模块(FoundationStereo深度估计+M2T2抓取位姿+Gemini VLM) + 规划模块(cuTAMP) + 执行模块(阻抗控制器)",
+    innovations: "零机器人数据、快速部署(<1小时)、可解释性强、无需微调",
+    inspiration: "VLA模型的模块化设计思路值得关注，可参考其处理sim2real gap的方法",
+    pdfUrl: "https://arxiv.org/pdf/2603.09882",
+    htmlUrl: "https://arxiv.org/abs/2603.09882",
+    figures: []
+  },
+  {
+    id: "tiptop-20260310",
+    title: "3. Robotic Scene Cloning: Advancing Zero-Shot Robotic Scene Adaptation in Manipulation via Visual Pr",
+    authors: "MIT, UPenn et al.",
+    institution: "MIT, UPenn",
+    date: "2026-03-10",
+    category: "embodied",
+    summary: "模块化开环规划系统，结合预训练视觉基础模型和TAMP，无需机器人数据即可完成多步骤操作。",
+    background: "机器人领域追求开箱即用的操作系统，能在任意机器人上执行任意物体的自然语言指令。",
+    architecture: "模块化架构：感知模块(FoundationStereo深度估计+M2T2抓取位姿+Gemini VLM) + 规划模块(cuTAMP) + 执行模块(阻抗控制器)",
+    innovations: "零机器人数据、快速部署(<1小时)、可解释性强、无需微调",
+    inspiration: "VLA模型的模块化设计思路值得关注，可参考其处理sim2real gap的方法",
+    pdfUrl: "https://arxiv.org/pdf/2603.09712",
+    htmlUrl: "https://arxiv.org/abs/2603.09712",
+    figures: []
+  },
+  {
+    id: "tiptop-20260310",
+    title: "4. BEACON: Language-Conditioned Navigation Affordance Prediction under Occlusion",
+    authors: "MIT, UPenn et al.",
+    institution: "MIT, UPenn",
+    date: "2026-03-10",
+    category: "embodied",
+    summary: "模块化开环规划系统，结合预训练视觉基础模型和TAMP，无需机器人数据即可完成多步骤操作。",
+    background: "机器人领域追求开箱即用的操作系统，能在任意机器人上执行任意物体的自然语言指令。",
+    architecture: "模块化架构：感知模块(FoundationStereo深度估计+M2T2抓取位姿+Gemini VLM) + 规划模块(cuTAMP) + 执行模块(阻抗控制器)",
+    innovations: "零机器人数据、快速部署(<1小时)、可解释性强、无需微调",
+    inspiration: "VLA模型的模块化设计思路值得关注，可参考其处理sim2real gap的方法",
+    pdfUrl: "https://arxiv.org/pdf/2603.09961",
+    htmlUrl: "https://arxiv.org/abs/2603.09961",
+    figures: []
+  },
 ];
 
 export default papers;
