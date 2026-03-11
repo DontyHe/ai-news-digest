@@ -244,7 +244,7 @@ export const papers: Paper[] = [
     figures: []
   },
   {
-    id: "tether-2026-03-05",
+    id: "paper-260303278",
     title: "Tether: Autonomous Functional Play with Correspondence-Driven Trajectory Warping",
     authors: "William Liang, Sam Wang, Hung-Ju Wang, Osbert Bastani, Yecheng Jason Ma, Dinesh Jayaraman",
     institution: "UPenn, NVIDIA Research",
@@ -260,7 +260,7 @@ export const papers: Paper[] = [
     figures: ["/figures/2603.03278_fig.png"]
   },
   {
-    id: "utonia-2026-03-05",
+    id: "paper-260303283",
     title: "Utonia: Toward One Encoder for All Point Clouds",
     authors: "Yujia Zhang, Xiaoyang Wu, Yunhan Yang, Xianzhe Fan, Han Li, Yuechen Zhang, Zehao Huang, Naiyan Wang, Hengshuang Zhao",
     institution: "港中文, 上海AI Lab, 商汤",
@@ -276,7 +276,7 @@ export const papers: Paper[] = [
     figures: ["/figures/2603.03283_fig.png"]
   },
   {
-    id: "cmoe-2026-03-05",
+    id: "paper-260303067",
     title: "CMoE: Contrastive Mixture of Experts for Motion Control and Terrain Adaptation of Humanoid Robots",
     authors: "Shihao Ma, Hongjin Chen, Zijun Xu, Yi Zhao, Ke Wu, Ruichen Yang, Leyao Zou, Zhongxue Ding, Wenchao Ding",
     institution: "上海交通大学, 清华大学",
@@ -292,7 +292,7 @@ export const papers: Paper[] = [
     figures: []
   },
   {
-    id: "ma-conav-2026-03-05",
+    id: "paper-260303024",
     title: "MA-CoNav: A Master-Slave Multi-Agent Framework with Hierarchical Collaboration and Dual-Level Reflection for Long-Horizon Embodied VLN",
     authors: "Ling Luo, Qianqian Bai",
     institution: "哈尔滨工业大学",
@@ -308,7 +308,7 @@ export const papers: Paper[] = [
     figures: []
   },
   {
-    id: "adm-dp-2026-03-05",
+    id: "paper-260221622",
     title: "ADM-DP: Adaptive Dynamic Modality Diffusion Policy through Vision-Tactile-Graph Fusion for Multi-Agent Manipulation",
     authors: "Enyi Wang, Wen Fan, Dandan Zhang",
     institution: "清华大学",
@@ -340,7 +340,7 @@ export const papers: Paper[] = [
     figures: []
   },
   {
-    id: "utonia-2026-03-04",
+    id: "paper-260303283",
     title: "Utonia: Toward One Encoder for All Point Clouds",
     authors: "Yujia Zhang, Xiaoyang Wu, Yunhan Yang, Xianzhe Fan, Han Li, Yuechen Zhang, Zehao Huang, Naiyan Wang, Hengshuang Zhao",
     institution: "Shanghai AI Lab, 港中文, 浙大",
@@ -356,7 +356,7 @@ export const papers: Paper[] = [
     figures: ["/figures/2603.03283_fig.png"]
   },
   {
-    id: "miburi-2026-03-04",
+    id: "paper-260303282",
     title: "MIBURI: Towards Expressive Interactive Gesture Synthesis",
     authors: "M. Hamza Mughal, Rishabh Dabral, Vera Demberg, Christian Theobalt",
     institution: "MPI Informatics, TU Darmstadt",
@@ -372,7 +372,7 @@ export const papers: Paper[] = [
     figures: ["/figures/2603.03282_fig.png"]
   },
   {
-    id: "tether-2026-03-04",
+    id: "paper-260303278",
     title: "Tether: Autonomous Functional Play with Correspondence-Driven Trajectory Warping",
     authors: "William Liang, Sam Wang, Hung-Ju Wang, Osbert Bastani, Yecheng Jason Ma, Dinesh Jayaraman",
     institution: "UPenn, NVIDIA, Carnegie Mellon",
@@ -388,7 +388,7 @@ export const papers: Paper[] = [
     figures: ["/figures/2603.03278_fig.png"]
   },
   {
-    id: "ultra-2026-03-04",
+    id: "paper-260303279",
     title: "ULTRA: Unified Multimodal Control for Autonomous Humanoid Whole-Body Loco-Manipulation",
     authors: "Xialin He, Sirui Li, Xinyao Yao, Runpei Dong, Liuyu Bian, Yu-Xiong Wang, Liang-Yan Gui",
     institution: "上交, 浙大, UIUC",
