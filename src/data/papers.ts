@@ -626,7 +626,7 @@ export const papers: Paper[] = [
     pdfUrl: "https://arxiv.org/pdf/2602.22663",
     htmlUrl: "https://arxiv.org/abs/2602.22663",
     figures: []
-  }
+  },
 
   {
     id: "tiptop-20260310",
