@@ -1,0 +1,56 @@
+{
+  "2026-03-11.md": [
+    "TiPToP 是一个模块化的开环规划系统，结合预训练的视觉基础模型和任务运动规划器 (TAMP)，无需任何机器人数据即可在真实环境中完成多步骤操作任务，性能可匹配或超越使用350小时示教数据微调的 π0.5-DROID VLA模型。",
+    "机器人领域长期追求的目标是构建一个「开箱即用」的操作系统：能够部署在任意机器人上，执行任意物体的自然语言指令，而不需要针对特定物体、环境或机器人本体进行调优。现有的视觉语言动作 (VLA) 模型如 π0.5 和 OpenVLA 提供了统一的输入输出接口（自然语言+图像输入，机器人动作输出），但需要大量训练数据且缺乏跨本体泛化能力。另一方面，任务和运动规划 (TAMP) 提供了结构化的多步骤操作框架，但这些系统通常与特定的硬件、感知和控制栈紧密耦合，难以访问和扩展。",
+    "#",
+    "",
+    {
+      "id": "paper-260309971",
+      "title": "1. TiPToP: A Modular Open-Vocabulary Planning System for Robotic Manipulation",
+      "summary": "1. TiPToP: A Modular Open-Vocabulary Planning System for Robotic Manipulation",
+      "background": "",
+      "architecture": "",
+      "innovations": "",
+      "pdfUrl": "https://arxiv.org/pdf/2603.09971"
+    },
+    "本文提出 Dynamics-Aware Policy Learning (DAPL) 框架，通过学习接触诱导的物体动力学表示，让机器人在杂乱场景中自然涌现出 extrinsic dexterity（利用环境接触完成抓取无法完成的操作），在模拟和真实环境中均显著优于现有方法。",
+    "在杂乱场景中进行机器人操作面临独特挑战：物体紧密堆积且相互遮挡可靠的抓取变得困难，碰撞-free 的执行受到高度约束。在这种情况下，有效的操作往往需要 extrinsic dexterity——即通过非抓取动作（如推动、滑动、倾倒）选择性利用或避免与环境接触的能力。现有方法缺乏对这种复杂动力学的显式建模，在密集杂乱环境中表现不佳。",
+    "#",
+    "",
+    {
+      "id": "paper-260309882",
+      "title": "2. Emerging Extrinsic Dexterity in Cluttered Scenes via Dynamics-aware Policy Le",
+      "summary": "2. Emerging Extrinsic Dexterity in Cluttered Scenes via Dynamics-aware Policy Le",
+      "background": "",
+      "architecture": "",
+      "innovations": "",
+      "pdfUrl": "https://arxiv.org/pdf/2603.09882"
+    },
+    "Robotic Scene Cloning (RSC) 通过视觉提示编辑技术实现场景特定适配，能够在无需现场数据收集的情况下，将预训练的机器人策略迁移到新的真实场景中。",
+    "现代机器人可以在训练环境中执行各种简单任务并适应不同场景。然而，将预训练的机器人模型部署到真实用户场景中仍然具有挑战性，因为它们的零样本能力有限，通常需要大量的现场数据收集。",
+    "#",
+    "",
+    {
+      "id": "paper-260309712",
+      "title": "3. Robotic Scene Cloning: Advancing Zero-Shot Robotic Scene Adaptation in Manipu",
+      "summary": "3. Robotic Scene Cloning: Advancing Zero-Shot Robotic Scene Adaptation in Manipu",
+      "background": "",
+      "architecture": "",
+      "innovations": "",
+      "pdfUrl": "https://arxiv.org/pdf/2603.09712"
+    },
+    "BEACON 提出在鸟瞰视图 (BEV) 空间中进行语言条件下的导航可供性预测，能够推理被遮挡区域的目标位置，解决了现有 VLM 方法仅在图像空间预测、无法推断遮挡区域的问题。",
+    "语言条件下的局部导航需要机器人从当前观察和开放词汇的关系指令中推断出附近可遍历的目标位置。现有的视觉语言空间 grounding 方法通常依赖 VLM 在图像空间进行推理，产生与可见像素绑定的2D预测。因此，它们难以推断被遮挡区域（通常由家具或移动的人造成）的目标位置。",
+    "#",
+    "",
+    {
+      "id": "paper-260309961",
+      "title": "4. BEACON: Language-Conditioned Navigation Affordance Prediction under Occlusion",
+      "summary": "4. BEACON: Language-Conditioned Navigation Affordance Prediction under Occlusion",
+      "background": "",
+      "architecture": "",
+      "innovations": "",
+      "pdfUrl": "https://arxiv.org/pdf/2603.09961"
+    }
+  ]
+}
