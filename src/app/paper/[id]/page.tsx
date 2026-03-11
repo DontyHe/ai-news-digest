@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import ReactMarkdown from 'react-markdown';
 import papers from '../../../data/papers';
 import fullPapers from '../../../data/fullPapers.json';
 
-// Merge papers data from both sources
 const allPapers = [...papers];
 fullPapers.forEach((fp: any) => {
   if (!allPapers.find((p: any) => p.id === fp.id)) {
@@ -14,7 +14,7 @@ fullPapers.forEach((fp: any) => {
       institution: '',
       date: fp.date,
       category: 'embodied',
-      summary: '',
+      summary: fp.content?.substring(0, 200) || '',
       background: '',
       architecture: '',
       innovations: '',
@@ -80,28 +80,23 @@ export default async function PaperPage({ params }: { params: Promise<{ id: stri
           </a>
         </div>
 
-        {/* Full Markdown Content */}
         {fullContent && (
-          <div className="prose prose-invert max-w-none">
-            {fullContent.content.split('\n').map((line: string, i: number) => {
-              if (line.startsWith('## ')) {
-                return <h2 key={i} className="text-2xl font-bold mt-8 mb-4 text-cyan-400">{line.replace('## ', '')}</h2>;
-              }
-              if (line.startsWith('### ')) {
-                return <h3 key={i} className="text-xl font-semibold mt-6 mb-3">{line.replace('### ', '')}</h3>;
-              }
-              if (line.startsWith('**') && line.endsWith('**')) {
-                return <p key={i} className="font-bold my-2 text-lg">{line.replace(/\*\*/g, '')}</p>;
-              }
-              if (line.startsWith('- ') || line.startsWith('* ')) {
-                return <li key={i} className="ml-4 my-1 text-gray-300">{line.replace(/^[-*] /, '')}</li>;
-              }
-              if (line.trim()) {
-                return <p key={i} className="my-2 text-gray-300">{line}</p>;
-              }
-              return null;
-            })}
-          </div>
+          <article className="prose prose-invert prose-lg max-w-none">
+            <ReactMarkdown
+              components={{
+                h1: ({children}) => <h1 className="text-3xl font-bold mt-8 mb-4 text-cyan-400">{children}</h1>,
+                h2: ({children}) => <h2 className="text-2xl font-bold mt-8 mb-4 text-cyan-300 border-b border-gray-700 pb-2">{children}</h2>,
+                h3: ({children}) => <h3 className="text-xl font-semibold mt-6 mb-3 text-white">{children}</h3>,
+                p: ({children}) => <p className="my-4 text-gray-300 leading-relaxed">{children}</p>,
+                li: ({children}) => <li className="my-2 text-gray-300 ml-4">{children}</li>,
+                ul: ({children}) => <ul className="my-4 space-y-2">{children}</ul>,
+                strong: ({children}) => <strong className="text-cyan-400 font-semibold">{children}</strong>,
+                a: ({href, children}) => <a href={href as string} target="_blank" className="text-cyan-400 hover:text-cyan-300 underline">{children}</a>,
+              }}
+            >
+              {fullContent.content}
+            </ReactMarkdown>
+          </article>
         )}
 
         {!fullContent && paper.summary && (
