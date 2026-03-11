@@ -1,8 +1,128 @@
 [
   {
+    "title": "Utonia: Toward One Encoder for All Point Clouds",
+    "date": "2026-03-04",
+    "content": "\n- **论文ID**: arXiv:2603.03283\n- **作者**: Yujia Zhang, Xiaoyang Wu, Yunhan Yang, Xianzhe Fan, Han Li, Yuechen Zhang, Zehao Huang, Naiyan Wang, Hengshuang Zhao\n- **机构**: 上海AI Lab, 港中文, 浙大\n- **发布日期**: 2026-03-03\n- **类别**: cs.CV\n- **链接**: [PDF](https://arxiv.org/pdf/2603.03283) | [HTML](https://arxiv.org/abs/2603.03283)\n\n**一句话概括**\n提出Utonia，一个统一的点云自监督预训练编码器，能够跨域（遥感、户外LiDAR、室内RGB-D、CAD模型、视频点云）学习一致的特征表示，并可迁移用于具身智能和VLA任务。\n\n**详细解读**\n\n- **研究背景**：当前点云处理通常针对特定领域训练独立模型，缺乏跨域统一能力。不同域的点云在感知几何、密度、先验知识上差异巨大。\n- **架构分析**：\n  - 统一的Point Transformer编码器架构\n  - 跨域自监督预训练策略\n  - 冻结特征可直接用于下游任务\n- **创新点**：\n  - 首个跨所有点云域的统一自监督表示学习框架\n  - 发现联合训练产生\"涌现行为\"，单独训练无法获得\n  - 可作为稀疏3D数据的Foundation Model\n- **对用户的启发**：Utonia的特征可直接用于VLA模型的3D感知输入，特别是支持embodied和multimodal reasoning，集成到VLA策略中可提升机器人操作能力。\n\n---\n\n",
+    "pdfUrl": "https://arxiv.org/pdf/2603.03283",
+    "htmlUrl": "https://arxiv.org/abs/2603.03283",
+    "id": "paper-260303283"
+  },
+  {
+    "title": "MIBURI: Towards Expressive Interactive Gesture Synthesis",
+    "date": "2026-03-04",
+    "content": "\n- **论文ID**: arXiv:2603.03282\n- **作者**: M. Hamza Mughal, Rishabh Dabral, Vera Demberg, Christian Theobalt\n- **机构**: MPI Informatics, TU Darmstadt\n- **发布日期**: 2026-03-03\n- **类别**: cs.HC\n- **链接**: [PDF](https://arxiv.org/pdf/2603.03282) | [HTML](https://arxiv.org/abs/2603.03282)\n\n**一句话概括**\n提出MIBURI，首个在线因果框架，实时生成与语音同步的富有表现力的全身手势和面部表情，用于具身对话智能体。\n\n**详细解读**\n\n- **研究背景**：现有LLM-based对话智能体缺乏具身性和表达性手势，而传统共手势合成方法依赖未来语音上下文、推理时间长，不适合实时交互。\n- **架构分析**：\n  - 身体部位感知的Gesture Codecs，将层级运动细节编码为多级离散token\n  - 二维因果框架，自回归生成token\n  - 基于LLM speech-text embeddings的条件生成\n- **创新点**：\n  - 首个在线、因果的实时全身手势生成框架\n  - 建模时序动态和部位级运动层级\n  - 辅助目标防止收敛到静态姿势\n- **对用户的启发**：该工作展示了对具身智能体\"表达性\"的重要性，手势生成可作为ECAs的组件，提升人机交互自然度。\n\n---\n\n",
+    "pdfUrl": "https://arxiv.org/pdf/2603.03282",
+    "htmlUrl": "https://arxiv.org/abs/2603.03282",
+    "id": "paper-260303282"
+  },
+  {
+    "title": "Tether: Autonomous Functional Play with Correspondence-Driven Trajectory Warping",
+    "date": "2026-03-04",
+    "content": "\n- **论文ID**: arXiv:2603.03278\n- **作者**: William Liang, Sam Wang, Hung-Ju Wang, Osbert Bastani, Yecheng Jason Ma, Dinesh Jayaraman\n- **机构**: UPenn, NVIDIA, Carnegie Mellon\n- **发布日期**: 2026-03-03\n- **类别**: cs.RO\n- **链接**: [PDF](https://arxiv.org/pdf/2603.03278) | [HTML](https://arxiv.org/abs/2603.03278)\n\n**一句话概括**\n提出Tether，通过语义关键点 Correspondence-Driven的轨迹warping实现数据高效、功能导向的自主玩耍学习，仅需≤10个源演示即可泛化到新场景。\n\n**详细解读**\n\n- **研究背景**：机器人通过\"玩耍\"自主学习是规模化替代人工演示的关键，但面临(1)策略需对多样、分布外环境状态鲁棒，(2)持续产生有用机器人体验的挑战。\n- **架构分析**：\n  - 开放环路策略：基于语义关键点 Correspondence warping动作\n  - VLM引导的自主玩耍循环：任务选择→执行→评估→改进\n  - 无需人工干预的数据生成\n- **创新点**：\n  - 仅需极少演示（≤10个）即可泛化到显著空间和语义变化\n  - 首次在真实世界实现数小时自主多任务玩耍\n  - 持续提升闭环模仿策略性能，最终产生>1000条专家级轨迹\n- **对用户的启发**：该工作展示了如何利用VLM+少量演示实现机器人自主数据收集，对构建大规模机器人数据集有重要参考价值。\n\n---\n\n",
+    "pdfUrl": "https://arxiv.org/pdf/2603.03278",
+    "htmlUrl": "https://arxiv.org/abs/2603.03278",
+    "id": "paper-260303278"
+  },
+  {
+    "title": "ULTRA: Unified Multimodal Control for Autonomous Humanoid Whole-Body Loco-Manipulation",
+    "date": "2026-03-04",
+    "content": "\n- **论文ID**: arXiv:2603.03279\n- **作者**: Xialin He, Sirui Li, Xinyao Yao, Runpei Dong, Liuyu Bian, Yu-Xiong Wang, Liang-Yan Gui\n- **机构**: 上交, 浙大, UIUC\n- **发布日期**: 2026-03-03\n- **类别**: cs.RO\n- **链接**: [PDF](https://arxiv.org/pdf/2603.03279) | [HTML](https://arxiv.org/abs/2603.03279)\n\n**一句话概括**\n提出ULTRA，统一框架实现类人机器人全车身locomanipulation，通过物理驱动的神经重定向+强化学习微调，支持密集参考和稀疏任务规范。\n\n**详细解读**\n\n- **研究背景**：现有类人机器人方法受限于：(1)重定向数据稀缺或低质量，(2)难扩展到大技能库，(3)依赖跟踪预定义运动而非从感知生成行为。\n- **架构分析**：\n  - 物理驱动神经重定向：将大规模动捕数据转换到类人实体\n  - 统一多模态控制器：支持密集参考+稀疏任务规范\n  - 感知范围：从精确动捕状态到噪声自我中心视觉\n  - RL微调扩展覆盖范围和鲁棒性\n- **创新点**：\n  - 首个支持端到端目标条件全车身locomanipulation的框架\n  - 无需测试时参考动作\n  - 在Unitree G1真机上验证\n- **对用户的启发**：该工作对VLA模型在人形机器人上的部署有借鉴意义，特别是稀疏意图到全身动作的映射设计。\n\n---\n\n",
+    "pdfUrl": "https://arxiv.org/pdf/2603.03279",
+    "htmlUrl": "https://arxiv.org/abs/2603.03279",
+    "id": "paper-260303279"
+  },
+  {
+    "title": "HoMMI: Learning Whole-Body Mobile Manipulation from Human Demonstrations",
+    "date": "2026-03-04",
+    "content": "\n- **论文ID**: arXiv:2603.03243\n- **作者**: Xiaomeng Xu, Jisang Park, Han Zhang, Eric Cousineau, Aditya Bhat, Jose Barreiros, Dian Wang, Shuran Song\n- **机构**: Columbia University\n- **发布日期**: 2026-03-03\n- **类别**: cs.RO\n- **链接**: [PDF](https://arxiv.org/pdf/2603.03243) | [HTML](https://arxiv.org/abs/2603.03243)\n\n**一句话概括**\n提出HoMMI，从无机器人的人类演示学习全身移动操作，通过UMI+自我中心感知实现便携、无机器人、可扩展的数据收集，并设计跨实体手眼策略弥补人和机器人的感知-动作差距。\n\n**详细解读**\n\n- **研究背景**：移动操作需要双手、全身协调、导航和主动感知，数据收集困难。现有方法依赖特定机器人平台，难以泛化。\n- **架构分析**：\n  - UMI+自我中心感知：捕获全局上下文\n  - 跨实体手眼策略设计：\n    - 实体无关视觉表示\n    - 放松的头部动作表示\n    - 全身控制器\n- **创新点**：\n  - 首个从人类演示学习全身移动操作的工作\n  - 解决人类到机器人感知-动作空间的实体差距\n  - 支持长程移动操作任务\n- **对用户的启发**：HoMMI展示了如何利用人类演示数据训练机器人策略，其跨实体设计对VLA模型的sim2real迁移有重要参考。\n\n---\n\n## 论文归档\n\n| 日期 | 论文数 | 文件 |\n|------|--------|------|\n| 2026-03-04 | 5 | paper_digest/2026-03-04.md |\n| 2026-03-03 | - | (见历史文件) |\n\n---\n\n*Generated by ArXiv Digest Agent*\n\n",
+    "pdfUrl": "https://arxiv.org/pdf/2603.03243",
+    "htmlUrl": "https://arxiv.org/abs/2603.03243",
+    "id": "paper-260303243"
+  },
+  {
+    "title": "Chain of World: World Model Thinking in Latent Motion",
+    "date": "2026-03-05",
+    "content": "\n**作者**: Fuxiang Yang, Donglin Di, Lulu Tang, Xuancheng Zhang, Lei Fan, Hao Li, Chen Wei, Tonghua Su, Baorui Ma  \n**机构**: 旷视科技 (Megvii)  \n**发布日期**: 2026/03/03  \n**arXiv ID**: 2603.03195  \n**PDF**: https://arxiv.org/pdf/2603.03195  \n**HTML**: https://arxiv.org/abs/2603.03195\n\n### 研究背景\nVLA模型通常忽略视觉动力学中的预测性和时间因果结构。世界模型VLA通过预测未来帧来解决这个问题，但浪费容量重建冗余背景。潜在动作VLA紧凑地编码帧间转换，但缺乏时间连续动态建模和世界知识。\n\n### 架构分析\n提出CoWVLA（Chain-of-World VLA），统一世界模型时间推理与解耦的潜在动作表示：\n1. 预训练视频VAE作为潜在动作提取器，将视频段显式分解为结构和动作潜在变量\n2. 预训练阶段：VLA从指令和初始帧学习，推断连续潜在动作链并预测段终止帧\n3. 共微调阶段：将潜在动态与离散动作预测对齐，在统一自回归解码器中联合建模稀疏关键帧和动作序列\n\n### 创新点\n- 首次统一世界模型时间推理与潜在动作表示\n- 保留世界模型时间推理和世界知识的优势，同时保持潜在动作的紧凑性和可解释性\n- 在机器人仿真基准测试中优于现有世界模型和潜在动作方法\n\n### 对你研究的启发\n该工作为VLA预训练提供了新范式，特别是潜在动作链的设计思路可用于世界模型构建。\n\n---\n\n",
+    "pdfUrl": "https://arxiv.org/pdf/2603.03195",
+    "htmlUrl": "https://arxiv.org/abs/2603.03195",
+    "id": "paper-260303195"
+  },
+  {
+    "title": "ACE-Brain-0: Spatial Intelligence as a Shared Scaffold for Universal Embodiments",
+    "date": "2026-03-05",
+    "content": "\n**作者**: Ziyang Gong, Zehang Luo, Anke Tang, Zhe Liu, Shi Fu, Zhi Hou, Ganlin Lin, Weiyun Wang, Xiaofeng Wang, Jianbo Liu, Gen Luo, Haolan Kang, Shuang Luo, Yue Zhou, Yong Luo, Li Shen, Xiaosong Jia, Yao Mu, Xue Yang, Chunxiao Liu, Junchi Yan, Hengshuang Zhao, Dacheng Tao, Xiaogang Wang  \n**机构**: 上海人工智能实验室, 港中文, 华为诺亚  \n**发布日期**: 2026/03/03  \n**arXiv ID**: 2603.03198  \n**PDF**: https://arxiv.org/pdf/2603.03198  \n**HTML**: https://arxiv.org/abs/2603.03198\n\n### 研究背景\n通用具身智能需要在异构智能体（自动驾驶、机器人、无人机）间实现鲁棒泛化。现有方法在训练统一模型时常遭遇长尾数据、梯度干扰和灾难性遗忘，难以平衡通用泛化与领域特定专长。\n\n### 架构分析\n提出ACE-Brain-0，一个通用基础大脑，在单一多模态大语言模型(MLLM)中统一空间推理、自动驾驶和具身操作。\n核心洞察：空间智能作为跨不同物理智能体的通用脚手架，尽管车辆、机器人、无人机形态各异，但共享3D心理空间建模需求。\n方法：Scaffold-Specialize-Reconcile(SSR)范式\n1. 建立共享空间基础\n2. 培养领域专用专家\n3. 通过无数据模型合并进行调和\n采用Group Relative Policy Optimization(GRPO)增强模型综合能力\n\n### 创新点\n- 首次提出空间智能作为跨智能体通用脚手架的概念\n- SSR范式实现无数据模型合并，解决灾难性遗忘\n- 在24个空间和具身相关基准测试中达到SOTA\n\n### 对你研究的启发\n空间智能作为跨智能体迁移基础的想法值得借鉴，SSR范式可用于VLA模型的多智能体适应。\n\n---\n\n",
+    "pdfUrl": "https://arxiv.org/pdf/2603.03198",
+    "htmlUrl": "https://arxiv.org/abs/2603.03198",
+    "id": "paper-260303198"
+  },
+  {
+    "title": "Joint-Aligned Latent Action: Towards Scalable VLA Pretraining in the Wild",
+    "date": "2026-03-05",
+    "content": "\n**作者**: Hao Luo, Ye Wang, Wanpeng Zhang, Haoqi Yuan, Yicheng Feng, Haiweng Xu, Sipeng Zheng, Zongqing Lu  \n**机构**: 北大, 字节跳动  \n**发布日期**: 2026/02/25  \n**arXiv ID**: 2602.21736  \n**PDF**: https://arxiv.org/pdf/2602.21736  \n**HTML**: https://arxiv.org/abs/2602.21736\n\n### 研究背景\nVLA模型受限于大规模多样化机器人数据的稀缺性。人类操作视频提供了丰富的替代来源，但现有方法不得不在精确标注的小数据集和不可靠手部追踪标注的广阔野外 footage 之间做出选择。\n\n### 架构分析\n提出JALA(Jointly-Aligned Latent Actions)预训练框架：\n- 不学习完整视觉动态重建，而是学习与逆动力学和真实动作对齐的预测动作嵌入\n- 这产生了一个过渡感知、行为中心的潜在空间，用于从异构人类数据中学习\n- 规模化：UniHand-Mix，750万视频(>2000小时)，混合实验室和野外 footage\n\n### 创新点\n- 首次提出联合对齐的潜在动作概念\n- 绕过精确手部追踪标注需求\n- 在仿真和真实世界任务中显著提升机器人操作性能\n\n### 对你研究的启发\nJALA为从互联网视频数据预训练VLA提供了可行路径，联合对齐的潜在动作设计具有重要参考价值。\n\n---\n\n",
+    "pdfUrl": "https://arxiv.org/pdf/2602.21736",
+    "htmlUrl": "https://arxiv.org/abs/2602.21736",
+    "id": "paper-260221736"
+  },
+  {
+    "title": "Universal Pose Pretraining for Generalizable Vision-Language-Action Policies",
+    "date": "2026-03-05",
+    "content": "\n**作者**: Haitao Lin, Hanyang Yu, Jingshun Zhang, He Zhang, Yonggen Ling, Ping Tan, Xiangyang Xue, Yanwei Fu  \n**机构**: 复旦, 上海科技大学, 港中文(深圳)  \n**发布日期**: 2026/02/23  \n**arXiv ID**: 2602.19710  \n**PDF**: https://arxiv.org/pdf/2602.19710  \n**HTML**: https://arxiv.org/abs/2602.19710\n\n### 研究背景\n现有VLA模型常遭受特征崩溃和低训练效率，因为它们将高级感知与稀疏、智能体特定的动作监督纠缠在一起。这些模型通常依赖为VQA优化的VLM backbone，擅长语义识别但常忽略决定不同动作模式的微妙3D状态变化。\n\n### 架构分析\n提出Pose-VLA，解耦范式将VLA训练分为：\n1. **预训练阶段**: 在统一相机中心空间提取通用3D空间先验\n2. **后训练阶段**: 在智能体特定动作空间中进行高效智能体对齐\n引入离散姿态tokens作为通用表示，无缝集成来自多样化3D数据集的空间 grounding 与机器人演示的几何级轨迹监督\n两阶段预训练流程：通过姿态建立基础空间 grounding，随后通过轨迹监督进行运动对齐\n\n### 创新点\n- 首次提出通用姿态预训练范式\n- 离散姿态tokens作为跨智能体通用表示\n- 在RoboTwin 2.0达到79.5%平均成功率，LIBERO达到96.0%\n\n### 对你研究的启发\n姿态预训练思路可用于VLA的空间理解能力提升，离散tokens设计具有通用性。\n\n---\n\n",
+    "pdfUrl": "https://arxiv.org/pdf/2602.19710",
+    "htmlUrl": "https://arxiv.org/abs/2602.19710",
+    "id": "paper-260219710"
+  },
+  {
+    "title": "Tether: Autonomous Functional Play with Correspondence-Driven Trajectory Warping",
+    "date": "2026-03-05",
+    "content": "\n**作者**: William Liang, Sam Wang, Hung-Ju Wang, Osbert Bastani, Yecheng Jason Ma, Dinesh Jayaraman  \n**机构**: UPenn, NVIDIA Research  \n**发布日期**: 2026/03/03  \n**arXiv ID**: 2603.03278  \n**PDF**: https://arxiv.org/pdf/2603.03278  \n**HTML**: https://arxiv.org/abs/2603.03278\n\n### 研究背景\n从交互和经验中学习和进行的能力是机器人学的核心挑战，提供了劳动密集型人类演示的可扩展替代方案。然而，实现这种\"play\"需要：(1) 对多样化的潜在分布外环境状态鲁棒的政策；(2) 持续产生有用机器人经验的程序。\n\n### 架构分析\nTether方法包含两部分：\n1. **开放循环策略**: 将少量源演示(≤10个)的动作通过语义关键点对应 warp 到目标场景，动作扭曲策略基于关键点对应\n2. **自主功能play**: VLM引导的持续循环：任务选择 → 执行 → 评估 → 改进\n在家庭式多物体设置中，从仅 handful of 演示开始，进行数小时真实世界自主多任务play\n\n### 创新点\n- 首个在真实世界中实现数小时自主多任务play的方法\n- 基于语义关键点的动作扭曲策略，数据效率极高\n- 最终产生1000+专家级轨迹，性能媲美人类收集的演示\n\n### 对你研究的启发\n自主数据收集策略可用于扩展机器人数据集，关键点对应方法为少样本泛化提供思路。\n\n---\n\n",
+    "pdfUrl": "https://arxiv.org/pdf/2603.03278",
+    "htmlUrl": "https://arxiv.org/abs/2603.03278",
+    "id": "paper-260303278"
+  },
+  {
+    "title": "Utonia: Toward One Encoder for All Point Clouds",
+    "date": "2026-03-05",
+    "content": "\n**作者**: Yujia Zhang, Xiaoyang Wu, Yunhan Yang, Xianzhe Fan, Han Li, Yuechen Zhang, Zehao Huang, Naiyan Wang, Hengshuang Zhao  \n**机构**: 港中文, 上海AI Lab, 商汤  \n**发布日期**: 2026/03/03  \n**arXiv ID**: 2603.03283  \n**PDF**: https://arxiv.org/pdf/2603.03283  \n**HTML**: https://arxiv.org/abs/2603.03283\n\n### 研究背景\n来自不同领域的点云可以汇聚成一个使它们都受益的单一模型。现有点云模型通常针对单一领域（遥感、户外LiDAR、室内RGB-D、CAD模型）设计，缺乏跨领域统一。\n\n### 架构分析\nUtonia：首个跨领域训练的自监督点Transformer编码器\n- 领域涵盖：遥感、户外LiDAR、室内RGB-D序列、物体中心CAD模型、从纯RGB视频提升的点云\n- 尽管传感几何、密度和先验各异，Utonia学习跨领域一致表示空间\n- 发现：联合训练时出现仅在跨领域训练时才有的有趣 emergent behaviors\n- 应用：VLA策略使用Utonia特征改善机器人操作；集成到VLM提升空间推理\n\n### 创新点\n- 首个跨领域点云foundation model\n- 联合训练产生 emergent 具身和多模态推理能力\n- 为稀疏3D数据foundation model奠定基础\n\n### 对你研究的启发\n跨领域联合训练策略可用于提升VLA的3D感知能力，Utonia特征可直接用于VLA backbone。\n\n---\n\n",
+    "pdfUrl": "https://arxiv.org/pdf/2603.03283",
+    "htmlUrl": "https://arxiv.org/abs/2603.03283",
+    "id": "paper-260303283"
+  },
+  {
+    "title": "CMoE: Contrastive Mixture of Experts for Motion Control and Terrain Adaptation of Humanoid Robots",
+    "date": "2026-03-05",
+    "content": "\n**作者**: Shihao Ma, Hongjin Chen, Zijun Xu, Yi Zhao, Ke Wu, Ruichen Yang, Leyao Zou, Zhongxue Ding, Wenchao Ding  \n**机构**: 上海交通大学, 清华大学  \n**发布日期**: 2026/03/03  \n**arXiv ID**: 2603.03067  \n**PDF**: https://arxiv.org/pdf/2603.03067  \n**HTML**: https://arxiv.org/abs/2603.03067\n\n### 研究背景\n人形机器人需要在具有急剧过渡的多样复杂地形中自主导航。Vanilla MoE框架理论上能建模多样化地形特征，但实际中门控网络在不同地形上呈现几乎均匀的专家激活，削弱了专家专业化。\n\n### 架构分析\nCMoE：新型单阶段强化学习框架，集成对比学习细化专家激活分布\n- 通过对比约束，最大化同一地形内专家激活的一致性，最小化不同地形间的相似性\n- 鼓励专家专门化于不同地形类型\n在Unitree G1人形机器人上验证\n\n### 创新点\n- 首次将对比学习引入MoE的门控网络\n- 有效解决专家激活均匀化问题\n- 机器人可穿越高达20cm的连续台阶和80cm宽的间隙\n\n### 对你研究的启发\n对比学习约束可应用于VLA的多任务学习，增强任务特定专家的专业化。\n\n---\n\n",
+    "pdfUrl": "https://arxiv.org/pdf/2603.03067",
+    "htmlUrl": "https://arxiv.org/abs/2603.03067",
+    "id": "paper-260303067"
+  },
+  {
+    "title": "MA-CoNav: A Master-Slave Multi-Agent Framework with Hierarchical Collaboration and Dual-Level Reflection for Long-Horizon Embodied VLN",
+    "date": "2026-03-05",
+    "content": "\n**作者**: Ling Luo, Qianqian Bai  \n**机构**: 哈尔滨工业大学  \n**发布日期**: 2026/03/03  \n**arXiv ID**: 2603.03024  \n**PDF**: https://arxiv.org/pdf/2603.03024  \n**HTML**: https://arxiv.org/abs/2603.03024\n\n### 研究背景\n视觉语言导航(VLN)旨在赋予机器人基于复杂语言指令在陌生环境中执行长程导航的能力。现有方法常因单一智能体的认知过载而在复杂长距离任务中遭受感知失真和决策漂移。\n\n### 架构分析\nMA-CoNav：多智能体协作导航框架\n- \"主从\"层级智能体协作架构\n  - Master Agent: 全局编排\n  - Observation Agent: 环境描述生成\n  - Planning Agent: 任务分解和动态验证\n  - Execution Agent: 同时建图和动作\n  - Memory Agent: 结构化经验管理\n- \"局部-全局\"双阶段反射机制\n\n### 创新点\n- 分布式认知理论启发的多智能体架构\n- 首次在真实机器人(Limo Pro)上无场景特定微调实现长程VLN\n- 全面超越现有主流VLN方法\n\n### 对你研究的启发\n主从协作架构可用于复杂环境中的VLA任务分解，反射机制增强长程任务可靠性。\n\n---\n\n",
+    "pdfUrl": "https://arxiv.org/pdf/2603.03024",
+    "htmlUrl": "https://arxiv.org/abs/2603.03024",
+    "id": "paper-260303024"
+  },
+  {
+    "title": "ADM-DP: Adaptive Dynamic Modality Diffusion Policy through Vision-Tactile-Graph Fusion for Multi-Agent Manipulation",
+    "date": "2026-03-05",
+    "content": "\n**作者**: Enyi Wang, Wen Fan, Dandan Zhang  \n**机构**: 清华大学  \n**发布日期**: 2026/02/25  \n**arXiv ID**: 2602.21622  \n**PDF**: https://arxiv.org/pdf/2602.21622  \n**HTML**: https://arxiv.org/abs/2602.21622\n\n### 研究背景\n多智能体机器人操作在协调、抓取稳定性、避免共享工作空间碰撞方面面临挑战。\n\n### 架构分析\nADM-DP(自适应动态模态扩散策略)：\n1. **增强视觉编码器**: 通过FiLM调制融合RGB和点云特征\n2. **触觉引导抓取策略**: 使用FSR反馈检测接触不足并触发抓取修正\n3. **基于图的碰撞编码器**: 利用多智能体共享TCP位置维护空间感知\n4. **自适应模态注意力机制(AMAM)**: 根据任务上下文动态重加权模态\n解耦训练范式：智能体学习独立策略同时共享空间信息\n\n### 创新点\n- 首个集成视觉、触觉、图模态的多智能体扩散策略\n- FiLM调制增强视觉感知\n- 触觉反馈实时修正抓取\n- 在7个多智能体任务中达到12-25%性能提升\n\n### 对你研究的启发\n多模态融合策略可用于增强VLA的感知能力，自适应注意力机制值得借鉴。\n\n---\n\n",
+    "pdfUrl": "https://arxiv.org/pdf/2602.21622",
+    "htmlUrl": "https://arxiv.org/abs/2602.21622",
+    "id": "paper-260221622"
+  },
+  {
+    "title": "Denoising Particle Filters: Learning State Estimation with Single-Step Objectives",
+    "date": "2026-03-05",
+    "content": "\n**作者**: Lennart Röstel, Berthold Bäuml  \n**机构**: TUM (慕尼黑工业大学)  \n**发布日期**: 2026/02/23  \n**arXiv ID**: 2602.19651  \n**PDF**: https://arxiv.org/pdf/2602.19651  \n**HTML**: https://arxiv.org/abs/2602.19651\n\n### 研究背景\n基于学习的机器人状态估计常被视为序列建模问题。虽然该范式在最大化端到端性能方面有效，但模型难以解释且训练昂贵，因为训练需要在时间上展开预测序列。\n\n### 架构分析\n提出新型粒子滤波算法：\n- 模型从单个状态转换中训练，充分利用机器人系统中的马尔可夫性质\n- 隐式学习测量模型，最小化去噪分数匹配目标\n- 推理时，学习到的去噪器与(学习的)动态模型一起用于近似求解每一步的贝叶斯滤波方程\n\n### 创新点\n- 首个将去噪分数匹配应用于粒子滤波的方法\n- 保留经典滤波算法的可组合性，可纳入先验信息和外部传感器模型\n- 在仿真机器人状态估计任务中达到与端到端基线相当的性能\n\n### 对你研究的启发\n去噪分数匹配可用于学习VLA世界模型的动态模型，单步训练目标提高训练效率。\n\n---\n\n*本报告由 Javas 自动生成*\n*日期: 2026-03-05*\n\n",
+    "pdfUrl": "https://arxiv.org/pdf/2602.19651",
+    "htmlUrl": "https://arxiv.org/abs/2602.19651",
+    "id": "paper-260219651"
+  },
+  {
     "title": "TiPToP: A Modular Open-Vocabulary Planning System for Robotic Manipulation",
     "date": "2026-03-11",
-    "content": "\n- **作者**: William Shen, Nishanth Kumar, Sahit Chintalapudi, Jie Wang, Christopher Watson, Edward Hu, Jing Cao, Dinesh Jayaraman, Leslie Pack Kaelbling, Tomás Lozano-Pérez\n- **机构**: MIT CSAIL, University of Pennsylvania\n- **发布日期**: 2026-03-10\n- **类别**: cs.RO\n- **链接**: [PDF](https://arxiv.org/pdf/2603.09971) | [HTML](https://arxiv.org/html/2603.09971v1) | [Project](https://tiptop-robot.github.io)\n\n**一句话概括**\nTiPToP 是一个模块化的开环规划系统，结合预训练的视觉基础模型和任务运动规划器 (TAMP)，无需任何机器人数据即可在真实环境中完成多步骤操作任务，性能可匹配或超越使用350小时示教数据微调的 π0.5-DROID VLA模型。\n\n**详细解读**\n\n### 研究背景\n\n机器人领域长期追求的目标是构建一个「开箱即用」的操作系统：能够部署在任意机器人上，执行任意物体的自然语言指令，而不需要针对特定物体、环境或机器人本体进行调优。现有的视觉语言动作 (VLA) 模型如 π0.5 和 OpenVLA 提供了统一的输入输出接口（自然语言+图像输入，机器人动作输出），但需要大量训练数据且缺乏跨本体泛化能力。另一方面，任务和运动规划 (TAMP) 提供了结构化的多步骤操作框架，但这些系统通常与特定的硬件、感知和控制栈紧密耦合，难以访问和扩展。\n\n### 架构分析\n\nTiPToP 采用模块化架构，包含三个核心模块：\n\n1. **感知模块 (Perception Module)**\n   - 使用 FoundationStereo 进行立体深度估计，获得清晰的对象边界（特别是在透明、反光和无纹理表面）\n   - 使用 M2T2 预测场景点云上的6自由度抓取位姿\n   - 使用 Gemini VLM 进行开放词汇对象检测和语义理解，将自然语言指令 grounding 为符号化目标（如 On(a, b) 表示将物体a放置在物体b上）\n\n2. **规划模块 (Planning Module)**\n   - 使用 cuTAMP（GPU并行化的TAMP算法）搜索计划骨架并优化连续参数（抓取位姿、放置位姿、无碰撞轨迹）\n   - 相比采样方法（如PDDLStream）显著提高计算效率\n\n3. **执行模块 (Execution Module)**\n   - 使用关节阻抗控制器跟踪规划的轨迹\n\n### 创新点\n\n- **零机器人数据**：完全依赖预训练的视觉基础模型，无需收集任何机器人示教数据\n- **快速部署**：在标准DROID设置上安装运行不到1小时，可适配新本体（需配备相机、夹爪、URDF和轨迹跟踪控制器）\n- **可解释性**：模块化架构使失败可追溯到特定模块，便于针对性调试\n- **无需微调**：与需要350小时本体特定示教数据微调的 π0.5-DROID 对比\n\n### 实验结果\n\n- 在28个桌面操作任务（模拟和真实世界）上评估\n- 173次试验的评估结果：TiPToP 达到与 π0.5-DROID 相当或更好的成功率\n- 两种系统的失败模式互补\n- 额外在 UR5e 和 WidowX AI 机器人臂上验证了部署便捷性\n\n### 对具身智能算法工程师的启发\n\n1. **模块化 vs 端到端**：TiPToP 展示了模块化规划在机器人操作中的潜力，特别是在需要精确几何推理的任务中。这为 VLA 模型和传统规划方法的结合提供了新思路。\n2. **VLM + TAMP 结合**：利用 VLM 的语义理解和 TAMP 的几何推理能力，这种组合可能在复杂长程任务中优于纯学习方法。\n3. **零样本部署**：无需收集大量本体系数据就能部署的方法，对实际落地很有价值。\n\n---\n\n",
+    "content": "\n- **论文ID**: arXiv:2603.09971\n- **作者**: William Shen, Nishanth Kumar, Sahit Chintalapudi, Jie Wang, Christopher Watson, Edward Hu, Jing Cao, Dinesh Jayaraman, Leslie Pack Kaelbling, Tomás Lozano-Pérez\n- **机构**: MIT CSAIL, University of Pennsylvania\n- **发布日期**: 2026-03-10\n- **类别**: cs.RO\n- **链接**: [PDF](https://arxiv.org/pdf/2603.09971) | [HTML](https://arxiv.org/html/2603.09971v1) | [Project](https://tiptop-robot.github.io)\n\n**一句话概括**\nTiPToP 是一个模块化的开环规划系统，结合预训练的视觉基础模型和任务运动规划器 (TAMP)，无需任何机器人数据即可在真实环境中完成多步骤操作任务，性能可匹配或超越使用350小时示教数据微调的 π0.5-DROID VLA模型。\n\n**详细解读**\n\n### 研究背景\n\n机器人领域长期追求的目标是构建一个「开箱即用」的操作系统：能够部署在任意机器人上，执行任意物体的自然语言指令，而不需要针对特定物体、环境或机器人本体进行调优。现有的视觉语言动作 (VLA) 模型如 π0.5 和 OpenVLA 提供了统一的输入输出接口（自然语言+图像输入，机器人动作输出），但需要大量训练数据且缺乏跨本体泛化能力。另一方面，任务和运动规划 (TAMP) 提供了结构化的多步骤操作框架，但这些系统通常与特定的硬件、感知和控制栈紧密耦合，难以访问和扩展。\n\n### 架构分析\n\nTiPToP 采用模块化架构，包含三个核心模块：\n\n1. **感知模块 (Perception Module)**\n   - 使用 FoundationStereo 进行立体深度估计，获得清晰的对象边界（特别是在透明、反光和无纹理表面）\n   - 使用 M2T2 预测场景点云上的6自由度抓取位姿\n   - 使用 Gemini VLM 进行开放词汇对象检测和语义理解，将自然语言指令 grounding 为符号化目标（如 On(a, b) 表示将物体a放置在物体b上）\n\n2. **规划模块 (Planning Module)**\n   - 使用 cuTAMP（GPU并行化的TAMP算法）搜索计划骨架并优化连续参数（抓取位姿、放置位姿、无碰撞轨迹）\n   - 相比采样方法（如PDDLStream）显著提高计算效率\n\n3. **执行模块 (Execution Module)**\n   - 使用关节阻抗控制器跟踪规划的轨迹\n\n### 创新点\n\n- **零机器人数据**：完全依赖预训练的视觉基础模型，无需收集任何机器人示教数据\n- **快速部署**：在标准DROID设置上安装运行不到1小时，可适配新本体（需配备相机、夹爪、URDF和轨迹跟踪控制器）\n- **可解释性**：模块化架构使失败可追溯到特定模块，便于针对性调试\n- **无需微调**：与需要350小时本体特定示教数据微调的 π0.5-DROID 对比\n\n### 实验结果\n\n- 在28个桌面操作任务（模拟和真实世界）上评估\n- 173次试验的评估结果：TiPToP 达到与 π0.5-DROID 相当或更好的成功率\n- 两种系统的失败模式互补\n- 额外在 UR5e 和 WidowX AI 机器人臂上验证了部署便捷性\n\n### 对具身智能算法工程师的启发\n\n1. **模块化 vs 端到端**：TiPToP 展示了模块化规划在机器人操作中的潜力，特别是在需要精确几何推理的任务中。这为 VLA 模型和传统规划方法的结合提供了新思路。\n2. **VLM + TAMP 结合**：利用 VLM 的语义理解和 TAMP 的几何推理能力，这种组合可能在复杂长程任务中优于纯学习方法。\n3. **零样本部署**：无需收集大量本体系数据就能部署的方法，对实际落地很有价值。\n\n---\n\n",
     "pdfUrl": "https://arxiv.org/pdf/2603.09971",
     "htmlUrl": "https://arxiv.org/abs/2603.09971",
     "id": "paper-260309971"
@@ -10,7 +130,7 @@
   {
     "title": "Emerging Extrinsic Dexterity in Cluttered Scenes via Dynamics-aware Policy Learning",
     "date": "2026-03-11",
-    "content": "\n- **作者**: Yixin Zheng, Jiangran Lyu, Yifan Zhang, Jiayi Chen, Mi Yan, Yuntian Deng, Xuesong Shi, Xiaoguang Zhao, Yizhou Wang, Zhizheng Zhang, He Wang\n- **机构**: 北京大学、中国科学院自动化研究所、北京人工智能研究院、Galbot、上海交通大学\n- **发布日期**: 2026-03-10\n- **类别**: cs.RO\n- **链接**: [PDF](https://arxiv.org/pdf/2603.09882) | [Project](https://pku-epic.github.io/DAPL)\n\n**一句话概括**\n本文提出 Dynamics-Aware Policy Learning (DAPL) 框架，通过学习接触诱导的物体动力学表示，让机器人在杂乱场景中自然涌现出 extrinsic dexterity（利用环境接触完成抓取无法完成的操作），在模拟和真实环境中均显著优于现有方法。\n\n**详细解读**\n\n### 研究背景\n\n在杂乱场景中进行机器人操作面临独特挑战：物体紧密堆积且相互遮挡可靠的抓取变得困难，碰撞-free 的执行受到高度约束。在这种情况下，有效的操作往往需要 extrinsic dexterity——即通过非抓取动作（如推动、滑动、倾倒）选择性利用或避免与环境接触的能力。现有方法缺乏对这种复杂动力学的显式建模，在密集杂乱环境中表现不佳。\n\n### 架构分析\n\nDAPL 采用两阶段学习框架：\n\n1. **阶段一：世界模型预训练**\n   - 输入：裁剪的点云 + 物理属性（质量、速度）\n   - 架构：基于 Patch 的 Transformer backbone\n   - 使用 Farthest Point Sampling (FPS) 选择 patch 中心，kNN 构建局部 patch\n   - PointNet-style encoder 嵌入每个 patch 为固定维度 token\n   - 添加基于 patch 中心坐标的正弦位置嵌入\n   - ViT 处理 patch token 建模多物体耦合效应\n   - MLP 解码器预测未来逐点位置和速度\n\n2. **阶段二：策略学习**\n   - 预训练的动力学表示 (f_dy) 馈入 Actor-Critic 策略网络\n   - 结合本体感知数据和任务目标进行高效策略学习\n\n### 创新点\n\n- **显式动力学建模**：通过物理世界模型学习接触诱导的场景动态表示，而非仅依赖几何特征\n- **课程学习**：使用策略 rollout 轨迹迭代优化动力学表示\n- **自然涌现 extrinsic dexterity**：无需手工设计的接触启发式或复杂奖励塑造\n- **Clutter6D 基准**：构建了用于6D物体排列的杂乱场景模拟环境\n\n### 实验结果\n\n- **模拟环境**：在未见过的杂乱场景中，成功率比抓取基线、人类遥操作和先前表示学习方法提高超过25%\n- **真实世界**：10个杂乱场景中达到约50%成功率，与人类遥操作相当，但效率更高（平均执行时间42.6秒 vs 55.9秒）\n- **杂货店部署**：展示了稳健的 sim-to-real 迁移能力\n\n### 对具身智能算法工程师的启发\n\n1. **动力学表示的重要性**：在杂乱场景中，纯粹的静态几何表示不足，需要学习物体间的交互动态。这对构建更鲁棒的操作策略有重要参考价值。\n2. **非抓取操作的潜力**：展示了下推、滑动、倾倒等 extrinsic dexterity 在实际任务中的重要性，特别是当抓取不可行时。\n3. **Sim-to-real 迁移**：基于点云的表示学习可能比像素空间方法更容易迁移到真实场景。\n\n---\n\n",
+    "content": "\n- **论文ID**: arXiv:2603.09882\n- **作者**: Yixin Zheng, Jiangran Lyu, Yifan Zhang, Jiayi Chen, Mi Yan, Yuntian Deng, Xuesong Shi, Xiaoguang Zhao, Yizhou Wang, Zhizheng Zhang, He Wang\n- **机构**: 北京大学、中国科学院自动化研究所、北京人工智能研究院、Galbot、上海交通大学\n- **发布日期**: 2026-03-10\n- **类别**: cs.RO\n- **链接**: [PDF](https://arxiv.org/pdf/2603.09882) | [Project](https://pku-epic.github.io/DAPL)\n\n**一句话概括**\n本文提出 Dynamics-Aware Policy Learning (DAPL) 框架，通过学习接触诱导的物体动力学表示，让机器人在杂乱场景中自然涌现出 extrinsic dexterity（利用环境接触完成抓取无法完成的操作），在模拟和真实环境中均显著优于现有方法。\n\n**详细解读**\n\n### 研究背景\n\n在杂乱场景中进行机器人操作面临独特挑战：物体紧密堆积且相互遮挡可靠的抓取变得困难，碰撞-free 的执行受到高度约束。在这种情况下，有效的操作往往需要 extrinsic dexterity——即通过非抓取动作（如推动、滑动、倾倒）选择性利用或避免与环境接触的能力。现有方法缺乏对这种复杂动力学的显式建模，在密集杂乱环境中表现不佳。\n\n### 架构分析\n\nDAPL 采用两阶段学习框架：\n\n1. **阶段一：世界模型预训练**\n   - 输入：裁剪的点云 + 物理属性（质量、速度）\n   - 架构：基于 Patch 的 Transformer backbone\n   - 使用 Farthest Point Sampling (FPS) 选择 patch 中心，kNN 构建局部 patch\n   - PointNet-style encoder 嵌入每个 patch 为固定维度 token\n   - 添加基于 patch 中心坐标的正弦位置嵌入\n   - ViT 处理 patch token 建模多物体耦合效应\n   - MLP 解码器预测未来逐点位置和速度\n\n2. **阶段二：策略学习**\n   - 预训练的动力学表示 (f_dy) 馈入 Actor-Critic 策略网络\n   - 结合本体感知数据和任务目标进行高效策略学习\n\n### 创新点\n\n- **显式动力学建模**：通过物理世界模型学习接触诱导的场景动态表示，而非仅依赖几何特征\n- **课程学习**：使用策略 rollout 轨迹迭代优化动力学表示\n- **自然涌现 extrinsic dexterity**：无需手工设计的接触启发式或复杂奖励塑造\n- **Clutter6D 基准**：构建了用于6D物体排列的杂乱场景模拟环境\n\n### 实验结果\n\n- **模拟环境**：在未见过的杂乱场景中，成功率比抓取基线、人类遥操作和先前表示学习方法提高超过25%\n- **真实世界**：10个杂乱场景中达到约50%成功率，与人类遥操作相当，但效率更高（平均执行时间42.6秒 vs 55.9秒）\n- **杂货店部署**：展示了稳健的 sim-to-real 迁移能力\n\n### 对具身智能算法工程师的启发\n\n1. **动力学表示的重要性**：在杂乱场景中，纯粹的静态几何表示不足，需要学习物体间的交互动态。这对构建更鲁棒的操作策略有重要参考价值。\n2. **非抓取操作的潜力**：展示了下推、滑动、倾倒等 extrinsic dexterity 在实际任务中的重要性，特别是当抓取不可行时。\n3. **Sim-to-real 迁移**：基于点云的表示学习可能比像素空间方法更容易迁移到真实场景。\n\n---\n\n",
     "pdfUrl": "https://arxiv.org/pdf/2603.09882",
     "htmlUrl": "https://arxiv.org/abs/2603.09882",
     "id": "paper-260309882"
@@ -18,7 +138,7 @@
   {
     "title": "Robotic Scene Cloning: Advancing Zero-Shot Robotic Scene Adaptation in Manipulation via Visual Prompt Editing",
     "date": "2026-03-11",
-    "content": "\n- **作者**: Binyuan Huang, Yuqing Wen, Yucheng Zhao, Yaosi Hu, Tiancai Wang, Chang Wen Chen, Haoqiang Fan, Zhenzhong Chen\n- **机构**: (待查证)\n- **发布日期**: 2026-03-10\n- **类别**: cs.RO\n- **链接**: [PDF](https://arxiv.org/pdf/2603.09712)\n\n**一句话概括**\nRobotic Scene Cloning (RSC) 通过视觉提示编辑技术实现场景特定适配，能够在无需现场数据收集的情况下，将预训练的机器人策略迁移到新的真实场景中。\n\n**详细解读**\n\n### 研究背景\n\n现代机器人可以在训练环境中执行各种简单任务并适应不同场景。然而，将预训练的机器人模型部署到真实用户场景中仍然具有挑战性，因为它们的零样本能力有限，通常需要大量的现场数据收集。\n\n### 架构分析\n\nRSC 核心思想：\n\n1. **视觉提示机制 (Visual Prompting)**：利用视觉提示技术编辑现有的机器人操作轨迹\n2. **条件注入模块 (Condition Injection Module)**：精心调优的条件注入模块确保生成样本的准确性和场景一致性\n3. **双适应能力**：不仅传输纹理，还根据视觉提示进行适度的形状适配\n\n### 创新点\n\n- **零样本场景适配**：无需收集新场景的数据即可完成策略迁移\n- **同时处理纹理和形状**：相比仅传输纹理的方法，能进行更全面的场景适配\n\n### 实验结果\n\n在各种模拟和真实环境中验证，表明 RSC 显著增强了目标环境中的策略泛化能力。\n\n### 对具身智能算法工程师的启发\n\n1. **视觉提示的多模态融合**：将视觉提示与策略学习结合可能是实现高效场景适配的有效途径。\n2. **轨迹编辑思路**：直接编辑和迁移已有轨迹可能比完全重训练更高效。\n\n---\n\n",
+    "content": "\n- **论文ID**: arXiv:2603.09712\n- **作者**: Binyuan Huang, Yuqing Wen, Yucheng Zhao, Yaosi Hu, Tiancai Wang, Chang Wen Chen, Haoqiang Fan, Zhenzhong Chen\n- **机构**: (待查证)\n- **发布日期**: 2026-03-10\n- **类别**: cs.RO\n- **链接**: [PDF](https://arxiv.org/pdf/2603.09712)\n\n**一句话概括**\nRobotic Scene Cloning (RSC) 通过视觉提示编辑技术实现场景特定适配，能够在无需现场数据收集的情况下，将预训练的机器人策略迁移到新的真实场景中。\n\n**详细解读**\n\n### 研究背景\n\n现代机器人可以在训练环境中执行各种简单任务并适应不同场景。然而，将预训练的机器人模型部署到真实用户场景中仍然具有挑战性，因为它们的零样本能力有限，通常需要大量的现场数据收集。\n\n### 架构分析\n\nRSC 核心思想：\n\n1. **视觉提示机制 (Visual Prompting)**：利用视觉提示技术编辑现有的机器人操作轨迹\n2. **条件注入模块 (Condition Injection Module)**：精心调优的条件注入模块确保生成样本的准确性和场景一致性\n3. **双适应能力**：不仅传输纹理，还根据视觉提示进行适度的形状适配\n\n### 创新点\n\n- **零样本场景适配**：无需收集新场景的数据即可完成策略迁移\n- **同时处理纹理和形状**：相比仅传输纹理的方法，能进行更全面的场景适配\n\n### 实验结果\n\n在各种模拟和真实环境中验证，表明 RSC 显著增强了目标环境中的策略泛化能力。\n\n### 对具身智能算法工程师的启发\n\n1. **视觉提示的多模态融合**：将视觉提示与策略学习结合可能是实现高效场景适配的有效途径。\n2. **轨迹编辑思路**：直接编辑和迁移已有轨迹可能比完全重训练更高效。\n\n---\n\n",
     "pdfUrl": "https://arxiv.org/pdf/2603.09712",
     "htmlUrl": "https://arxiv.org/abs/2603.09712",
     "id": "paper-260309712"
@@ -26,7 +146,7 @@
   {
     "title": "BEACON: Language-Conditioned Navigation Affordance Prediction under Occlusion",
     "date": "2026-03-11",
-    "content": "\n- **作者**: (待查证)\n- **机构**: (待查证)\n- **发布日期**: 2026-03-10\n- **类别**: cs.RO\n- **链接**: [PDF](https://arxiv.org/pdf/2603.09961) | [Project](https://xin-yu-gao.github.io/beacon)\n\n**一句话概括**\nBEACON 提出在鸟瞰视图 (BEV) 空间中进行语言条件下的导航可供性预测，能够推理被遮挡区域的目标位置，解决了现有 VLM 方法仅在图像空间预测、无法推断遮挡区域的问题。\n\n**详细解读**\n\n### 研究背景\n\n语言条件下的局部导航需要机器人从当前观察和开放词汇的关系指令中推断出附近可遍历的目标位置。现有的视觉语言空间 grounding 方法通常依赖 VLM 在图像空间进行推理，产生与可见像素绑定的2D预测。因此，它们难以推断被遮挡区域（通常由家具或移动的人造成）的目标位置。\n\n### 架构分析\n\nBEACON 核心设计：\n\n1. **BEV 空间预测**：在鸟瞰视图空间预测可遍历目标位置，覆盖包括遮挡区域的局部区域\n2. **多视角融合**：给定指令和机器人周围的四方向 RGB-D 观察，预测 BEV 热图\n3. **空间 cues 注入**：将空间 cues 注入 VLM，并与深度衍生的 BEV 特征融合\n\n### 创新点\n\n- **遮挡感知**：能够在被遮挡区域进行推理，这是以前方法无法做到的\n- **BEV 空间表示**：相比2D图像空间，BEV 提供了更直接的导航规划表示\n\n### 实验结果\n\n在 Habitat 模拟器中构建的遮挡感知数据集上验证，在遮挡目标位置的验证集上，与图像空间基线方法相比，准确率平均提高 22.74 个百分点。\n\n### 对具身智能算法工程师的启发\n\n1. **BEV 空间的优势**：在导航和操作任务中，BEV 空间表示可以更自然地处理遮挡和空间关系。\n2. **VLM + 几何融合**：将语义理解（VLM）与几何推理（深度/BEV）结合是解决开放词汇导航的有效路径。\n\n---\n\n",
+    "content": "\n- **论文ID**: arXiv:2603.09961\n- **作者**: (待查证)\n- **机构**: (待查证)\n- **发布日期**: 2026-03-10\n- **类别**: cs.RO\n- **链接**: [PDF](https://arxiv.org/pdf/2603.09961) | [Project](https://xin-yu-gao.github.io/beacon)\n\n**一句话概括**\nBEACON 提出在鸟瞰视图 (BEV) 空间中进行语言条件下的导航可供性预测，能够推理被遮挡区域的目标位置，解决了现有 VLM 方法仅在图像空间预测、无法推断遮挡区域的问题。\n\n**详细解读**\n\n### 研究背景\n\n语言条件下的局部导航需要机器人从当前观察和开放词汇的关系指令中推断出附近可遍历的目标位置。现有的视觉语言空间 grounding 方法通常依赖 VLM 在图像空间进行推理，产生与可见像素绑定的2D预测。因此，它们难以推断被遮挡区域（通常由家具或移动的人造成）的目标位置。\n\n### 架构分析\n\nBEACON 核心设计：\n\n1. **BEV 空间预测**：在鸟瞰视图空间预测可遍历目标位置，覆盖包括遮挡区域的局部区域\n2. **多视角融合**：给定指令和机器人周围的四方向 RGB-D 观察，预测 BEV 热图\n3. **空间 cues 注入**：将空间 cues 注入 VLM，并与深度衍生的 BEV 特征融合\n\n### 创新点\n\n- **遮挡感知**：能够在被遮挡区域进行推理，这是以前方法无法做到的\n- **BEV 空间表示**：相比2D图像空间，BEV 提供了更直接的导航规划表示\n\n### 实验结果\n\n在 Habitat 模拟器中构建的遮挡感知数据集上验证，在遮挡目标位置的验证集上，与图像空间基线方法相比，准确率平均提高 22.74 个百分点。\n\n### 对具身智能算法工程师的启发\n\n1. **BEV 空间的优势**：在导航和操作任务中，BEV 空间表示可以更自然地处理遮挡和空间关系。\n2. **VLM + 几何融合**：将语义理解（VLM）与几何推理（深度/BEV）结合是解决开放词汇导航的有效路径。\n\n---\n\n",
     "pdfUrl": "https://arxiv.org/pdf/2603.09961",
     "htmlUrl": "https://arxiv.org/abs/2603.09961",
     "id": "paper-260309961"
@@ -34,7 +154,7 @@
   {
     "title": "Kinodynamic Motion Retargeting for Humanoid Locomotion via Multi-Contact Whole-Body Trajectory Optimization",
     "date": "2026-03-11",
-    "content": "\n- **发布日期**: 2026-03-10\n- **类别**: cs.RO\n\n**一句话概括**\n(待补充详细信息)\n\n---\n\n## 总结\n\n本期论文主要涵盖以下方向：\n\n1. **模块化规划系统**：TiPToP 展示了 VLM + TAMP 结合的潜力，零数据部署能力值得关注\n2. **动力学感知学习**：DAPL 强调了在杂乱场景中学习接触动态的重要性，extrinsic dexterity 是一个重要研究方向\n3. **场景适配**：RSC 提供了零样本场景迁移的新思路\n4. **遮挡推理**：BEACON 在导航可供性预测中处理遮挡问题的方法值得参考\n\n这些工作共同反映了具身智能领域的几个趋势：\n- 模块化与端到端学习的结合\n- 显式建模物理动力学 vs 纯数据驱动\n- 零样本/少样本部署能力的重要性\n- 语义理解与几何推理的深度融合\n\n",
+    "content": "\n- **论文ID**: arXiv:2603.09956\n- **发布日期**: 2026-03-10\n- **类别**: cs.RO\n\n**一句话概括**\n(待补充详细信息)\n\n---\n\n## 总结\n\n本期论文主要涵盖以下方向：\n\n1. **模块化规划系统**：TiPToP 展示了 VLM + TAMP 结合的潜力，零数据部署能力值得关注\n2. **动力学感知学习**：DAPL 强调了在杂乱场景中学习接触动态的重要性，extrinsic dexterity 是一个重要研究方向\n3. **场景适配**：RSC 提供了零样本场景迁移的新思路\n4. **遮挡推理**：BEACON 在导航可供性预测中处理遮挡问题的方法值得参考\n\n这些工作共同反映了具身智能领域的几个趋势：\n- 模块化与端到端学习的结合\n- 显式建模物理动力学 vs 纯数据驱动\n- 零样本/少样本部署能力的重要性\n- 语义理解与几何推理的深度融合\n\n",
     "pdfUrl": "https://arxiv.org/pdf/2603.09956",
     "htmlUrl": "https://arxiv.org/abs/2603.09956",
     "id": "paper-260309956"
