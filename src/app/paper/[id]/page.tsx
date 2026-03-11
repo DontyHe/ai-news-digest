@@ -3,15 +3,38 @@ import { notFound } from 'next/navigation';
 import papers from '../../../data/papers';
 import fullPapers from '../../../data/fullPapers.json';
 
+// Merge papers data from both sources
+const allPapers = [...papers];
+fullPapers.forEach((fp: any) => {
+  if (!allPapers.find((p: any) => p.id === fp.id)) {
+    allPapers.push({
+      id: fp.id,
+      title: fp.title,
+      authors: fp.title.includes('MIT') ? 'MIT et al.' : '',
+      institution: '',
+      date: fp.date,
+      category: 'embodied',
+      summary: '',
+      background: '',
+      architecture: '',
+      innovations: '',
+      inspiration: '',
+      pdfUrl: fp.pdfUrl || '',
+      htmlUrl: fp.htmlUrl || '',
+      figures: []
+    });
+  }
+});
+
 export async function generateStaticParams() {
-  return fullPapers.map((paper: any) => ({
+  return allPapers.map((paper: any) => ({
     id: paper.id,
   }));
 }
 
 export default async function PaperPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const paper = papers.find((p: any) => p.id === id);
+  const paper = allPapers.find((p: any) => p.id === id);
   const fullContent = fullPapers.find((p: any) => p.id === id);
 
   if (!paper) {
@@ -67,17 +90,24 @@ export default async function PaperPage({ params }: { params: Promise<{ id: stri
               if (line.startsWith('### ')) {
                 return <h3 key={i} className="text-xl font-semibold mt-6 mb-3">{line.replace('### ', '')}</h3>;
               }
-              if (line.startsWith('**')) {
-                return <p key={i} className="font-bold my-2">{line.replace(/\*\*/g, '')}</p>;
+              if (line.startsWith('**') && line.endsWith('**')) {
+                return <p key={i} className="font-bold my-2 text-lg">{line.replace(/\*\*/g, '')}</p>;
               }
               if (line.startsWith('- ') || line.startsWith('* ')) {
-                return <li key={i} className="ml-4 my-1">{line.replace(/^[-*] /, '')}</li>;
+                return <li key={i} className="ml-4 my-1 text-gray-300">{line.replace(/^[-*] /, '')}</li>;
               }
               if (line.trim()) {
                 return <p key={i} className="my-2 text-gray-300">{line}</p>;
               }
               return null;
             })}
+          </div>
+        )}
+
+        {!fullContent && paper.summary && (
+          <div className="mt-8 p-6 bg-gray-900 rounded-lg">
+            <h2 className="text-xl font-bold mb-4 text-cyan-400">摘要</h2>
+            <p className="text-gray-300">{paper.summary}</p>
           </div>
         )}
       </main>
