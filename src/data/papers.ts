@@ -243,6 +243,22 @@ export const papers: Paper[] = [
     htmlUrl: "https://arxiv.org/abs/2603.09961",
     figures: []
   },
+  {
+    id: "2603.11041",
+    title: "DynVLA: Learning World Dynamics",
+    authors: "Shuyao Shang et al.",
+    institution: "中科院",
+    date: "2026-03-11",
+    category: "vla",
+    summary: "Dynamics CoT",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.11041",
+    htmlUrl: "https://arxiv.org/abs/2603.11041",
+    figures: []
+  },
 ];
 
 export default papers;
