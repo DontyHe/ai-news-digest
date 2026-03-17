@@ -1,0 +1,147 @@
+[
+  {
+    "id": "2603.12263",
+    "title": "$\u03a8_0$: An Open Foundation Model Towards Universal Humanoid Loco-Manipulation",
+    "summary": "We introduce $\u03a8_0$ (Psi-Zero), an open foundation model to address challenging humanoid loco-manipulation tasks. While existing approaches often attempt to address this fundamental problem by co-training on large and diverse human and humanoid data, we argue that this strategy is suboptimal due to the fundamental kinematic and motion disparities between humans and humanoid robots. Therefore, data efficiency and model performance remain unsatisfactory despite the considerable data volume. To address this challenge, \\ours\\;decouples the learning process to maximize the utility of heterogeneous data sources. Specifically, we propose a staged training paradigm with different learning objectives: First, we autoregressively pre-train a VLM backbone on large-scale egocentric human videos to acquire generalizable visual-action representations. Then, we post-train a flow-based action expert on high-quality humanoid robot data to learn precise robot joint control. Our research further identifies a critical yet often overlooked data recipe: in contrast to approaches that scale with noisy Internet clips or heterogeneous cross-embodiment robot datasets, we demonstrate that pre-training on high-quality egocentric human manipulation data followed by post-training on domain-specific real-world humanoid trajectories yields superior performance. Extensive real-world experiments demonstrate that \\ours\\ achieves the best performance using only about 800 hours of human video data and 30 hours of real-world robot data, outperforming baselines pre-trained on more than 10$\\times$ as much data by over 40\\% in overall success rate across multiple tasks. We will open-source the entire ecosystem to the community, including a data processing and training pipeline, a humanoid foundation model, and a real-time action inference engine.",
+    "authors": [
+      "Songlin Wei",
+      "Hongyi Jing",
+      "Boqian Li",
+      "Zhenyu Zhao",
+      "Jiageng Mao",
+      "Zhenhao Ni",
+      "Sicheng He",
+      "Jie Liu",
+      "Xiawei Liu",
+      "Kaidi Kang",
+      "Sheng Zang",
+      "Weiduo Yuan",
+      "Marco Pavone",
+      "Di Huang",
+      "Yue Wang"
+    ],
+    "published": "2026-03-12",
+    "updated": "2026-03-12",
+    "categories": [
+      "cs.RO"
+    ],
+    "doi": "",
+    "comment": ""
+  },
+  {
+    "id": "2603.12260",
+    "title": "HumDex:Humanoid Dexterous Manipulation Made Easy",
+    "summary": "",
+    "authors": [
+      "Liang Heng",
+      "Yihe Tang",
+      "Jiajun Xu",
+      "Henghui Bao",
+      "Di Huang",
+      "Yue Wang"
+    ],
+    "published": "2026-03-12",
+    "updated": "2026-03-12",
+    "categories": [
+      "cs.RO"
+    ],
+    "doi": "",
+    "comment": ""
+  },
+  {
+    "id": "2603.11653",
+    "title": "Simple Recipe Works: Vision-Language-Action Models are Natural Continual Learners with Reinforcement Learning",
+    "summary": "Continual Reinforcement Learning (CRL) for Vision-Language-Action (VLA) models is a promising direction toward self-improving embodied agents that can adapt in openended, evolving environments. However, conventional wisdom from continual learning suggests that naive Sequential Fine-Tuning (Seq. FT) leads to catastrophic forgetting, necessitating complex CRL strategies. In this work, we take a step back and conduct a systematic study of CRL for large pretrained VLAs across three models and five challenging lifelong RL benchmarks. We find that, contrary to established belief, simple Seq. FT with low-rank adaptation (LoRA) is remarkably strong: it achieves high plasticity, exhibits little to no forgetting, and retains strong zero-shot generalization, frequently outperforming more sophisticated CRL methods. Through detailed analysis, we show that this robustness arises from a synergy between the large pretrained model, parameter-efficient adaptation, and on-policy RL. Together, these components reshape the stability-plasticity trade-off, making continual adaptation both stable and scalable. Our results position Sequential Fine-Tuning as a powerful method for continual RL with VLAs and provide new insights into lifelong learning in the large model era. Code is available at github.com/UT-Austin-RobIn/continual-vla-rl.",
+    "authors": [
+      "Jiaheng Hu",
+      "Jay Shim",
+      "Chen Tang",
+      "Yoonchang Sung",
+      "Bo Liu",
+      "Peter Stone",
+      "Roberto Martin-Martin"
+    ],
+    "published": "2026-03-12",
+    "updated": "2026-03-12",
+    "categories": [
+      "cs.LG",
+      "cs.RO"
+    ],
+    "doi": "",
+    "comment": ""
+  },
+  {
+    "id": "2603.11558",
+    "title": "RoboClaw: An Agentic Framework for Scalable Long-Horizon Robotic Tasks",
+    "summary": "Vision-Language-Action (VLA) systems have shown strong potential for language-driven robotic manipulation. However, scaling them to long-horizon tasks remains challenging. Existing pipelines typically separate data collection, policy learning, and deployment, resulting in heavy reliance on manual environment resets and brittle multi-policy execution. We present RoboClaw, an agentic robotics framework that unifies data collection, policy learning, and task execution under a single VLM-driven controller. At the policy level, RoboClaw introduces Entangled Action Pairs (EAP), which couple forward manipulation behaviors with inverse recovery actions to form self-resetting loops for autonomous data collection. This mechanism enables continuous on-policy data acquisition and iterative policy refinement with minimal human intervention. During deployment, the same agent performs high-level reasoning and dynamically orchestrates learned policy primitives to accomplish long-horizon tasks. By maintaining consistent contextual semantics across collection and execution, RoboClaw reduces mismatch between the two phases and improves multi-policy robustness. Experiments in real-world manipulation tasks demonstrate improved stability and scalability compared to conventional open-loop pipelines, while significantly reducing human effort throughout the robot lifecycle, achieving a 25% improvement in success rate over baseline methods on long-horizon tasks and reducing human time investment by 53.7%.",
+    "authors": [
+      "Ruiying Li",
+      "Yunlang Zhou",
+      "YuYao Zhu",
+      "Kylin Chen",
+      "Jingyuan Wang",
+      "Sukai Wang",
+      "Kongtao Hu",
+      "Minhui Yu",
+      "Bowen Jiang",
+      "Zhan Su",
+      "Jiayao Ma",
+      "Xin He",
+      "Yongjian Shen",
+      " Yangyang",
+      "Guanghui Ren",
+      "Maoqing Yao",
+      "Wenhao Wang",
+      "Yao Mu"
+    ],
+    "published": "2026-03-12",
+    "updated": "2026-03-12",
+    "categories": [
+      "cs.RO",
+      "cs.AI"
+    ],
+    "doi": "",
+    "comment": ""
+  },
+  {
+    "id": "2603.12265",
+    "title": "OmniStream: Mastering Perception, Reconstruction and Action in Continuous Streams",
+    "summary": "Modern visual agents require representations that are general, causal, and physically structured to operate in real-time streaming environments. However, current vision foundation models remain fragmented, specializing narrowly in image semantic perception, offline temporal modeling, or spatial geometry. This paper introduces OmniStream, a unified streaming visual backbone that effectively perceives, reconstructs, and acts from diverse visual inputs. By incorporating causal spatiotemporal attention and 3D rotary positional embeddings (3D-RoPE), our model supports efficient, frame-by-frame online processing of video streams via a persistent KV-cache. We pre-train OmniStream using a synergistic multi-task framework coupling static and temporal representation learning, streaming geometric reconstruction, and vision-language alignment on 29 datasets. Extensive evaluations show that, even with a strictly frozen backbone, OmniStream achieves consistently competitive performance with specialized experts across image and video probing, streaming geometric reconstruction, complex video and spatial reasoning, as well as robotic manipulation (unseen at training). Rather than pursuing benchmark-specific dominance, our work demonstrates the viability of training a single, versatile vision backbone that generalizes across semantic, spatial, and temporal reasoning, i.e., a more meaningful step toward general-purpose visual understanding for interactive and embodied agents.",
+    "authors": [
+      "Yibin Yan",
+      "Jilan Xu",
+      "Shangzhe Di",
+      "Haoning Wu",
+      "Weidi Xie"
+    ],
+    "published": "2026-03-12",
+    "updated": "2026-03-12",
+    "categories": [
+      "cs.CV"
+    ],
+    "doi": "",
+    "comment": "Technical Report. Project Page: https://go2heart.github.io/omnistream/"
+  },
+  {
+    "id": "2603.11653",
+    "title": "Simple Recipe Works: Vision-Language-Action Models are Natural Continual Learners with Reinforcement Learning",
+    "summary": "Continual Reinforcement Learning (CRL) for Vision-Language-Action (VLA) models is a promising direction toward self-improving embodied agents that can adapt in openended, evolving environments. However, conventional wisdom from continual learning suggests that naive Sequential Fine-Tuning (Seq. FT) leads to catastrophic forgetting, necessitating complex CRL strategies. In this work, we take a step back and conduct a systematic study of CRL for large pretrained VLAs across three models and five challenging lifelong RL benchmarks. We find that, contrary to established belief, simple Seq. FT with low-rank adaptation (LoRA) is remarkably strong: it achieves high plasticity, exhibits little to no forgetting, and retains strong zero-shot generalization, frequently outperforming more sophisticated CRL methods. Through detailed analysis, we show that this robustness arises from a synergy between the large pretrained model, parameter-efficient adaptation, and on-policy RL. Together, these components reshape the stability-plasticity trade-off, making continual adaptation both stable and scalable. Our results position Sequential Fine-Tuning as a powerful method for continual RL with VLAs and provide new insights into lifelong learning in the large model era. Code is available at github.com/UT-Austin-RobIn/continual-vla-rl.",
+    "authors": [
+      "Jiaheng Hu",
+      "Jay Shim",
+      "Chen Tang",
+      "Yoonchang Sung",
+      "Bo Liu",
+      "Peter Stone",
+      "Roberto Martin-Martin"
+    ],
+    "published": "2026-03-12",
+    "updated": "2026-03-12",
+    "categories": [
+      "cs.LG",
+      "cs.RO"
+    ],
+    "doi": "",
+    "comment": ""
+  }
+]

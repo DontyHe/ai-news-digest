@@ -1,0 +1,78 @@
+[
+  {
+    "id": "2603.12243",
+    "title": "HandelBot: Real-World Piano Playing via Fast Adaptation of Dexterous Robot Policies",
+    "summary": "Mastering dexterous manipulation with multi-fingered hands has been a grand challenge in robotics for decades. Despite its potential, the difficulty of collecting high-quality data remains a primary bottleneck for high-precision tasks. While reinforcement learning and simulation-to-real-world transfer offer a promising alternative, the transferred policies often fail for tasks demanding millimeter-scale precision, such as bimanual piano playing. In this work, we introduce HandelBot, a framework that combines a simulation policy and rapid adaptation through a two-stage pipeline. Starting from a simulation-trained policy, we first apply a structured refinement stage to correct spatial alignments by adjusting lateral finger joints based on physical rollouts. Next, we use residual reinforcement learning to autonomously learn fine-grained corrective actions. Through extensive hardware experiments across five recognized songs, we demonstrate that HandelBot can successfully perform precise bimanual piano playing. Our system outperforms direct simulation deployment by a factor of 1.8x and requires only 30 minutes of physical interaction data.",
+    "authors": [
+      "Amber Xie",
+      "Haozhi Qi",
+      "Dorsa Sadigh"
+    ],
+    "published": "2026-03-12",
+    "categories": [
+      "cs.RO"
+    ],
+    "comment": "Website: https://amberxie88.github.io/handelbot"
+  },
+  {
+    "id": "2603.12193",
+    "title": "SaPaVe: Towards Active Perception and Manipulation in Vision-Language-Action Models for Robotics",
+    "summary": "Active perception and manipulation are crucial for robots to interact with complex scenes. Existing methods struggle to unify semantic-driven active perception with robust, viewpoint-invariant execution. We propose SaPaVe, an end-to-end framework that jointly learns these capabilities in a data-efficient manner. Our approach decouples camera and manipulation actions rather than placing them in a shared action space, and follows a bottom-up training strategy: we first train semantic camera control on a large-scale dataset, then jointly optimize both action types using hybrid data. To support this framework, we introduce ActiveViewPose-200K, a dataset of 200k image-language-camera movement pairs for semantic camera movement learning, and a 3D geometry-aware module that improves execution robustness under dynamic viewpoints. We also present ActiveManip-Bench, the first benchmark for evaluating active manipulation beyond fixed-view settings. Extensive experiments in both simulation and real-world environments show that SaPaVe outperforms recent vision-language-action models such as GR00T N1 and \\(\u03c0_0\\), achieving up to 31.25\\% higher success rates in real-world tasks. These results show that tightly coupled perception and execution, when trained with decoupled yet coordinated strategies, enable efficient and generalizable active manipulation. Project page: https://lmzpai.github.io/SaPaVe",
+    "authors": [
+      "Mengzhen Liu",
+      "Enshen Zhou",
+      "Cheng Chi",
+      "Yi Han",
+      "Shanyu Rong",
+      "Liming Chen",
+      "Pengwei Wang",
+      "Zhongyuan Wang",
+      "Shanghang Zhang"
+    ],
+    "published": "2026-03-12",
+    "categories": [
+      "cs.RO",
+      "cs.CV"
+    ],
+    "comment": "Accepted to CVPR 2026. See project page at https://lmzpai.github.io/SaPaVe"
+  },
+  {
+    "id": "2603.12144",
+    "title": "O3N: Omnidirectional Open-Vocabulary Occupancy Prediction",
+    "summary": "Understanding and reconstructing the 3D world through omnidirectional perception is an inevitable trend in the development of autonomous agents and embodied intelligence. However, existing 3D occupancy prediction methods are constrained by limited perspective inputs and predefined training distribution, making them difficult to apply to embodied agents that require comprehensive and safe perception of scenes in open world exploration. To address this, we present O3N, the first purely visual, end-to-end Omnidirectional Open-vocabulary Occupancy predictioN framework. O3N embeds omnidirectional voxels in a polar-spiral topology via the Polar-spiral Mamba (PsM) module, enabling continuous spatial representation and long-range context modeling across 360\u00b0. The Occupancy Cost Aggregation (OCA) module introduces a principled mechanism for unifying geometric and semantic supervision within the voxel space, ensuring consistency between the reconstructed geometry and the underlying semantic structure. Moreover, Natural Modality Alignment (NMA) establishes a gradient-free alignment pathway that harmonizes visual features, voxel embeddings, and text semantics, forming a consistent \"pixel-voxel-text\" representation triad. Extensive experiments on multiple models demonstrate that our method not only achieves state-of-the-art performance on QuadOcc and Human360Occ benchmarks but also exhibits remarkable cross-scene generalization and semantic scalability, paving the way toward universal 3D world modeling. The source code will be made publicly available at https://github.com/MengfeiD/O3N.",
+    "authors": [
+      "Mengfei Duan",
+      "Hao Shi",
+      "Fei Teng",
+      "Guoqiang Zhao",
+      "Yuheng Zhang",
+      "Zhiyong Li",
+      "Kailun Yang"
+    ],
+    "published": "2026-03-12",
+    "categories": [
+      "cs.CV",
+      "cs.RO",
+      "eess.IV"
+    ],
+    "comment": "The source code will be made publicly available at https://github.com/MengfeiD/O3N"
+  },
+  {
+    "id": "2603.10871",
+    "title": "FG-CLTP: Fine-Grained Contrastive Language Tactile Pretraining for Robotic Manipulation",
+    "summary": "Recent advancements in integrating tactile sensing into vision-language-action (VLA) models have demonstrated transformative potential for robotic perception. However, existing tactile representations predominantly rely on qualitative descriptors (e.g., texture), neglecting quantitative contact states such as force magnitude, contact geometry, and principal axis orientation, which are indispensable for fine-grained manipulation. To bridge this gap, we propose FG-CLTP, a fine-grained contrastive language tactile pretraining framework. We first introduce a novel dataset comprising over 100k tactile 3D point cloud-language pairs that explicitly capture multidimensional contact states from the sensor's perspective. We then implement a discretized numerical tokenization mechanism to achieve quantitative-semantic alignment, effectively injecting explicit physical metrics into the multimodal feature space. The proposed FG-CLTP model yields a 95.9% classification accuracy and reduces the regression error (MAE) by 52.6% compared to state-of-the-art methods. Furthermore, the integration of 3D point cloud representations establishes a sensor-agnostic foundation with a minimal sim-to-real gap of 3.5%. Building upon this fine-grained representation, we develop a 3D tactile-language-action (3D-TLA) architecture driven by a flow matching policy to enable multimodal reasoning and control. Extensive experiments demonstrate that our framework significantly outperforms strong baselines in contact-rich manipulation tasks, providing a robust and generalizable foundation for tactile-language-action models.",
+    "authors": [
+      "Wenxuan Ma",
+      "Chaofan Zhang",
+      "Yinghao Cai",
+      "Guocai Yao",
+      "Shaowei Cui",
+      "Shuo Wang"
+    ],
+    "published": "2026-03-11",
+    "categories": [
+      "cs.RO"
+    ],
+    "comment": "9 pages, 6 figures"
+  }
+]
