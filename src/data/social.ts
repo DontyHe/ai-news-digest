@@ -81,43 +81,35 @@ export const socialData: Record<string, Influencer> = {
     recentPosts: [
       {
         id: "1",
-        content: "The hottest new programming language is English. Agency > Intelligence. Agency is significantly more powerful and significantly more scarce.",
-        date: "2026-03-06",
-        likes: 0,
-        reposts: 0,
-        url: "https://x.com/karpathy"
+        content: "Replied to Sarah Guo's No Priors podcast: on the phase shift in engineering, AI psychosis, claws, AutoResearch, SETI-at-Home movement in AI, model landscape, and second order effects. 575K+ views.",
+        date: "2026-03-21",
+        likes: 361,
+        reposts: 250,
+        url: "https://x.com/karpathy/status/2035158351357911527"
       },
       {
         id: "2",
-        content: "Excited to announce Eureka Labs - building a new kind of school that is AI native.",
-        date: "2026-03-06",
-        likes: 0,
-        reposts: 0,
-        url: "https://x.com/karpathy/status/1813263734707790301"
+        content: "Andy Weir showing spreadsheets underlying calculations in the book. 'It's not quality scifi if it doesn't come with a supplementary whitepaper.'",
+        date: "2026-03-20",
+        likes: 46,
+        reposts: 36,
+        url: "https://x.com/karpathy/status/2034873049753997619"
       },
       {
         id: "3",
-        content: "There's a new kind of coding I call 'vibe coding', where you fully give in to the vibes, embrace exponentials, and forget that the code even exists.",
-        date: "2026-03-06",
-        likes: 0,
-        reposts: 0,
-        url: "https://x.com/karpathy"
+        content: "Project Hail Mary movie review: stays close to book in content and tone, well executed. Praised scientific depth of alien portrayal. 'Does really well where it counts - on Rocky and the bromance.'",
+        date: "2026-03-20",
+        likes: 307,
+        reposts: 333,
+        url: "https://x.com/karpathy/status/2034865693544604001"
       },
       {
         id: "4",
-        content: "Just vibe coded a whole iOS app in Swift (without having programmed in Swift before) in ~1 hour and it's running on my physical phone.",
-        date: "2026-03-06",
-        likes: 0,
-        reposts: 0,
-        url: "https://x.com/karpathy"
-      },
-      {
-        id: "5",
-        content: "Took delivery of a new HW4 Tesla Model X. FSD test drive - it drives really, really well, smooth, confident, noticeably better.",
-        date: "2026-03-06",
-        likes: 0,
-        reposts: 0,
-        url: "https://x.com/karpathy"
+        content: "Ugh X breaks time links, it's at 26:17",
+        date: "2026-03-18",
+        likes: 5,
+        reposts: 22,
+        url: "https://x.com/karpathy/status/2034329390377762848"
       }
     ]
   },
