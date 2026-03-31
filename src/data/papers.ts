@@ -451,20 +451,7 @@ export const papers: Paper[] = [
     htmlUrl: "https://arxiv.org/abs/2603.14811",
     figures: []
   },
-  {
-    id: "qoq-2026-03-18",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-18",
-    category: "embodied",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
+
   {
     id: "paper-260312639",
     title: "RoboStereo: Dual-Tower 4D Embodied World Models for Unified Policy Optimization",
