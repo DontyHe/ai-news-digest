@@ -37,7 +37,7 @@ export const papers: Paper[] = [
   },
   {
     id: "paper-260317808",
-    title: "EVA: 通过逆动力学奖励对齐视频世界模型",
+    title: "EVA: Aligning Video World Models with Executable Robot Actions via Inverse Dynamics Rewards",
     authors: "Shengian Wang et al.",
     institution: "CUHK-Shenzhen, DexForce Technology",
     date: "2026-03-19",
@@ -53,7 +53,7 @@ export const papers: Paper[] = [
   },
   {
     id: "paper-260317240",
-    title: "GigaWorld-Policy: 高效的以动作为中心的世界-动作模型",
+    title: "GigaWorld-Policy: An Efficient Action-Centered World-Action Model",
     authors: "Angen Ye, Boyuan Wang, Chaojun Ni et al.",
     institution: "GigaAI",
     date: "2026-03-19",
@@ -69,7 +69,7 @@ export const papers: Paper[] = [
   },
   {
     id: "paper-260316666",
-    title: "Fast-WAM: 世界动作模型需要测试时的未来想象吗?",
+    title: "Fast-WAM: Do World Action Models Need Test-time Future Imagination?",
     authors: "Tianyuan Yuan, Zhenting Yuan, Zibin Dong et al.",
     institution: "Tsinghua University IIIS, Galaxea AI",
     date: "2026-03-18",
@@ -85,7 +85,7 @@ export const papers: Paper[] = [
   },
   {
     id: "paper-260318091",
-    title: "ADV: 动作草稿-验证自验证VLA框架",
+    title: "Action Draft and Verify: A Self-Verifying Framework for Vision-Language-Action Model",
     authors: "Chen Zhao et al.",
     institution: "",
     date: "2026-03-18",
@@ -101,7 +101,7 @@ export const papers: Paper[] = [
   },
   {
     id: "paper-260319384",
-    title: "SOFTMAP: 软体机器人Sim2Real前向建模",
+    title: "SOFTMAP: Sim2Real Soft Robot Forward Modeling via Topological Mesh Alignment and Physics Prior",
     authors: "Ziyong Ma, Uksang Yoo, Jonathan Francis et al.",
     institution: "Carnegie Mellon University",
     date: "2026-03-19",
@@ -261,7 +261,7 @@ export const papers: Paper[] = [
   },
   {
     id: "paper-260314371",
-    title: "OxyGen: VLA 模型多任务并行下的统一 KV Cache 管理",
+    title: "OxyGen: Unified KV Cache Management for Vision-Language-Action Models under Multi-Task Parallelism",
     authors: "et al.",
     institution: "",
     date: "2026-03-18",
@@ -277,7 +277,7 @@ export const papers: Paper[] = [
   },
   {
     id: "paper-260313615",
-    title: "EgoHOI: 自中心世界模型用于真实感手物交互合成",
+    title: "Egocentric World Model for Photorealistic Hand-Object Interaction Synthesis",
     authors: "et al.",
     institution: "",
     date: "2026-03-18",
@@ -293,7 +293,7 @@ export const papers: Paper[] = [
   },
   {
     id: "paper-260307648",
-    title: "AtomicVLA: 机器人原子技能学习的统一规划执行框架",
+    title: "AtomicVLA: Unlocking the Potential of Atomic Skill Learning in Robots",
     authors: "et al.",
     institution: "",
     date: "2026-03-18",
@@ -309,7 +309,7 @@ export const papers: Paper[] = [
   },
   {
     id: "paper-260303596",
-    title: "MEM: 视觉语言动作模型的多尺度具身记忆",
+    title: "MEM: Multi-Scale Embodied Memory for Vision Language Action Models",
     authors: "et al.",
     institution: "",
     date: "2026-03-18",
@@ -325,7 +325,7 @@ export const papers: Paper[] = [
   },
   {
     id: "paper-260309056",
-    title: "Quality over Quantity (QoQ): 基于影响函数的机器人演示数据筛选",
+    title: "Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning",
     authors: "et al.",
     institution: "",
     date: "2026-03-18",
@@ -341,7 +341,7 @@ export const papers: Paper[] = [
   },
   {
     id: "paper-260202212",
-    title: "MAIN-VLA: 意图与环境抽象建模的 VLA 框架",
+    title: "MAIN-VLA: Modeling Abstraction of Intention and eNvironment for Vision-Language-Action Models",
     authors: "et al.",
     institution: "",
     date: "2026-03-18",
@@ -373,7 +373,7 @@ export const papers: Paper[] = [
   },
   {
     id: "paper-260212351",
-    title: "LongNav-R1: 长视界 VLA 导航的多轮强化学习框架",
+    title: "LongNav-R1: Horizon-Adaptive Multi-Turn RL for Long-Horizon VLA Navigation",
     authors: "et al.",
     institution: "",
     date: "2026-03-18",
@@ -389,7 +389,7 @@ export const papers: Paper[] = [
   },
   {
     id: "paper-260219359",
-    title: "Vid2Sid: 视频驱动的 Sim2Real 系统辨识",
+    title: "Vid2Sid: Videos Can Help Close the Sim2Real Gap",
     authors: "et al.",
     institution: "",
     date: "2026-03-18",
@@ -405,7 +405,7 @@ export const papers: Paper[] = [
   },
   {
     id: "paper-260209722",
-    title: "Rethinking VLA Model Scaling: 对齐、混合与正则化",
+    title: "Rethinking Visual-Language-Action Model Scaling: Alignment, Mixture, and Regularization",
     authors: "et al.",
     institution: "",
     date: "2026-03-18",
@@ -421,7 +421,7 @@ export const papers: Paper[] = [
   },
   {
     id: "paper-260222818",
-    title: "LeRobot: 端到端机器人学习的开源库",
+    title: "LeRobot: An Open-Source Library for End-to-End Robot Learning",
     authors: "et al.",
     institution: "",
     date: "2026-03-18",
@@ -437,7 +437,7 @@ export const papers: Paper[] = [
   },
   {
     id: "paper-260314811",
-    title: "Ego to World (E2W): 多智能体协作空间推理",
+    title: "Ego to World: Collaborative Spatial Reasoning in Embodied Systems via Reinforcement Learning",
     authors: "et al.",
     institution: "",
     date: "2026-03-18",
@@ -453,12 +453,10 @@ export const papers: Paper[] = [
   },
   {
     id: "qoq-2026-03-18",
-    title: "QoQ: 演示数据质量优先 (与论文5重复，此处略)",
     authors: "et al.",
     institution: "",
     date: "2026-03-18",
     category: "embodied",
-    summary: "## 13. QoQ: 演示数据质量优先 (与论文5重复，此处略)  ---  ## 本周趋势总结  1. **VLA 推理优化成为新热点**: OxyGen 和 MAIN-VLA 都关注 VLA 的部署效率，而不仅仅是模型能力 2. **记忆架构补齐 VLA 最后一块拼图**: MEM 的多尺度记忆设计让 VLA 从短操作走向长任务 3. **MoE 在 VLA 中的应用兴起**: Atomic",
     background: "",
     architecture: "",
     innovations: "",
@@ -693,7 +691,7 @@ export const papers: Paper[] = [
   },
   {
     id: "paper-260312263",
-    title: "Ψ_0: 通用人形机器人基础模型",
+    title: "\$\\Psi_0\$: An Open Foundation Model Towards Universal Humanoid Loco-Manipulation",
     authors: "et al.",
     institution: "",
     date: "2026-03-16",
@@ -709,7 +707,7 @@ export const papers: Paper[] = [
   },
   {
     id: "paper-260312193",
-    title: "SaPaVe: 主动感知与操作",
+    title: "SaPaVe: Towards Active Perception and Manipulation in Vision-Language-Action Models for Robotics",
     authors: "et al.",
     institution: "",
     date: "2026-03-16",
@@ -725,7 +723,7 @@ export const papers: Paper[] = [
   },
   {
     id: "paper-260311653",
-    title: "Simple Recipe Works: VLA持续学习",
+    title: "Simple Recipe Works: Vision-Language-Action Models are Natural Continual Learners with Reinforcement Learning",
     authors: "et al.",
     institution: "",
     date: "2026-03-16",
@@ -741,7 +739,7 @@ export const papers: Paper[] = [
   },
   {
     id: "paper-260311558",
-    title: "RoboClaw: 可扩展长程任务智能体框架",
+    title: "RoboClaw: An Agentic Framework for Scalable Long-Horizon Robotic Tasks",
     authors: "et al.",
     institution: "",
     date: "2026-03-16",
@@ -757,7 +755,7 @@ export const papers: Paper[] = [
   },
   {
     id: "paper-260312265",
-    title: "OmniStream: 流式视觉统一骨干",
+    title: "OmniStream: Mastering Perception, Reconstruction and Action in Continuous Streams",
     authors: "et al.",
     institution: "",
     date: "2026-03-16",
@@ -773,7 +771,7 @@ export const papers: Paper[] = [
   },
   {
     id: "paper-260311563",
-    title: "SVLL: 分阶段视觉语言学习",
+    title: "SVLL: Staged Vision-Language Learning for Physically Grounded Embodied Task Planning",
     authors: "et al.",
     institution: "",
     date: "2026-03-16",
@@ -789,7 +787,7 @@ export const papers: Paper[] = [
   },
   {
     id: "paper-260311811",
-    title: "RADAR: 闭环机器人数据生成",
+    title: "RADAR: Closed-Loop Robotic Data Generation via Semantic Planning and Autonomous Causal Environment Reset",
     authors: "et al.",
     institution: "",
     date: "2026-03-16",
@@ -805,7 +803,7 @@ export const papers: Paper[] = [
   },
   {
     id: "paper-260311080",
-    title: "SELF-VLA: 技能增强智能体框架",
+    title: "SELF-VLA: A Skill Enhanced Agentic Vision-Language-Action Framework for Contact-Rich Disassembly",
     authors: "et al.",
     institution: "",
     date: "2026-03-16",
