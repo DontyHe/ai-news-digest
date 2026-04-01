@@ -1876,6 +1876,70 @@ export const papers: Paper[] = [
     htmlUrl: "https://arxiv.org/search/?query=NymeriaPlus&searchtype=all",
     figures: []
   },
+  {
+    id: "paper-260312263",
+    title: "Ψ0: An Open Foundation Model Towards Universal Humanoid Loco-Manipulation",
+    authors: "Songlin Wei, Hongyi Jing, Boqian Li, Zhenyu Zhao, Jiageng Mao, Zhenhao Ni, Sicheng He, Jie Liu, Xiawei Liu, Kaidi Kang, Sheng Zang, Weiduo Yuan, Marco Pavone, Di Huang",
+    institution: "Stanford University, University of Southern California",
+    date: "2026-04-01",
+    category: "embodied",
+    summary: "Ψ0是一个开源人形机器人基础模型，通过分阶段训练范式解耦学习过程，在仅使用800小时人类视频和30小时机器人数据的情况下超越了使用10倍以上数据的基线。",
+    background: "人形机器人 loco-manipulation 是一个基础性问题。传统方法尝试在大量异构人形数据上联合训练，但因人与机器人之间的运动学差异而效果不佳。",
+    architecture: "分阶段训练范式：第一阶段用大规模egocentric人类视频预训练VLM backbone获取可泛化的视觉-动作表示；第二阶段基于高质量人形机器人数据后训练flow-based action expert学习精确关节控制。",
+    innovations: "提出'数据质量 > 数据量'的关键见解；预训练用高质量egocentric人类操作数据 + 领域特定的真实机器人轨迹；仅用800小时人类视频 + 30小时机器人数据，超越10倍以上数据的基线40%成功率",
+    inspiration: "数据质量比数据量更重要，精选高质量数据集；分阶段训练可以解耦异构数据的学习挑战；人形机器人需要专门的表示学习，不能简单复用人类数据",
+    pdfUrl: "https://arxiv.org/pdf/2603.12263",
+    htmlUrl: "https://arxiv.org/abs/2603.12263",
+    figures: []
+  },
+  {
+    id: "paper-260312260",
+    title: "HumDex: A Simplified Framework for Humanoid Dexterous Manipulation",
+    authors: "Zhiyuan Hu, Yifeng Jiang, Hao Shi, Liang Lin, Yu-Kai Huang, Chenfeng Xu, Xiaobin Zhu",
+    institution: "Tsinghua University, Carnegie Mellon University",
+    date: "2026-04-01",
+    category: "embodied",
+    summary: "HumDex提出一个简化的人形机器人灵巧操作框架，让开发者无需深入专业知识即可实现复杂操作任务。",
+    background: "人形机器人灵巧操作需要高度专业的知识，严重依赖专家经验和大量手动调试。技术门槛限制了领域的发展速度。",
+    architecture: "简化操作流程，提供开箱即用的解决方案，降低技术门槛，推动更多人参与人形机器人开发",
+    innovations: "简化操作流程，提供开箱即用的解决方案；降低技术门槛，推动更多人参与人形机器人开发；保持高性能的同时降低实现难度",
+    inspiration: "降低机器人操作门槛对推动领域发展很重要；框架化、模块化的设计思路值得借鉴；可用性和性能的平衡是关键",
+    pdfUrl: "https://arxiv.org/pdf/2603.12260",
+    htmlUrl: "https://arxiv.org/abs/2603.12260",
+    figures: []
+  },
+  {
+    id: "paper-260311653",
+    title: "Sequential Fine-Tuning + LoRA for VLA Models in Continual Reinforcement Learning",
+    authors: "Mingming Li, Jiale Yang, Hao Dong, Tianhao Wang, Xiaolong Wang, Chuang Gan",
+    institution: "Peking University, Microsoft Research Asia",
+    date: "2026-04-01",
+    category: "vla",
+    summary: "研究发现简单的Sequential Fine-Tuning + LoRA对VLA模型的持续强化学习非常有效，能够在高可塑性和低灾难性遗忘之间取得良好平衡。",
+    background: "持续强化学习(CRL)是实现自我改进的具身智能体的关键方向。传统观点认为顺序微调会导致灾难性遗忘，需要复杂的方法来缓解。",
+    architecture: "系统地证明了在大规模预训练VLA上，简单Seq.FT + LoRA表现优异：LoRA参数高效微调与on-policy RL的协同作用，重塑了稳定性-可塑性权衡关系",
+    innovations: "重新审视大模型时代的持续学习方法；证明简单方法往往比复杂策略更有效；为VLA模型的持续学习提供了实用指南",
+    inspiration: "大模型时代需要重新审视传统方法；参数高效微调(LoRA)在持续学习中的重要性；简单有效的方法往往被复杂化设计所掩盖",
+    pdfUrl: "https://arxiv.org/pdf/2603.11653",
+    htmlUrl: "https://arxiv.org/abs/2603.11653",
+    figures: []
+  },
+  {
+    id: "paper-260311558",
+    title: "RoboClaw: An Agentic Framework for Continual Autonomous Data Collection",
+    authors: "Chen Chen, Yifan Sun, Wei Xu, Guanzhi Wang, Bichen Wu, Suvrat Bhooshan, Trevor Darrell, Jitendra Malik, Ken Goldberg, Pieter Abbeel",
+    institution: "MIT, UC Berkeley",
+    date: "2026-04-01",
+    category: "robotics",
+    summary: "RoboClaw是一个agentic框架，通过Entangled Action Pairs (EAP)将正向操作与逆向恢复动作耦合，形成自重置循环，实现持续自主数据收集。",
+    background: "VLA系统在长程任务上扩展困难，现有流程分离数据收集、策略学习和部署，依赖大量人工环境重置。",
+    architecture: "引入Entangled Action Pairs (EAP)：将manipulation行为与recovery动作形成自重置循环，实现零人工干预的持续数据采集和策略迭代，保持数据收集和策略执行的语义一致性",
+    innovations: "数据收集和策略执行使用相同的agent，减少mismatch；自重置循环解决了环境重置的瓶颈问题；持续自主数据收集加速了闭环优化",
+    inspiration: "数据收集和策略执行的统一是重要趋势；自重置设计解决了机器人实验中的关键瓶颈；agent-centric的设计思路值得借鉴",
+    pdfUrl: "https://arxiv.org/pdf/2603.11558",
+    htmlUrl: "https://arxiv.org/abs/2603.11558",
+    figures: []
+  }
 ];
 
 export default papers;
