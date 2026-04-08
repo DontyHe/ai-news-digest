@@ -115,28 +115,6 @@ export const papers: Paper[] = [
     htmlUrl: "https://arxiv.org/abs/arXiv:2603.16852",
     figures: []
   }
-  // 保持现有论文数据...
-];
-
-// 为了保持现有数据完整，这里需要包含原有的所有论文数据
-// 以下为原有的论文数据（截断示例，实际完整数据请参考原文件）
-{
-    id: "paper-arXiv:2603.16853",
-    title: "WorldDiff: Learning Environment Dynamics for Efficient Reinforcement Learning in Embodied AI",
-    authors: "Zhang Wei, Liu Ming, Chen Xiao, Wang Hao",
-    date: "2026-03-26",
-    institution: "北京大学、中国科学院自动化研究所、腾讯AI Lab",
-    category: "ai",
-    summary: "本文提出了一种基于差分世界模型的具身强化学习方法，通过学习环境动态的差异来实现高效的政策优化。",
-    background: "具身强化学习是机器人学的重要研究方向，但面临以下挑战：1. **数据效率低**：需要大量的环境交互数据；2. **样本复杂度高**：探索空间大，收敛速度慢；3. **泛化能力有限**：在未知环境中表现不佳；4. **训练不稳定**：多模态奖励信号导致训练困难",
-    architecture: "WorldDiff的核心架构包括：1. **差分编码器**：学习状态之间的差异表示，提取环境动态的关键特征，实现高效的时空编码；2. **动态预测模块**：基于差分表示的未来状态预测，支持多步预测，模拟不同动作的效果；3. **价值网络**：基于世界模型的值函数估计，支持离策略学习，实现高效的政策优化；4. **经验回放**：优先级经验回放，差分状态表示，提升样本效率",
-    innovations: "1. **差分世界模型**：首次提出基于状态差分的世界模型；2. **高效的样本利用**：相比传统方法减少80%交互次数；3. **轻量级架构**：模型参数减少70%，便于部署；4. **多任务学习**：支持多种机器人任务的统一训练",
-    inspiration: "1",
-    pdfUrl: "https://arxiv.org/pdf/arXiv:2603.16853",
-    htmlUrl: "https://arxiv.org/abs/arXiv:2603.16853",
-    figures: [],
-  }
-  // 更多原有论文...
 ];
 
 export default papers;
