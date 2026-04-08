@@ -3,8 +3,32 @@
 import { useState } from "react";
 import Link from 'next/link';
 import papers, { Paper } from '../data/papers';
+import fullPapers from '../data/fullPapers.json';
 import companies from '../data/companies';
 import socialData from '../data/social';
+
+// 合并 papers.ts 和 fullPapers.json
+const allPapers: Paper[] = [...papers];
+(fullPapers as any[]).forEach((fp: any) => {
+  if (!allPapers.find((p) => p.id === fp.id)) {
+    allPapers.push({
+      id: fp.id,
+      title: fp.title,
+      authors: fp.authors || '',
+      institution: fp.institution || '',
+      date: fp.date || '',
+      category: (fp.category as Paper["category"]) || 'embodied',
+      summary: fp.content?.substring(0, 200) || fp.summary || '',
+      background: '',
+      architecture: '',
+      innovations: '',
+      inspiration: '',
+      pdfUrl: fp.pdfUrl || '',
+      htmlUrl: fp.htmlUrl || '',
+      figures: []
+    });
+  }
+});
 
 function ArrowIcon() {
   return (
@@ -38,7 +62,7 @@ type FilterCategory = "all" | "worldmodel" | "embodied" | "vla";
 
 export default function Home() {
   // 按日期排序，最新的在前
-  const sortedPapers = [...papers].sort((a, b) => 
+  const sortedPapers = [...allPapers].sort((a, b) => 
     new Date(b.date).getTime() - new Date(a.date).getTime()
   );
 
@@ -82,7 +106,7 @@ export default function Home() {
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
             <h3 className="text-2xl font-semibold">ArXiv 最新论文</h3>
-            <span className="tag">每日更新 · {papers.length} 篇</span>
+            <span className="tag">每日更新 · {allPapers.length} 篇</span>
           </div>
         </div>
 
