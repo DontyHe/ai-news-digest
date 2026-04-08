@@ -7,8 +7,34 @@ import fullPapers from '../data/fullPapers.json';
 import companies from '../data/companies';
 import socialData from '../data/social';
 
-// 合并 papers.ts 和 fullPapers.json
-const allPapers: Paper[] = [...papers];
+// Helper to strip markdown markers
+function stripMarkdown(text: string): string {
+  return text.replace(/#{1,6}\s*/g, '').replace(/\*\*/g, '').replace(/\*\*/g, '').replace(/- /g, '').trim();
+}
+
+// Merge papers.ts and fullPapers.json, fullPapers takes priority
+const fullPapersMap = new Map<string, any>();
+(fullPapers as any[]).forEach((fp: any) => fullPapersMap.set(fp.id, fp));
+
+const allPapers: Paper[] = papers.map((p: Paper) => {
+  const fp = fullPapersMap.get(p.id);
+  if (fp) {
+    return {
+      ...p,
+      title: fp.title || p.title,
+      authors: fp.authors || p.authors,
+      institution: fp.institution || p.institution,
+      date: fp.date || p.date,
+      category: (fp.category as Paper["category"]) || p.category,
+      summary: fp.summary || p.summary,
+      pdfUrl: fp.pdfUrl || p.pdfUrl,
+      htmlUrl: fp.htmlUrl || p.htmlUrl,
+    };
+  }
+  return p;
+});
+
+// Add papers from fullPapers that are not in papers.ts
 (fullPapers as any[]).forEach((fp: any) => {
   if (!allPapers.find((p) => p.id === fp.id)) {
     allPapers.push({
@@ -143,7 +169,7 @@ export default function Home() {
                 <h4 className="card-title text-base">{paper.title}</h4>
                 <p className="text-sm text-muted mb-2">{paper.authors}</p>
                 <p className="text-xs text-cyan-400 mb-3">{paper.institution}</p>
-                <p className="text-sm flex-grow">{paper.summary}</p>
+                <p className="text-sm flex-grow">{stripMarkdown(paper.summary)}</p>
               </Link>
               <div className="flex gap-3 mt-4 pt-4 border-t border-accent/30">
                 <a href={paper.pdfUrl} target="_blank" className="a-link text-sm flex items-center gap-1">
