@@ -13,12 +13,12 @@ const allPapers: Paper[] = [...papers];
   if (!allPapers.find((p) => p.id === fp.id)) {
     allPapers.push({
       id: fp.id,
-      title: fp.title,
+      title: fp.title || '',
       authors: fp.authors || '',
       institution: fp.institution || '',
       date: fp.date || '',
-      category: (fp.category as Paper["category"]) || 'embodied',
-      summary: fp.content?.substring(0, 200) || fp.summary || '',
+      category: (fp.category as Paper["category"]) || 'ai',
+      summary: fp.summary || fp.content?.substring(0, 200) || '',
       background: '',
       architecture: '',
       innovations: '',

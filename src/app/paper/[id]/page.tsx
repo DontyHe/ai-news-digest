@@ -9,12 +9,12 @@ fullPapers.forEach((fp: any) => {
   if (!allPapers.find((p: any) => p.id === fp.id)) {
     allPapers.push({
       id: fp.id,
-      title: fp.title,
-      authors: fp.title.includes('MIT') ? 'MIT et al.' : '',
-      institution: '',
-      date: fp.date,
-      category: 'embodied',
-      summary: fp.content?.substring(0, 200) || '',
+      title: fp.title || '',
+      authors: fp.authors || '',
+      institution: fp.institution || '',
+      date: fp.date || '',
+      category: fp.category || 'ai',
+      summary: fp.summary || fp.content?.substring(0, 200) || '',
       background: '',
       architecture: '',
       innovations: '',
