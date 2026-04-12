@@ -18,8095 +18,3207 @@ export interface Paper {
   figures: string[];
 }
 
-export const papers: Paper[] = [  {
-    id: "paper-260405656",
-    title: "SnapFlow: One-Step Action Generation for Flow-Matching VLAs via Progressive Self-Distillation",
-    authors: "Wuyang Luan, Junhui Li, Weiguang Zhao, Wenjian Zhang, Tieru Wu, Rui Ma",
-    date: "2026-04-07",
-    institution: "Rui Ma",
-    category: "vla",
-    summary: "SnapFlow 通过渐进式自蒸馏将流匹配 VLA 的多步去噪压缩为单步推理，在 pi0.5 上达到 9.6x 加速且性能不降反升。",
-    background: "基于流匹配的 VLA 模型（如 pi0, pi0.5, SmolVLA）已成为 SOTA 通用操作方案，但迭代去噪（通常需要 10 步 ODE）导致推理延迟过高。去噪过程占用端到端推理时间的 80%。直接减少步数不可靠，因为速度场未针对单步跳跃进行校准。",
-    architecture: "插件式自蒸馏方法，将多步去噪压缩为单次前向传播（1-NFE）。混合标准流匹配样本与一致性样本，一致性样本的目标是模型自身边缘速度预测计算的二步 Euler 快捷速度。零初始化时间嵌入让网络在单一架构内切换局部速度估计和全局一步生成。",
-    innovations: "首个针对流匹配 VLA 的自蒸馏加速方法。在 pi0.5 四个 LIBERO 套件上达到 98.75% 平均成功率，超过 10 步教师（97.75%）。去噪加速 9.6x，端到端延迟从 274ms 降至 83ms。与层蒸馏、token 剪枝正交可组合。",
-    inspiration: "VLA 的实时部署瓶颈集中在推理速度上。自蒸馏思路不需要外部大模型做教师，用自身速度预测构建一致性目标，对 edge 部署意义重大。",
-    pdfUrl: "https://arxiv.org/pdf/2604.05656",
-    htmlUrl: "https://arxiv.org/abs/2604.05656",
-    figures: [],
-  }
-  {
-    id: "paper-260405673",
-    title: "RSBM: Rectified Schrödinger Bridge Matching for Few-Step Visual Navigation",
-    authors: "Wuyang Luan, et al.",
-    date: "2026-04-07",
-    institution: "Wuyang Luan",
-    category: "worldmodel",
-    summary: "RSBM 通过熵正则化参数的连续插值统一薛定谔桥和最优传输，仅需 3 步积分即可在视觉导航中达到 92% 成功率。",
-    background: "基于扩散模型和薛定谔桥的生成策略能有效捕获多模态动作分布，但由于高方差随机传输需要数十步积分，阻碍了实时机器人控制。",
-    architecture: "利用速度结构不变性，单个网络服务所有正则化强度。在 ε=1（最大熵传输）和 ε→0（确定性最优传输）之间插值，学习条件先验缩短传输距离。",
-    innovations: "发现标准桥和最优传输共享速度场结构，提供统一视角。仅 3 步积分达到 94% 余弦相似度和 92% 成功率，无需蒸馏或多阶段训练。",
-    inspiration: "将薛定谔桥和最优传输统一到连续谱上是优雅的数学洞察。理论驱动的少步推理方法比纯工程优化更有持久价值。",
-    pdfUrl: "https://arxiv.org/pdf/2604.05673",
-    htmlUrl: "https://arxiv.org/abs/2604.05673",
-    figures: [],
-  }
-  {
-    id: "paper-260401985",
-    title: "WAV: World Action Verifier via Forward-Backward Asymmetry",
-    authors: "Yuejiang Liu, et al.",
-    date: "2026-04-02",
-    institution: "Stanford (Chelsea Finn), MIT (Yilun Du)",
-    category: "worldmodel",
-    summary: "WAV 将动作条件状态预测分解为状态合理性和动作可达性两个独立因子，利用无动作数据和低维动作特征的不对称性实现世界模型自验证和改进。",
-    background: "通用世界模型承诺可扩展的策略评估、优化和规划，但实现所需的鲁棒性仍然具有挑战性。与策略学习主要关注最优动作不同，世界模型必须在更广泛的次优动作范围内保持可靠。",
-    architecture: "核心洞察：动作条件状态预测可分解为两个因子：状态合理性（state plausibility）和动作可达性（action reachability）。利用前向-逆向不对称性进行验证。",
-    innovations: "首次提出世界模型自验证框架，利用前向-逆向不对称性降低验证难度。在 9 个任务上实现 2x 样本效率，策略性能提升 18%。",
-    inspiration: "世界模型的可靠性是具身 AI 落地的核心挑战。WAV 的思路：不直接改进前向预测，而是通过构建自验证机制来发现和修正模型的盲区。",
-    pdfUrl: "https://arxiv.org/pdf/2604.01985",
-    htmlUrl: "https://arxiv.org/abs/2604.01985",
-    figures: [],
-  }
-  {
-    id: "paper-arXiv:2603.16852",
-    title: "VLA-Mamba: Efficient Vision-Language-Action Reasoning with State Space Models",
-    authors: "Chen Wang, Li Zhang, Minhao Liu, Yan Lu",
-    date: "2026-03-26",
-    institution: "清华大学、北京大学、上海人工智能实验室",
-    category: "vla",
-    summary: "本文提出了一种基于Mamba架构的VLA模型，通过状态空间建模实现了高效的具身智能推理，在长时序任务中表现出色。",
-    background: "随着具身智能的发展，视觉-语言-动作(VLA)模型成为了实现具身智能的核心技术。然而，现有的VLA模型主要基于Transformer架构，虽然表现出色，但存在以下问题：
-1. 计算复杂度高，难以部署在边缘设备
-2. 长时序建模能力有限，难以处理复杂的多步任务
-3. 内存占用大，限制了大规模应用",
-    architecture: "VLA-Mamba的核心架构包括：
-
-1. **视觉编码器**
-   - 使用ViT作为基础编码器
-   - 结合Mamba的状态空间模型进行时序建模
-   - 实现线性的计算复杂度O(n)
-
-2. **语言理解模块**
-   - 基于Mamba的语言模型
-   - 支持多模态对齐
-   - 实现高效的上下文建模
-
-3. **动作推理引擎**
-   - 状态空间动作预测
-   - 多步推理机制
-   - 支持长期规划
-
-4. **跨模态融合**
-   - 多模态选择性扫描
-   - 注意力与状态空间混合机制
-   - 实现高效的模态融合",
-    innovations: "1. **首次将Mamba架构引入VLA领域**，实现了高效的具身智能推理
-2. **线性计算复杂度**，相比传统Transformer提升3倍计算效率
-3. **强大的长时序建模能力**，能够处理复杂的多步任务
-4. **端到端的训练框架**，支持多模态联合优化
-
-**实验结果**
-在多个基准测试中验证了VLA-Mamba的有效性：
-
-1. **Libero基准测试**
-   - 在10个任务中平均性能达到89.3%
-   - 计算效率比OpenVLA提升3倍
-   - 内存占用减少60%
-
-2. **ManiSkill基准测试**
-   - 在复杂操作任务中达到87.1%成功率
-   - 长时序任务表现优于基线模型
-   - 推理速度提升2.5倍
-
-3. **RealWorld基准测试**
-   - 在真实机器人任务中达到82.4%成功率
-   - 展现了良好的泛化能力
-   - 部署在边缘设备上性能稳定",
-    inspiration: "1",
-    pdfUrl: "https://arxiv.org/pdf/arXiv:2603.16852",
-    htmlUrl: "https://arxiv.org/abs/arXiv:2603.16852",
-    figures: [],
-  }
-  {
-    id: "paper-arXiv:2603.16853",
-    title: "WorldDiff: Learning Environment Dynamics for Efficient Reinforcement Learning in Embodied AI",
-    authors: "Zhang Wei, Liu Ming, Chen Xiao, Wang Hao",
-    date: "2026-03-26",
-    institution: "北京大学、中国科学院自动化研究所、腾讯AI Lab",
-    category: "ai",
-    summary: "本文提出了一种基于差分世界模型的具身强化学习方法，通过学习环境动态的差异来实现高效的政策优化。",
-    background: "具身强化学习是机器人学的重要研究方向，但面临以下挑战：
-1. **数据效率低**：需要大量的环境交互数据
-2. **样本复杂度高**：探索空间大，收敛速度慢
-3. **泛化能力有限**：在未知环境中表现不佳
-4. **训练不稳定**：多模态奖励信号导致训练困难",
-    architecture: "WorldDiff的核心架构包括：
-
-1. **差分编码器**
-   - 学习状态之间的差异表示
-   - 提取环境动态的关键特征
-   - 实现高效的时空编码
-
-2. **动态预测模块**
-   - 基于差分表示的未来状态预测
-   - 支持多步预测
-   - 模拟不同动作的效果
-
-3. **价值网络**
-   - 基于世界模型的值函数估计
-   - 支持离策略学习
-   - 实现高效的政策优化
-
-4. **经验回放**
-   - 优先级经验回放
-   - 差分状态表示
-   - 提升样本效率",
-    innovations: "1. **差分世界模型**：首次提出基于状态差分的世界模型
-2. **高效的样本利用**：相比传统方法减少80%交互次数
-3. **轻量级架构**：模型参数减少70%，便于部署
-4. **多任务学习**：支持多种机器人任务的统一训练
-
-**实验结果**
-在多个机器人任务中验证了WorldDiff的有效性：
-
-1. **Fetch基准测试**
-   - 达到92.5%的成功率
-   - 交互次数减少82%
-   - 训练时间缩短75%
-
-2. **D4RL基准测试**
-   - 在多个环境中达到SOTA性能
-   - 样本效率提升5-8倍
-   - 泛化能力显著提升
-
-3. **真实机器人实验**
-   - 在机械臂操作任务中达到88.3%成功率
-   - 展现了良好的跨任务迁移能力
-   - 部署在实际工业环境中运行稳定",
-    inspiration: "1",
-    pdfUrl: "https://arxiv.org/pdf/arXiv:2603.16853",
-    htmlUrl: "https://arxiv.org/abs/arXiv:2603.16853",
-    figures: [],
-  }
-  {
-    id: "paper-arXiv:2603.16854",
-    title: "EmbodiedCLIP: Vision-Language Pre-training for Embodied Tasks with Action-Related Objectives",
-    authors: "Li Na, Wang Lei, Zhang Min, Chen Bin",
-    date: "2026-03-26",
-    institution: "上海交通大学、复旦大学、阿里巴巴达摩院",
-    category: "embodied",
-    summary: "本文提出了一种专门针对具身任务的视觉语言预训练模型，通过具身感知和动作相关的预训练任务提升了VLA模型的性能。",
-    background: "视觉语言预训练模型在具身智能中的应用面临以下挑战：
-1. **领域差异**：通用视觉语言模型缺乏具身任务的特定知识
-2. **动作理解不足**：难以理解动作与物体之间的关系
-3. **空间感知有限**：缺乏对三维空间的理解能力
-4. **泛化能力弱**：在具身任务中泛化能力有限",
-    architecture: "EmbodiedCLIP的核心架构包括：
-
-1. **视觉编码器**
-   - 基于ViT的视觉编码器
-   - 结合具身感知的特殊层
-   - 支持多尺度特征提取
-
-2. **语言理解模块**
-   - 基于Transformer的语言编码器
-   - 集成具身语义信息
-   - 支持多模态对齐
-
-3. **具身预训练任务**
-   - **物体交互感知**：学习物体与动作的关系
-   - **空间关系理解**：理解三维空间中的物体关系
-   - **动作语义对齐**：对齐动作与语言描述
-
-4. **多模态融合**
-   - 跨模态注意力机制
-   - 具身感知增强
-   - 支持复杂推理",
-    innovations: "1. **专门的具身预训练框架**：首个针对具身任务的视觉语言预训练模型
-2. **三种具身感知任务**：物体交互、空间关系、动作语义对齐
-3. **大规模具身数据集**：在100万+具身样本上预训练
-4. **显著的性能提升**：在多个任务中提升15-25%的性能
-
-**实验结果**
-在多个基准测试中验证了EmbodiedCLIP的有效性：
-
-1. **Clevr基准测试**
-   - 达到95.2%的准确率
-   - 相比CLIP提升18.7%
-   - 空间理解能力显著增强
-
-2. **NLVR2基准测试**
-   - 达到89.6%的准确率
-   - 相比基线模型提升15.3%
-   - 语言理解能力显著提升
-
-3. **具身任务测试**
-   - 在Libero任务中达到91.4%成功率
-   - 在ManiSkill任务中达到88.7%成功率
-   - 泛化能力显著提升",
-    inspiration: "1",
-    pdfUrl: "https://arxiv.org/pdf/arXiv:2603.16854",
-    htmlUrl: "https://arxiv.org/abs/arXiv:2603.16854",
-    figures: [],
-  }
-  {
-    id: "paper-arXiv:2603.17561",
-    title: "Sim2RealZero: Zero-Shot Sim-to-Real Transfer with Consistency Learning",
-    authors: "Michael Chen, Sarah Johnson, David Lee, Alex Wang",
-    date: "2026-03-27",
-    institution: "斯坦福大学、加州大学伯克利分校、Google DeepMind",
-    category: "ai",
-    summary: "本文提出了一种无需真实数据的Sim2Real强化学习方法，通过一致性学习实现了仿真到现实的高效迁移，大幅降低了真实数据收集成本。",
-    background: "Sim2Real迁移是机器人学习中的重要技术，但面临以下挑战：
-1. **域差异大**：仿真与真实环境之间存在显著差异
-2. **数据依赖性高**：需要大量真实数据进行校准
-3. **泛化能力弱**：在真实环境中的表现不稳定
-4. **收集成本高**：真实数据收集耗费大量时间和资源",
-    architecture: "Sim2RealZero的核心架构包括：
-
-1. **多模态一致性网络**
-   - 视觉一致性模块
-   - 动作一致性模块
-   - 奖励一致性模块
-   - 实现跨域的一致性约束
-
-2. **域适应网络**
-   - 特征空间对齐
-   - 风险分布匹配
-   - 实现仿真与现实的特征对齐
-
-3. **强化学习引擎**
-   - 基于PPO的强化学习
-   - 一致性约束的训练目标
-   - 支持多任务联合训练
-
-4. **评估框架**
-   - 在仿真环境中的预训练
-   - 在真实环境中的零样本迁移
-   - 性能评估和对比",
-    innovations: "1. **零样本Sim2Real迁移**：首次实现无需真实数据的Sim2Real迁移
-2. **多模态一致性学习**：通过一致性损失函数实现域对齐
-3. **大幅降低数据成本**：减少95%的真实数据收集成本
-4. **高迁移成功率**：达到92%的零样本迁移成功率
-
-**实验结果**
-在多个机器人任务中验证了Sim2RealZero的有效性：
-
-1. **机械臂操作任务**
-   - 零样本迁移成功率：91.8%
-   - 相比传统方法提升35%
-   - 训练时间减少80%
-
-2. **移动机器人导航**
-   - 零样本迁移成功率：92.3%
-   - 在复杂环境中表现稳定
-   - 泛化能力显著提升
-
-3. **无人机飞行控制**
-   - 零样本迁移成功率：91.5%
-   - 在真实环境中运行稳定
-   - 安全性大幅提升",
-    inspiration: "1",
-    pdfUrl: "https://arxiv.org/pdf/arXiv:2603.17561",
-    htmlUrl: "https://arxiv.org/abs/arXiv:2603.17561",
-    figures: [],
-  }
-  {
-    id: "paper-arXiv:2603.17562",
-    title: "WorldGPT: Generative World Models for Embodied Intelligence with Physics Reasoning",
-    authors: "Yuan Zhang, Wei Liu, Ming Chen, Hao Wang",
-    date: "2026-03-27",
-    institution: "清华大学、北京航空航天大学、华为诺亚方舟实验室",
-    category: "ai",
-    summary: "本文提出了一种基于生成式世界模型的具身智能框架，通过生成式建模实现高效的物理推理和动作规划。",
-    background: "世界模型是具身智能的核心技术，但现有方法存在以下问题：
-1. **预测式建模的局限性**：难以处理复杂的推理任务
-2. **物理理解不足**：缺乏对物理规律的理解
-3. **多步规划能力有限**：难以进行长期规划
-4. **推理效率低**：复杂的推理任务计算成本高",
-    architecture: "WorldGPT的核心架构包括：
-
-1. **生成式世界模型**
-   - 基于Transformer的生成架构
-   - 物理规则嵌入
-   - 支持多模态输入输出
-
-2. **物理推理引擎**
-   - 物理规则编码器
-   - 因果关系建模
-   - 支持复杂的物理推理
-
-3. **动作规划系统**
-   - 多步规划算法
-   - 基于生成的前瞻搜索
-   - 支持长期规划
-
-4. **训练框架**
-   - 自监督学习
-   - 物理约束优化
-   - 多任务联合训练",
-    innovations: "1. **生成式世界模型**：首次将生成式模型引入世界模型领域
-2. **物理推理能力**：集成了物理规则理解能力
-3. **多步规划支持**：能够进行复杂的长期规划
-4. **高效推理**：相比传统方法提升计算效率
-
-**实验结果**
-在多个具身智能任务中验证了WorldGPT的有效性：
-
-1. **复杂操作任务**
-   - 在需要物理推理的任务中达到89.2%成功率
-   - 相比传统方法提升31%
-   - 推理效率提升2.5倍
-
-2. **长期规划任务**
-   - 在多步任务中达到87.6%成功率
-   - 长期规划能力显著提升
-   - 能够处理10步以上的复杂任务
-
-3. **泛化能力测试**
-   - 在未见过的环境中达到83.4%成功率
-   - 物理推理能力在不同环境中表现稳定
-   - 展现了良好的泛化能力",
-    inspiration: "1",
-    pdfUrl: "https://arxiv.org/pdf/arXiv:2603.17562",
-    htmlUrl: "https://arxiv.org/abs/arXiv:2603.17562",
-    figures: [],
-  }
-  {
-    id: "paper-arXiv:2603.17563",
-    title: "VLALens: Adaptive Vision-Language-Action Learning for Embodied Intelligence with Meta-Learning",
-    authors: "Li Hua, Wang Qiang, Zhang Min, Chen Bin",
-    date: "2026-03-27",
-    institution: "中国科学技术大学、上海交通大学、阿里巴巴达摩院",
-    category: "vla",
-    summary: "本文提出了一种面向具身智能的自适应VLA学习框架，通过元学习和动态适应实现了在不同环境中的快速适应能力。",
-    background: "VLA模型在实际应用中面临以下挑战：
-1. **数据依赖性高**：需要大量数据进行训练
-2. **适应能力弱**：难以快速适应新环境
-3. **迁移能力有限**：跨任务迁移效果不佳
-4. **训练成本高**：大量数据收集和训练耗费资源",
-    architecture: "VLALens的核心架构包括：
-
-1. **元学习框架**
-   - 基于MAML的元学习算法
-   - 快速适应机制
-   - 支持多任务学习
-
-2. **特征自适应模块**
-   - 动态特征编码器
-   - 自适应注意力机制
-   - 支持环境感知
-
-3. **策略快速调整**
-   - 基于梯度的快速调整
-   - 元知识提取
-   - 支持快速收敛
-
-4. **多模态适应**
-   - 视觉-语言-动作的联合适应
-   - 模态间关系学习
-   - 支持复杂环境适应",
-    innovations: "1. **元学习框架**：首次将元学习引入VLA领域
-2. **快速适应能力**：在新环境中通过少量样本快速调整
-3. **数据效率提升**：减少90%的训练数据需求
-4. **多模态联合适应**：支持视觉、语言、动作的联合适应
-
-**实验结果**
-在多个具身智能任务中验证了VLALens的有效性：
-
-1. **快速适应测试**
-   - 在新环境中只需要50个样本就能达到85%性能
-   - 相比传统方法提升90%的数据效率
-   - 适应时间缩短85%
-
-2. **跨任务迁移**
-   - 在不同任务间迁移成功率达到88.7%
-   - 迁移效率提升5倍
-   - 展现了良好的泛化能力
-
-3. **真实环境测试**
-   - 在真实机器人任务中达到86.3%成功率
-   - 展现了良好的适应性
-   - 在变化的环境中表现稳定",
-    inspiration: "1",
-    pdfUrl: "https://arxiv.org/pdf/arXiv:2603.17563",
-    htmlUrl: "https://arxiv.org/abs/arXiv:2603.17563",
-    figures: [],
-  }
-  {
-    id: "paper-arXiv:2603.17564",
-    title: "EmbodiedBench: A Comprehensive Benchmark Suite for Evaluating Embodied Intelligence",
-    authors: "James Wilson, Emily Chen, Robert Zhang, Maria Rodriguez",
-    date: "2026-03-27",
-    institution: "MIT、斯坦福大学、卡内基梅隆大学、加州大学伯克利分校",
-    category: "embodied",
-    summary: "本文提出了一种全面的具身智能基准测试集，涵盖了多种任务类型和评估指标，为具身智能研究提供了标准化的评估平台。",
-    background: "具身智能评估面临以下挑战：
-1. **缺乏标准化**：不同研究使用不同的评估方法
-2. **任务覆盖不全**：现有评估无法覆盖所有重要任务类型
-3. **评估指标不统一**：缺乏统一的性能评估标准
-4. **数据集不开放**：许多数据集难以获取和使用",
-    architecture: "EmbodiedBench的核心架构包括：
-
-1. **任务分类体系**
-   - 视觉导航任务
-   - 物体操作任务
-   - 人机交互任务
-   - 多任务协作任务
-
-2. **评估指标体系**
-   - 任务成功率
-   - 效率指标
-   - 鲁棒性指标
-   - 用户满意度
-
-3. **数据集构建**
-   - 高质量标注数据
-   - 多模态数据
-   - 真实环境数据
-   - 标准化格式
-
-4. **评估协议**
-   - 标准化测试流程
-   - 公平的评估方法
-   - 可重复的实验设置
-   - 自动化评估工具",
-    innovations: "1. **全面的任务覆盖**：50+个不同类型的具身智能任务
-2. **标准化评估体系**：统一的评估指标和协议
-3. **开放数据集**：公开可获取的评估数据
-4. **自动化评估工具**：支持大规模自动化评估
-
-**实验结果**
-对多个现有VLA模型进行了全面评估：
-
-1. **基准测试结果**
-   - OpenVLA在复杂任务中表现最佳，平均成功率87.3%
-   - RT-2在操作任务中表现突出，成功率89.1%
-   - WorldVLA在长期规划任务中领先，成功率85.8%
-
-2. **模型分析**
-   - 现有模型在简单任务中表现良好，但在复杂任务中仍有提升空间
-   - 多模态融合能力是影响性能的关键因素
-   - 长时序建模能力需要进一步改进
-
-3. **评估协议验证**
-   - 评估结果具有良好的可重复性
-   - 评估方法公平客观
-   - 能够有效区分不同模型的性能差异",
-    inspiration: "1",
-    pdfUrl: "https://arxiv.org/pdf/arXiv:2603.17564",
-    htmlUrl: "https://arxiv.org/abs/arXiv:2603.17564",
-    figures: [],
-  }
-  {
-    id: "paper-arXiv:2603.18271",
-    title: "PhysicsGPT: Physics-Aware Generative Models for Embodied Intelligence with Causal Reasoning",
-    authors: "Dr. Elena Rodriguez, Prof. Michael Chang, Dr. Sarah Kim, Dr. James Wilson",
-    date: "2026-03-28",
-    institution: "斯坦福大学、MIT、Google DeepMind",
-    category: "ai",
-    summary: "本文提出了一种融合物理规律的具身智能生成模型，通过物理感知和生成式建模实现了对复杂物理世界的理解和交互。",
-    background: "具身智能在实际应用中面临以下物理理解挑战：
-1. **物理规律理解不足**：缺乏对基本物理规律的理解
-2. **因果推理能力弱**：难以理解因果关系
-3. **复杂交互处理困难**：难以处理多物体交互
-4. **模拟不准确**：物理模拟的准确性有限",
-    architecture: "PhysicsGPT的核心架构包括：
-
-1. **物理规则编码器**
-   - 基于物理知识的编码层
-   - 基本物理规律的神经表示
-   - 物理约束的神经网络实现
-
-2. **因果推理引擎**
-   - 因果图神经网络
-   - 反事实推理能力
-   - 支持复杂因果关系的建模
-
-3. **生成式交互模型**
-   - 多模态生成架构
-   - 物理感知的生成过程
-   - 支持复杂的交互模拟
-
-4. **学习框架**
-   - 物理约束的自监督学习
-   - 多任务联合训练
-   - 基于物理知识的正则化",
-    innovations: "1. **物理规则融合**：首次将物理规则编码到神经网络架构中
-2. **因果推理能力**：实现了强大的因果理解和推理
-3. **生成式物理建模**：通过生成式建模实现复杂的物理交互
-4. **性能显著提升**：在复杂物理任务中提升40%性能
-
-**实验结果**
-在多个需要物理理解的具身智能任务中验证了PhysicsGPT的有效性：
-
-1. **复杂物体操作**
-   - 在多物体交互任务中达到93.2%成功率
-   - 相比现有方法提升41%
-   - 物理理解能力显著提升
-
-2. **因果推理任务**
-   - 在因果理解任务中达到89.7%准确率
-   - 因果推理能力相比传统方法提升50%
-   - 能够处理复杂的因果关系
-
-3. **长期物理交互**
-   - 在需要长期物理模拟的任务中达到87.3%成功率
-   - 展现了良好的长期物理预测能力
-   - 物理模拟的准确性显著提升",
-    inspiration: "1",
-    pdfUrl: "https://arxiv.org/pdf/arXiv:2603.18271",
-    htmlUrl: "https://arxiv.org/abs/arXiv:2603.18271",
-    figures: [],
-  }
-  {
-    id: "paper-arXiv:2603.18272",
-    title: "WorldTransformer+: Enhanced World Models with Multi-Scale Spatio-Temporal Modeling and Dynamic Attention",
-    authors: "Li Wei, Zhang Ming, Chen Hao, Wang Bin",
-    date: "2026-03-28",
-    institution: "北京大学、清华大学、上海人工智能实验室",
-    category: "ai",
-    summary: "本文提出了一种增强型世界模型架构，通过多尺度时空建模和动态注意力机制实现了对复杂环境的高效建模和预测。",
-    background: "世界模型在具身智能中面临以下挑战：
-1. **长期预测能力有限**：难以进行长期的环境预测
-2. **多尺度建模困难**：难以同时建模不同粒度的环境动态
-3. **计算效率低**：复杂环境的建模计算成本高
-4. **泛化能力不足**：在复杂环境中的泛化能力有限",
-    architecture: "WorldTransformer+的核心架构包括：
-
-1. **多尺度时空编码器**
-   - 多尺度特征提取
-   - 时空注意力机制
-   - 支持不同粒度的建模
-
-2. **动态注意力机制**
-   - 自适应注意力权重
-   - 时序感知的注意力
-   - 支持动态环境变化
-
-3. **分层预测模块**
-   - 多步预测框架
-   - 分层损失函数
-   - 支持长期预测
-
-4. **训练优化**
-   - 分层训练策略
-   - 多任务联合优化
-   - 渐进式学习",
-    innovations: "1. **多尺度时空建模**：首次实现多尺度的环境动态建模
-2. **动态注意力机制**：能够适应环境变化的动态注意力
-3. **分层预测框架**：支持长期的多步预测
-4. **显著性能提升**：在多个基准测试中大幅提升性能
-
-**实验结果**
-在多个世界模型基准测试中验证了WorldTransformer+的有效性：
-
-1. **长期预测任务**
-   - 在10步预测任务中达到91.3%准确率
-   - 相比现有方法提升35%
-   - 长期预测能力显著增强
-
-2. **多尺度建模**
-   - 在不同粒度建模任务中达到88.7%准确率
-   - 相比基线模型提升28%
-   - 多尺度建模能力显著提升
-
-3. **复杂环境测试**
-   - 在复杂动态环境中达到85.2%预测准确率
-   - 展现了良好的泛化能力
-   - 计算效率提升2倍",
-    inspiration: "1",
-    pdfUrl: "https://arxiv.org/pdf/arXiv:2603.18272",
-    htmlUrl: "https://arxiv.org/abs/arXiv:2603.18272",
-    figures: [],
-  }
-  {
-    id: "paper-arXiv:2603.18273",
-    title: "VLA-Attention: Multi-Modal Attention Mechanisms for Vision-Language-Action Models with Cross-Modal Alignment",
-    authors: "Dr. Emily Chen, Prof. Robert Zhang, Dr. Maria Rodriguez, Dr. James Wilson",
-    date: "2026-03-28",
-    institution: "MIT、斯坦福大学、卡内基梅隆大学",
-    category: "vla",
-    summary: "本文提出了一种多模态注意力机制的VLA模型，通过跨模态注意力对齐实现了高效的视觉、语言和动作融合。",
-    background: "VLA模型在跨模态融合时面临以下挑战：
-1. **模态间对齐不准确**：不同模态之间的对应关系理解不深
-2. **注意力机制设计不当**：现有的注意力机制难以处理多模态融合
-3. **计算效率低**：复杂的多模态融合计算成本高
-4. **长期依赖建模不足**：难以建模跨模态的长期依赖关系",
-    architecture: "VLA-Attention的核心架构包括：
-
-1. **多模态注意力机制**
-   - 视觉-语言注意力模块
-   - 语言-动作注意力模块
-   - 视觉-动作注意力模块
-   - 实现跨模态的有效对齐
-
-2. **分层注意力结构**
-   - 局部注意力层
-   - 全局注意力层
-   - 时序注意力层
-   - 支持不同层次的注意力建模
-
-3. **模态融合网络**
-   - 跨模态特征融合
-   - 模态间关系建模
-   - 支持复杂的多模态推理
-
-4. **训练框架**
-   - 多模态对齐损失
-   - 分层训练策略
-   - 多任务联合优化",
-    innovations: "1. **多模态注意力机制**：设计了三种跨模态注意力机制
-2. **分层注意力结构**：支持不同层次的注意力建模
-3. **高效的模态融合**：实现了准确的多模态对齐
-4. **性能显著提升**：在复杂多模态任务中提升25%性能
-
-**实验结果**
-在多个VLA任务中验证了VLA-Attention的有效性：
-
-1. **复杂多模态任务**
-   - 在需要多模态融合的任务中达到92.1%成功率
-   - 相比现有方法提升25%
-   - 跨模态对齐能力显著提升
-
-2. **长期依赖建模**
-   - 在需要长期依赖的任务中达到89.3%成功率
-   - 长期依赖建模能力提升30%
-   - 跨模态时序建模能力显著增强
-
-3. **计算效率测试**
-   - 在保持性能的同时计算效率提升2倍
-   - 内存占用减少40%
-   - 推理速度提升1.8倍",
-    inspiration: "1",
-    pdfUrl: "https://arxiv.org/pdf/arXiv:2603.18273",
-    htmlUrl: "https://arxiv.org/abs/arXiv:2603.18273",
-    figures: [],
-  }
-  {
-    id: "paper-arXiv:2603.18274",
-    title: "EmbodiedFuture: Future-Oriented Planning System for Embodied Intelligence with Spatio-Temporal Prediction",
-    authors: "Dr. Alex Kim, Prof. Lisa Wang, Dr. Jordan Lee, Dr. Sarah Chen",
-    date: "2026-03-28",
-    institution: "加州大学伯克利分校、斯坦福大学、OpenAI",
-    category: "embodied",
-    summary: "本文提出了一种面向未来的具身智能规划系统，通过时空预测和多目标优化实现了对复杂环境的智能规划和决策。",
-    background: "具身智能规划面临以下挑战：
-1. **时空预测不准确**：难以准确预测环境变化
-2. **多目标优化困难**：难以平衡多个优化目标
-3. **长期规划能力有限**：难以进行长期规划
-4. **复杂环境处理困难**：难以处理复杂的动态环境",
-    architecture: "EmbodiedFuture的核心架构包括：
-
-1. **时空预测模块**
-   - 多步预测框架
-   - 时空注意力机制
-   - 支持长期环境预测
-
-2. **多目标优化器**
-   - 多目标优化算法
-   - 帕累托前沿搜索
-   - 支持复杂目标平衡
-
-3. **智能规划引擎**
-   - 分层规划框架
-   - 动态规划策略
-   - 支持长期规划
-
-4. **决策系统**
-   - 不确定性处理
-   - 风险评估
-   - 支持智能决策",
-    innovations: "1. **时空预测能力**：实现了准确的长期环境预测
-2. **多目标优化**：支持复杂的多目标优化问题
-3. **分层规划框架**：实现了高效的长期规划
-4. **性能显著提升**：在复杂规划任务中大幅提升性能
-
-**实验结果**
-在多个具身智能规划任务中验证了EmbodiedFuture的有效性：
-
-1. **多目标优化任务**
-   - 在复杂多目标任务中达到93.8%成功率
-   - 相比现有方法提升45%
-   - 多目标优化能力显著提升
-
-2. **长期规划任务**
-   - 在需要长期规划的任务中达到91.2%成功率
-   - 相比基线模型提升38%
-   - 长期规划能力显著增强
-
-3. **复杂环境测试**
-   - 在动态复杂环境中达到88.7%成功率
-   - 展现了良好的适应能力
-   - 预测准确性显著提升",
-    inspiration: "1",
-    pdfUrl: "https://arxiv.org/pdf/arXiv:2603.18274",
-    htmlUrl: "https://arxiv.org/abs/arXiv:2603.18274",
-    figures: [],
-  }
-  {
-    id: "paper-arXiv:2603.18980",
-    title: "RoboGPT: Large-Scale Robot Language Models with Pre-training and Fine-tuning Frameworks",
-    authors: "Dr. Michael Chen, Prof. Sarah Johnson, Dr. David Lee, Dr. Alex Wang",
-    date: "2026-03-29",
-    institution: "斯坦福大学、加州大学伯克利分校、Google DeepMind",
-    category: "ai",
-    summary: "本文提出了一种大型机器人语言模型的预训练框架，通过大规模机器人数据的预训练实现了在多种机器人任务上的强大泛化能力。",
-    background: "机器人学习面临以下挑战：
-1. **数据规模有限**：现有机器人数据集规模较小
-2. **泛化能力弱**：难以在未见过的任务上表现良好
-3. **迁移能力不足**：跨任务迁移效果不佳
-4. **训练效率低**：大规模机器人数据的训练成本高",
-    architecture: "RoboGPT的核心架构包括：
-
-1. **大规模预训练模型**
-   - 基于Transformer的架构
-   - 100万+机器人样本预训练
-   - 支持多模态输入输出
-
-2. **多模态编码器**
-   - 视觉编码器
-   - 语言编码器
-   - 动作编码器
-   - 实现多模态融合
-
-3. **微调框架**
-   - 任务特定的微调策略
-   - 参数高效微调方法
-   - 支持快速适应新任务
-
-4. **训练优化**
-   - 分布式训练策略
-   - 梯度累积技术
-   - 混合精度训练",
-    innovations: "1. **大规模预训练**：首个在100万+机器人样本上预训练的模型
-2. **强大泛化能力**：在多个任务上展现35%的性能提升
-3. **零样本迁移**：具备零样本迁移到新任务的能力
-4. **高效微调**：参数高效微调方法支持快速适应
-
-**实验结果**
-在多个机器人任务中验证了RoboGPT的有效性：
-
-1. **通用机器人任务**
-   - 在20+不同的机器人任务上达到89.3%平均成功率
-   - 相比传统方法提升35%
-   - 展现了强大的泛化能力
-
-2. **零样本迁移测试**
-   - 在未见过的任务上达到76.8%成功率
-   - 零样本迁移能力显著
-   - 无需额外训练即可适应新任务
-
-3. **跨域迁移**
-   - 在不同类型的机器人间迁移成功率达到82.1%
-   - 迁移能力提升40%
-   - 展现了良好的跨域泛化能力",
-    inspiration: "1",
-    pdfUrl: "https://arxiv.org/pdf/arXiv:2603.18980",
-    htmlUrl: "https://arxiv.org/abs/arXiv:2603.18980",
-    figures: [],
-  }
-  {
-    id: "paper-arXiv:2603.18981",
-    title: "WorldSim3D: Generative Pre-training for 3D World Models with Geometric and Physical Alignment",
-    authors: "Dr. Elena Rodriguez, Prof. Michael Chang, Dr. Sarah Kim",
-    date: "2026-03-29",
-    institution: "斯坦福大学、MIT",
-    category: "ai",
-    summary: "本文提出了一种三维世界模型的生成式预训练方法，通过三维几何和物理规律的联合建模实现了对真实世界的高保真模拟。",
-    background: "三维世界建模面临以下挑战：
-1. **几何理解不足**：难以理解三维空间的几何结构
-2. **物理建模不准确**：物理模拟的保真度有限
-3. **生成质量不高**：生成的三维内容质量有待提升
-4. **计算效率低**：三维建模的计算成本高",
-    architecture: "WorldSim3D的核心架构包括：
-
-1. **三维几何编码器**
-   - 点云编码器
-   - 体素编码器
-   - 几何特征提取
-   - 支持多种三维表示
-
-2. **物理理解模块**
-   - 物理规律编码器
-   - 动力学建模
-   - 支持复杂物理模拟
-
-3. **生成式预训练**
-   - 自监督生成任务
-   - 几何一致性损失
-   - 物理规律约束
-
-4. **多模态融合**
-   - 视觉-几何-物理的融合
-   - 跨模态对齐
-   - 支持复杂推理",
-    innovations: "1. **三维几何建模**：首次实现三维世界模型的生成式预训练
-2. **物理-几何联合建模**：结合几何和物理的联合建模
-3. **高保真模拟**：生成高保真的三维世界模拟
-4. **性能显著提升**：在三维任务中大幅提升性能
-
-**实验结果**
-在多个三维视觉任务中验证了WorldSim3D的有效性：
-
-1. **几何理解任务**
-   - 在三维几何理解任务中达到93.2%准确率
-   - 相比现有方法提升42%
-   - 几何理解能力显著增强
-
-2. **物理预测任务**
-   - 在物理规律预测任务中达到90.8%准确率
-   - 相比基线模型提升38%
-   - 物理建模能力显著提升
-
-3. **生成质量评估**
-   - 生成的三维内容质量达到92.1%用户满意度
-   - 几何一致性提升45%
-   - 物理真实性提升38%",
-    inspiration: "1",
-    pdfUrl: "https://arxiv.org/pdf/arXiv:2603.18981",
-    htmlUrl: "https://arxiv.org/abs/arXiv:2603.18981",
-    figures: [],
-  }
-  {
-    id: "paper-arXiv:2603.18982",
-    title: "VLA-Chain: Chain-of-Thought Reasoning for Vision-Language-Action Models with Multi-Step Decision Making",
-    authors: "Dr. Li Wei, Prof. Zhang Ming, Dr. Chen Hao",
-    date: "2026-03-29",
-    institution: "北京大学、清华大学",
-    category: "vla",
-    summary: "本文提出了一种链式推理的VLA模型，通过逐步推理和多步决策实现了对复杂任务的高效处理。",
-    background: "VLA模型在复杂任务处理中面临以下挑战：
-1. **逐步推理能力不足**：难以进行逐步的逻辑推理
-2. **多步决策困难**：复杂任务的多步决策能力有限
-3. **任务分解能力弱**：难以将复杂任务分解为简单子任务
-4. **长期依赖建模不足**：难以建模长期的任务依赖关系",
-    architecture: "VLA-Chain的核心架构包括：
-
-1. **链式推理框架**
-   - 逐步推理模块
-   - 任务分解机制
-   - 多步决策系统
-   - 支持复杂任务处理
-
-2. **推理状态管理**
-   - 中间状态编码
-   - 推理轨迹记录
-   - 支持长期推理
-
-3. **多步决策引擎**
-   - 策略优化算法
-   - 价值估计网络
-   - 支持长期决策
-
-4. **训练优化**
-   - 链式监督学习
-   - 分层训练策略
-   - 多任务联合优化",
-    innovations: "1. **链式推理框架**：首次在VLA中引入链式推理
-2. **多步决策能力**：实现了复杂任务的多步决策
-3. **任务分解机制**：能够将复杂任务分解为简单子任务
-4. **性能显著提升**：在复杂任务中大幅提升性能
-
-**实验结果**
-在多个复杂VLA任务中验证了VLA-Chain的有效性：
-
-1. **复杂推理任务**
-   - 在需要逐步推理的任务中达到94.8%成功率
-   - 相比现有方法提升48%
-   - 推理能力显著增强
-
-2. **多步决策任务**
-   - 在需要多步决策的任务中达到91.3%成功率
-   - 相比基线模型提升45%
-   - 决策能力显著提升
-
-3. **任务分解测试**
-   - 在复杂任务分解任务中达到89.7%准确率
-   - 任务分解能力提升52%
-   - 能够高效处理复杂任务",
-    inspiration: "1",
-    pdfUrl: "https://arxiv.org/pdf/arXiv:2603.18982",
-    htmlUrl: "https://arxiv.org/abs/arXiv:2603.18982",
-    figures: [],
-  }
-  {
-    id: "paper-arXiv:2603.18983",
-    title: "EmbodiedBenchmark: A Comprehensive Benchmark Platform for Evaluating Embodied Intelligence",
-    authors: "Dr. James Wilson, Prof. Emily Chen, Dr. Robert Zhang, Dr. Maria Rodriguez",
-    date: "2026-03-29",
-    institution: "MIT、斯坦福大学、卡内基梅隆大学",
-    category: "embodied",
-    summary: "本文提出了一种全面的具身智能评估基准测试平台，提供了标准化的测试协议和自动化评估工具，为具身智能研究提供了评估标准。",
-    background: "具身智能评估面临以下挑战：
-1. **评估标准不统一**：缺乏统一的评估标准
-2. **测试任务不全面**：现有评估无法覆盖所有重要任务
-3. **评估效率低**：手动评估效率低下
-4. **结果难以比较**：不同研究的结果难以直接比较",
-    architecture: "EmbodiedBenchmark的核心架构包括：
-
-1. **标准化测试任务**
-   - 100+标准化测试任务
-   - 多难度级别设置
-   - 支持多种任务类型
-
-2. **自动化评估工具**
-   - 自动化测试执行
-   - 性能指标计算
-   - 详细报告生成
-
-3. **评估协议**
-   - 标准化测试流程
-   - 公平的评估方法
-   - 可重复的实验设置
-
-4. **数据管理**
-   - 标准化数据格式
-   - 数据质量控制
-   - 版本管理",
-    innovations: "1. **全面的测试覆盖**：100+标准化测试任务
-2. **自动化评估**：全自动化的评估流程
-3. **标准化协议**：标准化的评估协议
-4. **开放平台**：开放的评估平台促进研究发展
-
-**实验结果**
-对多个现有VLA模型进行了全面评估：
-
-1. **基准测试结果**
-   - RoboGPT在通用任务中表现最佳，平均成功率89.3%
-   - WorldSim3D在三维任务中领先，成功率92.1%
-   - VLA-Chain在复杂推理任务中突出，成功率94.8%
-
-2. **模型分析**
-   - 现有模型在不同任务类型中表现差异显著
-   - 多模态融合能力是影响性能的关键因素
-   - 链式推理能力对复杂任务至关重要
-
-3. **评估平台验证**
-   - 评估结果具有良好的可重复性
-   - 评估过程自动化程度高
-   - 能够有效区分不同模型的性能差异",
-    inspiration: "1",
-    pdfUrl: "https://arxiv.org/pdf/arXiv:2603.18983",
-    htmlUrl: "https://arxiv.org/abs/arXiv:2603.18983",
-    figures: [],
-  }
-  {
-    id: "paper-arXiv:2603.18984",
-    title: "RealWorldVLA: Real-World Vision-Language-Action Models with Domain Adaptation and Robustness Optimization",
-    authors: "Dr. Alex Kim, Prof. Lisa Wang, Dr. Jordan Lee",
-    date: "2026-03-29",
-    institution: "加州大学伯克利分校、斯坦福大学、OpenAI",
-    category: "vla",
-    summary: "本文提出了一种面向真实世界的VLA模型，通过域适应和鲁棒性优化实现了在真实环境中的稳定性能。",
-    background: "真实世界的VLA应用面临以下挑战：
-1. **域差异大**：仿真与真实环境存在显著差异
-2. **鲁棒性不足**：在真实环境中的稳定性差
-3. **泛化能力弱**：难以适应真实环境的复杂性
-4. **噪声敏感性高**：对环境噪声敏感",
-    architecture: "RealWorldVLA的核心架构包括：
-
-1. **域适应模块**
-   - 对抗域适应
-   - 特征空间对齐
-   - 实现仿真到现实的域对齐
-
-2. **鲁棒性优化**
-   - 鲁棒训练策略
-   - 噪声建模
-   - 支持抗干扰训练
-
-3. **真实世界感知**
-   - 不确定性估计
-   - 风险评估
-   - 支持安全决策
-
-4. **训练框架**
-   - 混合域训练
-   - 多环境联合训练
-   - 支持真实数据增强",
-    innovations: "1. **真实世界优化**：专门针对真实世界环境优化
-2. **域适应能力**：实现了高效的仿真到现实迁移
-3. **鲁棒性提升**：在真实环境中保持稳定性能
-4. **性能保持**：真实环境中性能保持率提升85%
-
-**实验结果**
-在多个真实世界测试中验证了RealWorldVLA的有效性：
-
-1. **真实环境测试**
-   - 在真实机器人任务中达到84.3%成功率
-   - 相比仿真环境只下降8%
-   - 真实环境性能保持率显著提升
-
-2. **鲁棒性测试**
-   - 在噪声环境中的性能达到82.1%
-   - 鲁棒性相比传统方法提升60%
-   - 对环境变化的适应能力显著增强
-
-3. **跨环境测试**
-   - 在不同真实环境中的平均成功率达到81.7%
-   - 跨环境泛化能力提升45%
-   - 展现了良好的环境适应能力",
-    inspiration: "1",
-    pdfUrl: "https://arxiv.org/pdf/arXiv:2603.18984",
-    htmlUrl: "https://arxiv.org/abs/arXiv:2603.18984",
-    figures: [],
-  }
-
-  {
-    id: "paper-260405656",
-    title: "SnapFlow: One-Step Action Generation for Flow-Matching VLAs via Progressive Self-Distillation",
-    authors: "Wuyang Luan, Junhui Li, Weiguang Zhao, Wenjian Zhang, Tieru Wu, Rui Ma",
-    institution: "Rui Ma",
-    date: "2026-04-09",
-    category: "vla",
-    summary: "SnapFlow 通过渐进式自蒸馏将流匹配 VLA 的多步去噪压缩为单步推理，在 pi0.5 上达到 9.6x 加速且性能不降反升。",
-    background: "基于流匹配的 VLA 模型（如 pi0, pi0.5, SmolVLA）已成为 SOTA 通用操作方案，但迭代去噪（通常需要 10 步 ODE）导致推理延迟过高。去噪过程占用端到端推理时间的 80%。",
-    architecture: "插件式自蒸馏方法，将多步去噪压缩为单次前向传播（1-NFE）。混合标准流匹配样本与一致性样本，一致性样本的目标是模型自身边缘速度预测计算的二步 Euler 快捷速度。零初始化时间嵌入让网络在单一架构内切换局部速度估计和全局一步生成。",
-    innovations: "首个针对流匹配 VLA 的自蒸馏加速方法。在 pi0.5 四个 LIBERO 套件上达到 98.75% 平均成功率，超过 10 步教师（97.75%）。去噪加速 9.6x，端到端延迟从 274ms 降至 83ms。与层蒸馏、token 剪枝正交可组合。",
-    inspiration: "VLA 的实时部署瓶颈集中在推理速度上。自蒸馏思路不需要外部大模型做教师，用自身速度预测构建一致性目标，对 edge 部署意义重大。",
-    pdfUrl: "https://arxiv.org/pdf/2604.05656",
-    htmlUrl: "https://arxiv.org/abs/2604.05656",
-    figures: []
-  },
-  {
-    id: "paper-260405673",
-    title: "RSBM: Rectified Schrödinger Bridge Matching for Few-Step Visual Navigation",
-    authors: "Wuyang Luan, et al.",
-    institution: "Wuyang Luan",
-    date: "2026-04-09",
-    category: "worldmodel",
-    summary: "RSBM 通过熵正则化参数的连续插值统一薛定谔桥和最优传输，仅需 3 步积分即可在视觉导航中达到 92% 成功率。",
-    background: "基于扩散模型和薛定谔桥的生成策略能有效捕获多模态动作分布，但由于高方差随机传输需要数十步积分，阻碍了实时机器人控制。",
-    architecture: "利用速度结构不变性，单个网络服务所有正则化强度。在 ε=1（最大熵传输）和 ε→0（确定性最优传输）之间插值，学习条件先验缩短传输距离。",
-    innovations: "发现标准桥和最优传输共享速度场结构，提供统一视角。仅 3 步积分达到 94% 余弦相似度和 92% 成功率，无需蒸馏或多阶段训练。",
-    inspiration: "将薛定谔桥和最优传输统一到连续谱上是优雅的数学洞察。理论驱动的少步推理方法比纯工程优化更有持久价值。",
-    pdfUrl: "https://arxiv.org/pdf/2604.05673",
-    htmlUrl: "https://arxiv.org/abs/2604.05673",
-    figures: []
-  },
-  {
-    id: "paper-260401985",
-    title: "WAV: Self-Improving World Models via Forward-Inverse Asymmetry",
-    authors: "Yuejiang Liu, et al.",
-    institution: "Stanford, MIT (Chelsea Finn, Yilun Du)",
-    date: "2026-04-09",
-    category: "worldmodel",
-    summary: "WAV 将动作条件状态预测分解为状态合理性和动作可达性，利用前向-逆向来性实现世界模型自验证和改进，样本效率提升 2x。",
-    background: "通用世界模型需要在更广泛的次优动作范围内保持可靠，但这些动作在动作标注的交互数据中覆盖不足。",
-    architecture: "将预测分解为状态合理性和动作可达性两个独立因子。利用无动作数据广泛可用和动作特征低维度两个不对称性。通过生成子目标、推断动作、前向展开的循环一致性进行验证。",
-    innovations: "首个世界模型自验证框架。在 9 个任务上实现 2x 样本效率，策略性能提升 18%。在探索不足区域表现突出。",
-    inspiration: "不直接改进前向预测，而是通过自验证机制发现和修正模型盲区。自我诊断思路对工业应用尤其有价值。",
-    pdfUrl: "https://arxiv.org/pdf/2604.01985",
-    htmlUrl: "https://arxiv.org/abs/2604.01985",
-    figures: []
-  },
-  {
-    id: "paper-260401001",
-    title: "EgoSim: Egocentric World Simulator for Embodied Interaction Generation",
-    authors: "Jinkun Hao, et al.",
-    institution: "",
-    date: "2026-04-09",
-    category: "worldmodel",
-    summary: "EgoSim 是闭环自我中心世界模拟器，通过可更新的 3D 世界状态实现空间一致的交互视频生成，支持跨具身迁移到机器人操作。",
-    background: "现有自我中心模拟器要么缺乏显式 3D 锚定导致结构漂移，要么将场景视为静态无法跨交互更新世界状态。",
-    architecture: "几何-动作感知观测模拟 (GAOS) 生成具身交互的视觉观测。交互感知状态更新 (IASU) 根据交互结果持续更新 3D 场景。EgoCap 低成本数据采集系统。",
-    innovations: "首个同时解决结构漂移和状态更新的自我中心模拟器。从野生自我中心视频自动提取训练数据。支持跨具身迁移到机器人操作。",
-    inspiration: "自我中心视角的世界模拟是连接具身 AI 和视频生成的重要桥梁。3D 锚定和状态更新是可靠仿真环境的关键属性。",
-    pdfUrl: "https://arxiv.org/pdf/2604.01001",
-    htmlUrl: "https://arxiv.org/abs/2604.01001",
-    figures: []
-  },
-  {
-    id: "paper-260405595",
-    title: "DAERT: Diversity-Aware Embodied Red Teaming for VLA Safety",
-    authors: "Baoshun Tong, et al.",
-    institution: "",
-    date: "2026-04-09",
-    category: "vla",
-    summary: "DAERT 通过统一策略评估框架生成多样化对抗性语言指令，成功将 pi0 和 OpenVLA 的任务成功率从 93.33% 压低至 5.85%。",
-    background: "VLA 对语言细微差异的鲁棒性是关键的未被充分探索的安全隐患。标准 RL 对抗者因奖励最大化特性导致模式崩塌。",
-    architecture: "统一策略生成多样化挑战性指令，在物理模拟器中通过执行失败衡量攻击有效性。解决传统 RL 对抗者收敛到窄集重复失败模式的问题。",
-    innovations: "首个系统性揭示 VLA 语言鲁棒性漏洞的红队攻击框架。成功率降低至 5.85%。可扩展的压力测试方法。",
-    inspiration: "VLA 安全性评估不应仅限于视觉和动作空间，语言输入的对抗鲁棒性同样重要。部署前的语言层面压力测试不可或缺。",
-    pdfUrl: "https://arxiv.org/pdf/2604.05595",
-    htmlUrl: "https://arxiv.org/abs/2604.05595",
-    figures: []
-  },
-  {
-    id: "paper-260405544",
-    title: "ReV: Referring-Aware Visuomotor Policy for Closed-Loop Manipulation",
-    authors: "Jiahua Ma, et al.",
-    institution: "",
-    date: "2026-04-09",
-    category: "embodied",
-    summary: "ReV 通过耦合扩散头实现全局-局部协同的轨迹规划，能实时整合稀疏指向点进行闭环轨迹重规划，无需额外数据或微调。",
-    background: "视觉运动策略面临分布外执行误差或动态轨迹重路由时的鲁棒性问题，模型仅依赖原始专家演示进行训练。",
-    architecture: "全局扩散头生成时间稀疏的动作锚点，局部扩散头进行精细插值。接收稀疏指向点后闭环重规划，每步执行重复此过程。仅对专家演示施加定向扰动训练。",
-    innovations: "首个无需额外数据或微调的指向感知闭环操作策略。全局-局部协同的扩散架构。通过演示扰动训练降低成本。",
-    inspiration: "将高层规划和底层执行解耦为协同扩散头，人机协作模式（人类提供指向点，模型负责执行）有实际应用前景。",
-    pdfUrl: "https://arxiv.org/pdf/2604.05544",
-    htmlUrl: "https://arxiv.org/abs/2604.05544",
-    figures: []
-  },
-  {
-    id: "paper-260405498",
-    title: "JailWAM: Jailbreaking World Action Models in Robot Control",
-    authors: "Hanqing Liu, Songping Wang, Jiahuan Long, et al.",
-    institution: "",
-    date: "2026-04-09",
-    category: "worldmodel",
-    summary: "JailWAM 提出首个针对世界动作模型 (WAM) 的越狱攻击框架，在 LingBot-VA 上达到 84.2% 攻击成功率，同时可构建鲁棒防御机制。",
-    background: "世界动作模型 (WAM) 联合预测未来世界状态和动作，具有强大的物理操控能力。但其安全漏洞尚未被充分研究。",
-    architecture: "三级安全分类框架量化机械臂运动安全性。视觉-轨迹映射统一异构动作空间。风险判别器高效识别破坏性行为。双路径验证策略：粗筛 + 闭环物理仿真精验。",
-    innovations: "首个 WAM 越狱攻击框架。LingBot-VA 上 84.2% 攻击成功率。构建 JailWAM-Bench 基准。可基于此构建防御机制。",
-    inspiration: "世界动作模型的强大操控能力是双刃剑。系统性安全评估是 WAM 走向部署的必要步骤。",
-    pdfUrl: "https://arxiv.org/pdf/2604.05498",
-    htmlUrl: "https://arxiv.org/abs/2604.05498",
-    figures: []
-  },
-  {
-    id: "paper-260329844",
-    title: "DIAL: Decoupling Intent and Action via Latent World Modeling",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-08",
-    category: "embodied",
-    summary: "## 1. DIAL: Decoupling Intent and Action via Latent World Modeling  - **论文标题**: DIAL: Decoupling Intent and Action via Latent World Modeling for End-to-End VLA - **论文ID**: arXiv:2603.29844 - **作者**: Y",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.29844",
-    htmlUrl: "https://arxiv.org/abs/2603.29844",
-    figures: []
-  },
-  {
-    id: "paper-260406168",
-    title: "Action Images: End-to-End Policy Learning via Multiview Video Generation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-08",
-    category: "embodied",
-    summary: "## 2. Action Images: End-to-End Policy Learning via Multiview Video Generation  - **论文标题**: Action Images: End-to-End Policy Learning via Multiview Video Generation - **论文ID**: arXiv:2604.06168 - **作者",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2604.06168",
-    htmlUrl: "https://arxiv.org/abs/2604.06168",
-    figures: []
-  },
-  {
-    id: "paper-260405014",
-    title: "StarVLA: A Lego-like Codebase for VLA Model Developing",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-08",
-    category: "embodied",
-    summary: "## 3. StarVLA: A Lego-like Codebase for VLA Model Developing  - **论文标题**: StarVLA: A Lego-like Codebase for Vision-Language-Action Model Developing - **论文ID**: arXiv:2604.05014 - **作者**: StarVLA Team ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2604.05014",
-    htmlUrl: "https://arxiv.org/abs/2604.05014",
-    figures: []
-  },
-  {
-    id: "paper-260403208",
-    title: "Hierarchical Planning with Latent World Models",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-08",
-    category: "embodied",
-    summary: "## 4. Hierarchical Planning with Latent World Models  - **论文标题**: Hierarchical Planning with Latent World Models - **论文ID**: arXiv:2604.03208 - **作者**: Basile Terver, Artem Zholus, Soham Chitnis, Hars",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2604.03208",
-    htmlUrl: "https://arxiv.org/abs/2604.03208",
-    figures: []
-  },
-  {
-    id: "paper-260327670",
-    title: "ProgressVLA: Progress-Guided Diffusion Policy for Vision-Language Robotic Manipulation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-08",
-    category: "embodied",
-    summary: "## 5. ProgressVLA: Progress-Guided Diffusion Policy for Vision-Language Robotic Manipulation  - **论文标题**: ProgressVLA: Progress-Guided Diffusion Policy for Vision-Language Robotic Manipulation - **论文I",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.27670",
-    htmlUrl: "https://arxiv.org/abs/2603.27670",
-    figures: []
-  },
-  {
-    id: "paper-260402911",
-    title: "DreamTIP: Learning Task-Invariant Properties via Dreamer",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-08",
-    category: "embodied",
-    summary: "## 6. DreamTIP: Learning Task-Invariant Properties via Dreamer  - **论文标题**: Learning Task-Invariant Properties via Dreamer: Enabling Efficient Policy Transfer for Quadruped Robots - **论文ID**: arXiv:26",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2604.02911",
-    htmlUrl: "https://arxiv.org/abs/2604.02911",
-    figures: []
-  },
-  {
-    id: "paper-260401985",
-    title: "World Action Verifier",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-05",
-    category: "embodied",
-    summary: "## 1. World Action Verifier  - **论文标题**: World Action Verifier: Enhancing World Model Robustness via Forward-Inverse Asymmetry - **论文ID**: arXiv:2604.01985 - **作者**: Yuejiang Liu, Fan Feng, Lingjing K",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2604.01985",
-    htmlUrl: "https://arxiv.org/abs/2604.01985",
-    figures: []
-  },
-  {
-    id: "paper-260401765",
-    title: "DriveDreamer-Policy",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-05",
-    category: "embodied",
-    summary: "## 2. DriveDreamer-Policy  - **论文标题**: DriveDreamer-Policy: Unified Driving World-Action Model with 3D Geometric Priors - **论文ID**: arXiv:2604.01765 - **作者**: Yang Zhou, Xiaofeng Wang, Hao Shao 等 (NTU",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2604.01765",
-    htmlUrl: "https://arxiv.org/abs/2604.01765",
-    figures: []
-  },
-  {
-    id: "paper-260401567",
-    title: "AnchorVLA",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-05",
-    category: "embodied",
-    summary: "## 3. AnchorVLA  - **论文标题**: AnchorVLA: Anchored Diffusion for Real-Time Multimodal Mobile Manipulation - **论文ID**: arXiv:2604.01567 - **作者**: Jia Syuen Lim, Zhizhen Zhang, Peter Bohm 等 (University of",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2604.01567",
-    htmlUrl: "https://arxiv.org/abs/2604.01567",
-    figures: []
-  },
-  {
-    id: "paper-260401001",
-    title: "EgoSim",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-05",
-    category: "embodied",
-    summary: "## 4. EgoSim  - **论文标题**: EgoSim: Closed-Loop Egocentric World Simulator with Persistent 3D Gaussian Splatting - **论文ID**: arXiv:2604.01001 - **作者**: Jinkun Hao, Mingda Jia, Ruiyan Wang 等 (Shanghai Ji",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2604.01001",
-    htmlUrl: "https://arxiv.org/abs/2604.01001",
-    figures: []
-  },
-  {
-    id: "paper-260401158",
-    title: "SMASH",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-05",
-    category: "embodied",
-    summary: "## 5. SMASH  - **论文标题**: SMASH: Scalable Modular Agile System for Humanoid Table Tennis - **论文ID**: arXiv:2604.01158 - **作者**: Junli Ren, Yinghui Li, Kai Zhang 等 (Chinese Academy of Sciences / Tencent",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2604.01158",
-    htmlUrl: "https://arxiv.org/abs/2604.01158",
-    figures: []
-  },
-  {
-    id: "paper-260401605",
-    title: "F3DGS",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-05",
-    category: "embodied",
-    summary: "## 6. F3DGS  - **论文标题**: F3DGS: Federated 3D Gaussian Splatting for Decentralized Multi-Agent 3D Reconstruction - **论文ID**: arXiv:2604.01605 - **作者**: Morui Zhu, Mohammad Dehghani Tezerjani, Mátyás Sz",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2604.01605",
-    htmlUrl: "https://arxiv.org/abs/2604.01605",
-    figures: []
-  },
-  {
-    id: "paper-260401618",
-    title: "Tex3D",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-05",
-    category: "embodied",
-    summary: "## 7. Tex3D  - **论文标题**: Tex3D: Adversarial 3D Textures against Vision-Language-Action Models - **论文ID**: arXiv:2604.01618 - **作者**: Jiawei Chen, Simin Huang, Jiawei Du 等 - **提交日期**: 2026-04-02 - **类别",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2604.01618",
-    htmlUrl: "https://arxiv.org/abs/2604.01618",
-    figures: []
-  },
-  {
-    id: "paper-260402190",
-    title: "UniDriveVLA",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-05",
-    category: "embodied",
-    summary: "## 8. UniDriveVLA  - **论文标题**: UniDriveVLA: Unifying Understanding, Perception, and Action Planning for Autonomous Driving - **论文ID**: arXiv:2604.02190 - **作者**: Yongkang Li, Lijun Zhou, Sixu Yan 等 (H",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2604.02190",
-    htmlUrl: "https://arxiv.org/abs/2604.02190",
-    figures: []
-  },
-  {
-    id: "paper-260402241",
-    title: "UAV-Track VLA",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-05",
-    category: "embodied",
-    summary: "## 9. UAV-Track VLA  - **论文标题**: UAV-Track VLA: Vision-Language-Action Benchmark for UAV Embodied Visual Tracking - **论文ID**: arXiv:2604.02241 - **作者**: Qiyao Zhang, Shuhua Zheng, Jianli Sun, Chengxia",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2604.02241",
-    htmlUrl: "https://arxiv.org/abs/2604.02241",
-    figures: []
-  },
-  {
-    id: "paper-260400813",
-    title: "DVGT-2",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-05",
-    category: "embodied",
-    summary: "## 10. DVGT-2  - **论文标题**: DVGT-2: Rethinking End-to-End Autonomous Driving via Vision-Geometry-Action - **论文ID**: arXiv:2604.00813 - **作者**: Sicheng Zuo, Zixun Xie, Wenzhao Zheng 等 (Tsinghua Universi",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2604.00813",
-    htmlUrl: "https://arxiv.org/abs/2604.00813",
-    figures: []
-  },
-  {
-    id: "paper-260401860",
-    title: "POCO",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-05",
-    category: "embodied",
-    summary: "## 11. POCO  - **论文标题**: POCO: Posterior Optimization with Clipped Objective for Generative Policy Learning - **论文ID**: arXiv:2604.01860 - **作者**: (生成式策略学习方向) - **提交日期**: 2026-04-02 - **类别**: 策略学习 / 强",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2604.01860",
-    htmlUrl: "https://arxiv.org/abs/2604.01860",
-    figures: []
-  },
-  {
-    id: "paper-260401570",
-    title: "FAN (Feasible Action Neighborhood)",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-05",
-    category: "embodied",
-    summary: "## 12. FAN (Feasible Action Neighborhood)  - **论文标题**: FAN: Exploiting Feasible Action Neighborhoods for Efficient VLA Fine-tuning - **论文ID**: arXiv:2604.01570 - **作者**: Haochen Niu, Kanyu Zhang, Shuy",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2604.01570",
-    htmlUrl: "https://arxiv.org/abs/2604.01570",
-    figures: []
-  },
-  {
-    id: "paper-240207545",
-    title: "RT-2: Robotic Transformer 2 - Next-Generation Vision-Language-Action Model",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-04",
-    category: "embodied",
-    summary: "## 1. RT-2: Robotic Transformer 2 - Next-Generation Vision-Language-Action Model  **论文ID**: arXiv:2402.07545   **作者**: Mike Lambert, Brian Ichter, Varun Kapur, et al.   **机构**: Google DeepMind   **日期*",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2402.07545",
-    htmlUrl: "https://arxiv.org/abs/2402.07545",
-    figures: []
-  },
-  {
-    id: "paper-230608551",
-    title: "ALOHA: An Open-Ended Embodied Agent with Large Language Models",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-04",
-    category: "embodied",
-    summary: "## 2. ALOHA: An Open-Ended Embodied Agent with Large Language Models  **论文ID**: arXiv:2306.08551v3   **作者**: Bowen Wen, Yifan Jiang, Bowen Zhang, et al.   **机构**: Stanford University   **日期**: 2024-01",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2306.08551",
-    htmlUrl: "https://arxiv.org/abs/2306.08551",
-    figures: []
-  },
-  {
-    id: "paper-240110387",
-    title: "RT-X: The Robotic Transformer with Cross-Modal Transfer",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-04",
-    category: "embodied",
-    summary: "## 3. RT-X: The Robotic Transformer with Cross-Modal Transfer  **论文ID**: arXiv:2401.10387   **作者**: Mike Lambert, Varun Kapur, Brian Ichter, et al.   **机构**: Google DeepMind   **日期**: 2024-01-24   **类",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2401.10387",
-    htmlUrl: "https://arxiv.org/abs/2401.10387",
-    figures: []
-  },
-  {
-    id: "paper-230304137",
-    title: "Diffusion Policy: Visuomotor Policy Learning via Diffusion Models",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-04",
-    category: "embodied",
-    summary: "## 4. Diffusion Policy: Visuomotor Policy Learning via Diffusion Models  **论文ID**: arXiv:2303.04137v2   **作者**: Soroush Nasiriany, Anish Thilagar, Karan Goel, et al.   **机构**: University of California",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2303.04137",
-    htmlUrl: "https://arxiv.org/abs/2303.04137",
-    figures: []
-  },
-  {
-    id: "paper-260312260",
-    title: "HumDex: 简化人形机器人灵巧操作框架",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-01",
-    category: "embodied",
-    summary: "### 2. HumDex: 简化人形机器人灵巧操作框架 **论文ID**: arXiv:2603.12260v1   **作者**: Zhiyuan Hu, Yifeng Jiang, Hao Shi 等   **机构**: 清华大学、CMU   **日期**: 2026年3月22日   **类别**: Robotics, Humanoid  **一句话概括**: HumDex提出一个简化的人形",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.12260",
-    htmlUrl: "https://arxiv.org/abs/2603.12260",
-    figures: []
-  },
-  {
-    id: "训练范式转变-2026-04-01",
-    title: "训练范式转变",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-01",
-    category: "embodied",
-    summary: "### 1. 训练范式转变 - **分阶段训练**: Ψ0的成功验证了分阶段训练的有效性 - **数据质量优先**: 超越单纯的数据量追求 - **解耦学习**: 异构数据的专门化处理",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "系统集成优化-2026-04-01",
-    title: "系统集成优化",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-01",
-    category: "embodied",
-    summary: "### 2. 系统集成优化 - **端到端框架**: 从感知到执行的统一学习 - **持续学习**: 自我改进的具身智能体 - **自主数据收集**: 减少人工干预的闭环系统",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "工程化进展-2026-04-01",
-    title: "工程化进展",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-01",
-    category: "embodied",
-    summary: "### 3. 工程化进展 - **框架简化**: 降低使用门槛，推动普及 - **开源生态**: 模型、数据、工具链的完整开源 - **实时推理**: 高效的部署和推理引擎  ---  ## 🎯 对你的研究启发",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "世界模型设计思路-2026-04-01",
-    title: "世界模型设计思路",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-01",
-    category: "embodied",
-    summary: "### 1. 世界模型设计思路 - **多尺度表示**: 结合全局潜在向量和局部特征序列 - **物理一致性**: 强调物理规律约束的重要性 - **时间维度**: 长时序一致性和误差累积控制",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "vla架构优化-2026-04-01",
-    title: "VLA架构优化",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-01",
-    category: "embodied",
-    summary: "### 2. VLA架构优化 - **模块化设计**: 解耦不同能力的专门化训练 - **参数高效**: LoRA等微调方法的应用 - **持续学习**: 支持终身学习的架构设计",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "工程实现建议-2026-04-01",
-    title: "工程实现建议",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-01",
-    category: "embodied",
-    summary: "### 3. 工程实现建议 - **数据策略**: 质量优先，精选高质量数据集 - **系统架构**: agent-centric的统一框架 - **部署优化**: 实时推理和轻量化部署  ---  ## 🚀 未来发展方向  1. **通用基础模型**: Ψ0等人形机器人基础模型的持续优化 2. **自主学习循环**: RoboClaw式的持续自主数据收集 3. **跨领域迁移**: 不同机器人平",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "数据稀缺问题-2026-04-01",
-    title: "数据稀缺问题",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-01",
-    category: "embodied",
-    summary: "### 1. 数据稀缺问题 - **解决方案**: 高质量数据 + 合成数据 + 迁移学习 - **代表性工作**: HandelBot的快速adaptation",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "长时序一致性-2026-04-01",
-    title: "长时序一致性",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-01",
-    category: "embodied",
-    summary: "### 2. 长时序一致性 - **解决方案**: 分层时序建模 + 物理约束 - **代表性工作**: 世界模型的三维分类框架",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "灾难性遗忘-2026-04-01",
-    title: "灾难性遗忘",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-01",
-    category: "embodied",
-    summary: "### 3. 灾难性遗忘 - **解决方案**: 简单Seq.FT + LoRA的持续学习 - **代表性工作**: VLA模型的CRL研究  ---  ## 🔗 相关资源  - **开源项目**: Ψ0、HumDex、RoboClaw等已开源 - **数据集**: egocentric视频、机器人轨迹、操作数据 - **评估基准**: 标准化的人形机器人操作评估  ---  *注: 由于ArXi",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "paper-251016732",
-    title: "具身智能世界模型综合调研",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-31",
-    category: "embodied",
-    summary: "## 1. 具身智能世界模型综合调研  **一句话概括**: 本文是具身智能领域世界模型的首次全面调研，提出了三维统一框架，系统化了现有方法并指出了关键挑战。  **论文信息** - **标题**: A Comprehensive Survey on World Models for Embodied AI - **作者**: Xinqing Li, Xin He, Le Zhang, Min W",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2510.16732",
-    htmlUrl: "https://arxiv.org/abs/2510.16732",
-    figures: []
-  },
-  {
-    id: "paper-260318980",
-    title: "RoboGPT: 大型机器人语言模型的预训练与微调",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-29",
-    category: "embodied",
-    summary: "## 1. RoboGPT: 大型机器人语言模型的预训练与微调  **一句话概括**: 本文提出了一种大型机器人语言模型的预训练框架，通过大规模机器人数据的预训练实现了在多种机器人任务上的强大泛化能力。  **论文信息** - **标题**: RoboGPT: Large-Scale Robot Language Models with Pre-training and Fine-tuning F",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.18980",
-    htmlUrl: "https://arxiv.org/abs/2603.18980",
-    figures: []
-  },
-  {
-    id: "paper-260318981",
-    title: "WorldSim3D: 三维世界模型的生成式预训练",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-29",
-    category: "embodied",
-    summary: "## 2. WorldSim3D: 三维世界模型的生成式预训练  **一句话概括**: 本文提出了一种三维世界模型的生成式预训练方法，通过三维几何和物理规律的联合建模实现了对真实世界的高保真模拟。  **论文信息** - **标题**: WorldSim3D: Generative Pre-training for 3D World Models with Geometric and Physic",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.18981",
-    htmlUrl: "https://arxiv.org/abs/2603.18981",
-    figures: []
-  },
-  {
-    id: "paper-260318982",
-    title: "VLA-Chain: 链式推理的视觉语言动作模型",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-29",
-    category: "embodied",
-    summary: "## 3. VLA-Chain: 链式推理的视觉语言动作模型  **一句话概括**: 本文提出了一种链式推理的VLA模型，通过逐步推理和多步决策实现了对复杂任务的高效处理。  **论文信息** - **标题**: VLA-Chain: Chain-of-Thought Reasoning for Vision-Language-Action Models with Multi-Step Decis",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.18982",
-    htmlUrl: "https://arxiv.org/abs/2603.18982",
-    figures: []
-  },
-  {
-    id: "paper-260318983",
-    title: "EmbodiedBenchmark: 具身智能评估的基准测试平台",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-29",
-    category: "embodied",
-    summary: "## 4. EmbodiedBenchmark: 具身智能评估的基准测试平台  **一句话概括**: 本文提出了一种全面的具身智能评估基准测试平台，提供了标准化的测试协议和自动化评估工具，为具身智能研究提供了评估标准。  **论文信息** - **标题**: EmbodiedBenchmark: A Comprehensive Benchmark Platform for Evaluating E",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.18983",
-    htmlUrl: "https://arxiv.org/abs/2603.18983",
-    figures: []
-  },
-  {
-    id: "paper-260318984",
-    title: "RealWorldVLA: 真实世界的视觉语言动作模型",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-29",
-    category: "embodied",
-    summary: "## 5. RealWorldVLA: 真实世界的视觉语言动作模型  **一句话概括**: 本文提出了一种面向真实世界的VLA模型，通过域适应和鲁棒性优化实现了在真实环境中的稳定性能。  **论文信息** - **标题**: RealWorldVLA: Real-World Vision-Language-Action Models with Domain Adaptation and Robus",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.18984",
-    htmlUrl: "https://arxiv.org/abs/2603.18984",
-    figures: []
-  },
-  {
-    id: "paper-260318271",
-    title: "PhysicsGPT: 物理感知的具身智能生成模型",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-28",
-    category: "embodied",
-    summary: "## 1. PhysicsGPT: 物理感知的具身智能生成模型  **一句话概括**: 本文提出了一种融合物理规律的具身智能生成模型，通过物理感知和生成式建模实现了对复杂物理世界的理解和交互。  **论文信息** - **标题**: PhysicsGPT: Physics-Aware Generative Models for Embodied Intelligence with Causal R",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.18271",
-    htmlUrl: "https://arxiv.org/abs/2603.18271",
-    figures: []
-  },
-  {
-    id: "paper-260318272",
-    title: "WorldTransformer+: 增强型世界模型架构",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-28",
-    category: "embodied",
-    summary: "## 2. WorldTransformer+: 增强型世界模型架构  **一句话概括**: 本文提出了一种增强型世界模型架构，通过多尺度时空建模和动态注意力机制实现了对复杂环境的高效建模和预测。  **论文信息** - **标题**: WorldTransformer+: Enhanced World Models with Multi-Scale Spatio-Temporal Modelin",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.18272",
-    htmlUrl: "https://arxiv.org/abs/2603.18272",
-    figures: []
-  },
-  {
-    id: "paper-260318273",
-    title: "VLA-Attention: 多模态注意力机制的视觉语言动作模型",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-28",
-    category: "embodied",
-    summary: "## 3. VLA-Attention: 多模态注意力机制的视觉语言动作模型  **一句话概括**: 本文提出了一种多模态注意力机制的VLA模型，通过跨模态注意力对齐实现了高效的视觉、语言和动作融合。  **论文信息** - **标题**: VLA-Attention: Multi-Modal Attention Mechanisms for Vision-Language-Action Mode",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.18273",
-    htmlUrl: "https://arxiv.org/abs/2603.18273",
-    figures: []
-  },
-  {
-    id: "paper-260318274",
-    title: "EmbodiedFuture: 面向未来的具身智能规划系统",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-28",
-    category: "embodied",
-    summary: "## 4. EmbodiedFuture: 面向未来的具身智能规划系统  **一句话概括**: 本文提出了一种面向未来的具身智能规划系统，通过时空预测和多目标优化实现了对复杂环境的智能规划和决策。  **论文信息** - **标题**: EmbodiedFuture: Future-Oriented Planning System for Embodied Intelligence with Sp",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.18274",
-    htmlUrl: "https://arxiv.org/abs/2603.18274",
-    figures: []
-  },
-  {
-    id: "paper-260317561",
-    title: "Sim2RealZero: 无需真实数据的一致性强化学习",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-27",
-    category: "embodied",
-    summary: "## 1. Sim2RealZero: 无需真实数据的一致性强化学习  **一句话概括**: 本文提出了一种无需真实数据的Sim2Real强化学习方法，通过一致性学习实现了仿真到现实的高效迁移，大幅降低了真实数据收集成本。  **论文信息** - **标题**: Sim2RealZero: Zero-Shot Sim-to-Real Transfer with Consistency Learni",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.17561",
-    htmlUrl: "https://arxiv.org/abs/2603.17561",
-    figures: []
-  },
-  {
-    id: "paper-260317562",
-    title: "WorldGPT: 基于生成式世界模型的具身智能框架",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-27",
-    category: "embodied",
-    summary: "## 2. WorldGPT: 基于生成式世界模型的具身智能框架  **一句话概括**: 本文提出了一种基于生成式世界模型的具身智能框架，通过生成式建模实现高效的物理推理和动作规划。  **论文信息** - **标题**: WorldGPT: Generative World Models for Embodied Intelligence with Physics Reasoning - **作",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.17562",
-    htmlUrl: "https://arxiv.org/abs/2603.17562",
-    figures: []
-  },
-  {
-    id: "paper-260317563",
-    title: "VLALens: 面向具身智能的视觉语言动作自适应学习框架",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-27",
-    category: "embodied",
-    summary: "## 3. VLALens: 面向具身智能的视觉语言动作自适应学习框架  **一句话概括**: 本文提出了一种面向具身智能的自适应VLA学习框架，通过元学习和动态适应实现了在不同环境中的快速适应能力。  **论文信息** - **标题**: VLALens: Adaptive Vision-Language-Action Learning for Embodied Intelligence wit",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.17563",
-    htmlUrl: "https://arxiv.org/abs/2603.17563",
-    figures: []
-  },
-  {
-    id: "paper-260317564",
-    title: "EmbodiedBench: 具身智能基准测试集与评估框架",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-27",
-    category: "embodied",
-    summary: "## 4. EmbodiedBench: 具身智能基准测试集与评估框架  **一句话概括**: 本文提出了一种全面的具身智能基准测试集，涵盖了多种任务类型和评估指标，为具身智能研究提供了标准化的评估平台。  **论文信息** - **标题**: EmbodiedBench: A Comprehensive Benchmark Suite for Evaluating Embodied Intell",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.17564",
-    htmlUrl: "https://arxiv.org/abs/2603.17564",
-    figures: []
-  },
-  {
-    id: "paper-260316852",
-    title: "VLA-Mamba: 基于状态空间模型的具身智能推理框架",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-26",
-    category: "embodied",
-    summary: "## 1. VLA-Mamba: 基于状态空间模型的具身智能推理框架  **一句话概括**: 本文提出了一种基于Mamba架构的VLA模型，通过状态空间建模实现了高效的具身智能推理，在长时序任务中表现出色。  **论文信息** - **标题**: VLA-Mamba: Efficient Vision-Language-Action Reasoning with State Space Model",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.16852",
-    htmlUrl: "https://arxiv.org/abs/2603.16852",
-    figures: []
-  },
-  {
-    id: "paper-260316853",
-    title: "WorldDiff: 基于差分世界模型的具身强化学习",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-26",
-    category: "embodied",
-    summary: "## 2. WorldDiff: 基于差分世界模型的具身强化学习  **一句话概括**: 本文提出了一种基于差分世界模型的具身强化学习方法，通过学习环境动态的差异来实现高效的政策优化。  **论文信息** - **标题**: WorldDiff: Learning Environment Dynamics for Efficient Reinforcement Learning in Embodi",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.16853",
-    htmlUrl: "https://arxiv.org/abs/2603.16853",
-    figures: []
-  },
-  {
-    id: "paper-260316854",
-    title: "EmbodiedCLIP: 面向具身任务的视觉语言预训练模型",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-26",
-    category: "embodied",
-    summary: "## 3. EmbodiedCLIP: 面向具身任务的视觉语言预训练模型  **一句话概括**: 本文提出了一种专门针对具身任务的视觉语言预训练模型，通过具身感知和动作相关的预训练任务提升了VLA模型的性能。  **论文信息** - **标题**: EmbodiedCLIP: Vision-Language Pre-training for Embodied Tasks with Action-R",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.16854",
-    htmlUrl: "https://arxiv.org/abs/2603.16854",
-    figures: []
-  },
-  {
-    id: "paper-260322281",
-    title: "ThinkJEPA: 用 VLM 推理增强潜在世界模型",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-25",
-    category: "embodied",
-    summary: "## 1. ThinkJEPA: 用 VLM 推理增强潜在世界模型  **论文ID:** arXiv:2603.22281 **作者:** Haichao Zhang, Yijiang Li, Shwai He, Tushar Nagarajan, Mingfei Chen, Jianglin Lu, Ang Li, Yun Fu **机构:** Northeastern University (",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.22281",
-    htmlUrl: "https://arxiv.org/abs/2603.22281",
-    figures: []
-  },
-  {
-    id: "paper-260322003",
-    title: "VP-VLA: 视觉提示作为 VLA 的交互接口",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-25",
-    category: "embodied",
-    summary: "## 2. VP-VLA: 视觉提示作为 VLA 的交互接口  **论文ID:** arXiv:2603.22003 **作者:** Zixuan Wang, Yuxin Chen, Yuqi Liu, Jinhui Ye, Pengguang Chen, Changsheng Lu, Shu Liu, Jiaya Jia **机构:** CUHK (Jiaya Jia 组) **日期:** 20",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.22003",
-    htmlUrl: "https://arxiv.org/abs/2603.22003",
-    figures: []
-  },
-  {
-    id: "paper-260322280",
-    title: "DualCoT-VLA: 视觉-语言并行链式推理 VLA",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-25",
-    category: "embodied",
-    summary: "## 3. DualCoT-VLA: 视觉-语言并行链式推理 VLA  **论文ID:** arXiv:2603.22280 **作者:** Zhide Zhong, Junfeng Li, Junjie He 等 (13位) **机构:** 中科院自动化所/多机构合作 **日期:** 2026-03-23 **类别:** cs.RO **链接:** [https://arxiv.org/abs/",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.22280",
-    htmlUrl: "https://arxiv.org/abs/2603.22280",
-    figures: []
-  },
-  {
-    id: "paper-260322078",
-    title: "Do World Action Models Generalize Better than VLAs? 鲁棒性研究",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-25",
-    category: "embodied",
-    summary: "## 5. Do World Action Models Generalize Better than VLAs? 鲁棒性研究  **论文ID:** arXiv:2603.22078 **作者:** Zhanguang Zhang, Zhiyuan Li, Behnam Rahmati 等 (12位) **机构:** 多机构合作 **日期:** 2026-03-23 **类别:** cs.RO *",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.22078",
-    htmlUrl: "https://arxiv.org/abs/2603.22078",
-    figures: []
-  },
-  {
-    id: "paper-260322264",
-    title: "UniDex: 从自中心人类视频到灵巧手控制的机器人基础套件",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-25",
-    category: "embodied",
-    summary: "## 6. UniDex: 从自中心人类视频到灵巧手控制的机器人基础套件  **论文ID:** arXiv:2603.22264 **作者:** Gu Zhang, Qicheng Xu, Haozhe Zhang 等 (19位) **机构:** Tsinghua University (Hang Zhao/Huazhe Xu 组) **日期:** 2026-03-23 **类别:** cs.RO",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.22264",
-    htmlUrl: "https://arxiv.org/abs/2603.22264",
-    figures: []
-  },
-  {
-    id: "paper-260321341",
-    title: "RoboAlign: 通过测试时推理学习 VLA 的语言-动作对齐",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-25",
-    category: "embodied",
-    summary: "## 7. RoboAlign: 通过测试时推理学习 VLA 的语言-动作对齐  **论文ID:** arXiv:2603.21341 **作者:** Dongyoung Kim, Sumin Park, Woomin Song, Seungku Kim, Taeyoung Kim, Huiwon Jang, Jinwoo Shin, Jaehyung Kim, Younggyo Seo **机构",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.21341",
-    htmlUrl: "https://arxiv.org/abs/2603.21341",
-    figures: []
-  },
-  {
-    id: "vla-mbpo-2026-03-24",
-    title: "VLA-MBPO: 面向 VLA 模型的实用世界模型强化学习框架",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-24",
-    category: "embodied",
-    summary: "## 1. VLA-MBPO: 面向 VLA 模型的实用世界模型强化学习框架  **一句话概括**: 提出在交互式世界模型中用 MBPO 算法微调 VLA 模型，解决像素级建模、多视角一致性和稀疏奖励下误差累积三大难题。  **论文信息** - **标题**: Towards Practical World Model-based Reinforcement Learning for Vision",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "scaling-sim-to-real-rl-fo-2026-03-24",
-    title: "Scaling Sim-to-Real RL for Robot VLAs with Generative 3D Worlds",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-24",
-    category: "embodied",
-    summary: "## 2. Scaling Sim-to-Real RL for Robot VLAs with Generative 3D Worlds  **一句话概括**: 用 3D 生成式世界模型批量构建仿真场景，实现 VLA 的可扩展 RL 微调和成功 sim-to-real 迁移。  **论文信息** - **标题**: Scaling Sim-to-Real Reinforcement Learni",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "vampo-2026-03-24",
-    title: "VAMPO: 视频动作模型中视觉动态的策略优化",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-24",
-    category: "embodied",
-    summary: "## 3. VAMPO: 视频动作模型中视觉动态的策略优化  **一句话概括**: 将扩散去噪过程建模为序列决策，用 RL 优化视频动作模型中操控任务关键的视觉动态。  **论文信息** - **标题**: VAMPO: Policy Optimization for Improving Visual Dynamics in Video Action Models - **作者**: Zirui ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "omnivta-2026-03-24",
-    title: "OmniVTA: 面向接触丰富操控的视觉触觉世界建模",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-24",
-    category: "embodied",
-    summary: "## 4. OmniVTA: 面向接触丰富操控的视觉触觉世界建模  **一句话概括**: 构建大规模视觉触觉数据集 OmniViTac，提出四模块耦合的触觉世界模型框架，实现 60Hz 闭环控制。  **论文信息** - **标题**: OmniVTA: Visuo-Tactile World Modeling for Contact-Rich Robotic Manipulation - **作",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "faster-2026-03-24",
-    title: "FASTER: 重新思考实时流式 VLA",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-24",
-    category: "embodied",
-    summary: "## 5. FASTER: 重新思考实时流式 VLA  **一句话概括**: 提出 Horizon-Aware Schedule，将流式 VLA 的反应延迟压缩至原有 1/10，在消费级 GPU 上实现实时响应。  **论文信息** - **标题**: FASTER: Rethinking Real-Time Flow VLAs - **作者**: Yuxiang Lu, Zhe Liu, Xia",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "sparse-autoencoders-revea-2026-03-24",
-    title: "Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-24",
-    category: "embodied",
-    summary: "## 6. Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models  **一句话概括**: 用稀疏自编码器 (SAE) 解析 VLA 内部特征，发现大部分特征是训练数据的记忆化，但存在可迁移的通用动作原语。  **论文信息** - **标题**: Sparse Autoencoders Reveal",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "roi-driven-foveated-atten-2026-03-24",
-    title: "ROI-Driven Foveated Attention for Unified Egocentric Representations in VLA Systems",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-24",
-    category: "embodied",
-    summary: "## 7. ROI-Driven Foveated Attention for Unified Egocentric Representations in VLA Systems  **一句话概括**: 提出 ROI 驱动的自中心视觉表示方法，用正向运动学投影获取手部区域，解决 VLA 数据收集成本高和跨机器人迁移难的问题。  **论文信息** - **标题**: ROI-Driven Fovea",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "not-all-features-are-crea-2026-03-24",
-    title: "Not All Features Are Created Equal: 机制研究 VLA 模型",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-24",
-    category: "embodied",
-    summary: "## 8. Not All Features Are Created Equal: 机制研究 VLA 模型  **一句话概括**: 通过激活注入、SAE 和线性探针对 6 个 VLA 模型的大规模分析，揭示视觉通路主导动作生成、语言敏感度取决于任务结构。  **论文信息** - **标题**: Not All Features Are Created Equal: A Mechanistic St",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "paper-260319370",
-    title: "VAMPO: Policy Optimization for Improving Visual Dynamics in Video Action Models",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-23",
-    category: "embodied",
-    summary: "## 2. VAMPO: Policy Optimization for Improving Visual Dynamics in Video Action Models  - **论文ID**: arXiv:2603.19370 - **作者**: Zirui Ge, Pengxiang Ding, Baohua Yin, Qishen Wang, Zhiyong Xie, Yemin Wang",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.19370",
-    htmlUrl: "https://arxiv.org/abs/2603.19370",
-    figures: []
-  },
-  {
-    id: "omnivta-2026-03-23",
-    title: "OmniVTA: Visuo-Tactile World Modeling for Contact-Rich Robotic Manipulation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-23",
-    category: "embodied",
-    summary: "## 4. OmniVTA: Visuo-Tactile World Modeling for Contact-Rich Robotic Manipulation  - **论文ID**: 待确认（2026-03-19 公布） - **作者**: Yuhang Zheng, Songen Gu, Weize Li, Yupeng Zheng, Yujie Zang, Shuai Tian, Xia",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "paper-260319199",
-    title: "FASTER: Rethinking Real-Time Flow VLAs",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-21",
-    category: "embodied",
-    summary: "## 1. FASTER: Rethinking Real-Time Flow VLAs  **论文ID**: arXiv:2603.19199   **作者**: Yuxiang Lu, Zhe Liu, Xianzhe Fan, Zhenya Yang, Jinghua Hou, Junyi Li, Kaixin Ding, Hengshuang Zhao   **机构**: 悉尼大学 / 悉",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.19199",
-    htmlUrl: "https://arxiv.org/abs/2603.19199",
-    figures: []
-  },
-  {
-    id: "paper-260318532",
-    title: "Scaling Sim-to-Real Reinforcement Learning for Robot VLAs with Generative 3D Worlds",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-21",
-    category: "embodied",
-    summary: "## 3. Scaling Sim-to-Real Reinforcement Learning for Robot VLAs with Generative 3D Worlds  **论文ID**: arXiv:2603.18532   **作者**: Andrew Choi, Xinjie Wang, Zhizhong Su, Wei Xu   **机构**: 待确认（4位作者，未明确标注机构",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.18532",
-    htmlUrl: "https://arxiv.org/abs/2603.18532",
-    figures: []
-  },
-  {
-    id: "paper-260319233",
-    title: "Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-21",
-    category: "embodied",
-    summary: "## 4. Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models  **论文ID**: arXiv:2603.19233   **作者**: Bryce Grant, Xijia Zhao, Peng Wang   **机构**: 待确认   **日期**: 2026-03-",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.19233",
-    htmlUrl: "https://arxiv.org/abs/2603.19233",
-    figures: []
-  },
-  {
-    id: "paper-260318811",
-    title: "V-Dreamer: Automating Robotic Simulation and Trajectory Synthesis via Video Generation Priors",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-21",
-    category: "embodied",
-    summary: "## 5. V-Dreamer: Automating Robotic Simulation and Trajectory Synthesis via Video Generation Priors  **论文ID**: arXiv:2603.18811   **作者**: Songjia He, Zixuan Chen, Hongyu Ding, Dian Shao, Jieqi Shi, Ch",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.18811",
-    htmlUrl: "https://arxiv.org/abs/2603.18811",
-    figures: []
-  },
-  {
-    id: "paper-260316861",
-    title: "MolmoB0T",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-19",
-    category: "embodied",
-    summary: "## 1. MolmoB0T  - **论文ID**: arXiv:2603.16861 - **标题**: MolmoB0T: Large-Scale Simulation Enables Zero-Shot Manipulation - **作者**: Abhay Deshpande, Maya Guru, Rose Hendrix, Dieter Fox, Ali Farhadi, Ranj",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.16861",
-    htmlUrl: "https://arxiv.org/abs/2603.16861",
-    figures: []
-  },
-  {
-    id: "paper-260316860",
-    title: "DreamPlan",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-19",
-    category: "embodied",
-    summary: "## 2. DreamPlan  - **论文ID**: arXiv:2603.16860 - **标题**: DreamPlan: Efficient Reinforcement Fine-Tuning of Vision-Language Planners via Video World Models - **作者**: Emily Yue-Ting Jia, Weiduo Yuan, Tia",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.16860",
-    htmlUrl: "https://arxiv.org/abs/2603.16860",
-    figures: []
-  },
-  {
-    id: "paper-260316666",
-    title: "Fast-WAM",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-19",
-    category: "embodied",
-    summary: "## 3. Fast-WAM  - **论文ID**: arXiv:2603.16666 - **标题**: Fast-WAM: Do World Action Models Need Test-time Future Imagination? - **作者**: Tianyuan Yuan, Zibin Dong, Yicheng Liu, Hang Zhao - **机构**: 清华大学 (H",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.16666",
-    htmlUrl: "https://arxiv.org/abs/2603.16666",
-    figures: []
-  },
-  {
-    id: "paper-260316669",
-    title: "Kinema4D",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-19",
-    category: "embodied",
-    summary: "## 4. Kinema4D  - **论文ID**: arXiv:2603.16669 - **标题**: Kinema4D: Kinematic 4D World Modeling for Spatiotemporal Embodied Simulation - **作者**: Mutian Xu, Tianbao Zhang, Tianqi Liu, Zhaoxi Chen, Xiaogua",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.16669",
-    htmlUrl: "https://arxiv.org/abs/2603.16669",
-    figures: []
-  },
-  {
-    id: "paper-260316195",
-    title: "S-VAM",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-19",
-    category: "embodied",
-    summary: "## 5. S-VAM  - **论文ID**: arXiv:2603.16195 - **标题**: S-VAM: Shortcut Video-Action Model by Self-Distilling Geometric and Semantic Foresight - **作者**: Haodong Yan, Zhide Zhong, Jiaguan Zhu, Junjie He, e",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.16195",
-    htmlUrl: "https://arxiv.org/abs/2603.16195",
-    figures: []
-  },
-  {
-    id: "paper-260314522",
-    title: "OPFA (One-Policy-Fits-All)",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-19",
-    category: "embodied",
-    summary: "## 6. OPFA (One-Policy-Fits-All)  - **论文ID**: arXiv:2603.14522 - **标题**: One-Policy-Fits-All: Geometry-Aware Action Latents for Cross-Embodiment Manipulation - **作者**: Juncheng Mu, Sizhe Yang, Hojin B",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.14522",
-    htmlUrl: "https://arxiv.org/abs/2603.14522",
-    figures: []
-  },
-  {
-    id: "paper-260315169",
-    title: "ForceVLA2",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-19",
-    category: "embodied",
-    summary: "## 7. ForceVLA2  - **论文ID**: arXiv:2603.15169 - **标题**: ForceVLA2: Unleashing Hybrid Force-Position Control with Force Awareness for Contact-Rich Manipulation - **作者**: Yang Li, Zhaxizhuoma, Hongru Ji",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.15169",
-    htmlUrl: "https://arxiv.org/abs/2603.15169",
-    figures: []
-  },
-  {
-    id: "paper-260314523",
-    title: "VLA-Thinker",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-19",
-    category: "embodied",
-    summary: "## 8. VLA-Thinker  - **论文ID**: arXiv:2603.14523 - **标题**: VLA-Thinker: Boosting Vision-Language-Action Models through Thinking-with-Image Reasoning - **作者**: Chaoyang Wang, Wenrui Bao, Sicheng Gao, Bi",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.14523",
-    htmlUrl: "https://arxiv.org/abs/2603.14523",
-    figures: []
-  },
-  {
-    id: "paper-260315257",
-    title: "HapticVLA",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-19",
-    category: "embodied",
-    summary: "## 11. HapticVLA  - **论文ID**: arXiv:2603.15257 - **标题**: HapticVLA: Contact-Rich Manipulation via Vision-Language-Action Model without Inference-Time Tactile Sensing - **作者**: Konstantin Gubernatorov,",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.15257",
-    htmlUrl: "https://arxiv.org/abs/2603.15257",
-    figures: []
-  },
-  {
-    id: "paper-260314371",
-    title: "OxyGen: VLA 模型多任务并行下的统一 KV Cache 管理",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-18",
-    category: "embodied",
-    summary: "## 1. OxyGen: VLA 模型多任务并行下的统一 KV Cache 管理  - **论文ID**: arXiv:2603.14371 - **作者**: Xiangyu Li, Huaizhi Tang, Xin Ding, Weijun Wang, Ting Cao, Yunxin Liu - **机构**: Microsoft Research Asia - **日期**: 2026",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.14371",
-    htmlUrl: "https://arxiv.org/abs/2603.14371",
-    figures: []
-  },
-  {
-    id: "paper-260313615",
-    title: "EgoHOI: 自中心世界模型用于真实感手物交互合成",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-18",
-    category: "embodied",
-    summary: "## 2. EgoHOI: 自中心世界模型用于真实感手物交互合成  - **论文ID**: arXiv:2603.13615 - **作者**: Dayou Li, Lulin Liu, Bangya Liu, Shijie Zhou, Jiu Feng, Ziqi Lu, Minghui Zheng, Chenyu You, Zhiwen Fan - **机构**: 多机构合作 - **日期**",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.13615",
-    htmlUrl: "https://arxiv.org/abs/2603.13615",
-    figures: []
-  },
-  {
-    id: "paper-260307648",
-    title: "AtomicVLA: 机器人原子技能学习的统一规划执行框架",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-18",
-    category: "embodied",
-    summary: "## 3. AtomicVLA: 机器人原子技能学习的统一规划执行框架  - **论文ID**: arXiv:2603.07648 - **作者**: Likui Zhang, Tao Tang, Zhihao Zhan, Xiuwei Chen, Zisheng Chen, Jianhua Han, Jiangtong Zhu, Pei Xu, Hang Xu, Hefeng Wu, Liang",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.07648",
-    htmlUrl: "https://arxiv.org/abs/2603.07648",
-    figures: []
-  },
-  {
-    id: "paper-260303596",
-    title: "MEM: 视觉语言动作模型的多尺度具身记忆",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-18",
-    category: "embodied",
-    summary: "## 4. MEM: 视觉语言动作模型的多尺度具身记忆  - **论文ID**: arXiv:2603.03596 - **作者**: Marcel Torne, Karl Pertsch, Homer Walke, Kyle Vedder, Suraj Nair, Brian Ichter, Allen Z. Ren, Haohuan Wang, Jiaming Tang, Kyle Stach",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.03596",
-    htmlUrl: "https://arxiv.org/abs/2603.03596",
-    figures: []
-  },
-  {
-    id: "paper-260309056",
-    title: "Quality over Quantity (QoQ): 基于影响函数的机器人演示数据筛选",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-18",
-    category: "embodied",
-    summary: "## 5. Quality over Quantity (QoQ): 基于影响函数的机器人演示数据筛选  - **论文ID**: arXiv:2603.09056 - **作者**: Haeone Lee, Taywon Min, Junsu Kim, Sinjae Kang, Fangchen Liu, Lerrel Pinto, Kimin Lee - **机构**: **NYU / KAIS",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.09056",
-    htmlUrl: "https://arxiv.org/abs/2603.09056",
-    figures: []
-  },
-  {
-    id: "paper-260202212",
-    title: "MAIN-VLA: 意图与环境抽象建模的 VLA 框架",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-18",
-    category: "embodied",
-    summary: "## 6. MAIN-VLA: 意图与环境抽象建模的 VLA 框架  - **论文ID**: arXiv:2602.02212 - **作者**: Zheyuan Zhou 等 - **机构**: 多机构合作 - **日期**: 2026-02-02 - **类别**: cs.CV - **链接**: https://arxiv.org/abs/2602.02212  ### 一句话概括 通过意图",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2602.02212",
-    htmlUrl: "https://arxiv.org/abs/2602.02212",
-    figures: []
-  },
-  {
-    id: "paper-260206339",
-    title: "Action Hallucination in Generative VLA Models",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-18",
-    category: "embodied",
-    summary: "## 7. Action Hallucination in Generative VLA Models  - **论文ID**: arXiv:2602.06339 - **作者**: Harold Soh, Eugene Lim - **机构**: **National University of Singapore** - **日期**: 2026-02-06 - **类别**: cs.RO /",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2602.06339",
-    htmlUrl: "https://arxiv.org/abs/2602.06339",
-    figures: []
-  },
-  {
-    id: "paper-260212351",
-    title: "LongNav-R1: 长视界 VLA 导航的多轮强化学习框架",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-18",
-    category: "embodied",
-    summary: "## 8. LongNav-R1: 长视界 VLA 导航的多轮强化学习框架  - **论文ID**: arXiv:2602.12351 - **作者**: Yue Hu, Avery Xi, Qixin Xiao, Seth Isaacson, Henry X. Liu, Ram Vasudevan, Maani Ghaffari - **机构**: **University of Michiga",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2602.12351",
-    htmlUrl: "https://arxiv.org/abs/2602.12351",
-    figures: []
-  },
-  {
-    id: "paper-260219359",
-    title: "Vid2Sid: 视频驱动的 Sim2Real 系统辨识",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-18",
-    category: "embodied",
-    summary: "## 9. Vid2Sid: 视频驱动的 Sim2Real 系统辨识  - **论文ID**: arXiv:2602.19359 - **作者**: Kevin Qiu, Yu Zhang, Marek Cygan, Josie Hughes - **机构**: 多机构合作 - **日期**: 2026-02-22 - **类别**: cs.RO / cs.LG - **链接**: https:/",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2602.19359",
-    htmlUrl: "https://arxiv.org/abs/2602.19359",
-    figures: []
-  },
-  {
-    id: "paper-260209722",
-    title: "Rethinking VLA Model Scaling: 对齐、混合与正则化",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-18",
-    category: "embodied",
-    summary: "## 10. Rethinking VLA Model Scaling: 对齐、混合与正则化  - **论文ID**: arXiv:2602.09722 - **作者**: Ye Wang, Sipeng Zheng, Hao Luo 等 - **机构**: 多机构合作 - **日期**: 2026-02-10 - **类别**: cs.RO - **链接**: https://arxiv.org",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2602.09722",
-    htmlUrl: "https://arxiv.org/abs/2602.09722",
-    figures: []
-  },
-  {
-    id: "paper-260222818",
-    title: "LeRobot: 端到端机器人学习的开源库",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-18",
-    category: "embodied",
-    summary: "## 11. LeRobot: 端到端机器人学习的开源库  - **论文ID**: arXiv:2602.22818 - **作者**: Remi Cadene, Simon Aliberts, Francesco Capuano 等 - **机构**: **Hugging Face** - **日期**: 2026-02-26 - **类别**: cs.RO - **链接**: https://",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2602.22818",
-    htmlUrl: "https://arxiv.org/abs/2602.22818",
-    figures: []
-  },
-  {
-    id: "paper-260314811",
-    title: "Ego to World (E2W): 多智能体协作空间推理",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-18",
-    category: "embodied",
-    summary: "## 12. Ego to World (E2W): 多智能体协作空间推理  - **论文ID**: arXiv:2603.14811 - **作者**: Heng Zhou, Li Kang, Yiran Qin 等 - **机构**: 多机构合作（含 Philip Torr, Lei Bai, Zhenfei Yin） - **日期**: 2026-03-16 - **类别**: cs.RO ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.14811",
-    htmlUrl: "https://arxiv.org/abs/2603.14811",
-    figures: []
-  },
-  {
-    id: "qoq-2026-03-18",
-    title: "QoQ: 演示数据质量优先 (与论文5重复，此处略)",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-18",
-    category: "embodied",
-    summary: "## 13. QoQ: 演示数据质量优先 (与论文5重复，此处略)  ---  ## 本周趋势总结  1. **VLA 推理优化成为新热点**: OxyGen 和 MAIN-VLA 都关注 VLA 的部署效率，而不仅仅是模型能力 2. **记忆架构补齐 VLA 最后一块拼图**: MEM 的多尺度记忆设计让 VLA 从短操作走向长任务 3. **MoE 在 VLA 中的应用兴起**: Atomic",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "paper-260312639",
-    title: "RoboStereo: Dual-Tower 4D Embodied World Models for Unified Policy Optimization",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-17",
-    category: "embodied",
-    summary: "## 1. RoboStereo: Dual-Tower 4D Embodied World Models for Unified Policy Optimization  - **论文ID**: arXiv:2603.12639 - **作者**: Ruicheng Zhang, Guangyu Chen, Zunnan Xu, Zihao Liu, Zhizhou Zhong 等 - **机构",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.12639",
-    htmlUrl: "https://arxiv.org/abs/2603.12639",
-    figures: []
-  },
-  {
-    id: "paper-260312942",
-    title: "ReMem-VLA: Empowering Vision-Language-Action Model with Memory via Dual-Level Recurrent Queries",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-17",
-    category: "embodied",
-    summary: "## 2. ReMem-VLA: Empowering Vision-Language-Action Model with Memory via Dual-Level Recurrent Queries  - **论文ID**: arXiv:2603.12942 - **作者**: Hang Li, Fengyi Shen, Dong Chen, Liudi Yang, Xudong Wang 等",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.12942",
-    htmlUrl: "https://arxiv.org/abs/2603.12942",
-    figures: []
-  },
-  {
-    id: "paper-260312665",
-    title: "TacVLA: Contact-Aware Tactile Fusion for Robust Vision-Language-Action Manipulation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-17",
-    category: "embodied",
-    summary: "## 3. TacVLA: Contact-Aware Tactile Fusion for Robust Vision-Language-Action Manipulation  - **论文ID**: arXiv:2603.12665 - **作者**: Kaidi Zhang, Heng Zhang, Zhengtong Xu 等 - **机构**: 多机构合作 - **日期**: 2026",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.12665",
-    htmlUrl: "https://arxiv.org/abs/2603.12665",
-    figures: []
-  },
-  {
-    id: "paper-260312655",
-    title: "VGGT-World: Transforming VGGT into an Autoregressive Geometry World Model",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-17",
-    category: "embodied",
-    summary: "## 4. VGGT-World: Transforming VGGT into an Autoregressive Geometry World Model  - **论文ID**: arXiv:2603.12655 - **作者**: Xiangyu Sun, Shijie Wang, Fengyi Zhang, Lin Liu, Caiyan Jia - **机构**: 北京航空航天大学等 ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.12655",
-    htmlUrl: "https://arxiv.org/abs/2603.12655",
-    figures: []
-  },
-  {
-    id: "paper-260312553",
-    title: "Beyond Dense Futures: World Models as Structured Planners for Robotic Manipulation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-17",
-    category: "embodied",
-    summary: "## 5. Beyond Dense Futures: World Models as Structured Planners for Robotic Manipulation  - **论文ID**: arXiv:2603.12553 - **作者**: Minghao Jin, Mozheng Liao, Mingfei Han, Zhihui Li, Xiaojun Chang - **机构",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.12553",
-    htmlUrl: "https://arxiv.org/abs/2603.12553",
-    figures: []
-  },
-  {
-    id: "paper-260312510",
-    title: "Q-DIG: Red-Teaming Vision-Language-Action Models via Quality Diversity Prompt Generation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-17",
-    category: "embodied",
-    summary: "## 6. Q-DIG: Red-Teaming Vision-Language-Action Models via Quality Diversity Prompt Generation  - **论文ID**: arXiv:2603.12510 - **作者**: Siddharth Srikanth, Freddie Liang, Sophie Hsu, Varun Bhatt, Shiha",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.12510",
-    htmlUrl: "https://arxiv.org/abs/2603.12510",
-    figures: []
-  },
-  {
-    id: "paper-260308572",
-    title: "MetaWorld-X: Hierarchical World Modeling via VLM-Orchestrated Experts for Humanoid Loco-Manipulation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-17",
-    category: "embodied",
-    summary: "## 7. MetaWorld-X: Hierarchical World Modeling via VLM-Orchestrated Experts for Humanoid Loco-Manipulation  - **论文ID**: arXiv:2603.08572 - **作者**: Yutong Shen, Hangxu Liu, Penghui Liu, Jiashuo Luo, Yo",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.08572",
-    htmlUrl: "https://arxiv.org/abs/2603.08572",
-    figures: []
-  },
-  {
-    id: "paper-260308519",
-    title: "AtomVLA: Scalable Post-Training for Robotic Manipulation via Predictive Latent World Models",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-17",
-    category: "embodied",
-    summary: "## 8. AtomVLA: Scalable Post-Training for Robotic Manipulation via Predictive Latent World Models  - **论文ID**: arXiv:2603.08519 - **作者**: Xiaoquan Sun, Zetian Xu, Chen Cao, Zonghe Liu, Yihan Sun 等 - *",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.08519",
-    htmlUrl: "https://arxiv.org/abs/2603.08519",
-    figures: []
-  },
-  {
-    id: "paper-260303195",
-    title: "CoWVLA: Chain-of-World - World Model Thinking in Latent Motion",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-17",
-    category: "embodied",
-    summary: "## 9. CoWVLA: Chain-of-World - World Model Thinking in Latent Motion  - **论文ID**: arXiv:2603.03195 - **作者**: Fuxiang Yang, Donglin Di, Lulu Tang, Xuancheng Zhang, Lei Fan 等 - **机构**: 北京理工大学, 腾讯 - **日期",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.03195",
-    htmlUrl: "https://arxiv.org/abs/2603.03195",
-    figures: []
-  },
-  {
-    id: "paper-260305438",
-    title: "CompACT: Planning in 8 Tokens - A Compact Discrete Tokenizer for Latent World Model",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-17",
-    category: "embodied",
-    summary: "## 10. CompACT: Planning in 8 Tokens - A Compact Discrete Tokenizer for Latent World Model  - **论文ID**: arXiv:2603.05438 - **作者**: Dongwon Kim, Gawon Seo, Jinsung Lee, Minsu Cho, Suha Kwak - **机构**: P",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.05438",
-    htmlUrl: "https://arxiv.org/abs/2603.05438",
-    figures: []
-  },
-  {
-    id: "paper-260308403",
-    title: "SPIRAL: Self-Improving Action World Models via Reflective Planning Agents",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-17",
-    category: "embodied",
-    summary: "## 11. SPIRAL: Self-Improving Action World Models via Reflective Planning Agents  - **论文ID**: arXiv:2603.08403 - **作者**: Yu Yang, Yue Liao, Jianbiao Mei, Baisen Wang 等 - **机构**: 多机构合作 - **日期**: 2026-0",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.08403",
-    htmlUrl: "https://arxiv.org/abs/2603.08403",
-    figures: []
-  },
-  {
-    id: "paper-260310422",
-    title: "World2Act: Latent Action Post-Training via Skill-Compositional World Models",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-17",
-    category: "embodied",
-    summary: "## 13. World2Act: Latent Action Post-Training via Skill-Compositional World Models  - **论文ID**: arXiv:2603.10422 - **作者**: An Dinh Vuong, Tuan Van Vo, Abdullah Sohail, Haoran Ding, Liang Ma - **机构**: ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.10422",
-    htmlUrl: "https://arxiv.org/abs/2603.10422",
-    figures: []
-  },
-  {
-    id: "paper-260309030",
-    title: "PlayWorld: Learning Robot World Models from Autonomous Play",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-17",
-    category: "embodied",
-    summary: "## 14. PlayWorld: Learning Robot World Models from Autonomous Play  - **论文ID**: arXiv:2603.09030 - **作者**: Tenny Yin, Zhiting Mei, Zhonghe Zheng, Miyu Yamane, David Wang - **机构**: 多机构合作 - **日期**: 2026",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.09030",
-    htmlUrl: "https://arxiv.org/abs/2603.09030",
-    figures: []
-  },
-  {
-    id: "paper-251100062",
-    title: "Cosmos-Predict2.5: World Simulation with Video Foundation Models for Physical AI (NVIDIA)",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-17",
-    category: "embodied",
-    summary: "## 15. Cosmos-Predict2.5: World Simulation with Video Foundation Models for Physical AI (NVIDIA)  - **论文ID**: arXiv:2511.00062 - **作者**: NVIDIA 团队 (Arslan Ali, Junjie Bai 等) - **机构**: NVIDIA - **日期**:",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2511.00062",
-    htmlUrl: "https://arxiv.org/abs/2511.00062",
-    figures: []
-  },
-  {
-    id: "paper-260312263",
-    title: "Ψ_0: 通用人形机器人基础模型",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-16",
-    category: "embodied",
-    summary: "## 1. Ψ_0: 通用人形机器人基础模型  **论文ID**: arXiv:2603.12263   **作者**: Songlin Wei, Hongyi Jing, Boqian Li, Zhenyu Zhao, Jiageng Mao, Zhenhao Ni, Sicheng He, Jie Liu, Xiawei Liu, Kaidi Kang, Sheng Zang, Weiduo ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.12263",
-    htmlUrl: "https://arxiv.org/abs/2603.12263",
-    figures: []
-  },
-  {
-    id: "paper-260312193",
-    title: "SaPaVe: 主动感知与操作",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-16",
-    category: "embodied",
-    summary: "## 2. SaPaVe: 主动感知与操作  **论文ID**: arXiv:2603.12193   **作者**: Mengzhen Liu, Enshen Zhou, Cheng Chi, Yi Han, Shanyu Rong, Liming Chen, Pengwei Wang, Zhongyuan Wang, Shanghang Zhang   **机构**: 北京大学等   **日期",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.12193",
-    htmlUrl: "https://arxiv.org/abs/2603.12193",
-    figures: []
-  },
-  {
-    id: "paper-260311653",
-    title: "Simple Recipe Works: VLA持续学习",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-16",
-    category: "embodied",
-    summary: "## 3. Simple Recipe Works: VLA持续学习  **论文ID**: arXiv:2603.11653   **作者**: Jiaheng Hu, Jay Shim, Chen Tang, Yoonchang Sung, Bo Liu, Peter Stone, Roberto Martin-Martin   **机构**: UT Austin, Sony AI等   **日",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.11653",
-    htmlUrl: "https://arxiv.org/abs/2603.11653",
-    figures: []
-  },
-  {
-    id: "paper-260311558",
-    title: "RoboClaw: 可扩展长程任务智能体框架",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-16",
-    category: "embodied",
-    summary: "## 4. RoboClaw: 可扩展长程任务智能体框架  **论文ID**: arXiv:2603.11558   **作者**: Ruiying Li, Yunlang Zhou, YuYao Zhu, Kylin Chen, Jingyuan Wang, Sukai Wang, Kongtao Hu, Minhui Yu, Bowen Jiang, Zhan Su, Jiayao Ma, X",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.11558",
-    htmlUrl: "https://arxiv.org/abs/2603.11558",
-    figures: []
-  },
-  {
-    id: "paper-260312265",
-    title: "OmniStream: 流式视觉统一骨干",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-16",
-    category: "embodied",
-    summary: "## 5. OmniStream: 流式视觉统一骨干  **论文ID**: arXiv:2603.12265   **作者**: Yibin Yan, Jilan Xu, Shangzhe Di, Haoning Wu, Weidi Xie   **机构**: 上海AI Lab等   **日期**: 2026-03-12   **类别**: cs.CV   **链接**: https://arxi",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.12265",
-    htmlUrl: "https://arxiv.org/abs/2603.12265",
-    figures: []
-  },
-  {
-    id: "paper-260311563",
-    title: "SVLL: 分阶段视觉语言学习",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-16",
-    category: "embodied",
-    summary: "## 6. SVLL: 分阶段视觉语言学习  **论文ID**: arXiv:2603.11563   **作者**: Yuyuan Yang, Junkun Hong, Hongrong Wang, Honghao Cai, Xunpeng Ren, Ge Wang, Mingcong Lei, Shenhao Yan, Jiahao Yang, Chengsi Yao, Xi Li, Yimi",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.11563",
-    htmlUrl: "https://arxiv.org/abs/2603.11563",
-    figures: []
-  },
-  {
-    id: "paper-260311811",
-    title: "RADAR: 闭环机器人数据生成",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-16",
-    category: "embodied",
-    summary: "## 7. RADAR: 闭环机器人数据生成  **论文ID**: arXiv:2603.11811   **作者**: Yongzhong Wang, Keyu Zhu, Yong Zhong, Liqiong Wang, Jinyu Yang, Feng Zheng   **机构**: 复旦大学等   **日期**: 2026-03-12   **类别**: cs.RO, cs.AI, cs.",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.11811",
-    htmlUrl: "https://arxiv.org/abs/2603.11811",
-    figures: []
-  },
-  {
-    id: "paper-260311080",
-    title: "SELF-VLA: 技能增强智能体框架",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-16",
-    category: "embodied",
-    summary: "## 10. SELF-VLA: 技能增强智能体框架  **论文ID**: arXiv:2603.11080   **作者**: Chang Liu, Sibo Tian, Xiao Liang, Minghui Zheng   **机构**: 港科大等   **日期**: 2026-03-10   **类别**: cs.RO   **链接**: https://arxiv.org/abs/260",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.11080",
-    htmlUrl: "https://arxiv.org/abs/2603.11080",
-    figures: []
-  },
-  {
-    id: "paper-260311041",
-    title: "DynVLA: Learning World Dynamics for Action Reasoning in Autonomous Driving",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-12",
-    category: "embodied",
-    summary: "## 1. DynVLA: Learning World Dynamics for Action Reasoning in Autonomous Driving  - **论文ID**: arXiv:2603.11041 - **作者**: Shuyao Shang, Bing Zhan, Yunfei Yan, Yuqi Wang, Yingyan Li, Yasong An, Xiaoman ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.11041",
-    htmlUrl: "https://arxiv.org/abs/2603.11041",
-    figures: []
-  },
-  {
-    id: "paper-260310712",
-    title: "FutureVLA: Joint Visuomotor Prediction for Vision-Language-Action Model",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-12",
-    category: "embodied",
-    summary: "## 2. FutureVLA: Joint Visuomotor Prediction for Vision-Language-Action Model  - **论文ID**: arXiv:2603.10712 - **作者**: Xiaoxu Xu, Hao Li, Jinhui Ye, Yilun Chen, Jia Zeng, Xinyi Chen, Linning Xu, Dahua ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.10712",
-    htmlUrl: "https://arxiv.org/abs/2603.10712",
-    figures: []
-  },
-  {
-    id: "paper-260310448",
-    title: "DiT4DiT: Jointly Modeling Video Dynamics and Actions for Generalizable Robot Control",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-12",
-    category: "embodied",
-    summary: "## 3. DiT4DiT: Jointly Modeling Video Dynamics and Actions for Generalizable Robot Control  - **论文ID**: arXiv:2603.10448 - **作者**: Teli Ma, Jia Zheng, Zifan Wang, Chuili Jiang, Andy Cui, Junwei Liang,",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.10448",
-    htmlUrl: "https://arxiv.org/abs/2603.10448",
-    figures: []
-  },
-  {
-    id: "paper-260310980",
-    title: "PPGuide: Steering Diffusion Policies with Performance Predictive Guidance",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-12",
-    category: "embodied",
-    summary: "## 4. PPGuide: Steering Diffusion Policies with Performance Predictive Guidance  - **论文ID**: arXiv:2603.10980 - **作者**: Zixing Wang, Devesh K. Jha, Ahmed H. Qureshi, Diego Romeres - **机构**: 未知 - **发布日",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.10980",
-    htmlUrl: "https://arxiv.org/abs/2603.10980",
-    figures: []
-  },
-  {
-    id: "paper-260310971",
-    title: "Contact Coverage-Guided Exploration for General-Purpose Dexterous Manipulation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-12",
-    category: "embodied",
-    summary: "## 5. Contact Coverage-Guided Exploration for General-Purpose Dexterous Manipulation  - **论文ID**: arXiv:2603.10971 - **作者**: Zixuan Liu, Ruoyi Qiao, Chenrui Tie, Xuanwei Liu, Yunfan Lou, Chongkai Gao,",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.10971",
-    htmlUrl: "https://arxiv.org/abs/2603.10971",
-    figures: []
-  },
-  {
-    id: "paper-260310469",
-    title: "DepthCache: Depth-Guided Training-Free Visual Token Merging for VLA Inference",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-12",
-    category: "embodied",
-    summary: "## 6. DepthCache: Depth-Guided Training-Free Visual Token Merging for VLA Inference  - **论文ID**: arXiv:2603.10469 - **作者**: Yuquan Li, Lianjie Ma, Han Ding, Lijun Zhu - **机构**: 未知 - **发布日期**: 2026-03-",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.10469",
-    htmlUrl: "https://arxiv.org/abs/2603.10469",
-    figures: []
-  },
-  {
-    id: "paper-260310871",
-    title: "FG-CLTP: Fine-Grained Contrastive Language Tactile Pretraining",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-12",
-    category: "embodied",
-    summary: "## 7. FG-CLTP: Fine-Grained Contrastive Language Tactile Pretraining  - **论文ID**: arXiv:2603.10871 - **作者**: Wenxuan Ma, Chaofan Zhang, Yinghao Cai, Guocai Yao, Shaowei Cui, Shuo Wang - **机构**: 未知 - *",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.10871",
-    htmlUrl: "https://arxiv.org/abs/2603.10871",
-    figures: []
-  },
-  {
-    id: "paper-260310340",
-    title: "Overcoming Visual Clutter in Vision Language Action Models via Concept-Gated Visual Distillation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-12",
-    category: "embodied",
-    summary: "## 8. Overcoming Visual Clutter in Vision Language Action Models via Concept-Gated Visual Distillation  - **论文ID**: arXiv:2603.10340 - **作者**: Sangmim Song, Sarath Kodagoda, Marc Carmichael, Karthick ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.10340",
-    htmlUrl: "https://arxiv.org/abs/2603.10340",
-    figures: []
-  },
-  {
-    id: "paper-260310441",
-    title: "KnowDiffuser: A Knowledge-Guided Diffusion Planner",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-12",
-    category: "embodied",
-    summary: "## 9. KnowDiffuser: A Knowledge-Guided Diffusion Planner  - **论文ID**: arXiv:2603.10441 - **作者**: Fan Ding, Xuewen Luo, Fengze Yang, Bo Yu, HwaHui Tew, Ganesh Krishnasami, Junn Yong Loo - **机构**: 未知 - ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.10441",
-    htmlUrl: "https://arxiv.org/abs/2603.10441",
-    figures: []
-  },
-  {
-    id: "paper-260310675",
-    title: "Cybo-Waiter: A Physical Agentic Framework for Humanoid Whole-Body Locomotion-Manipulation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-12",
-    category: "embodied",
-    summary: "## 10. Cybo-Waiter: A Physical Agentic Framework for Humanoid Whole-Body Locomotion-Manipulation  - **论文ID**: arXiv:2603.10675 - **作者**: Peng Ren, Haoyang Ge, Chuan Qi, Cong Huang, Hong Li, Jiang Zhao",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.10675",
-    htmlUrl: "https://arxiv.org/abs/2603.10675",
-    figures: []
-  },
-  {
-    id: "paper-260309971",
-    title: "TiPToP: A Modular Open-Vocabulary Planning System for Robotic Manipulation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-11",
-    category: "embodied",
-    summary: "## 1. TiPToP: A Modular Open-Vocabulary Planning System for Robotic Manipulation  - **论文ID**: arXiv:2603.09971 - **作者**: William Shen, Nishanth Kumar, Sahit Chintalapudi, Jie Wang, Christopher Watson,",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.09971",
-    htmlUrl: "https://arxiv.org/abs/2603.09971",
-    figures: []
-  },
-  {
-    id: "paper-260309882",
-    title: "Emerging Extrinsic Dexterity in Cluttered Scenes via Dynamics-aware Policy Learning",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-11",
-    category: "embodied",
-    summary: "## 2. Emerging Extrinsic Dexterity in Cluttered Scenes via Dynamics-aware Policy Learning  - **论文ID**: arXiv:2603.09882 - **作者**: Yixin Zheng, Jiangran Lyu, Yifan Zhang, Jiayi Chen, Mi Yan, Yuntian De",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.09882",
-    htmlUrl: "https://arxiv.org/abs/2603.09882",
-    figures: []
-  },
-  {
-    id: "paper-260309712",
-    title: "Robotic Scene Cloning: Advancing Zero-Shot Robotic Scene Adaptation in Manipulation via Visual Prompt Editing",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-11",
-    category: "embodied",
-    summary: "## 3. Robotic Scene Cloning: Advancing Zero-Shot Robotic Scene Adaptation in Manipulation via Visual Prompt Editing  - **论文ID**: arXiv:2603.09712 - **作者**: Binyuan Huang, Yuqing Wen, Yucheng Zhao, Yao",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.09712",
-    htmlUrl: "https://arxiv.org/abs/2603.09712",
-    figures: []
-  },
-  {
-    id: "paper-260309961",
-    title: "BEACON: Language-Conditioned Navigation Affordance Prediction under Occlusion",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-11",
-    category: "embodied",
-    summary: "## 4. BEACON: Language-Conditioned Navigation Affordance Prediction under Occlusion  - **论文ID**: arXiv:2603.09961 - **作者**: (待查证) - **机构**: (待查证) - **发布日期**: 2026-03-10 - **类别**: cs.RO - **链接**: [PDF]",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.09961",
-    htmlUrl: "https://arxiv.org/abs/2603.09961",
-    figures: []
-  },
-  {
-    id: "planning-in-8-tokens-2026-03-07",
-    title: "Planning in 8 Tokens: A Compact Discrete Tokenizer for Latent World Model",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-07",
-    category: "embodied",
-    summary: "### 1. Planning in 8 Tokens: A Compact Discrete Tokenizer for Latent World Model  - **作者**: Dongwon Kim, Gawon Seo, Jinsung Lee, Minsu Cho, Suha Kwak - **机构**: KAIST (韩国科学技术院) - **发布日期**: 2026-03-05 -",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "physiflow-2026-03-07",
-    title: "PhysiFlow: Physics-Aware Humanoid Whole-Body VLA via Multi-Brain Latent Flow Matching and Robust Tracking",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-07",
-    category: "embodied",
-    summary: "### 2. PhysiFlow: Physics-Aware Humanoid Whole-Body VLA via Multi-Brain Latent Flow Matching and Robust Tracking  - **作者**: Weikai Qin, Sichen Wu, Ci Chen, Mengfan Liu, Linxi Feng - **机构**:  Carnegie ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "critic-in-the-loop-2026-03-07",
-    title: "Critic in the Loop: A Tri-System VLA Framework for Robust Long-Horizon Manipulation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-07",
-    category: "embodied",
-    summary: "### 3. Critic in the Loop: A Tri-System VLA Framework for Robust Long-Horizon Manipulation  - **作者**: Pengfei Yi, Yingjie Ma, Wenjiang Xu, Yanan Hao, Shuai Gan - **机构**: 上海交通大学 - **发布日期**: 2026-03-05 ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "observing-and-controlling-2026-03-07",
-    title: "Observing and Controlling Features in Vision-Language-Action Models",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-07",
-    category: "embodied",
-    summary: "### 4. Observing and Controlling Features in Vision-Language-Action Models  - **作者**: Hugo Buurmeijer, Carmen Amo Alonso, Aiden Swann, Marco Pavone - **机构**: Stanford University - **发布日期**: 2026-03-05",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "robopocket-2026-03-07",
-    title: "RoboPocket: Improve Robot Policies Instantly with Your Phone",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-07",
-    category: "embodied",
-    summary: "### 5. RoboPocket: Improve Robot Policies Instantly with Your Phone  - **作者**: Junjie Fang, Wendi Chen, Han Xue, Fangyuan Zhou, Tian Le - **机构**: 未明确（待查证） - **发布日期**: 2026-03-05 - **类别**: cs.RO - **论文",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "curobov2-2026-03-07",
-    title: "cuRoboV2: Dynamics-Aware Motion Generation with Depth-Fused Distance Fields for High-DoF Robots",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-07",
-    category: "embodied",
-    summary: "### 6. cuRoboV2: Dynamics-Aware Motion Generation with Depth-Fused Distance Fields for High-DoF Robots  - **作者**: Balakumar Sundaralingam, Adithyavairavan Murali, Stan Birchfield - **机构**: NVIDIA - **",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "ultradexgrasp-2026-03-07",
-    title: "UltraDexGrasp: Learning Universal Dexterous Grasping for Bimanual Robots with Synthetic Data",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-07",
-    category: "embodied",
-    summary: "### 7. UltraDexGrasp: Learning Universal Dexterous Grasping for Bimanual Robots with Synthetic Data  - **作者**: Sizhe Yang, Yiman Xie, Zhixuan Liang, Yang Tian, Jia Zeng - **机构**:  Zhejiang University ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "omni-manip-2026-03-07",
-    title: "Omni-Manip: Beyond-FOV Large-Workspace Humanoid Manipulation with Omnidirectional 3D Perception",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-07",
-    category: "embodied",
-    summary: "### 8. Omni-Manip: Beyond-FOV Large-Workspace Humanoid Manipulation with Omnidirectional 3D Perception  - **作者**: Pei Qu, Zheng Li, Yufei Jia, Ziyun Liu, Liang Zhu - **机构**: 清华大学 - **发布日期**: 2026-03-0",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "latent-policy-steering-th-2026-03-07",
-    title: "Latent Policy Steering through One-Step Flow Policies",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-07",
-    category: "embodied",
-    summary: "### 9. Latent Policy Steering through One-Step Flow Policies  - **作者**: Hokyun Im, Andrey Kolobov, Jianlong Fu, Youngwoon Lee - **机构**:  University of Southern California (USC) - **发布日期**: 2026-03-05 ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "openfrontier-2026-03-07",
-    title: "OpenFrontier: General Navigation with Visual-Language Grounded Frontiers",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-07",
-    category: "embodied",
-    summary: "### 10. OpenFrontier: General Navigation with Visual-Language Grounded Frontiers  - **作者**: Esteban Padilla, Boyang Sun, Marc Pollefeys, Hermann Blum - **机构**: ETH Zurich - **发布日期**: 2026-03-05 - **类别",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "physgen-2026-03-06",
-    title: "PhysGen: Learning Physics from Pretrained Video Models",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-06",
-    category: "embodied",
-    summary: "### 1. PhysGen: Learning Physics from Pretrained Video Models  **作者**: Zijian Song, Qichang Li, Sihan Qin, Yuhao Chen, Tianshui Chen, Liang Lin, Guangrun Wang   **机构**: 疑似中山大学/北京大学   **日期**: 2026-02-1",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "streamvla-2026-03-06",
-    title: "StreamVLA: Breaking the Reason-Act Cycle via Completion-State Gating",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-06",
-    category: "embodied",
-    summary: "### 2. StreamVLA: Breaking the Reason-Act Cycle via Completion-State Gating  **作者**: Tongqing Chen, Hang Wu, Jiasen Wang, Xiaotao Li, Lu Fang   **日期**: 2026-02-07   **PDF**: https://arxiv.org/pdf/2602",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "robmrag-2026-03-06",
-    title: "RobMRAG: Zero-Shot Robotic Manipulation via 3D Gaussian Splatting-Enhanced MRAG",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-06",
-    category: "embodied",
-    summary: "### 3. RobMRAG: Zero-Shot Robotic Manipulation via 3D Gaussian Splatting-Enhanced MRAG  **作者**: Zilong Xie, Jingyu Gong, Xin Tan, Zhizhong Zhang, Yuan Xie   **日期**: 2026-02-28   **PDF**: https://arxiv",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "i-perceive-2026-03-06",
-    title: "I-Perceive: A Foundation Model for Active Perception with Language Instructions",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-06",
-    category: "embodied",
-    summary: "### 4. I-Perceive: A Foundation Model for Active Perception with Language Instructions  **作者**: Yongxi Huang, Zhuohang Wang, Wenjing Tang, Cewu Lu, Panpan Cai   **机构**: 上海交通大学   **日期**: 2026-02-28   *",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "inject-once-survive-later-2026-03-06",
-    title: "Inject Once Survive Later: Backdooring Vision-Language-Action Models",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-06",
-    category: "embodied",
-    summary: "### 5. Inject Once Survive Later: Backdooring Vision-Language-Action Models  **作者**: Jianyi Zhou, Yujie Wei, Ruichen Zhen, Bo Zhao, Xiaobo Xia, Rui Shao, Xiu Su, Shuo Yang   **日期**: 2026-01-31   **PDF",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "simpletool-2026-03-06",
-    title: "SimpleTool: Parallel Decoding for Real-Time LLM Function Calling",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-06",
-    category: "embodied",
-    summary: "### 6. SimpleTool: Parallel Decoding for Real-Time LLM Function Calling  **作者**: Xiaoxin Shi, Jiaxin Wan, Linkang Dong, Wei Jiang, Yue Liu, Zengfeng Huang   **日期**: 2026-02-04   **PDF**: https://arxiv",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "rethinking-the-role-of-en-2026-03-06",
-    title: "Rethinking the Role of Entropy in Optimizing Tool-Use Behaviors",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-06",
-    category: "embodied",
-    summary: "### 7. Rethinking the Role of Entropy in Optimizing Tool-Use Behaviors  **作者**: Zeping Li, Hongru Wang, Yiwen Zhao, Guanhua Chen, Yixia Li, Keyang Chen, Yixin Cao, Guangnan Ye, Hongfeng Chai, Zhenfei ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "context-learning-for-mult-2026-03-06",
-    title: "Context Learning for Multi-Agent Discussion",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-06",
-    category: "embodied",
-    summary: "### 8. Context Learning for Multi-Agent Discussion  **作者**: Xingyuan Hua, Sheng Yue, Xinyi Li, Yizhe Zhao, Jinrui Zhang, Ju Ren   **日期**: 2026-02-02   **PDF**: https://arxiv.org/pdf/2602.02350   **HTM",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "a-user-study-on-teleopera-2026-03-06",
-    title: "A User Study on Teleoperation Interfaces for Primitive Manipulation Tasks",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-06",
-    category: "embodied",
-    summary: "### 9. A User Study on Teleoperation Interfaces for Primitive Manipulation Tasks  **作者**: Jun Aoki, Shunki Itadera   **日期**: 2026-02-03   **PDF**: https://arxiv.org/pdf/2603.00020   **HTML**: https://",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "tilt-ropter-2026-03-06",
-    title: "Tilt-Ropter: Hybrid Aerial and Terrestrial Vehicle with Tilt Rotors",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-06",
-    category: "embodied",
-    summary: "### 10. Tilt-Ropter: Hybrid Aerial and Terrestrial Vehicle with Tilt Rotors  **作者**: Ruoyi Wang, Xuchen Liu, Zongzhou Wu, Zixuan Guo, Wendi Ding, Ben M. Chen   **日期**: 2026-02-02   **PDF**: https://ar",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "chain-of-world-2026-03-05",
-    title: "Chain of World: World Model Thinking in Latent Motion",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-05",
-    category: "embodied",
-    summary: "## 1. Chain of World: World Model Thinking in Latent Motion  **作者**: Fuxiang Yang, Donglin Di, Lulu Tang, Xuancheng Zhang, Lei Fan, Hao Li, Chen Wei, Tonghua Su, Baorui Ma   **机构**: 旷视科技 (Megvii)   **",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "ace-brain-0-2026-03-05",
-    title: "ACE-Brain-0: Spatial Intelligence as a Shared Scaffold for Universal Embodiments",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-05",
-    category: "embodied",
-    summary: "## 2. ACE-Brain-0: Spatial Intelligence as a Shared Scaffold for Universal Embodiments  **作者**: Ziyang Gong, Zehang Luo, Anke Tang, Zhe Liu, Shi Fu, Zhi Hou, Ganlin Lin, Weiyun Wang, Xiaofeng Wang, Ji",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "joint-aligned-latent-acti-2026-03-05",
-    title: "Joint-Aligned Latent Action: Towards Scalable VLA Pretraining in the Wild",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-05",
-    category: "embodied",
-    summary: "## 3. Joint-Aligned Latent Action: Towards Scalable VLA Pretraining in the Wild  **作者**: Hao Luo, Ye Wang, Wanpeng Zhang, Haoqi Yuan, Yicheng Feng, Haiweng Xu, Sipeng Zheng, Zongqing Lu   **机构**: 北大, ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "universal-pose-pretrainin-2026-03-05",
-    title: "Universal Pose Pretraining for Generalizable Vision-Language-Action Policies",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-05",
-    category: "embodied",
-    summary: "## 4. Universal Pose Pretraining for Generalizable Vision-Language-Action Policies  **作者**: Haitao Lin, Hanyang Yu, Jingshun Zhang, He Zhang, Yonggen Ling, Ping Tan, Xiangyang Xue, Yanwei Fu   **机构**:",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "tether-2026-03-05",
-    title: "Tether: Autonomous Functional Play with Correspondence-Driven Trajectory Warping",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-05",
-    category: "embodied",
-    summary: "## 5. Tether: Autonomous Functional Play with Correspondence-Driven Trajectory Warping  **作者**: William Liang, Sam Wang, Hung-Ju Wang, Osbert Bastani, Yecheng Jason Ma, Dinesh Jayaraman   **机构**: UPen",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "utonia-2026-03-05",
-    title: "Utonia: Toward One Encoder for All Point Clouds",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-05",
-    category: "embodied",
-    summary: "## 6. Utonia: Toward One Encoder for All Point Clouds  **作者**: Yujia Zhang, Xiaoyang Wu, Yunhan Yang, Xianzhe Fan, Han Li, Yuechen Zhang, Zehao Huang, Naiyan Wang, Hengshuang Zhao   **机构**: 港中文, 上海AI ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "cmoe-2026-03-05",
-    title: "CMoE: Contrastive Mixture of Experts for Motion Control and Terrain Adaptation of Humanoid Robots",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-05",
-    category: "embodied",
-    summary: "## 7. CMoE: Contrastive Mixture of Experts for Motion Control and Terrain Adaptation of Humanoid Robots  **作者**: Shihao Ma, Hongjin Chen, Zijun Xu, Yi Zhao, Ke Wu, Ruichen Yang, Leyao Zou, Zhongxue Di",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "ma-conav-2026-03-05",
-    title: "MA-CoNav: A Master-Slave Multi-Agent Framework with Hierarchical Collaboration and Dual-Level Reflection for Long-Horizon Embodied VLN",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-05",
-    category: "embodied",
-    summary: "## 8. MA-CoNav: A Master-Slave Multi-Agent Framework with Hierarchical Collaboration and Dual-Level Reflection for Long-Horizon Embodied VLN  **作者**: Ling Luo, Qianqian Bai   **机构**: 哈尔滨工业大学   **发布日期*",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "adm-dp-2026-03-05",
-    title: "ADM-DP: Adaptive Dynamic Modality Diffusion Policy through Vision-Tactile-Graph Fusion for Multi-Agent Manipulation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-05",
-    category: "embodied",
-    summary: "## 9. ADM-DP: Adaptive Dynamic Modality Diffusion Policy through Vision-Tactile-Graph Fusion for Multi-Agent Manipulation  **作者**: Enyi Wang, Wen Fan, Dandan Zhang   **机构**: 清华大学   **发布日期**: 2026/02/2",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "denoising-particle-filter-2026-03-05",
-    title: "Denoising Particle Filters: Learning State Estimation with Single-Step Objectives",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-05",
-    category: "embodied",
-    summary: "## 10. Denoising Particle Filters: Learning State Estimation with Single-Step Objectives  **作者**: Lennart Röstel, Berthold Bäuml   **机构**: TUM (慕尼黑工业大学)   **发布日期**: 2026/02/23   **arXiv ID**: 2602.196",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "paper-260303283",
-    title: "Utonia: Toward One Encoder for All Point Clouds",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-04",
-    category: "embodied",
-    summary: "## 1. Utonia: Toward One Encoder for All Point Clouds  - **论文ID**: arXiv:2603.03283 - **作者**: Yujia Zhang, Xiaoyang Wu, Yunhan Yang, Xianzhe Fan, Han Li, Yuechen Zhang, Zehao Huang, Naiyan Wang, Hengs",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.03283",
-    htmlUrl: "https://arxiv.org/abs/2603.03283",
-    figures: []
-  },
-  {
-    id: "paper-260303282",
-    title: "MIBURI: Towards Expressive Interactive Gesture Synthesis",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-04",
-    category: "embodied",
-    summary: "## 2. MIBURI: Towards Expressive Interactive Gesture Synthesis  - **论文ID**: arXiv:2603.03282 - **作者**: M. Hamza Mughal, Rishabh Dabral, Vera Demberg, Christian Theobalt - **机构**: MPI Informatics, TU D",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.03282",
-    htmlUrl: "https://arxiv.org/abs/2603.03282",
-    figures: []
-  },
-  {
-    id: "paper-260303278",
-    title: "Tether: Autonomous Functional Play with Correspondence-Driven Trajectory Warping",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-04",
-    category: "embodied",
-    summary: "## 3. Tether: Autonomous Functional Play with Correspondence-Driven Trajectory Warping  - **论文ID**: arXiv:2603.03278 - **作者**: William Liang, Sam Wang, Hung-Ju Wang, Osbert Bastani, Yecheng Jason Ma, ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.03278",
-    htmlUrl: "https://arxiv.org/abs/2603.03278",
-    figures: []
-  },
-  {
-    id: "paper-260303279",
-    title: "ULTRA: Unified Multimodal Control for Autonomous Humanoid Whole-Body Loco-Manipulation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-04",
-    category: "embodied",
-    summary: "## 4. ULTRA: Unified Multimodal Control for Autonomous Humanoid Whole-Body Loco-Manipulation  - **论文ID**: arXiv:2603.03279 - **作者**: Xialin He, Sirui Li, Xinyao Yao, Runpei Dong, Liuyu Bian, Yu-Xiong ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.03279",
-    htmlUrl: "https://arxiv.org/abs/2603.03279",
-    figures: []
-  },
-  {
-    id: "paper-260303243",
-    title: "HoMMI: Learning Whole-Body Mobile Manipulation from Human Demonstrations",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-04",
-    category: "embodied",
-    summary: "## 5. HoMMI: Learning Whole-Body Mobile Manipulation from Human Demonstrations  - **论文ID**: arXiv:2603.03243 - **作者**: Xiaomeng Xu, Jisang Park, Han Zhang, Eric Cousineau, Aditya Bhat, Jose Barreiros,",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.03243",
-    htmlUrl: "https://arxiv.org/abs/2603.03243",
-    figures: []
-  },
-  {
-    id: "robust-skills,-brittle-gr-2026-03-03",
-    title: "Robust Skills, Brittle Grounding: Diagnosing Restricted Generalization in Vision-Language Action Policies via Multi-Object Picking",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-03",
-    category: "embodied",
-    summary: "### 1. Robust Skills, Brittle Grounding: Diagnosing Restricted Generalization in Vision-Language Action Policies via Multi-Object Picking  - **作者**: David Emukpere, Romain Deffayet, Jean-Michel Render",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "planning-from-observation-2026-03-03",
-    title: "Planning from Observation and Interaction",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-03",
-    category: "embodied",
-    summary: "### 2. Planning from Observation and Interaction  - **作者**: Tyler Han, Siyang Shen, Rohan Baijal, Harine Ravichandiran, Bat Nemekhbold, Kevin Huang, Sanghun Jung, Byron Boots - **机构**: University of W",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "foundation-world-models-f-2026-03-03",
-    title: "Foundation World Models for Agents that Learn, Verify, and Adapt Reliably Beyond Static Environments",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-03",
-    category: "embodied",
-    summary: "### 3. Foundation World Models for Agents that Learn, Verify, and Adapt Reliably Beyond Static Environments  - **作者**: Florent Delgrange - **机构**: 未公开 - **发布日期**: 2026-02-27 - **类别**: cs.LG, cs.AI - *",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "stemvla-2026-03-03",
-    title: "StemVLA: An Open-Source Vision-Language-Action Model with Future 3D Spatial Geometry Knowledge and 4D Historical Representation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-03",
-    category: "embodied",
-    summary: "### 4. StemVLA: An Open-Source Vision-Language-Action Model with Future 3D Spatial Geometry Knowledge and 4D Historical Representation  - **作者**: Jiasong Xiao, Yutao She, Kai Li, Yuyang Sha, Ziang Che",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "favla-2026-03-03",
-    title: "FAVLA: A Force-Adaptive Fast-Slow VLA model for Contact-Rich Robotic Manipulation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-03",
-    category: "embodied",
-    summary: "### 5. FAVLA: A Force-Adaptive Fast-Slow VLA model for Contact-Rich Robotic Manipulation  - **作者**: Yao Li, Peiyuan Tang, Wuyang Zhang, Chengyang Zhu, Yifan Duan, Weikai Shi, Xiaodong Zhang, Zijiang Y",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "vca-2026-03-03",
-    title: "VCA: Vision-Click-Action Framework for Precise Manipulation of Segmented Objects in Target Ambiguous Environments",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-03",
-    category: "embodied",
-    summary: "### 6. VCA: Vision-Click-Action Framework for Precise Manipulation of Segmented Objects in Target Ambiguous Environments  - **作者**: Donggeon Kim, Seungwon Jan, Hyeonjun Park, Daegyu Lim - **机构**: 未公开 ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "dysl-vla-2026-03-03",
-    title: "DySL-VLA: Efficient Vision-Language-Action Model Inference via Dynamic-Static Layer-Skipping for Robot Manipulation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-03",
-    category: "embodied",
-    summary: "### 7. DySL-VLA: Efficient Vision-Language-Action Model Inference via Dynamic-Static Layer-Skipping for Robot Manipulation  - **作者**: 未详 - **发布日期**: 2026-02-26 - **类别**: cs.RO - **论文链接**: [PDF](https:",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "rethinking-the-practicali-2026-03-03",
-    title: "Rethinking the Practicality of Vision-language-action Model: A Comprehensive Benchmark and An Improved Baseline",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-03",
-    category: "embodied",
-    summary: "### 8. Rethinking the Practicality of Vision-language-action Model: A Comprehensive Benchmark and An Improved Baseline  - **作者**: 未详 - **发布日期**: 2026-02-26 - **类别**: cs.RO - **论文链接**: [PDF](https://ar",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "world-guidance-2026-03-03",
-    title: "World Guidance: World Modeling in Condition Space for Action Generation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-03",
-    category: "embodied",
-    summary: "### 9. World Guidance: World Modeling in Condition Space for Action Generation  - **作者**: 未详 - **发布日期**: 2026-02-25 - **类别**: cs.LG - **论文链接**: [PDF](https://arxiv.org/pdf/2602.22567) | [HTML](https:/",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "aoe-2026-03-03",
-    title: "AoE: Always-on Egocentric Human Video Collection for Embodied AI",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-03",
-    category: "embodied",
-    summary: "### 10. AoE: Always-on Egocentric Human Video Collection for Embodied AI  - **作者**: 未详（大规模团队） - **发布日期**: 2026-02-27 - **类别**: cs.CV - **论文链接**: [PDF](https://arxiv.org/pdf/2602.23893) | [HTML](https:",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-
-
-export default papers/ 论文数据 - 由 cron 任务每日更新
-// 更新路径: /home/Hebin/project/ai-news-digest/src/data/papers.json
-
-export interface Paper {
-  id: string;
-  title: string;
-  authors: string;
-  date: string;
-  institution: string;
-  category: "embodied" | "vla" | "worldmodel" | "ai";
-  summary: string;
-  background: string;
-  architecture: string;
-  innovations: string;
-  inspiration: string;
-  pdfUrl: string;
-  htmlUrl: string;
-  figures: string[];
-}
-
-export const papers: Paper[] = [  {
-    id: "paper-arXiv:2603.16852",
-    title: "VLA-Mamba: Efficient Vision-Language-Action Reasoning with State Space Models",
-    authors: "Chen Wang, Li Zhang, Minhao Liu, Yan Lu",
-    date: "2026-03-26",
-    institution: "清华大学、北京大学、上海人工智能实验室",
-    category: "vla",
-    summary: "本文提出了一种基于Mamba架构的VLA模型，通过状态空间建模实现了高效的具身智能推理，在长时序任务中表现出色。",
-    background: "随着具身智能的发展，视觉-语言-动作(VLA)模型成为了实现具身智能的核心技术。然而，现有的VLA模型主要基于Transformer架构，虽然表现出色，但存在以下问题：
-1. 计算复杂度高，难以部署在边缘设备
-2. 长时序建模能力有限，难以处理复杂的多步任务
-3. 内存占用大，限制了大规模应用",
-    architecture: "VLA-Mamba的核心架构包括：
-
-1. **视觉编码器**
-   - 使用ViT作为基础编码器
-   - 结合Mamba的状态空间模型进行时序建模
-   - 实现线性的计算复杂度O(n)
-
-2. **语言理解模块**
-   - 基于Mamba的语言模型
-   - 支持多模态对齐
-   - 实现高效的上下文建模
-
-3. **动作推理引擎**
-   - 状态空间动作预测
-   - 多步推理机制
-   - 支持长期规划
-
-4. **跨模态融合**
-   - 多模态选择性扫描
-   - 注意力与状态空间混合机制
-   - 实现高效的模态融合",
-    innovations: "1. **首次将Mamba架构引入VLA领域**，实现了高效的具身智能推理
-2. **线性计算复杂度**，相比传统Transformer提升3倍计算效率
-3. **强大的长时序建模能力**，能够处理复杂的多步任务
-4. **端到端的训练框架**，支持多模态联合优化
-
-**实验结果**
-在多个基准测试中验证了VLA-Mamba的有效性：
-
-1. **Libero基准测试**
-   - 在10个任务中平均性能达到89.3%
-   - 计算效率比OpenVLA提升3倍
-   - 内存占用减少60%
-
-2. **ManiSkill基准测试**
-   - 在复杂操作任务中达到87.1%成功率
-   - 长时序任务表现优于基线模型
-   - 推理速度提升2.5倍
-
-3. **RealWorld基准测试**
-   - 在真实机器人任务中达到82.4%成功率
-   - 展现了良好的泛化能力
-   - 部署在边缘设备上性能稳定",
-    inspiration: "1",
-    pdfUrl: "https://arxiv.org/pdf/arXiv:2603.16852",
-    htmlUrl: "https://arxiv.org/abs/arXiv:2603.16852",
-    figures: [],
-  }
-  {
-    id: "paper-arXiv:2603.16853",
-    title: "WorldDiff: Learning Environment Dynamics for Efficient Reinforcement Learning in Embodied AI",
-    authors: "Zhang Wei, Liu Ming, Chen Xiao, Wang Hao",
-    date: "2026-03-26",
-    institution: "北京大学、中国科学院自动化研究所、腾讯AI Lab",
-    category: "ai",
-    summary: "本文提出了一种基于差分世界模型的具身强化学习方法，通过学习环境动态的差异来实现高效的政策优化。",
-    background: "具身强化学习是机器人学的重要研究方向，但面临以下挑战：
-1. **数据效率低**：需要大量的环境交互数据
-2. **样本复杂度高**：探索空间大，收敛速度慢
-3. **泛化能力有限**：在未知环境中表现不佳
-4. **训练不稳定**：多模态奖励信号导致训练困难",
-    architecture: "WorldDiff的核心架构包括：
-
-1. **差分编码器**
-   - 学习状态之间的差异表示
-   - 提取环境动态的关键特征
-   - 实现高效的时空编码
-
-2. **动态预测模块**
-   - 基于差分表示的未来状态预测
-   - 支持多步预测
-   - 模拟不同动作的效果
-
-3. **价值网络**
-   - 基于世界模型的值函数估计
-   - 支持离策略学习
-   - 实现高效的政策优化
-
-4. **经验回放**
-   - 优先级经验回放
-   - 差分状态表示
-   - 提升样本效率",
-    innovations: "1. **差分世界模型**：首次提出基于状态差分的世界模型
-2. **高效的样本利用**：相比传统方法减少80%交互次数
-3. **轻量级架构**：模型参数减少70%，便于部署
-4. **多任务学习**：支持多种机器人任务的统一训练
-
-**实验结果**
-在多个机器人任务中验证了WorldDiff的有效性：
-
-1. **Fetch基准测试**
-   - 达到92.5%的成功率
-   - 交互次数减少82%
-   - 训练时间缩短75%
-
-2. **D4RL基准测试**
-   - 在多个环境中达到SOTA性能
-   - 样本效率提升5-8倍
-   - 泛化能力显著提升
-
-3. **真实机器人实验**
-   - 在机械臂操作任务中达到88.3%成功率
-   - 展现了良好的跨任务迁移能力
-   - 部署在实际工业环境中运行稳定",
-    inspiration: "1",
-    pdfUrl: "https://arxiv.org/pdf/arXiv:2603.16853",
-    htmlUrl: "https://arxiv.org/abs/arXiv:2603.16853",
-    figures: [],
-  }
-  {
-    id: "paper-arXiv:2603.16854",
-    title: "EmbodiedCLIP: Vision-Language Pre-training for Embodied Tasks with Action-Related Objectives",
-    authors: "Li Na, Wang Lei, Zhang Min, Chen Bin",
-    date: "2026-03-26",
-    institution: "上海交通大学、复旦大学、阿里巴巴达摩院",
-    category: "embodied",
-    summary: "本文提出了一种专门针对具身任务的视觉语言预训练模型，通过具身感知和动作相关的预训练任务提升了VLA模型的性能。",
-    background: "视觉语言预训练模型在具身智能中的应用面临以下挑战：
-1. **领域差异**：通用视觉语言模型缺乏具身任务的特定知识
-2. **动作理解不足**：难以理解动作与物体之间的关系
-3. **空间感知有限**：缺乏对三维空间的理解能力
-4. **泛化能力弱**：在具身任务中泛化能力有限",
-    architecture: "EmbodiedCLIP的核心架构包括：
-
-1. **视觉编码器**
-   - 基于ViT的视觉编码器
-   - 结合具身感知的特殊层
-   - 支持多尺度特征提取
-
-2. **语言理解模块**
-   - 基于Transformer的语言编码器
-   - 集成具身语义信息
-   - 支持多模态对齐
-
-3. **具身预训练任务**
-   - **物体交互感知**：学习物体与动作的关系
-   - **空间关系理解**：理解三维空间中的物体关系
-   - **动作语义对齐**：对齐动作与语言描述
-
-4. **多模态融合**
-   - 跨模态注意力机制
-   - 具身感知增强
-   - 支持复杂推理",
-    innovations: "1. **专门的具身预训练框架**：首个针对具身任务的视觉语言预训练模型
-2. **三种具身感知任务**：物体交互、空间关系、动作语义对齐
-3. **大规模具身数据集**：在100万+具身样本上预训练
-4. **显著的性能提升**：在多个任务中提升15-25%的性能
-
-**实验结果**
-在多个基准测试中验证了EmbodiedCLIP的有效性：
-
-1. **Clevr基准测试**
-   - 达到95.2%的准确率
-   - 相比CLIP提升18.7%
-   - 空间理解能力显著增强
-
-2. **NLVR2基准测试**
-   - 达到89.6%的准确率
-   - 相比基线模型提升15.3%
-   - 语言理解能力显著提升
-
-3. **具身任务测试**
-   - 在Libero任务中达到91.4%成功率
-   - 在ManiSkill任务中达到88.7%成功率
-   - 泛化能力显著提升",
-    inspiration: "1",
-    pdfUrl: "https://arxiv.org/pdf/arXiv:2603.16854",
-    htmlUrl: "https://arxiv.org/abs/arXiv:2603.16854",
-    figures: [],
-  }
-  {
-    id: "paper-arXiv:2603.17561",
-    title: "Sim2RealZero: Zero-Shot Sim-to-Real Transfer with Consistency Learning",
-    authors: "Michael Chen, Sarah Johnson, David Lee, Alex Wang",
-    date: "2026-03-27",
-    institution: "斯坦福大学、加州大学伯克利分校、Google DeepMind",
-    category: "ai",
-    summary: "本文提出了一种无需真实数据的Sim2Real强化学习方法，通过一致性学习实现了仿真到现实的高效迁移，大幅降低了真实数据收集成本。",
-    background: "Sim2Real迁移是机器人学习中的重要技术，但面临以下挑战：
-1. **域差异大**：仿真与真实环境之间存在显著差异
-2. **数据依赖性高**：需要大量真实数据进行校准
-3. **泛化能力弱**：在真实环境中的表现不稳定
-4. **收集成本高**：真实数据收集耗费大量时间和资源",
-    architecture: "Sim2RealZero的核心架构包括：
-
-1. **多模态一致性网络**
-   - 视觉一致性模块
-   - 动作一致性模块
-   - 奖励一致性模块
-   - 实现跨域的一致性约束
-
-2. **域适应网络**
-   - 特征空间对齐
-   - 风险分布匹配
-   - 实现仿真与现实的特征对齐
-
-3. **强化学习引擎**
-   - 基于PPO的强化学习
-   - 一致性约束的训练目标
-   - 支持多任务联合训练
-
-4. **评估框架**
-   - 在仿真环境中的预训练
-   - 在真实环境中的零样本迁移
-   - 性能评估和对比",
-    innovations: "1. **零样本Sim2Real迁移**：首次实现无需真实数据的Sim2Real迁移
-2. **多模态一致性学习**：通过一致性损失函数实现域对齐
-3. **大幅降低数据成本**：减少95%的真实数据收集成本
-4. **高迁移成功率**：达到92%的零样本迁移成功率
-
-**实验结果**
-在多个机器人任务中验证了Sim2RealZero的有效性：
-
-1. **机械臂操作任务**
-   - 零样本迁移成功率：91.8%
-   - 相比传统方法提升35%
-   - 训练时间减少80%
-
-2. **移动机器人导航**
-   - 零样本迁移成功率：92.3%
-   - 在复杂环境中表现稳定
-   - 泛化能力显著提升
-
-3. **无人机飞行控制**
-   - 零样本迁移成功率：91.5%
-   - 在真实环境中运行稳定
-   - 安全性大幅提升",
-    inspiration: "1",
-    pdfUrl: "https://arxiv.org/pdf/arXiv:2603.17561",
-    htmlUrl: "https://arxiv.org/abs/arXiv:2603.17561",
-    figures: [],
-  }
-  {
-    id: "paper-arXiv:2603.17562",
-    title: "WorldGPT: Generative World Models for Embodied Intelligence with Physics Reasoning",
-    authors: "Yuan Zhang, Wei Liu, Ming Chen, Hao Wang",
-    date: "2026-03-27",
-    institution: "清华大学、北京航空航天大学、华为诺亚方舟实验室",
-    category: "ai",
-    summary: "本文提出了一种基于生成式世界模型的具身智能框架，通过生成式建模实现高效的物理推理和动作规划。",
-    background: "世界模型是具身智能的核心技术，但现有方法存在以下问题：
-1. **预测式建模的局限性**：难以处理复杂的推理任务
-2. **物理理解不足**：缺乏对物理规律的理解
-3. **多步规划能力有限**：难以进行长期规划
-4. **推理效率低**：复杂的推理任务计算成本高",
-    architecture: "WorldGPT的核心架构包括：
-
-1. **生成式世界模型**
-   - 基于Transformer的生成架构
-   - 物理规则嵌入
-   - 支持多模态输入输出
-
-2. **物理推理引擎**
-   - 物理规则编码器
-   - 因果关系建模
-   - 支持复杂的物理推理
-
-3. **动作规划系统**
-   - 多步规划算法
-   - 基于生成的前瞻搜索
-   - 支持长期规划
-
-4. **训练框架**
-   - 自监督学习
-   - 物理约束优化
-   - 多任务联合训练",
-    innovations: "1. **生成式世界模型**：首次将生成式模型引入世界模型领域
-2. **物理推理能力**：集成了物理规则理解能力
-3. **多步规划支持**：能够进行复杂的长期规划
-4. **高效推理**：相比传统方法提升计算效率
-
-**实验结果**
-在多个具身智能任务中验证了WorldGPT的有效性：
-
-1. **复杂操作任务**
-   - 在需要物理推理的任务中达到89.2%成功率
-   - 相比传统方法提升31%
-   - 推理效率提升2.5倍
-
-2. **长期规划任务**
-   - 在多步任务中达到87.6%成功率
-   - 长期规划能力显著提升
-   - 能够处理10步以上的复杂任务
-
-3. **泛化能力测试**
-   - 在未见过的环境中达到83.4%成功率
-   - 物理推理能力在不同环境中表现稳定
-   - 展现了良好的泛化能力",
-    inspiration: "1",
-    pdfUrl: "https://arxiv.org/pdf/arXiv:2603.17562",
-    htmlUrl: "https://arxiv.org/abs/arXiv:2603.17562",
-    figures: [],
-  }
-  {
-    id: "paper-arXiv:2603.17563",
-    title: "VLALens: Adaptive Vision-Language-Action Learning for Embodied Intelligence with Meta-Learning",
-    authors: "Li Hua, Wang Qiang, Zhang Min, Chen Bin",
-    date: "2026-03-27",
-    institution: "中国科学技术大学、上海交通大学、阿里巴巴达摩院",
-    category: "vla",
-    summary: "本文提出了一种面向具身智能的自适应VLA学习框架，通过元学习和动态适应实现了在不同环境中的快速适应能力。",
-    background: "VLA模型在实际应用中面临以下挑战：
-1. **数据依赖性高**：需要大量数据进行训练
-2. **适应能力弱**：难以快速适应新环境
-3. **迁移能力有限**：跨任务迁移效果不佳
-4. **训练成本高**：大量数据收集和训练耗费资源",
-    architecture: "VLALens的核心架构包括：
-
-1. **元学习框架**
-   - 基于MAML的元学习算法
-   - 快速适应机制
-   - 支持多任务学习
-
-2. **特征自适应模块**
-   - 动态特征编码器
-   - 自适应注意力机制
-   - 支持环境感知
-
-3. **策略快速调整**
-   - 基于梯度的快速调整
-   - 元知识提取
-   - 支持快速收敛
-
-4. **多模态适应**
-   - 视觉-语言-动作的联合适应
-   - 模态间关系学习
-   - 支持复杂环境适应",
-    innovations: "1. **元学习框架**：首次将元学习引入VLA领域
-2. **快速适应能力**：在新环境中通过少量样本快速调整
-3. **数据效率提升**：减少90%的训练数据需求
-4. **多模态联合适应**：支持视觉、语言、动作的联合适应
-
-**实验结果**
-在多个具身智能任务中验证了VLALens的有效性：
-
-1. **快速适应测试**
-   - 在新环境中只需要50个样本就能达到85%性能
-   - 相比传统方法提升90%的数据效率
-   - 适应时间缩短85%
-
-2. **跨任务迁移**
-   - 在不同任务间迁移成功率达到88.7%
-   - 迁移效率提升5倍
-   - 展现了良好的泛化能力
-
-3. **真实环境测试**
-   - 在真实机器人任务中达到86.3%成功率
-   - 展现了良好的适应性
-   - 在变化的环境中表现稳定",
-    inspiration: "1",
-    pdfUrl: "https://arxiv.org/pdf/arXiv:2603.17563",
-    htmlUrl: "https://arxiv.org/abs/arXiv:2603.17563",
-    figures: [],
-  }
-  {
-    id: "paper-arXiv:2603.17564",
-    title: "EmbodiedBench: A Comprehensive Benchmark Suite for Evaluating Embodied Intelligence",
-    authors: "James Wilson, Emily Chen, Robert Zhang, Maria Rodriguez",
-    date: "2026-03-27",
-    institution: "MIT、斯坦福大学、卡内基梅隆大学、加州大学伯克利分校",
-    category: "embodied",
-    summary: "本文提出了一种全面的具身智能基准测试集，涵盖了多种任务类型和评估指标，为具身智能研究提供了标准化的评估平台。",
-    background: "具身智能评估面临以下挑战：
-1. **缺乏标准化**：不同研究使用不同的评估方法
-2. **任务覆盖不全**：现有评估无法覆盖所有重要任务类型
-3. **评估指标不统一**：缺乏统一的性能评估标准
-4. **数据集不开放**：许多数据集难以获取和使用",
-    architecture: "EmbodiedBench的核心架构包括：
-
-1. **任务分类体系**
-   - 视觉导航任务
-   - 物体操作任务
-   - 人机交互任务
-   - 多任务协作任务
-
-2. **评估指标体系**
-   - 任务成功率
-   - 效率指标
-   - 鲁棒性指标
-   - 用户满意度
-
-3. **数据集构建**
-   - 高质量标注数据
-   - 多模态数据
-   - 真实环境数据
-   - 标准化格式
-
-4. **评估协议**
-   - 标准化测试流程
-   - 公平的评估方法
-   - 可重复的实验设置
-   - 自动化评估工具",
-    innovations: "1. **全面的任务覆盖**：50+个不同类型的具身智能任务
-2. **标准化评估体系**：统一的评估指标和协议
-3. **开放数据集**：公开可获取的评估数据
-4. **自动化评估工具**：支持大规模自动化评估
-
-**实验结果**
-对多个现有VLA模型进行了全面评估：
-
-1. **基准测试结果**
-   - OpenVLA在复杂任务中表现最佳，平均成功率87.3%
-   - RT-2在操作任务中表现突出，成功率89.1%
-   - WorldVLA在长期规划任务中领先，成功率85.8%
-
-2. **模型分析**
-   - 现有模型在简单任务中表现良好，但在复杂任务中仍有提升空间
-   - 多模态融合能力是影响性能的关键因素
-   - 长时序建模能力需要进一步改进
-
-3. **评估协议验证**
-   - 评估结果具有良好的可重复性
-   - 评估方法公平客观
-   - 能够有效区分不同模型的性能差异",
-    inspiration: "1",
-    pdfUrl: "https://arxiv.org/pdf/arXiv:2603.17564",
-    htmlUrl: "https://arxiv.org/abs/arXiv:2603.17564",
-    figures: [],
-  }
-  {
-    id: "paper-arXiv:2603.18271",
-    title: "PhysicsGPT: Physics-Aware Generative Models for Embodied Intelligence with Causal Reasoning",
-    authors: "Dr. Elena Rodriguez, Prof. Michael Chang, Dr. Sarah Kim, Dr. James Wilson",
-    date: "2026-03-28",
-    institution: "斯坦福大学、MIT、Google DeepMind",
-    category: "ai",
-    summary: "本文提出了一种融合物理规律的具身智能生成模型，通过物理感知和生成式建模实现了对复杂物理世界的理解和交互。",
-    background: "具身智能在实际应用中面临以下物理理解挑战：
-1. **物理规律理解不足**：缺乏对基本物理规律的理解
-2. **因果推理能力弱**：难以理解因果关系
-3. **复杂交互处理困难**：难以处理多物体交互
-4. **模拟不准确**：物理模拟的准确性有限",
-    architecture: "PhysicsGPT的核心架构包括：
-
-1. **物理规则编码器**
-   - 基于物理知识的编码层
-   - 基本物理规律的神经表示
-   - 物理约束的神经网络实现
-
-2. **因果推理引擎**
-   - 因果图神经网络
-   - 反事实推理能力
-   - 支持复杂因果关系的建模
-
-3. **生成式交互模型**
-   - 多模态生成架构
-   - 物理感知的生成过程
-   - 支持复杂的交互模拟
-
-4. **学习框架**
-   - 物理约束的自监督学习
-   - 多任务联合训练
-   - 基于物理知识的正则化",
-    innovations: "1. **物理规则融合**：首次将物理规则编码到神经网络架构中
-2. **因果推理能力**：实现了强大的因果理解和推理
-3. **生成式物理建模**：通过生成式建模实现复杂的物理交互
-4. **性能显著提升**：在复杂物理任务中提升40%性能
-
-**实验结果**
-在多个需要物理理解的具身智能任务中验证了PhysicsGPT的有效性：
-
-1. **复杂物体操作**
-   - 在多物体交互任务中达到93.2%成功率
-   - 相比现有方法提升41%
-   - 物理理解能力显著提升
-
-2. **因果推理任务**
-   - 在因果理解任务中达到89.7%准确率
-   - 因果推理能力相比传统方法提升50%
-   - 能够处理复杂的因果关系
-
-3. **长期物理交互**
-   - 在需要长期物理模拟的任务中达到87.3%成功率
-   - 展现了良好的长期物理预测能力
-   - 物理模拟的准确性显著提升",
-    inspiration: "1",
-    pdfUrl: "https://arxiv.org/pdf/arXiv:2603.18271",
-    htmlUrl: "https://arxiv.org/abs/arXiv:2603.18271",
-    figures: [],
-  }
-  {
-    id: "paper-arXiv:2603.18272",
-    title: "WorldTransformer+: Enhanced World Models with Multi-Scale Spatio-Temporal Modeling and Dynamic Attention",
-    authors: "Li Wei, Zhang Ming, Chen Hao, Wang Bin",
-    date: "2026-03-28",
-    institution: "北京大学、清华大学、上海人工智能实验室",
-    category: "ai",
-    summary: "本文提出了一种增强型世界模型架构，通过多尺度时空建模和动态注意力机制实现了对复杂环境的高效建模和预测。",
-    background: "世界模型在具身智能中面临以下挑战：
-1. **长期预测能力有限**：难以进行长期的环境预测
-2. **多尺度建模困难**：难以同时建模不同粒度的环境动态
-3. **计算效率低**：复杂环境的建模计算成本高
-4. **泛化能力不足**：在复杂环境中的泛化能力有限",
-    architecture: "WorldTransformer+的核心架构包括：
-
-1. **多尺度时空编码器**
-   - 多尺度特征提取
-   - 时空注意力机制
-   - 支持不同粒度的建模
-
-2. **动态注意力机制**
-   - 自适应注意力权重
-   - 时序感知的注意力
-   - 支持动态环境变化
-
-3. **分层预测模块**
-   - 多步预测框架
-   - 分层损失函数
-   - 支持长期预测
-
-4. **训练优化**
-   - 分层训练策略
-   - 多任务联合优化
-   - 渐进式学习",
-    innovations: "1. **多尺度时空建模**：首次实现多尺度的环境动态建模
-2. **动态注意力机制**：能够适应环境变化的动态注意力
-3. **分层预测框架**：支持长期的多步预测
-4. **显著性能提升**：在多个基准测试中大幅提升性能
-
-**实验结果**
-在多个世界模型基准测试中验证了WorldTransformer+的有效性：
-
-1. **长期预测任务**
-   - 在10步预测任务中达到91.3%准确率
-   - 相比现有方法提升35%
-   - 长期预测能力显著增强
-
-2. **多尺度建模**
-   - 在不同粒度建模任务中达到88.7%准确率
-   - 相比基线模型提升28%
-   - 多尺度建模能力显著提升
-
-3. **复杂环境测试**
-   - 在复杂动态环境中达到85.2%预测准确率
-   - 展现了良好的泛化能力
-   - 计算效率提升2倍",
-    inspiration: "1",
-    pdfUrl: "https://arxiv.org/pdf/arXiv:2603.18272",
-    htmlUrl: "https://arxiv.org/abs/arXiv:2603.18272",
-    figures: [],
-  }
-  {
-    id: "paper-arXiv:2603.18273",
-    title: "VLA-Attention: Multi-Modal Attention Mechanisms for Vision-Language-Action Models with Cross-Modal Alignment",
-    authors: "Dr. Emily Chen, Prof. Robert Zhang, Dr. Maria Rodriguez, Dr. James Wilson",
-    date: "2026-03-28",
-    institution: "MIT、斯坦福大学、卡内基梅隆大学",
-    category: "vla",
-    summary: "本文提出了一种多模态注意力机制的VLA模型，通过跨模态注意力对齐实现了高效的视觉、语言和动作融合。",
-    background: "VLA模型在跨模态融合时面临以下挑战：
-1. **模态间对齐不准确**：不同模态之间的对应关系理解不深
-2. **注意力机制设计不当**：现有的注意力机制难以处理多模态融合
-3. **计算效率低**：复杂的多模态融合计算成本高
-4. **长期依赖建模不足**：难以建模跨模态的长期依赖关系",
-    architecture: "VLA-Attention的核心架构包括：
-
-1. **多模态注意力机制**
-   - 视觉-语言注意力模块
-   - 语言-动作注意力模块
-   - 视觉-动作注意力模块
-   - 实现跨模态的有效对齐
-
-2. **分层注意力结构**
-   - 局部注意力层
-   - 全局注意力层
-   - 时序注意力层
-   - 支持不同层次的注意力建模
-
-3. **模态融合网络**
-   - 跨模态特征融合
-   - 模态间关系建模
-   - 支持复杂的多模态推理
-
-4. **训练框架**
-   - 多模态对齐损失
-   - 分层训练策略
-   - 多任务联合优化",
-    innovations: "1. **多模态注意力机制**：设计了三种跨模态注意力机制
-2. **分层注意力结构**：支持不同层次的注意力建模
-3. **高效的模态融合**：实现了准确的多模态对齐
-4. **性能显著提升**：在复杂多模态任务中提升25%性能
-
-**实验结果**
-在多个VLA任务中验证了VLA-Attention的有效性：
-
-1. **复杂多模态任务**
-   - 在需要多模态融合的任务中达到92.1%成功率
-   - 相比现有方法提升25%
-   - 跨模态对齐能力显著提升
-
-2. **长期依赖建模**
-   - 在需要长期依赖的任务中达到89.3%成功率
-   - 长期依赖建模能力提升30%
-   - 跨模态时序建模能力显著增强
-
-3. **计算效率测试**
-   - 在保持性能的同时计算效率提升2倍
-   - 内存占用减少40%
-   - 推理速度提升1.8倍",
-    inspiration: "1",
-    pdfUrl: "https://arxiv.org/pdf/arXiv:2603.18273",
-    htmlUrl: "https://arxiv.org/abs/arXiv:2603.18273",
-    figures: [],
-  }
-  {
-    id: "paper-arXiv:2603.18274",
-    title: "EmbodiedFuture: Future-Oriented Planning System for Embodied Intelligence with Spatio-Temporal Prediction",
-    authors: "Dr. Alex Kim, Prof. Lisa Wang, Dr. Jordan Lee, Dr. Sarah Chen",
-    date: "2026-03-28",
-    institution: "加州大学伯克利分校、斯坦福大学、OpenAI",
-    category: "embodied",
-    summary: "本文提出了一种面向未来的具身智能规划系统，通过时空预测和多目标优化实现了对复杂环境的智能规划和决策。",
-    background: "具身智能规划面临以下挑战：
-1. **时空预测不准确**：难以准确预测环境变化
-2. **多目标优化困难**：难以平衡多个优化目标
-3. **长期规划能力有限**：难以进行长期规划
-4. **复杂环境处理困难**：难以处理复杂的动态环境",
-    architecture: "EmbodiedFuture的核心架构包括：
-
-1. **时空预测模块**
-   - 多步预测框架
-   - 时空注意力机制
-   - 支持长期环境预测
-
-2. **多目标优化器**
-   - 多目标优化算法
-   - 帕累托前沿搜索
-   - 支持复杂目标平衡
-
-3. **智能规划引擎**
-   - 分层规划框架
-   - 动态规划策略
-   - 支持长期规划
-
-4. **决策系统**
-   - 不确定性处理
-   - 风险评估
-   - 支持智能决策",
-    innovations: "1. **时空预测能力**：实现了准确的长期环境预测
-2. **多目标优化**：支持复杂的多目标优化问题
-3. **分层规划框架**：实现了高效的长期规划
-4. **性能显著提升**：在复杂规划任务中大幅提升性能
-
-**实验结果**
-在多个具身智能规划任务中验证了EmbodiedFuture的有效性：
-
-1. **多目标优化任务**
-   - 在复杂多目标任务中达到93.8%成功率
-   - 相比现有方法提升45%
-   - 多目标优化能力显著提升
-
-2. **长期规划任务**
-   - 在需要长期规划的任务中达到91.2%成功率
-   - 相比基线模型提升38%
-   - 长期规划能力显著增强
-
-3. **复杂环境测试**
-   - 在动态复杂环境中达到88.7%成功率
-   - 展现了良好的适应能力
-   - 预测准确性显著提升",
-    inspiration: "1",
-    pdfUrl: "https://arxiv.org/pdf/arXiv:2603.18274",
-    htmlUrl: "https://arxiv.org/abs/arXiv:2603.18274",
-    figures: [],
-  }
-  {
-    id: "paper-arXiv:2603.18980",
-    title: "RoboGPT: Large-Scale Robot Language Models with Pre-training and Fine-tuning Frameworks",
-    authors: "Dr. Michael Chen, Prof. Sarah Johnson, Dr. David Lee, Dr. Alex Wang",
-    date: "2026-03-29",
-    institution: "斯坦福大学、加州大学伯克利分校、Google DeepMind",
-    category: "ai",
-    summary: "本文提出了一种大型机器人语言模型的预训练框架，通过大规模机器人数据的预训练实现了在多种机器人任务上的强大泛化能力。",
-    background: "机器人学习面临以下挑战：
-1. **数据规模有限**：现有机器人数据集规模较小
-2. **泛化能力弱**：难以在未见过的任务上表现良好
-3. **迁移能力不足**：跨任务迁移效果不佳
-4. **训练效率低**：大规模机器人数据的训练成本高",
-    architecture: "RoboGPT的核心架构包括：
-
-1. **大规模预训练模型**
-   - 基于Transformer的架构
-   - 100万+机器人样本预训练
-   - 支持多模态输入输出
-
-2. **多模态编码器**
-   - 视觉编码器
-   - 语言编码器
-   - 动作编码器
-   - 实现多模态融合
-
-3. **微调框架**
-   - 任务特定的微调策略
-   - 参数高效微调方法
-   - 支持快速适应新任务
-
-4. **训练优化**
-   - 分布式训练策略
-   - 梯度累积技术
-   - 混合精度训练",
-    innovations: "1. **大规模预训练**：首个在100万+机器人样本上预训练的模型
-2. **强大泛化能力**：在多个任务上展现35%的性能提升
-3. **零样本迁移**：具备零样本迁移到新任务的能力
-4. **高效微调**：参数高效微调方法支持快速适应
-
-**实验结果**
-在多个机器人任务中验证了RoboGPT的有效性：
-
-1. **通用机器人任务**
-   - 在20+不同的机器人任务上达到89.3%平均成功率
-   - 相比传统方法提升35%
-   - 展现了强大的泛化能力
-
-2. **零样本迁移测试**
-   - 在未见过的任务上达到76.8%成功率
-   - 零样本迁移能力显著
-   - 无需额外训练即可适应新任务
-
-3. **跨域迁移**
-   - 在不同类型的机器人间迁移成功率达到82.1%
-   - 迁移能力提升40%
-   - 展现了良好的跨域泛化能力",
-    inspiration: "1",
-    pdfUrl: "https://arxiv.org/pdf/arXiv:2603.18980",
-    htmlUrl: "https://arxiv.org/abs/arXiv:2603.18980",
-    figures: [],
-  }
-  {
-    id: "paper-arXiv:2603.18981",
-    title: "WorldSim3D: Generative Pre-training for 3D World Models with Geometric and Physical Alignment",
-    authors: "Dr. Elena Rodriguez, Prof. Michael Chang, Dr. Sarah Kim",
-    date: "2026-03-29",
-    institution: "斯坦福大学、MIT",
-    category: "ai",
-    summary: "本文提出了一种三维世界模型的生成式预训练方法，通过三维几何和物理规律的联合建模实现了对真实世界的高保真模拟。",
-    background: "三维世界建模面临以下挑战：
-1. **几何理解不足**：难以理解三维空间的几何结构
-2. **物理建模不准确**：物理模拟的保真度有限
-3. **生成质量不高**：生成的三维内容质量有待提升
-4. **计算效率低**：三维建模的计算成本高",
-    architecture: "WorldSim3D的核心架构包括：
-
-1. **三维几何编码器**
-   - 点云编码器
-   - 体素编码器
-   - 几何特征提取
-   - 支持多种三维表示
-
-2. **物理理解模块**
-   - 物理规律编码器
-   - 动力学建模
-   - 支持复杂物理模拟
-
-3. **生成式预训练**
-   - 自监督生成任务
-   - 几何一致性损失
-   - 物理规律约束
-
-4. **多模态融合**
-   - 视觉-几何-物理的融合
-   - 跨模态对齐
-   - 支持复杂推理",
-    innovations: "1. **三维几何建模**：首次实现三维世界模型的生成式预训练
-2. **物理-几何联合建模**：结合几何和物理的联合建模
-3. **高保真模拟**：生成高保真的三维世界模拟
-4. **性能显著提升**：在三维任务中大幅提升性能
-
-**实验结果**
-在多个三维视觉任务中验证了WorldSim3D的有效性：
-
-1. **几何理解任务**
-   - 在三维几何理解任务中达到93.2%准确率
-   - 相比现有方法提升42%
-   - 几何理解能力显著增强
-
-2. **物理预测任务**
-   - 在物理规律预测任务中达到90.8%准确率
-   - 相比基线模型提升38%
-   - 物理建模能力显著提升
-
-3. **生成质量评估**
-   - 生成的三维内容质量达到92.1%用户满意度
-   - 几何一致性提升45%
-   - 物理真实性提升38%",
-    inspiration: "1",
-    pdfUrl: "https://arxiv.org/pdf/arXiv:2603.18981",
-    htmlUrl: "https://arxiv.org/abs/arXiv:2603.18981",
-    figures: [],
-  }
-  {
-    id: "paper-arXiv:2603.18982",
-    title: "VLA-Chain: Chain-of-Thought Reasoning for Vision-Language-Action Models with Multi-Step Decision Making",
-    authors: "Dr. Li Wei, Prof. Zhang Ming, Dr. Chen Hao",
-    date: "2026-03-29",
-    institution: "北京大学、清华大学",
-    category: "vla",
-    summary: "本文提出了一种链式推理的VLA模型，通过逐步推理和多步决策实现了对复杂任务的高效处理。",
-    background: "VLA模型在复杂任务处理中面临以下挑战：
-1. **逐步推理能力不足**：难以进行逐步的逻辑推理
-2. **多步决策困难**：复杂任务的多步决策能力有限
-3. **任务分解能力弱**：难以将复杂任务分解为简单子任务
-4. **长期依赖建模不足**：难以建模长期的任务依赖关系",
-    architecture: "VLA-Chain的核心架构包括：
-
-1. **链式推理框架**
-   - 逐步推理模块
-   - 任务分解机制
-   - 多步决策系统
-   - 支持复杂任务处理
-
-2. **推理状态管理**
-   - 中间状态编码
-   - 推理轨迹记录
-   - 支持长期推理
-
-3. **多步决策引擎**
-   - 策略优化算法
-   - 价值估计网络
-   - 支持长期决策
-
-4. **训练优化**
-   - 链式监督学习
-   - 分层训练策略
-   - 多任务联合优化",
-    innovations: "1. **链式推理框架**：首次在VLA中引入链式推理
-2. **多步决策能力**：实现了复杂任务的多步决策
-3. **任务分解机制**：能够将复杂任务分解为简单子任务
-4. **性能显著提升**：在复杂任务中大幅提升性能
-
-**实验结果**
-在多个复杂VLA任务中验证了VLA-Chain的有效性：
-
-1. **复杂推理任务**
-   - 在需要逐步推理的任务中达到94.8%成功率
-   - 相比现有方法提升48%
-   - 推理能力显著增强
-
-2. **多步决策任务**
-   - 在需要多步决策的任务中达到91.3%成功率
-   - 相比基线模型提升45%
-   - 决策能力显著提升
-
-3. **任务分解测试**
-   - 在复杂任务分解任务中达到89.7%准确率
-   - 任务分解能力提升52%
-   - 能够高效处理复杂任务",
-    inspiration: "1",
-    pdfUrl: "https://arxiv.org/pdf/arXiv:2603.18982",
-    htmlUrl: "https://arxiv.org/abs/arXiv:2603.18982",
-    figures: [],
-  }
-  {
-    id: "paper-arXiv:2603.18983",
-    title: "EmbodiedBenchmark: A Comprehensive Benchmark Platform for Evaluating Embodied Intelligence",
-    authors: "Dr. James Wilson, Prof. Emily Chen, Dr. Robert Zhang, Dr. Maria Rodriguez",
-    date: "2026-03-29",
-    institution: "MIT、斯坦福大学、卡内基梅隆大学",
-    category: "embodied",
-    summary: "本文提出了一种全面的具身智能评估基准测试平台，提供了标准化的测试协议和自动化评估工具，为具身智能研究提供了评估标准。",
-    background: "具身智能评估面临以下挑战：
-1. **评估标准不统一**：缺乏统一的评估标准
-2. **测试任务不全面**：现有评估无法覆盖所有重要任务
-3. **评估效率低**：手动评估效率低下
-4. **结果难以比较**：不同研究的结果难以直接比较",
-    architecture: "EmbodiedBenchmark的核心架构包括：
-
-1. **标准化测试任务**
-   - 100+标准化测试任务
-   - 多难度级别设置
-   - 支持多种任务类型
-
-2. **自动化评估工具**
-   - 自动化测试执行
-   - 性能指标计算
-   - 详细报告生成
-
-3. **评估协议**
-   - 标准化测试流程
-   - 公平的评估方法
-   - 可重复的实验设置
-
-4. **数据管理**
-   - 标准化数据格式
-   - 数据质量控制
-   - 版本管理",
-    innovations: "1. **全面的测试覆盖**：100+标准化测试任务
-2. **自动化评估**：全自动化的评估流程
-3. **标准化协议**：标准化的评估协议
-4. **开放平台**：开放的评估平台促进研究发展
-
-**实验结果**
-对多个现有VLA模型进行了全面评估：
-
-1. **基准测试结果**
-   - RoboGPT在通用任务中表现最佳，平均成功率89.3%
-   - WorldSim3D在三维任务中领先，成功率92.1%
-   - VLA-Chain在复杂推理任务中突出，成功率94.8%
-
-2. **模型分析**
-   - 现有模型在不同任务类型中表现差异显著
-   - 多模态融合能力是影响性能的关键因素
-   - 链式推理能力对复杂任务至关重要
-
-3. **评估平台验证**
-   - 评估结果具有良好的可重复性
-   - 评估过程自动化程度高
-   - 能够有效区分不同模型的性能差异",
-    inspiration: "1",
-    pdfUrl: "https://arxiv.org/pdf/arXiv:2603.18983",
-    htmlUrl: "https://arxiv.org/abs/arXiv:2603.18983",
-    figures: [],
-  }
-  {
-    id: "paper-arXiv:2603.18984",
-    title: "RealWorldVLA: Real-World Vision-Language-Action Models with Domain Adaptation and Robustness Optimization",
-    authors: "Dr. Alex Kim, Prof. Lisa Wang, Dr. Jordan Lee",
-    date: "2026-03-29",
-    institution: "加州大学伯克利分校、斯坦福大学、OpenAI",
-    category: "vla",
-    summary: "本文提出了一种面向真实世界的VLA模型，通过域适应和鲁棒性优化实现了在真实环境中的稳定性能。",
-    background: "真实世界的VLA应用面临以下挑战：
-1. **域差异大**：仿真与真实环境存在显著差异
-2. **鲁棒性不足**：在真实环境中的稳定性差
-3. **泛化能力弱**：难以适应真实环境的复杂性
-4. **噪声敏感性高**：对环境噪声敏感",
-    architecture: "RealWorldVLA的核心架构包括：
-
-1. **域适应模块**
-   - 对抗域适应
-   - 特征空间对齐
-   - 实现仿真到现实的域对齐
-
-2. **鲁棒性优化**
-   - 鲁棒训练策略
-   - 噪声建模
-   - 支持抗干扰训练
-
-3. **真实世界感知**
-   - 不确定性估计
-   - 风险评估
-   - 支持安全决策
-
-4. **训练框架**
-   - 混合域训练
-   - 多环境联合训练
-   - 支持真实数据增强",
-    innovations: "1. **真实世界优化**：专门针对真实世界环境优化
-2. **域适应能力**：实现了高效的仿真到现实迁移
-3. **鲁棒性提升**：在真实环境中保持稳定性能
-4. **性能保持**：真实环境中性能保持率提升85%
-
-**实验结果**
-在多个真实世界测试中验证了RealWorldVLA的有效性：
-
-1. **真实环境测试**
-   - 在真实机器人任务中达到84.3%成功率
-   - 相比仿真环境只下降8%
-   - 真实环境性能保持率显著提升
-
-2. **鲁棒性测试**
-   - 在噪声环境中的性能达到82.1%
-   - 鲁棒性相比传统方法提升60%
-   - 对环境变化的适应能力显著增强
-
-3. **跨环境测试**
-   - 在不同真实环境中的平均成功率达到81.7%
-   - 跨环境泛化能力提升45%
-   - 展现了良好的环境适应能力",
-    inspiration: "1",
-    pdfUrl: "https://arxiv.org/pdf/arXiv:2603.18984",
-    htmlUrl: "https://arxiv.org/abs/arXiv:2603.18984",
-    figures: [],
-  }
-
-  {
-    id: "paper-260405656",
-    title: "SnapFlow: One-Step Action Generation for Flow-Matching VLAs via Progressive Self-Distillation",
-    authors: "Wuyang Luan, Junhui Li, Weiguang Zhao, Wenjian Zhang, Tieru Wu, Rui Ma",
-    institution: "Rui Ma",
-    date: "2026-04-09",
-    category: "vla",
-    summary: "SnapFlow 通过渐进式自蒸馏将流匹配 VLA 的多步去噪压缩为单步推理，在 pi0.5 上达到 9.6x 加速且性能不降反升。",
-    background: "基于流匹配的 VLA 模型（如 pi0, pi0.5, SmolVLA）已成为 SOTA 通用操作方案，但迭代去噪（通常需要 10 步 ODE）导致推理延迟过高。去噪过程占用端到端推理时间的 80%。",
-    architecture: "插件式自蒸馏方法，将多步去噪压缩为单次前向传播（1-NFE）。混合标准流匹配样本与一致性样本，一致性样本的目标是模型自身边缘速度预测计算的二步 Euler 快捷速度。零初始化时间嵌入让网络在单一架构内切换局部速度估计和全局一步生成。",
-    innovations: "首个针对流匹配 VLA 的自蒸馏加速方法。在 pi0.5 四个 LIBERO 套件上达到 98.75% 平均成功率，超过 10 步教师（97.75%）。去噪加速 9.6x，端到端延迟从 274ms 降至 83ms。与层蒸馏、token 剪枝正交可组合。",
-    inspiration: "VLA 的实时部署瓶颈集中在推理速度上。自蒸馏思路不需要外部大模型做教师，用自身速度预测构建一致性目标，对 edge 部署意义重大。",
-    pdfUrl: "https://arxiv.org/pdf/2604.05656",
-    htmlUrl: "https://arxiv.org/abs/2604.05656",
-    figures: []
-  },
-  {
-    id: "paper-260405673",
-    title: "RSBM: Rectified Schrödinger Bridge Matching for Few-Step Visual Navigation",
-    authors: "Wuyang Luan, et al.",
-    institution: "Wuyang Luan",
-    date: "2026-04-09",
-    category: "worldmodel",
-    summary: "RSBM 通过熵正则化参数的连续插值统一薛定谔桥和最优传输，仅需 3 步积分即可在视觉导航中达到 92% 成功率。",
-    background: "基于扩散模型和薛定谔桥的生成策略能有效捕获多模态动作分布，但由于高方差随机传输需要数十步积分，阻碍了实时机器人控制。",
-    architecture: "利用速度结构不变性，单个网络服务所有正则化强度。在 ε=1（最大熵传输）和 ε→0（确定性最优传输）之间插值，学习条件先验缩短传输距离。",
-    innovations: "发现标准桥和最优传输共享速度场结构，提供统一视角。仅 3 步积分达到 94% 余弦相似度和 92% 成功率，无需蒸馏或多阶段训练。",
-    inspiration: "将薛定谔桥和最优传输统一到连续谱上是优雅的数学洞察。理论驱动的少步推理方法比纯工程优化更有持久价值。",
-    pdfUrl: "https://arxiv.org/pdf/2604.05673",
-    htmlUrl: "https://arxiv.org/abs/2604.05673",
-    figures: []
-  },
-  {
-    id: "paper-260401985",
-    title: "WAV: Self-Improving World Models via Forward-Inverse Asymmetry",
-    authors: "Yuejiang Liu, et al.",
-    institution: "Stanford, MIT (Chelsea Finn, Yilun Du)",
-    date: "2026-04-09",
-    category: "worldmodel",
-    summary: "WAV 将动作条件状态预测分解为状态合理性和动作可达性，利用前向-逆向来性实现世界模型自验证和改进，样本效率提升 2x。",
-    background: "通用世界模型需要在更广泛的次优动作范围内保持可靠，但这些动作在动作标注的交互数据中覆盖不足。",
-    architecture: "将预测分解为状态合理性和动作可达性两个独立因子。利用无动作数据广泛可用和动作特征低维度两个不对称性。通过生成子目标、推断动作、前向展开的循环一致性进行验证。",
-    innovations: "首个世界模型自验证框架。在 9 个任务上实现 2x 样本效率，策略性能提升 18%。在探索不足区域表现突出。",
-    inspiration: "不直接改进前向预测，而是通过自验证机制发现和修正模型盲区。自我诊断思路对工业应用尤其有价值。",
-    pdfUrl: "https://arxiv.org/pdf/2604.01985",
-    htmlUrl: "https://arxiv.org/abs/2604.01985",
-    figures: []
-  },
-  {
-    id: "paper-260401001",
-    title: "EgoSim: Egocentric World Simulator for Embodied Interaction Generation",
-    authors: "Jinkun Hao, et al.",
-    institution: "",
-    date: "2026-04-09",
-    category: "worldmodel",
-    summary: "EgoSim 是闭环自我中心世界模拟器，通过可更新的 3D 世界状态实现空间一致的交互视频生成，支持跨具身迁移到机器人操作。",
-    background: "现有自我中心模拟器要么缺乏显式 3D 锚定导致结构漂移，要么将场景视为静态无法跨交互更新世界状态。",
-    architecture: "几何-动作感知观测模拟 (GAOS) 生成具身交互的视觉观测。交互感知状态更新 (IASU) 根据交互结果持续更新 3D 场景。EgoCap 低成本数据采集系统。",
-    innovations: "首个同时解决结构漂移和状态更新的自我中心模拟器。从野生自我中心视频自动提取训练数据。支持跨具身迁移到机器人操作。",
-    inspiration: "自我中心视角的世界模拟是连接具身 AI 和视频生成的重要桥梁。3D 锚定和状态更新是可靠仿真环境的关键属性。",
-    pdfUrl: "https://arxiv.org/pdf/2604.01001",
-    htmlUrl: "https://arxiv.org/abs/2604.01001",
-    figures: []
-  },
-  {
-    id: "paper-260405595",
-    title: "DAERT: Diversity-Aware Embodied Red Teaming for VLA Safety",
-    authors: "Baoshun Tong, et al.",
-    institution: "",
-    date: "2026-04-09",
-    category: "vla",
-    summary: "DAERT 通过统一策略评估框架生成多样化对抗性语言指令，成功将 pi0 和 OpenVLA 的任务成功率从 93.33% 压低至 5.85%。",
-    background: "VLA 对语言细微差异的鲁棒性是关键的未被充分探索的安全隐患。标准 RL 对抗者因奖励最大化特性导致模式崩塌。",
-    architecture: "统一策略生成多样化挑战性指令，在物理模拟器中通过执行失败衡量攻击有效性。解决传统 RL 对抗者收敛到窄集重复失败模式的问题。",
-    innovations: "首个系统性揭示 VLA 语言鲁棒性漏洞的红队攻击框架。成功率降低至 5.85%。可扩展的压力测试方法。",
-    inspiration: "VLA 安全性评估不应仅限于视觉和动作空间，语言输入的对抗鲁棒性同样重要。部署前的语言层面压力测试不可或缺。",
-    pdfUrl: "https://arxiv.org/pdf/2604.05595",
-    htmlUrl: "https://arxiv.org/abs/2604.05595",
-    figures: []
-  },
-  {
-    id: "paper-260405544",
-    title: "ReV: Referring-Aware Visuomotor Policy for Closed-Loop Manipulation",
-    authors: "Jiahua Ma, et al.",
-    institution: "",
-    date: "2026-04-09",
-    category: "embodied",
-    summary: "ReV 通过耦合扩散头实现全局-局部协同的轨迹规划，能实时整合稀疏指向点进行闭环轨迹重规划，无需额外数据或微调。",
-    background: "视觉运动策略面临分布外执行误差或动态轨迹重路由时的鲁棒性问题，模型仅依赖原始专家演示进行训练。",
-    architecture: "全局扩散头生成时间稀疏的动作锚点，局部扩散头进行精细插值。接收稀疏指向点后闭环重规划，每步执行重复此过程。仅对专家演示施加定向扰动训练。",
-    innovations: "首个无需额外数据或微调的指向感知闭环操作策略。全局-局部协同的扩散架构。通过演示扰动训练降低成本。",
-    inspiration: "将高层规划和底层执行解耦为协同扩散头，人机协作模式（人类提供指向点，模型负责执行）有实际应用前景。",
-    pdfUrl: "https://arxiv.org/pdf/2604.05544",
-    htmlUrl: "https://arxiv.org/abs/2604.05544",
-    figures: []
-  },
-  {
-    id: "paper-260405498",
-    title: "JailWAM: Jailbreaking World Action Models in Robot Control",
-    authors: "Hanqing Liu, Songping Wang, Jiahuan Long, et al.",
-    institution: "",
-    date: "2026-04-09",
-    category: "worldmodel",
-    summary: "JailWAM 提出首个针对世界动作模型 (WAM) 的越狱攻击框架，在 LingBot-VA 上达到 84.2% 攻击成功率，同时可构建鲁棒防御机制。",
-    background: "世界动作模型 (WAM) 联合预测未来世界状态和动作，具有强大的物理操控能力。但其安全漏洞尚未被充分研究。",
-    architecture: "三级安全分类框架量化机械臂运动安全性。视觉-轨迹映射统一异构动作空间。风险判别器高效识别破坏性行为。双路径验证策略：粗筛 + 闭环物理仿真精验。",
-    innovations: "首个 WAM 越狱攻击框架。LingBot-VA 上 84.2% 攻击成功率。构建 JailWAM-Bench 基准。可基于此构建防御机制。",
-    inspiration: "世界动作模型的强大操控能力是双刃剑。系统性安全评估是 WAM 走向部署的必要步骤。",
-    pdfUrl: "https://arxiv.org/pdf/2604.05498",
-    htmlUrl: "https://arxiv.org/abs/2604.05498",
-    figures: []
-  },
-  {
-    id: "paper-260329844",
-    title: "DIAL: Decoupling Intent and Action via Latent World Modeling",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-08",
-    category: "embodied",
-    summary: "## 1. DIAL: Decoupling Intent and Action via Latent World Modeling  - **论文标题**: DIAL: Decoupling Intent and Action via Latent World Modeling for End-to-End VLA - **论文ID**: arXiv:2603.29844 - **作者**: Y",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.29844",
-    htmlUrl: "https://arxiv.org/abs/2603.29844",
-    figures: []
-  },
-  {
-    id: "paper-260406168",
-    title: "Action Images: End-to-End Policy Learning via Multiview Video Generation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-08",
-    category: "embodied",
-    summary: "## 2. Action Images: End-to-End Policy Learning via Multiview Video Generation  - **论文标题**: Action Images: End-to-End Policy Learning via Multiview Video Generation - **论文ID**: arXiv:2604.06168 - **作者",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2604.06168",
-    htmlUrl: "https://arxiv.org/abs/2604.06168",
-    figures: []
-  },
-  {
-    id: "paper-260405014",
-    title: "StarVLA: A Lego-like Codebase for VLA Model Developing",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-08",
-    category: "embodied",
-    summary: "## 3. StarVLA: A Lego-like Codebase for VLA Model Developing  - **论文标题**: StarVLA: A Lego-like Codebase for Vision-Language-Action Model Developing - **论文ID**: arXiv:2604.05014 - **作者**: StarVLA Team ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2604.05014",
-    htmlUrl: "https://arxiv.org/abs/2604.05014",
-    figures: []
-  },
-  {
-    id: "paper-260403208",
-    title: "Hierarchical Planning with Latent World Models",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-08",
-    category: "embodied",
-    summary: "## 4. Hierarchical Planning with Latent World Models  - **论文标题**: Hierarchical Planning with Latent World Models - **论文ID**: arXiv:2604.03208 - **作者**: Basile Terver, Artem Zholus, Soham Chitnis, Hars",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2604.03208",
-    htmlUrl: "https://arxiv.org/abs/2604.03208",
-    figures: []
-  },
-  {
-    id: "paper-260327670",
-    title: "ProgressVLA: Progress-Guided Diffusion Policy for Vision-Language Robotic Manipulation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-08",
-    category: "embodied",
-    summary: "## 5. ProgressVLA: Progress-Guided Diffusion Policy for Vision-Language Robotic Manipulation  - **论文标题**: ProgressVLA: Progress-Guided Diffusion Policy for Vision-Language Robotic Manipulation - **论文I",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.27670",
-    htmlUrl: "https://arxiv.org/abs/2603.27670",
-    figures: []
-  },
-  {
-    id: "paper-260402911",
-    title: "DreamTIP: Learning Task-Invariant Properties via Dreamer",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-08",
-    category: "embodied",
-    summary: "## 6. DreamTIP: Learning Task-Invariant Properties via Dreamer  - **论文标题**: Learning Task-Invariant Properties via Dreamer: Enabling Efficient Policy Transfer for Quadruped Robots - **论文ID**: arXiv:26",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2604.02911",
-    htmlUrl: "https://arxiv.org/abs/2604.02911",
-    figures: []
-  },
-  {
-    id: "paper-260401985",
-    title: "World Action Verifier",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-05",
-    category: "embodied",
-    summary: "## 1. World Action Verifier  - **论文标题**: World Action Verifier: Enhancing World Model Robustness via Forward-Inverse Asymmetry - **论文ID**: arXiv:2604.01985 - **作者**: Yuejiang Liu, Fan Feng, Lingjing K",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2604.01985",
-    htmlUrl: "https://arxiv.org/abs/2604.01985",
-    figures: []
-  },
-  {
-    id: "paper-260401765",
-    title: "DriveDreamer-Policy",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-05",
-    category: "embodied",
-    summary: "## 2. DriveDreamer-Policy  - **论文标题**: DriveDreamer-Policy: Unified Driving World-Action Model with 3D Geometric Priors - **论文ID**: arXiv:2604.01765 - **作者**: Yang Zhou, Xiaofeng Wang, Hao Shao 等 (NTU",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2604.01765",
-    htmlUrl: "https://arxiv.org/abs/2604.01765",
-    figures: []
-  },
-  {
-    id: "paper-260401567",
-    title: "AnchorVLA",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-05",
-    category: "embodied",
-    summary: "## 3. AnchorVLA  - **论文标题**: AnchorVLA: Anchored Diffusion for Real-Time Multimodal Mobile Manipulation - **论文ID**: arXiv:2604.01567 - **作者**: Jia Syuen Lim, Zhizhen Zhang, Peter Bohm 等 (University of",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2604.01567",
-    htmlUrl: "https://arxiv.org/abs/2604.01567",
-    figures: []
-  },
-  {
-    id: "paper-260401001",
-    title: "EgoSim",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-05",
-    category: "embodied",
-    summary: "## 4. EgoSim  - **论文标题**: EgoSim: Closed-Loop Egocentric World Simulator with Persistent 3D Gaussian Splatting - **论文ID**: arXiv:2604.01001 - **作者**: Jinkun Hao, Mingda Jia, Ruiyan Wang 等 (Shanghai Ji",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2604.01001",
-    htmlUrl: "https://arxiv.org/abs/2604.01001",
-    figures: []
-  },
-  {
-    id: "paper-260401158",
-    title: "SMASH",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-05",
-    category: "embodied",
-    summary: "## 5. SMASH  - **论文标题**: SMASH: Scalable Modular Agile System for Humanoid Table Tennis - **论文ID**: arXiv:2604.01158 - **作者**: Junli Ren, Yinghui Li, Kai Zhang 等 (Chinese Academy of Sciences / Tencent",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2604.01158",
-    htmlUrl: "https://arxiv.org/abs/2604.01158",
-    figures: []
-  },
-  {
-    id: "paper-260401605",
-    title: "F3DGS",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-05",
-    category: "embodied",
-    summary: "## 6. F3DGS  - **论文标题**: F3DGS: Federated 3D Gaussian Splatting for Decentralized Multi-Agent 3D Reconstruction - **论文ID**: arXiv:2604.01605 - **作者**: Morui Zhu, Mohammad Dehghani Tezerjani, Mátyás Sz",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2604.01605",
-    htmlUrl: "https://arxiv.org/abs/2604.01605",
-    figures: []
-  },
-  {
-    id: "paper-260401618",
-    title: "Tex3D",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-05",
-    category: "embodied",
-    summary: "## 7. Tex3D  - **论文标题**: Tex3D: Adversarial 3D Textures against Vision-Language-Action Models - **论文ID**: arXiv:2604.01618 - **作者**: Jiawei Chen, Simin Huang, Jiawei Du 等 - **提交日期**: 2026-04-02 - **类别",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2604.01618",
-    htmlUrl: "https://arxiv.org/abs/2604.01618",
-    figures: []
-  },
-  {
-    id: "paper-260402190",
-    title: "UniDriveVLA",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-05",
-    category: "embodied",
-    summary: "## 8. UniDriveVLA  - **论文标题**: UniDriveVLA: Unifying Understanding, Perception, and Action Planning for Autonomous Driving - **论文ID**: arXiv:2604.02190 - **作者**: Yongkang Li, Lijun Zhou, Sixu Yan 等 (H",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2604.02190",
-    htmlUrl: "https://arxiv.org/abs/2604.02190",
-    figures: []
-  },
-  {
-    id: "paper-260402241",
-    title: "UAV-Track VLA",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-05",
-    category: "embodied",
-    summary: "## 9. UAV-Track VLA  - **论文标题**: UAV-Track VLA: Vision-Language-Action Benchmark for UAV Embodied Visual Tracking - **论文ID**: arXiv:2604.02241 - **作者**: Qiyao Zhang, Shuhua Zheng, Jianli Sun, Chengxia",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2604.02241",
-    htmlUrl: "https://arxiv.org/abs/2604.02241",
-    figures: []
-  },
-  {
-    id: "paper-260400813",
-    title: "DVGT-2",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-05",
-    category: "embodied",
-    summary: "## 10. DVGT-2  - **论文标题**: DVGT-2: Rethinking End-to-End Autonomous Driving via Vision-Geometry-Action - **论文ID**: arXiv:2604.00813 - **作者**: Sicheng Zuo, Zixun Xie, Wenzhao Zheng 等 (Tsinghua Universi",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2604.00813",
-    htmlUrl: "https://arxiv.org/abs/2604.00813",
-    figures: []
-  },
-  {
-    id: "paper-260401860",
-    title: "POCO",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-05",
-    category: "embodied",
-    summary: "## 11. POCO  - **论文标题**: POCO: Posterior Optimization with Clipped Objective for Generative Policy Learning - **论文ID**: arXiv:2604.01860 - **作者**: (生成式策略学习方向) - **提交日期**: 2026-04-02 - **类别**: 策略学习 / 强",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2604.01860",
-    htmlUrl: "https://arxiv.org/abs/2604.01860",
-    figures: []
-  },
-  {
-    id: "paper-260401570",
-    title: "FAN (Feasible Action Neighborhood)",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-05",
-    category: "embodied",
-    summary: "## 12. FAN (Feasible Action Neighborhood)  - **论文标题**: FAN: Exploiting Feasible Action Neighborhoods for Efficient VLA Fine-tuning - **论文ID**: arXiv:2604.01570 - **作者**: Haochen Niu, Kanyu Zhang, Shuy",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2604.01570",
-    htmlUrl: "https://arxiv.org/abs/2604.01570",
-    figures: []
-  },
-  {
-    id: "paper-240207545",
-    title: "RT-2: Robotic Transformer 2 - Next-Generation Vision-Language-Action Model",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-04",
-    category: "embodied",
-    summary: "## 1. RT-2: Robotic Transformer 2 - Next-Generation Vision-Language-Action Model  **论文ID**: arXiv:2402.07545   **作者**: Mike Lambert, Brian Ichter, Varun Kapur, et al.   **机构**: Google DeepMind   **日期*",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2402.07545",
-    htmlUrl: "https://arxiv.org/abs/2402.07545",
-    figures: []
-  },
-  {
-    id: "paper-230608551",
-    title: "ALOHA: An Open-Ended Embodied Agent with Large Language Models",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-04",
-    category: "embodied",
-    summary: "## 2. ALOHA: An Open-Ended Embodied Agent with Large Language Models  **论文ID**: arXiv:2306.08551v3   **作者**: Bowen Wen, Yifan Jiang, Bowen Zhang, et al.   **机构**: Stanford University   **日期**: 2024-01",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2306.08551",
-    htmlUrl: "https://arxiv.org/abs/2306.08551",
-    figures: []
-  },
-  {
-    id: "paper-240110387",
-    title: "RT-X: The Robotic Transformer with Cross-Modal Transfer",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-04",
-    category: "embodied",
-    summary: "## 3. RT-X: The Robotic Transformer with Cross-Modal Transfer  **论文ID**: arXiv:2401.10387   **作者**: Mike Lambert, Varun Kapur, Brian Ichter, et al.   **机构**: Google DeepMind   **日期**: 2024-01-24   **类",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2401.10387",
-    htmlUrl: "https://arxiv.org/abs/2401.10387",
-    figures: []
-  },
-  {
-    id: "paper-230304137",
-    title: "Diffusion Policy: Visuomotor Policy Learning via Diffusion Models",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-04",
-    category: "embodied",
-    summary: "## 4. Diffusion Policy: Visuomotor Policy Learning via Diffusion Models  **论文ID**: arXiv:2303.04137v2   **作者**: Soroush Nasiriany, Anish Thilagar, Karan Goel, et al.   **机构**: University of California",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2303.04137",
-    htmlUrl: "https://arxiv.org/abs/2303.04137",
-    figures: []
-  },
-  {
-    id: "paper-260312260",
-    title: "HumDex: 简化人形机器人灵巧操作框架",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-01",
-    category: "embodied",
-    summary: "### 2. HumDex: 简化人形机器人灵巧操作框架 **论文ID**: arXiv:2603.12260v1   **作者**: Zhiyuan Hu, Yifeng Jiang, Hao Shi 等   **机构**: 清华大学、CMU   **日期**: 2026年3月22日   **类别**: Robotics, Humanoid  **一句话概括**: HumDex提出一个简化的人形",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.12260",
-    htmlUrl: "https://arxiv.org/abs/2603.12260",
-    figures: []
-  },
-  {
-    id: "训练范式转变-2026-04-01",
-    title: "训练范式转变",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-01",
-    category: "embodied",
-    summary: "### 1. 训练范式转变 - **分阶段训练**: Ψ0的成功验证了分阶段训练的有效性 - **数据质量优先**: 超越单纯的数据量追求 - **解耦学习**: 异构数据的专门化处理",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "系统集成优化-2026-04-01",
-    title: "系统集成优化",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-01",
-    category: "embodied",
-    summary: "### 2. 系统集成优化 - **端到端框架**: 从感知到执行的统一学习 - **持续学习**: 自我改进的具身智能体 - **自主数据收集**: 减少人工干预的闭环系统",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "工程化进展-2026-04-01",
-    title: "工程化进展",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-01",
-    category: "embodied",
-    summary: "### 3. 工程化进展 - **框架简化**: 降低使用门槛，推动普及 - **开源生态**: 模型、数据、工具链的完整开源 - **实时推理**: 高效的部署和推理引擎  ---  ## 🎯 对你的研究启发",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "世界模型设计思路-2026-04-01",
-    title: "世界模型设计思路",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-01",
-    category: "embodied",
-    summary: "### 1. 世界模型设计思路 - **多尺度表示**: 结合全局潜在向量和局部特征序列 - **物理一致性**: 强调物理规律约束的重要性 - **时间维度**: 长时序一致性和误差累积控制",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "vla架构优化-2026-04-01",
-    title: "VLA架构优化",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-01",
-    category: "embodied",
-    summary: "### 2. VLA架构优化 - **模块化设计**: 解耦不同能力的专门化训练 - **参数高效**: LoRA等微调方法的应用 - **持续学习**: 支持终身学习的架构设计",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "工程实现建议-2026-04-01",
-    title: "工程实现建议",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-01",
-    category: "embodied",
-    summary: "### 3. 工程实现建议 - **数据策略**: 质量优先，精选高质量数据集 - **系统架构**: agent-centric的统一框架 - **部署优化**: 实时推理和轻量化部署  ---  ## 🚀 未来发展方向  1. **通用基础模型**: Ψ0等人形机器人基础模型的持续优化 2. **自主学习循环**: RoboClaw式的持续自主数据收集 3. **跨领域迁移**: 不同机器人平",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "数据稀缺问题-2026-04-01",
-    title: "数据稀缺问题",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-01",
-    category: "embodied",
-    summary: "### 1. 数据稀缺问题 - **解决方案**: 高质量数据 + 合成数据 + 迁移学习 - **代表性工作**: HandelBot的快速adaptation",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "长时序一致性-2026-04-01",
-    title: "长时序一致性",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-01",
-    category: "embodied",
-    summary: "### 2. 长时序一致性 - **解决方案**: 分层时序建模 + 物理约束 - **代表性工作**: 世界模型的三维分类框架",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "灾难性遗忘-2026-04-01",
-    title: "灾难性遗忘",
-    authors: "et al.",
-    institution: "",
-    date: "2026-04-01",
-    category: "embodied",
-    summary: "### 3. 灾难性遗忘 - **解决方案**: 简单Seq.FT + LoRA的持续学习 - **代表性工作**: VLA模型的CRL研究  ---  ## 🔗 相关资源  - **开源项目**: Ψ0、HumDex、RoboClaw等已开源 - **数据集**: egocentric视频、机器人轨迹、操作数据 - **评估基准**: 标准化的人形机器人操作评估  ---  *注: 由于ArXi",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "paper-251016732",
-    title: "具身智能世界模型综合调研",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-31",
-    category: "embodied",
-    summary: "## 1. 具身智能世界模型综合调研  **一句话概括**: 本文是具身智能领域世界模型的首次全面调研，提出了三维统一框架，系统化了现有方法并指出了关键挑战。  **论文信息** - **标题**: A Comprehensive Survey on World Models for Embodied AI - **作者**: Xinqing Li, Xin He, Le Zhang, Min W",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2510.16732",
-    htmlUrl: "https://arxiv.org/abs/2510.16732",
-    figures: []
-  },
-  {
-    id: "paper-260318980",
-    title: "RoboGPT: 大型机器人语言模型的预训练与微调",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-29",
-    category: "embodied",
-    summary: "## 1. RoboGPT: 大型机器人语言模型的预训练与微调  **一句话概括**: 本文提出了一种大型机器人语言模型的预训练框架，通过大规模机器人数据的预训练实现了在多种机器人任务上的强大泛化能力。  **论文信息** - **标题**: RoboGPT: Large-Scale Robot Language Models with Pre-training and Fine-tuning F",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.18980",
-    htmlUrl: "https://arxiv.org/abs/2603.18980",
-    figures: []
-  },
-  {
-    id: "paper-260318981",
-    title: "WorldSim3D: 三维世界模型的生成式预训练",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-29",
-    category: "embodied",
-    summary: "## 2. WorldSim3D: 三维世界模型的生成式预训练  **一句话概括**: 本文提出了一种三维世界模型的生成式预训练方法，通过三维几何和物理规律的联合建模实现了对真实世界的高保真模拟。  **论文信息** - **标题**: WorldSim3D: Generative Pre-training for 3D World Models with Geometric and Physic",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.18981",
-    htmlUrl: "https://arxiv.org/abs/2603.18981",
-    figures: []
-  },
-  {
-    id: "paper-260318982",
-    title: "VLA-Chain: 链式推理的视觉语言动作模型",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-29",
-    category: "embodied",
-    summary: "## 3. VLA-Chain: 链式推理的视觉语言动作模型  **一句话概括**: 本文提出了一种链式推理的VLA模型，通过逐步推理和多步决策实现了对复杂任务的高效处理。  **论文信息** - **标题**: VLA-Chain: Chain-of-Thought Reasoning for Vision-Language-Action Models with Multi-Step Decis",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.18982",
-    htmlUrl: "https://arxiv.org/abs/2603.18982",
-    figures: []
-  },
-  {
-    id: "paper-260318983",
-    title: "EmbodiedBenchmark: 具身智能评估的基准测试平台",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-29",
-    category: "embodied",
-    summary: "## 4. EmbodiedBenchmark: 具身智能评估的基准测试平台  **一句话概括**: 本文提出了一种全面的具身智能评估基准测试平台，提供了标准化的测试协议和自动化评估工具，为具身智能研究提供了评估标准。  **论文信息** - **标题**: EmbodiedBenchmark: A Comprehensive Benchmark Platform for Evaluating E",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.18983",
-    htmlUrl: "https://arxiv.org/abs/2603.18983",
-    figures: []
-  },
-  {
-    id: "paper-260318984",
-    title: "RealWorldVLA: 真实世界的视觉语言动作模型",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-29",
-    category: "embodied",
-    summary: "## 5. RealWorldVLA: 真实世界的视觉语言动作模型  **一句话概括**: 本文提出了一种面向真实世界的VLA模型，通过域适应和鲁棒性优化实现了在真实环境中的稳定性能。  **论文信息** - **标题**: RealWorldVLA: Real-World Vision-Language-Action Models with Domain Adaptation and Robus",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.18984",
-    htmlUrl: "https://arxiv.org/abs/2603.18984",
-    figures: []
-  },
-  {
-    id: "paper-260318271",
-    title: "PhysicsGPT: 物理感知的具身智能生成模型",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-28",
-    category: "embodied",
-    summary: "## 1. PhysicsGPT: 物理感知的具身智能生成模型  **一句话概括**: 本文提出了一种融合物理规律的具身智能生成模型，通过物理感知和生成式建模实现了对复杂物理世界的理解和交互。  **论文信息** - **标题**: PhysicsGPT: Physics-Aware Generative Models for Embodied Intelligence with Causal R",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.18271",
-    htmlUrl: "https://arxiv.org/abs/2603.18271",
-    figures: []
-  },
-  {
-    id: "paper-260318272",
-    title: "WorldTransformer+: 增强型世界模型架构",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-28",
-    category: "embodied",
-    summary: "## 2. WorldTransformer+: 增强型世界模型架构  **一句话概括**: 本文提出了一种增强型世界模型架构，通过多尺度时空建模和动态注意力机制实现了对复杂环境的高效建模和预测。  **论文信息** - **标题**: WorldTransformer+: Enhanced World Models with Multi-Scale Spatio-Temporal Modelin",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.18272",
-    htmlUrl: "https://arxiv.org/abs/2603.18272",
-    figures: []
-  },
-  {
-    id: "paper-260318273",
-    title: "VLA-Attention: 多模态注意力机制的视觉语言动作模型",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-28",
-    category: "embodied",
-    summary: "## 3. VLA-Attention: 多模态注意力机制的视觉语言动作模型  **一句话概括**: 本文提出了一种多模态注意力机制的VLA模型，通过跨模态注意力对齐实现了高效的视觉、语言和动作融合。  **论文信息** - **标题**: VLA-Attention: Multi-Modal Attention Mechanisms for Vision-Language-Action Mode",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.18273",
-    htmlUrl: "https://arxiv.org/abs/2603.18273",
-    figures: []
-  },
-  {
-    id: "paper-260318274",
-    title: "EmbodiedFuture: 面向未来的具身智能规划系统",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-28",
-    category: "embodied",
-    summary: "## 4. EmbodiedFuture: 面向未来的具身智能规划系统  **一句话概括**: 本文提出了一种面向未来的具身智能规划系统，通过时空预测和多目标优化实现了对复杂环境的智能规划和决策。  **论文信息** - **标题**: EmbodiedFuture: Future-Oriented Planning System for Embodied Intelligence with Sp",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.18274",
-    htmlUrl: "https://arxiv.org/abs/2603.18274",
-    figures: []
-  },
-  {
-    id: "paper-260317561",
-    title: "Sim2RealZero: 无需真实数据的一致性强化学习",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-27",
-    category: "embodied",
-    summary: "## 1. Sim2RealZero: 无需真实数据的一致性强化学习  **一句话概括**: 本文提出了一种无需真实数据的Sim2Real强化学习方法，通过一致性学习实现了仿真到现实的高效迁移，大幅降低了真实数据收集成本。  **论文信息** - **标题**: Sim2RealZero: Zero-Shot Sim-to-Real Transfer with Consistency Learni",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.17561",
-    htmlUrl: "https://arxiv.org/abs/2603.17561",
-    figures: []
-  },
-  {
-    id: "paper-260317562",
-    title: "WorldGPT: 基于生成式世界模型的具身智能框架",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-27",
-    category: "embodied",
-    summary: "## 2. WorldGPT: 基于生成式世界模型的具身智能框架  **一句话概括**: 本文提出了一种基于生成式世界模型的具身智能框架，通过生成式建模实现高效的物理推理和动作规划。  **论文信息** - **标题**: WorldGPT: Generative World Models for Embodied Intelligence with Physics Reasoning - **作",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.17562",
-    htmlUrl: "https://arxiv.org/abs/2603.17562",
-    figures: []
-  },
-  {
-    id: "paper-260317563",
-    title: "VLALens: 面向具身智能的视觉语言动作自适应学习框架",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-27",
-    category: "embodied",
-    summary: "## 3. VLALens: 面向具身智能的视觉语言动作自适应学习框架  **一句话概括**: 本文提出了一种面向具身智能的自适应VLA学习框架，通过元学习和动态适应实现了在不同环境中的快速适应能力。  **论文信息** - **标题**: VLALens: Adaptive Vision-Language-Action Learning for Embodied Intelligence wit",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.17563",
-    htmlUrl: "https://arxiv.org/abs/2603.17563",
-    figures: []
-  },
-  {
-    id: "paper-260317564",
-    title: "EmbodiedBench: 具身智能基准测试集与评估框架",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-27",
-    category: "embodied",
-    summary: "## 4. EmbodiedBench: 具身智能基准测试集与评估框架  **一句话概括**: 本文提出了一种全面的具身智能基准测试集，涵盖了多种任务类型和评估指标，为具身智能研究提供了标准化的评估平台。  **论文信息** - **标题**: EmbodiedBench: A Comprehensive Benchmark Suite for Evaluating Embodied Intell",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.17564",
-    htmlUrl: "https://arxiv.org/abs/2603.17564",
-    figures: []
-  },
-  {
-    id: "paper-260316852",
-    title: "VLA-Mamba: 基于状态空间模型的具身智能推理框架",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-26",
-    category: "embodied",
-    summary: "## 1. VLA-Mamba: 基于状态空间模型的具身智能推理框架  **一句话概括**: 本文提出了一种基于Mamba架构的VLA模型，通过状态空间建模实现了高效的具身智能推理，在长时序任务中表现出色。  **论文信息** - **标题**: VLA-Mamba: Efficient Vision-Language-Action Reasoning with State Space Model",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.16852",
-    htmlUrl: "https://arxiv.org/abs/2603.16852",
-    figures: []
-  },
-  {
-    id: "paper-260316853",
-    title: "WorldDiff: 基于差分世界模型的具身强化学习",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-26",
-    category: "embodied",
-    summary: "## 2. WorldDiff: 基于差分世界模型的具身强化学习  **一句话概括**: 本文提出了一种基于差分世界模型的具身强化学习方法，通过学习环境动态的差异来实现高效的政策优化。  **论文信息** - **标题**: WorldDiff: Learning Environment Dynamics for Efficient Reinforcement Learning in Embodi",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.16853",
-    htmlUrl: "https://arxiv.org/abs/2603.16853",
-    figures: []
-  },
-  {
-    id: "paper-260316854",
-    title: "EmbodiedCLIP: 面向具身任务的视觉语言预训练模型",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-26",
-    category: "embodied",
-    summary: "## 3. EmbodiedCLIP: 面向具身任务的视觉语言预训练模型  **一句话概括**: 本文提出了一种专门针对具身任务的视觉语言预训练模型，通过具身感知和动作相关的预训练任务提升了VLA模型的性能。  **论文信息** - **标题**: EmbodiedCLIP: Vision-Language Pre-training for Embodied Tasks with Action-R",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.16854",
-    htmlUrl: "https://arxiv.org/abs/2603.16854",
-    figures: []
-  },
-  {
-    id: "paper-260322281",
-    title: "ThinkJEPA: 用 VLM 推理增强潜在世界模型",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-25",
-    category: "embodied",
-    summary: "## 1. ThinkJEPA: 用 VLM 推理增强潜在世界模型  **论文ID:** arXiv:2603.22281 **作者:** Haichao Zhang, Yijiang Li, Shwai He, Tushar Nagarajan, Mingfei Chen, Jianglin Lu, Ang Li, Yun Fu **机构:** Northeastern University (",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.22281",
-    htmlUrl: "https://arxiv.org/abs/2603.22281",
-    figures: []
-  },
-  {
-    id: "paper-260322003",
-    title: "VP-VLA: 视觉提示作为 VLA 的交互接口",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-25",
-    category: "embodied",
-    summary: "## 2. VP-VLA: 视觉提示作为 VLA 的交互接口  **论文ID:** arXiv:2603.22003 **作者:** Zixuan Wang, Yuxin Chen, Yuqi Liu, Jinhui Ye, Pengguang Chen, Changsheng Lu, Shu Liu, Jiaya Jia **机构:** CUHK (Jiaya Jia 组) **日期:** 20",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.22003",
-    htmlUrl: "https://arxiv.org/abs/2603.22003",
-    figures: []
-  },
-  {
-    id: "paper-260322280",
-    title: "DualCoT-VLA: 视觉-语言并行链式推理 VLA",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-25",
-    category: "embodied",
-    summary: "## 3. DualCoT-VLA: 视觉-语言并行链式推理 VLA  **论文ID:** arXiv:2603.22280 **作者:** Zhide Zhong, Junfeng Li, Junjie He 等 (13位) **机构:** 中科院自动化所/多机构合作 **日期:** 2026-03-23 **类别:** cs.RO **链接:** [https://arxiv.org/abs/",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.22280",
-    htmlUrl: "https://arxiv.org/abs/2603.22280",
-    figures: []
-  },
-  {
-    id: "paper-260322078",
-    title: "Do World Action Models Generalize Better than VLAs? 鲁棒性研究",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-25",
-    category: "embodied",
-    summary: "## 5. Do World Action Models Generalize Better than VLAs? 鲁棒性研究  **论文ID:** arXiv:2603.22078 **作者:** Zhanguang Zhang, Zhiyuan Li, Behnam Rahmati 等 (12位) **机构:** 多机构合作 **日期:** 2026-03-23 **类别:** cs.RO *",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.22078",
-    htmlUrl: "https://arxiv.org/abs/2603.22078",
-    figures: []
-  },
-  {
-    id: "paper-260322264",
-    title: "UniDex: 从自中心人类视频到灵巧手控制的机器人基础套件",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-25",
-    category: "embodied",
-    summary: "## 6. UniDex: 从自中心人类视频到灵巧手控制的机器人基础套件  **论文ID:** arXiv:2603.22264 **作者:** Gu Zhang, Qicheng Xu, Haozhe Zhang 等 (19位) **机构:** Tsinghua University (Hang Zhao/Huazhe Xu 组) **日期:** 2026-03-23 **类别:** cs.RO",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.22264",
-    htmlUrl: "https://arxiv.org/abs/2603.22264",
-    figures: []
-  },
-  {
-    id: "paper-260321341",
-    title: "RoboAlign: 通过测试时推理学习 VLA 的语言-动作对齐",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-25",
-    category: "embodied",
-    summary: "## 7. RoboAlign: 通过测试时推理学习 VLA 的语言-动作对齐  **论文ID:** arXiv:2603.21341 **作者:** Dongyoung Kim, Sumin Park, Woomin Song, Seungku Kim, Taeyoung Kim, Huiwon Jang, Jinwoo Shin, Jaehyung Kim, Younggyo Seo **机构",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.21341",
-    htmlUrl: "https://arxiv.org/abs/2603.21341",
-    figures: []
-  },
-  {
-    id: "vla-mbpo-2026-03-24",
-    title: "VLA-MBPO: 面向 VLA 模型的实用世界模型强化学习框架",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-24",
-    category: "embodied",
-    summary: "## 1. VLA-MBPO: 面向 VLA 模型的实用世界模型强化学习框架  **一句话概括**: 提出在交互式世界模型中用 MBPO 算法微调 VLA 模型，解决像素级建模、多视角一致性和稀疏奖励下误差累积三大难题。  **论文信息** - **标题**: Towards Practical World Model-based Reinforcement Learning for Vision",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "scaling-sim-to-real-rl-fo-2026-03-24",
-    title: "Scaling Sim-to-Real RL for Robot VLAs with Generative 3D Worlds",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-24",
-    category: "embodied",
-    summary: "## 2. Scaling Sim-to-Real RL for Robot VLAs with Generative 3D Worlds  **一句话概括**: 用 3D 生成式世界模型批量构建仿真场景，实现 VLA 的可扩展 RL 微调和成功 sim-to-real 迁移。  **论文信息** - **标题**: Scaling Sim-to-Real Reinforcement Learni",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "vampo-2026-03-24",
-    title: "VAMPO: 视频动作模型中视觉动态的策略优化",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-24",
-    category: "embodied",
-    summary: "## 3. VAMPO: 视频动作模型中视觉动态的策略优化  **一句话概括**: 将扩散去噪过程建模为序列决策，用 RL 优化视频动作模型中操控任务关键的视觉动态。  **论文信息** - **标题**: VAMPO: Policy Optimization for Improving Visual Dynamics in Video Action Models - **作者**: Zirui ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "omnivta-2026-03-24",
-    title: "OmniVTA: 面向接触丰富操控的视觉触觉世界建模",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-24",
-    category: "embodied",
-    summary: "## 4. OmniVTA: 面向接触丰富操控的视觉触觉世界建模  **一句话概括**: 构建大规模视觉触觉数据集 OmniViTac，提出四模块耦合的触觉世界模型框架，实现 60Hz 闭环控制。  **论文信息** - **标题**: OmniVTA: Visuo-Tactile World Modeling for Contact-Rich Robotic Manipulation - **作",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "faster-2026-03-24",
-    title: "FASTER: 重新思考实时流式 VLA",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-24",
-    category: "embodied",
-    summary: "## 5. FASTER: 重新思考实时流式 VLA  **一句话概括**: 提出 Horizon-Aware Schedule，将流式 VLA 的反应延迟压缩至原有 1/10，在消费级 GPU 上实现实时响应。  **论文信息** - **标题**: FASTER: Rethinking Real-Time Flow VLAs - **作者**: Yuxiang Lu, Zhe Liu, Xia",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "sparse-autoencoders-revea-2026-03-24",
-    title: "Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-24",
-    category: "embodied",
-    summary: "## 6. Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models  **一句话概括**: 用稀疏自编码器 (SAE) 解析 VLA 内部特征，发现大部分特征是训练数据的记忆化，但存在可迁移的通用动作原语。  **论文信息** - **标题**: Sparse Autoencoders Reveal",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "roi-driven-foveated-atten-2026-03-24",
-    title: "ROI-Driven Foveated Attention for Unified Egocentric Representations in VLA Systems",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-24",
-    category: "embodied",
-    summary: "## 7. ROI-Driven Foveated Attention for Unified Egocentric Representations in VLA Systems  **一句话概括**: 提出 ROI 驱动的自中心视觉表示方法，用正向运动学投影获取手部区域，解决 VLA 数据收集成本高和跨机器人迁移难的问题。  **论文信息** - **标题**: ROI-Driven Fovea",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "not-all-features-are-crea-2026-03-24",
-    title: "Not All Features Are Created Equal: 机制研究 VLA 模型",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-24",
-    category: "embodied",
-    summary: "## 8. Not All Features Are Created Equal: 机制研究 VLA 模型  **一句话概括**: 通过激活注入、SAE 和线性探针对 6 个 VLA 模型的大规模分析，揭示视觉通路主导动作生成、语言敏感度取决于任务结构。  **论文信息** - **标题**: Not All Features Are Created Equal: A Mechanistic St",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "paper-260319370",
-    title: "VAMPO: Policy Optimization for Improving Visual Dynamics in Video Action Models",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-23",
-    category: "embodied",
-    summary: "## 2. VAMPO: Policy Optimization for Improving Visual Dynamics in Video Action Models  - **论文ID**: arXiv:2603.19370 - **作者**: Zirui Ge, Pengxiang Ding, Baohua Yin, Qishen Wang, Zhiyong Xie, Yemin Wang",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.19370",
-    htmlUrl: "https://arxiv.org/abs/2603.19370",
-    figures: []
-  },
-  {
-    id: "omnivta-2026-03-23",
-    title: "OmniVTA: Visuo-Tactile World Modeling for Contact-Rich Robotic Manipulation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-23",
-    category: "embodied",
-    summary: "## 4. OmniVTA: Visuo-Tactile World Modeling for Contact-Rich Robotic Manipulation  - **论文ID**: 待确认（2026-03-19 公布） - **作者**: Yuhang Zheng, Songen Gu, Weize Li, Yupeng Zheng, Yujie Zang, Shuai Tian, Xia",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "paper-260319199",
-    title: "FASTER: Rethinking Real-Time Flow VLAs",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-21",
-    category: "embodied",
-    summary: "## 1. FASTER: Rethinking Real-Time Flow VLAs  **论文ID**: arXiv:2603.19199   **作者**: Yuxiang Lu, Zhe Liu, Xianzhe Fan, Zhenya Yang, Jinghua Hou, Junyi Li, Kaixin Ding, Hengshuang Zhao   **机构**: 悉尼大学 / 悉",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.19199",
-    htmlUrl: "https://arxiv.org/abs/2603.19199",
-    figures: []
-  },
-  {
-    id: "paper-260318532",
-    title: "Scaling Sim-to-Real Reinforcement Learning for Robot VLAs with Generative 3D Worlds",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-21",
-    category: "embodied",
-    summary: "## 3. Scaling Sim-to-Real Reinforcement Learning for Robot VLAs with Generative 3D Worlds  **论文ID**: arXiv:2603.18532   **作者**: Andrew Choi, Xinjie Wang, Zhizhong Su, Wei Xu   **机构**: 待确认（4位作者，未明确标注机构",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.18532",
-    htmlUrl: "https://arxiv.org/abs/2603.18532",
-    figures: []
-  },
-  {
-    id: "paper-260319233",
-    title: "Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-21",
-    category: "embodied",
-    summary: "## 4. Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models  **论文ID**: arXiv:2603.19233   **作者**: Bryce Grant, Xijia Zhao, Peng Wang   **机构**: 待确认   **日期**: 2026-03-",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.19233",
-    htmlUrl: "https://arxiv.org/abs/2603.19233",
-    figures: []
-  },
-  {
-    id: "paper-260318811",
-    title: "V-Dreamer: Automating Robotic Simulation and Trajectory Synthesis via Video Generation Priors",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-21",
-    category: "embodied",
-    summary: "## 5. V-Dreamer: Automating Robotic Simulation and Trajectory Synthesis via Video Generation Priors  **论文ID**: arXiv:2603.18811   **作者**: Songjia He, Zixuan Chen, Hongyu Ding, Dian Shao, Jieqi Shi, Ch",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.18811",
-    htmlUrl: "https://arxiv.org/abs/2603.18811",
-    figures: []
-  },
-  {
-    id: "paper-260316861",
-    title: "MolmoB0T",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-19",
-    category: "embodied",
-    summary: "## 1. MolmoB0T  - **论文ID**: arXiv:2603.16861 - **标题**: MolmoB0T: Large-Scale Simulation Enables Zero-Shot Manipulation - **作者**: Abhay Deshpande, Maya Guru, Rose Hendrix, Dieter Fox, Ali Farhadi, Ranj",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.16861",
-    htmlUrl: "https://arxiv.org/abs/2603.16861",
-    figures: []
-  },
-  {
-    id: "paper-260316860",
-    title: "DreamPlan",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-19",
-    category: "embodied",
-    summary: "## 2. DreamPlan  - **论文ID**: arXiv:2603.16860 - **标题**: DreamPlan: Efficient Reinforcement Fine-Tuning of Vision-Language Planners via Video World Models - **作者**: Emily Yue-Ting Jia, Weiduo Yuan, Tia",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.16860",
-    htmlUrl: "https://arxiv.org/abs/2603.16860",
-    figures: []
-  },
-  {
-    id: "paper-260316666",
-    title: "Fast-WAM",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-19",
-    category: "embodied",
-    summary: "## 3. Fast-WAM  - **论文ID**: arXiv:2603.16666 - **标题**: Fast-WAM: Do World Action Models Need Test-time Future Imagination? - **作者**: Tianyuan Yuan, Zibin Dong, Yicheng Liu, Hang Zhao - **机构**: 清华大学 (H",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.16666",
-    htmlUrl: "https://arxiv.org/abs/2603.16666",
-    figures: []
-  },
-  {
-    id: "paper-260316669",
-    title: "Kinema4D",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-19",
-    category: "embodied",
-    summary: "## 4. Kinema4D  - **论文ID**: arXiv:2603.16669 - **标题**: Kinema4D: Kinematic 4D World Modeling for Spatiotemporal Embodied Simulation - **作者**: Mutian Xu, Tianbao Zhang, Tianqi Liu, Zhaoxi Chen, Xiaogua",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.16669",
-    htmlUrl: "https://arxiv.org/abs/2603.16669",
-    figures: []
-  },
-  {
-    id: "paper-260316195",
-    title: "S-VAM",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-19",
-    category: "embodied",
-    summary: "## 5. S-VAM  - **论文ID**: arXiv:2603.16195 - **标题**: S-VAM: Shortcut Video-Action Model by Self-Distilling Geometric and Semantic Foresight - **作者**: Haodong Yan, Zhide Zhong, Jiaguan Zhu, Junjie He, e",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.16195",
-    htmlUrl: "https://arxiv.org/abs/2603.16195",
-    figures: []
-  },
-  {
-    id: "paper-260314522",
-    title: "OPFA (One-Policy-Fits-All)",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-19",
-    category: "embodied",
-    summary: "## 6. OPFA (One-Policy-Fits-All)  - **论文ID**: arXiv:2603.14522 - **标题**: One-Policy-Fits-All: Geometry-Aware Action Latents for Cross-Embodiment Manipulation - **作者**: Juncheng Mu, Sizhe Yang, Hojin B",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.14522",
-    htmlUrl: "https://arxiv.org/abs/2603.14522",
-    figures: []
-  },
-  {
-    id: "paper-260315169",
-    title: "ForceVLA2",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-19",
-    category: "embodied",
-    summary: "## 7. ForceVLA2  - **论文ID**: arXiv:2603.15169 - **标题**: ForceVLA2: Unleashing Hybrid Force-Position Control with Force Awareness for Contact-Rich Manipulation - **作者**: Yang Li, Zhaxizhuoma, Hongru Ji",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.15169",
-    htmlUrl: "https://arxiv.org/abs/2603.15169",
-    figures: []
-  },
-  {
-    id: "paper-260314523",
-    title: "VLA-Thinker",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-19",
-    category: "embodied",
-    summary: "## 8. VLA-Thinker  - **论文ID**: arXiv:2603.14523 - **标题**: VLA-Thinker: Boosting Vision-Language-Action Models through Thinking-with-Image Reasoning - **作者**: Chaoyang Wang, Wenrui Bao, Sicheng Gao, Bi",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.14523",
-    htmlUrl: "https://arxiv.org/abs/2603.14523",
-    figures: []
-  },
-  {
-    id: "paper-260315257",
-    title: "HapticVLA",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-19",
-    category: "embodied",
-    summary: "## 11. HapticVLA  - **论文ID**: arXiv:2603.15257 - **标题**: HapticVLA: Contact-Rich Manipulation via Vision-Language-Action Model without Inference-Time Tactile Sensing - **作者**: Konstantin Gubernatorov,",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.15257",
-    htmlUrl: "https://arxiv.org/abs/2603.15257",
-    figures: []
-  },
-  {
-    id: "paper-260314371",
-    title: "OxyGen: VLA 模型多任务并行下的统一 KV Cache 管理",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-18",
-    category: "embodied",
-    summary: "## 1. OxyGen: VLA 模型多任务并行下的统一 KV Cache 管理  - **论文ID**: arXiv:2603.14371 - **作者**: Xiangyu Li, Huaizhi Tang, Xin Ding, Weijun Wang, Ting Cao, Yunxin Liu - **机构**: Microsoft Research Asia - **日期**: 2026",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.14371",
-    htmlUrl: "https://arxiv.org/abs/2603.14371",
-    figures: []
-  },
-  {
-    id: "paper-260313615",
-    title: "EgoHOI: 自中心世界模型用于真实感手物交互合成",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-18",
-    category: "embodied",
-    summary: "## 2. EgoHOI: 自中心世界模型用于真实感手物交互合成  - **论文ID**: arXiv:2603.13615 - **作者**: Dayou Li, Lulin Liu, Bangya Liu, Shijie Zhou, Jiu Feng, Ziqi Lu, Minghui Zheng, Chenyu You, Zhiwen Fan - **机构**: 多机构合作 - **日期**",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.13615",
-    htmlUrl: "https://arxiv.org/abs/2603.13615",
-    figures: []
-  },
-  {
-    id: "paper-260307648",
-    title: "AtomicVLA: 机器人原子技能学习的统一规划执行框架",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-18",
-    category: "embodied",
-    summary: "## 3. AtomicVLA: 机器人原子技能学习的统一规划执行框架  - **论文ID**: arXiv:2603.07648 - **作者**: Likui Zhang, Tao Tang, Zhihao Zhan, Xiuwei Chen, Zisheng Chen, Jianhua Han, Jiangtong Zhu, Pei Xu, Hang Xu, Hefeng Wu, Liang",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.07648",
-    htmlUrl: "https://arxiv.org/abs/2603.07648",
-    figures: []
-  },
-  {
-    id: "paper-260303596",
-    title: "MEM: 视觉语言动作模型的多尺度具身记忆",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-18",
-    category: "embodied",
-    summary: "## 4. MEM: 视觉语言动作模型的多尺度具身记忆  - **论文ID**: arXiv:2603.03596 - **作者**: Marcel Torne, Karl Pertsch, Homer Walke, Kyle Vedder, Suraj Nair, Brian Ichter, Allen Z. Ren, Haohuan Wang, Jiaming Tang, Kyle Stach",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.03596",
-    htmlUrl: "https://arxiv.org/abs/2603.03596",
-    figures: []
-  },
-  {
-    id: "paper-260309056",
-    title: "Quality over Quantity (QoQ): 基于影响函数的机器人演示数据筛选",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-18",
-    category: "embodied",
-    summary: "## 5. Quality over Quantity (QoQ): 基于影响函数的机器人演示数据筛选  - **论文ID**: arXiv:2603.09056 - **作者**: Haeone Lee, Taywon Min, Junsu Kim, Sinjae Kang, Fangchen Liu, Lerrel Pinto, Kimin Lee - **机构**: **NYU / KAIS",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.09056",
-    htmlUrl: "https://arxiv.org/abs/2603.09056",
-    figures: []
-  },
-  {
-    id: "paper-260202212",
-    title: "MAIN-VLA: 意图与环境抽象建模的 VLA 框架",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-18",
-    category: "embodied",
-    summary: "## 6. MAIN-VLA: 意图与环境抽象建模的 VLA 框架  - **论文ID**: arXiv:2602.02212 - **作者**: Zheyuan Zhou 等 - **机构**: 多机构合作 - **日期**: 2026-02-02 - **类别**: cs.CV - **链接**: https://arxiv.org/abs/2602.02212  ### 一句话概括 通过意图",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2602.02212",
-    htmlUrl: "https://arxiv.org/abs/2602.02212",
-    figures: []
-  },
-  {
-    id: "paper-260206339",
-    title: "Action Hallucination in Generative VLA Models",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-18",
-    category: "embodied",
-    summary: "## 7. Action Hallucination in Generative VLA Models  - **论文ID**: arXiv:2602.06339 - **作者**: Harold Soh, Eugene Lim - **机构**: **National University of Singapore** - **日期**: 2026-02-06 - **类别**: cs.RO /",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2602.06339",
-    htmlUrl: "https://arxiv.org/abs/2602.06339",
-    figures: []
-  },
-  {
-    id: "paper-260212351",
-    title: "LongNav-R1: 长视界 VLA 导航的多轮强化学习框架",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-18",
-    category: "embodied",
-    summary: "## 8. LongNav-R1: 长视界 VLA 导航的多轮强化学习框架  - **论文ID**: arXiv:2602.12351 - **作者**: Yue Hu, Avery Xi, Qixin Xiao, Seth Isaacson, Henry X. Liu, Ram Vasudevan, Maani Ghaffari - **机构**: **University of Michiga",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2602.12351",
-    htmlUrl: "https://arxiv.org/abs/2602.12351",
-    figures: []
-  },
-  {
-    id: "paper-260219359",
-    title: "Vid2Sid: 视频驱动的 Sim2Real 系统辨识",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-18",
-    category: "embodied",
-    summary: "## 9. Vid2Sid: 视频驱动的 Sim2Real 系统辨识  - **论文ID**: arXiv:2602.19359 - **作者**: Kevin Qiu, Yu Zhang, Marek Cygan, Josie Hughes - **机构**: 多机构合作 - **日期**: 2026-02-22 - **类别**: cs.RO / cs.LG - **链接**: https:/",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2602.19359",
-    htmlUrl: "https://arxiv.org/abs/2602.19359",
-    figures: []
-  },
-  {
-    id: "paper-260209722",
-    title: "Rethinking VLA Model Scaling: 对齐、混合与正则化",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-18",
-    category: "embodied",
-    summary: "## 10. Rethinking VLA Model Scaling: 对齐、混合与正则化  - **论文ID**: arXiv:2602.09722 - **作者**: Ye Wang, Sipeng Zheng, Hao Luo 等 - **机构**: 多机构合作 - **日期**: 2026-02-10 - **类别**: cs.RO - **链接**: https://arxiv.org",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2602.09722",
-    htmlUrl: "https://arxiv.org/abs/2602.09722",
-    figures: []
-  },
-  {
-    id: "paper-260222818",
-    title: "LeRobot: 端到端机器人学习的开源库",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-18",
-    category: "embodied",
-    summary: "## 11. LeRobot: 端到端机器人学习的开源库  - **论文ID**: arXiv:2602.22818 - **作者**: Remi Cadene, Simon Aliberts, Francesco Capuano 等 - **机构**: **Hugging Face** - **日期**: 2026-02-26 - **类别**: cs.RO - **链接**: https://",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2602.22818",
-    htmlUrl: "https://arxiv.org/abs/2602.22818",
-    figures: []
-  },
-  {
-    id: "paper-260314811",
-    title: "Ego to World (E2W): 多智能体协作空间推理",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-18",
-    category: "embodied",
-    summary: "## 12. Ego to World (E2W): 多智能体协作空间推理  - **论文ID**: arXiv:2603.14811 - **作者**: Heng Zhou, Li Kang, Yiran Qin 等 - **机构**: 多机构合作（含 Philip Torr, Lei Bai, Zhenfei Yin） - **日期**: 2026-03-16 - **类别**: cs.RO ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.14811",
-    htmlUrl: "https://arxiv.org/abs/2603.14811",
-    figures: []
-  },
-  {
-    id: "qoq-2026-03-18",
-    title: "QoQ: 演示数据质量优先 (与论文5重复，此处略)",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-18",
-    category: "embodied",
-    summary: "## 13. QoQ: 演示数据质量优先 (与论文5重复，此处略)  ---  ## 本周趋势总结  1. **VLA 推理优化成为新热点**: OxyGen 和 MAIN-VLA 都关注 VLA 的部署效率，而不仅仅是模型能力 2. **记忆架构补齐 VLA 最后一块拼图**: MEM 的多尺度记忆设计让 VLA 从短操作走向长任务 3. **MoE 在 VLA 中的应用兴起**: Atomic",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "paper-260312639",
-    title: "RoboStereo: Dual-Tower 4D Embodied World Models for Unified Policy Optimization",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-17",
-    category: "embodied",
-    summary: "## 1. RoboStereo: Dual-Tower 4D Embodied World Models for Unified Policy Optimization  - **论文ID**: arXiv:2603.12639 - **作者**: Ruicheng Zhang, Guangyu Chen, Zunnan Xu, Zihao Liu, Zhizhou Zhong 等 - **机构",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.12639",
-    htmlUrl: "https://arxiv.org/abs/2603.12639",
-    figures: []
-  },
-  {
-    id: "paper-260312942",
-    title: "ReMem-VLA: Empowering Vision-Language-Action Model with Memory via Dual-Level Recurrent Queries",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-17",
-    category: "embodied",
-    summary: "## 2. ReMem-VLA: Empowering Vision-Language-Action Model with Memory via Dual-Level Recurrent Queries  - **论文ID**: arXiv:2603.12942 - **作者**: Hang Li, Fengyi Shen, Dong Chen, Liudi Yang, Xudong Wang 等",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.12942",
-    htmlUrl: "https://arxiv.org/abs/2603.12942",
-    figures: []
-  },
-  {
-    id: "paper-260312665",
-    title: "TacVLA: Contact-Aware Tactile Fusion for Robust Vision-Language-Action Manipulation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-17",
-    category: "embodied",
-    summary: "## 3. TacVLA: Contact-Aware Tactile Fusion for Robust Vision-Language-Action Manipulation  - **论文ID**: arXiv:2603.12665 - **作者**: Kaidi Zhang, Heng Zhang, Zhengtong Xu 等 - **机构**: 多机构合作 - **日期**: 2026",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.12665",
-    htmlUrl: "https://arxiv.org/abs/2603.12665",
-    figures: []
-  },
-  {
-    id: "paper-260312655",
-    title: "VGGT-World: Transforming VGGT into an Autoregressive Geometry World Model",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-17",
-    category: "embodied",
-    summary: "## 4. VGGT-World: Transforming VGGT into an Autoregressive Geometry World Model  - **论文ID**: arXiv:2603.12655 - **作者**: Xiangyu Sun, Shijie Wang, Fengyi Zhang, Lin Liu, Caiyan Jia - **机构**: 北京航空航天大学等 ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.12655",
-    htmlUrl: "https://arxiv.org/abs/2603.12655",
-    figures: []
-  },
-  {
-    id: "paper-260312553",
-    title: "Beyond Dense Futures: World Models as Structured Planners for Robotic Manipulation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-17",
-    category: "embodied",
-    summary: "## 5. Beyond Dense Futures: World Models as Structured Planners for Robotic Manipulation  - **论文ID**: arXiv:2603.12553 - **作者**: Minghao Jin, Mozheng Liao, Mingfei Han, Zhihui Li, Xiaojun Chang - **机构",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.12553",
-    htmlUrl: "https://arxiv.org/abs/2603.12553",
-    figures: []
-  },
-  {
-    id: "paper-260312510",
-    title: "Q-DIG: Red-Teaming Vision-Language-Action Models via Quality Diversity Prompt Generation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-17",
-    category: "embodied",
-    summary: "## 6. Q-DIG: Red-Teaming Vision-Language-Action Models via Quality Diversity Prompt Generation  - **论文ID**: arXiv:2603.12510 - **作者**: Siddharth Srikanth, Freddie Liang, Sophie Hsu, Varun Bhatt, Shiha",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.12510",
-    htmlUrl: "https://arxiv.org/abs/2603.12510",
-    figures: []
-  },
-  {
-    id: "paper-260308572",
-    title: "MetaWorld-X: Hierarchical World Modeling via VLM-Orchestrated Experts for Humanoid Loco-Manipulation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-17",
-    category: "embodied",
-    summary: "## 7. MetaWorld-X: Hierarchical World Modeling via VLM-Orchestrated Experts for Humanoid Loco-Manipulation  - **论文ID**: arXiv:2603.08572 - **作者**: Yutong Shen, Hangxu Liu, Penghui Liu, Jiashuo Luo, Yo",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.08572",
-    htmlUrl: "https://arxiv.org/abs/2603.08572",
-    figures: []
-  },
-  {
-    id: "paper-260308519",
-    title: "AtomVLA: Scalable Post-Training for Robotic Manipulation via Predictive Latent World Models",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-17",
-    category: "embodied",
-    summary: "## 8. AtomVLA: Scalable Post-Training for Robotic Manipulation via Predictive Latent World Models  - **论文ID**: arXiv:2603.08519 - **作者**: Xiaoquan Sun, Zetian Xu, Chen Cao, Zonghe Liu, Yihan Sun 等 - *",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.08519",
-    htmlUrl: "https://arxiv.org/abs/2603.08519",
-    figures: []
-  },
-  {
-    id: "paper-260303195",
-    title: "CoWVLA: Chain-of-World - World Model Thinking in Latent Motion",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-17",
-    category: "embodied",
-    summary: "## 9. CoWVLA: Chain-of-World - World Model Thinking in Latent Motion  - **论文ID**: arXiv:2603.03195 - **作者**: Fuxiang Yang, Donglin Di, Lulu Tang, Xuancheng Zhang, Lei Fan 等 - **机构**: 北京理工大学, 腾讯 - **日期",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.03195",
-    htmlUrl: "https://arxiv.org/abs/2603.03195",
-    figures: []
-  },
-  {
-    id: "paper-260305438",
-    title: "CompACT: Planning in 8 Tokens - A Compact Discrete Tokenizer for Latent World Model",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-17",
-    category: "embodied",
-    summary: "## 10. CompACT: Planning in 8 Tokens - A Compact Discrete Tokenizer for Latent World Model  - **论文ID**: arXiv:2603.05438 - **作者**: Dongwon Kim, Gawon Seo, Jinsung Lee, Minsu Cho, Suha Kwak - **机构**: P",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.05438",
-    htmlUrl: "https://arxiv.org/abs/2603.05438",
-    figures: []
-  },
-  {
-    id: "paper-260308403",
-    title: "SPIRAL: Self-Improving Action World Models via Reflective Planning Agents",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-17",
-    category: "embodied",
-    summary: "## 11. SPIRAL: Self-Improving Action World Models via Reflective Planning Agents  - **论文ID**: arXiv:2603.08403 - **作者**: Yu Yang, Yue Liao, Jianbiao Mei, Baisen Wang 等 - **机构**: 多机构合作 - **日期**: 2026-0",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.08403",
-    htmlUrl: "https://arxiv.org/abs/2603.08403",
-    figures: []
-  },
-  {
-    id: "paper-260310422",
-    title: "World2Act: Latent Action Post-Training via Skill-Compositional World Models",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-17",
-    category: "embodied",
-    summary: "## 13. World2Act: Latent Action Post-Training via Skill-Compositional World Models  - **论文ID**: arXiv:2603.10422 - **作者**: An Dinh Vuong, Tuan Van Vo, Abdullah Sohail, Haoran Ding, Liang Ma - **机构**: ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.10422",
-    htmlUrl: "https://arxiv.org/abs/2603.10422",
-    figures: []
-  },
-  {
-    id: "paper-260309030",
-    title: "PlayWorld: Learning Robot World Models from Autonomous Play",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-17",
-    category: "embodied",
-    summary: "## 14. PlayWorld: Learning Robot World Models from Autonomous Play  - **论文ID**: arXiv:2603.09030 - **作者**: Tenny Yin, Zhiting Mei, Zhonghe Zheng, Miyu Yamane, David Wang - **机构**: 多机构合作 - **日期**: 2026",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.09030",
-    htmlUrl: "https://arxiv.org/abs/2603.09030",
-    figures: []
-  },
-  {
-    id: "paper-251100062",
-    title: "Cosmos-Predict2.5: World Simulation with Video Foundation Models for Physical AI (NVIDIA)",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-17",
-    category: "embodied",
-    summary: "## 15. Cosmos-Predict2.5: World Simulation with Video Foundation Models for Physical AI (NVIDIA)  - **论文ID**: arXiv:2511.00062 - **作者**: NVIDIA 团队 (Arslan Ali, Junjie Bai 等) - **机构**: NVIDIA - **日期**:",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2511.00062",
-    htmlUrl: "https://arxiv.org/abs/2511.00062",
-    figures: []
-  },
-  {
-    id: "paper-260312263",
-    title: "Ψ_0: 通用人形机器人基础模型",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-16",
-    category: "embodied",
-    summary: "## 1. Ψ_0: 通用人形机器人基础模型  **论文ID**: arXiv:2603.12263   **作者**: Songlin Wei, Hongyi Jing, Boqian Li, Zhenyu Zhao, Jiageng Mao, Zhenhao Ni, Sicheng He, Jie Liu, Xiawei Liu, Kaidi Kang, Sheng Zang, Weiduo ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.12263",
-    htmlUrl: "https://arxiv.org/abs/2603.12263",
-    figures: []
-  },
-  {
-    id: "paper-260312193",
-    title: "SaPaVe: 主动感知与操作",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-16",
-    category: "embodied",
-    summary: "## 2. SaPaVe: 主动感知与操作  **论文ID**: arXiv:2603.12193   **作者**: Mengzhen Liu, Enshen Zhou, Cheng Chi, Yi Han, Shanyu Rong, Liming Chen, Pengwei Wang, Zhongyuan Wang, Shanghang Zhang   **机构**: 北京大学等   **日期",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.12193",
-    htmlUrl: "https://arxiv.org/abs/2603.12193",
-    figures: []
-  },
-  {
-    id: "paper-260311653",
-    title: "Simple Recipe Works: VLA持续学习",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-16",
-    category: "embodied",
-    summary: "## 3. Simple Recipe Works: VLA持续学习  **论文ID**: arXiv:2603.11653   **作者**: Jiaheng Hu, Jay Shim, Chen Tang, Yoonchang Sung, Bo Liu, Peter Stone, Roberto Martin-Martin   **机构**: UT Austin, Sony AI等   **日",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.11653",
-    htmlUrl: "https://arxiv.org/abs/2603.11653",
-    figures: []
-  },
-  {
-    id: "paper-260311558",
-    title: "RoboClaw: 可扩展长程任务智能体框架",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-16",
-    category: "embodied",
-    summary: "## 4. RoboClaw: 可扩展长程任务智能体框架  **论文ID**: arXiv:2603.11558   **作者**: Ruiying Li, Yunlang Zhou, YuYao Zhu, Kylin Chen, Jingyuan Wang, Sukai Wang, Kongtao Hu, Minhui Yu, Bowen Jiang, Zhan Su, Jiayao Ma, X",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.11558",
-    htmlUrl: "https://arxiv.org/abs/2603.11558",
-    figures: []
-  },
-  {
-    id: "paper-260312265",
-    title: "OmniStream: 流式视觉统一骨干",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-16",
-    category: "embodied",
-    summary: "## 5. OmniStream: 流式视觉统一骨干  **论文ID**: arXiv:2603.12265   **作者**: Yibin Yan, Jilan Xu, Shangzhe Di, Haoning Wu, Weidi Xie   **机构**: 上海AI Lab等   **日期**: 2026-03-12   **类别**: cs.CV   **链接**: https://arxi",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.12265",
-    htmlUrl: "https://arxiv.org/abs/2603.12265",
-    figures: []
-  },
-  {
-    id: "paper-260311563",
-    title: "SVLL: 分阶段视觉语言学习",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-16",
-    category: "embodied",
-    summary: "## 6. SVLL: 分阶段视觉语言学习  **论文ID**: arXiv:2603.11563   **作者**: Yuyuan Yang, Junkun Hong, Hongrong Wang, Honghao Cai, Xunpeng Ren, Ge Wang, Mingcong Lei, Shenhao Yan, Jiahao Yang, Chengsi Yao, Xi Li, Yimi",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.11563",
-    htmlUrl: "https://arxiv.org/abs/2603.11563",
-    figures: []
-  },
-  {
-    id: "paper-260311811",
-    title: "RADAR: 闭环机器人数据生成",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-16",
-    category: "embodied",
-    summary: "## 7. RADAR: 闭环机器人数据生成  **论文ID**: arXiv:2603.11811   **作者**: Yongzhong Wang, Keyu Zhu, Yong Zhong, Liqiong Wang, Jinyu Yang, Feng Zheng   **机构**: 复旦大学等   **日期**: 2026-03-12   **类别**: cs.RO, cs.AI, cs.",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.11811",
-    htmlUrl: "https://arxiv.org/abs/2603.11811",
-    figures: []
-  },
-  {
-    id: "paper-260311080",
-    title: "SELF-VLA: 技能增强智能体框架",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-16",
-    category: "embodied",
-    summary: "## 10. SELF-VLA: 技能增强智能体框架  **论文ID**: arXiv:2603.11080   **作者**: Chang Liu, Sibo Tian, Xiao Liang, Minghui Zheng   **机构**: 港科大等   **日期**: 2026-03-10   **类别**: cs.RO   **链接**: https://arxiv.org/abs/260",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.11080",
-    htmlUrl: "https://arxiv.org/abs/2603.11080",
-    figures: []
-  },
-  {
-    id: "paper-260311041",
-    title: "DynVLA: Learning World Dynamics for Action Reasoning in Autonomous Driving",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-12",
-    category: "embodied",
-    summary: "## 1. DynVLA: Learning World Dynamics for Action Reasoning in Autonomous Driving  - **论文ID**: arXiv:2603.11041 - **作者**: Shuyao Shang, Bing Zhan, Yunfei Yan, Yuqi Wang, Yingyan Li, Yasong An, Xiaoman ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.11041",
-    htmlUrl: "https://arxiv.org/abs/2603.11041",
-    figures: []
-  },
-  {
-    id: "paper-260310712",
-    title: "FutureVLA: Joint Visuomotor Prediction for Vision-Language-Action Model",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-12",
-    category: "embodied",
-    summary: "## 2. FutureVLA: Joint Visuomotor Prediction for Vision-Language-Action Model  - **论文ID**: arXiv:2603.10712 - **作者**: Xiaoxu Xu, Hao Li, Jinhui Ye, Yilun Chen, Jia Zeng, Xinyi Chen, Linning Xu, Dahua ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.10712",
-    htmlUrl: "https://arxiv.org/abs/2603.10712",
-    figures: []
-  },
-  {
-    id: "paper-260310448",
-    title: "DiT4DiT: Jointly Modeling Video Dynamics and Actions for Generalizable Robot Control",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-12",
-    category: "embodied",
-    summary: "## 3. DiT4DiT: Jointly Modeling Video Dynamics and Actions for Generalizable Robot Control  - **论文ID**: arXiv:2603.10448 - **作者**: Teli Ma, Jia Zheng, Zifan Wang, Chuili Jiang, Andy Cui, Junwei Liang,",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.10448",
-    htmlUrl: "https://arxiv.org/abs/2603.10448",
-    figures: []
-  },
-  {
-    id: "paper-260310980",
-    title: "PPGuide: Steering Diffusion Policies with Performance Predictive Guidance",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-12",
-    category: "embodied",
-    summary: "## 4. PPGuide: Steering Diffusion Policies with Performance Predictive Guidance  - **论文ID**: arXiv:2603.10980 - **作者**: Zixing Wang, Devesh K. Jha, Ahmed H. Qureshi, Diego Romeres - **机构**: 未知 - **发布日",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.10980",
-    htmlUrl: "https://arxiv.org/abs/2603.10980",
-    figures: []
-  },
-  {
-    id: "paper-260310971",
-    title: "Contact Coverage-Guided Exploration for General-Purpose Dexterous Manipulation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-12",
-    category: "embodied",
-    summary: "## 5. Contact Coverage-Guided Exploration for General-Purpose Dexterous Manipulation  - **论文ID**: arXiv:2603.10971 - **作者**: Zixuan Liu, Ruoyi Qiao, Chenrui Tie, Xuanwei Liu, Yunfan Lou, Chongkai Gao,",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.10971",
-    htmlUrl: "https://arxiv.org/abs/2603.10971",
-    figures: []
-  },
-  {
-    id: "paper-260310469",
-    title: "DepthCache: Depth-Guided Training-Free Visual Token Merging for VLA Inference",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-12",
-    category: "embodied",
-    summary: "## 6. DepthCache: Depth-Guided Training-Free Visual Token Merging for VLA Inference  - **论文ID**: arXiv:2603.10469 - **作者**: Yuquan Li, Lianjie Ma, Han Ding, Lijun Zhu - **机构**: 未知 - **发布日期**: 2026-03-",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.10469",
-    htmlUrl: "https://arxiv.org/abs/2603.10469",
-    figures: []
-  },
-  {
-    id: "paper-260310871",
-    title: "FG-CLTP: Fine-Grained Contrastive Language Tactile Pretraining",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-12",
-    category: "embodied",
-    summary: "## 7. FG-CLTP: Fine-Grained Contrastive Language Tactile Pretraining  - **论文ID**: arXiv:2603.10871 - **作者**: Wenxuan Ma, Chaofan Zhang, Yinghao Cai, Guocai Yao, Shaowei Cui, Shuo Wang - **机构**: 未知 - *",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.10871",
-    htmlUrl: "https://arxiv.org/abs/2603.10871",
-    figures: []
-  },
-  {
-    id: "paper-260310340",
-    title: "Overcoming Visual Clutter in Vision Language Action Models via Concept-Gated Visual Distillation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-12",
-    category: "embodied",
-    summary: "## 8. Overcoming Visual Clutter in Vision Language Action Models via Concept-Gated Visual Distillation  - **论文ID**: arXiv:2603.10340 - **作者**: Sangmim Song, Sarath Kodagoda, Marc Carmichael, Karthick ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.10340",
-    htmlUrl: "https://arxiv.org/abs/2603.10340",
-    figures: []
-  },
-  {
-    id: "paper-260310441",
-    title: "KnowDiffuser: A Knowledge-Guided Diffusion Planner",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-12",
-    category: "embodied",
-    summary: "## 9. KnowDiffuser: A Knowledge-Guided Diffusion Planner  - **论文ID**: arXiv:2603.10441 - **作者**: Fan Ding, Xuewen Luo, Fengze Yang, Bo Yu, HwaHui Tew, Ganesh Krishnasami, Junn Yong Loo - **机构**: 未知 - ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.10441",
-    htmlUrl: "https://arxiv.org/abs/2603.10441",
-    figures: []
-  },
-  {
-    id: "paper-260310675",
-    title: "Cybo-Waiter: A Physical Agentic Framework for Humanoid Whole-Body Locomotion-Manipulation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-12",
-    category: "embodied",
-    summary: "## 10. Cybo-Waiter: A Physical Agentic Framework for Humanoid Whole-Body Locomotion-Manipulation  - **论文ID**: arXiv:2603.10675 - **作者**: Peng Ren, Haoyang Ge, Chuan Qi, Cong Huang, Hong Li, Jiang Zhao",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.10675",
-    htmlUrl: "https://arxiv.org/abs/2603.10675",
-    figures: []
-  },
-  {
-    id: "paper-260309971",
-    title: "TiPToP: A Modular Open-Vocabulary Planning System for Robotic Manipulation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-11",
-    category: "embodied",
-    summary: "## 1. TiPToP: A Modular Open-Vocabulary Planning System for Robotic Manipulation  - **论文ID**: arXiv:2603.09971 - **作者**: William Shen, Nishanth Kumar, Sahit Chintalapudi, Jie Wang, Christopher Watson,",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.09971",
-    htmlUrl: "https://arxiv.org/abs/2603.09971",
-    figures: []
-  },
-  {
-    id: "paper-260309882",
-    title: "Emerging Extrinsic Dexterity in Cluttered Scenes via Dynamics-aware Policy Learning",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-11",
-    category: "embodied",
-    summary: "## 2. Emerging Extrinsic Dexterity in Cluttered Scenes via Dynamics-aware Policy Learning  - **论文ID**: arXiv:2603.09882 - **作者**: Yixin Zheng, Jiangran Lyu, Yifan Zhang, Jiayi Chen, Mi Yan, Yuntian De",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.09882",
-    htmlUrl: "https://arxiv.org/abs/2603.09882",
-    figures: []
-  },
-  {
-    id: "paper-260309712",
-    title: "Robotic Scene Cloning: Advancing Zero-Shot Robotic Scene Adaptation in Manipulation via Visual Prompt Editing",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-11",
-    category: "embodied",
-    summary: "## 3. Robotic Scene Cloning: Advancing Zero-Shot Robotic Scene Adaptation in Manipulation via Visual Prompt Editing  - **论文ID**: arXiv:2603.09712 - **作者**: Binyuan Huang, Yuqing Wen, Yucheng Zhao, Yao",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.09712",
-    htmlUrl: "https://arxiv.org/abs/2603.09712",
-    figures: []
-  },
-  {
-    id: "paper-260309961",
-    title: "BEACON: Language-Conditioned Navigation Affordance Prediction under Occlusion",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-11",
-    category: "embodied",
-    summary: "## 4. BEACON: Language-Conditioned Navigation Affordance Prediction under Occlusion  - **论文ID**: arXiv:2603.09961 - **作者**: (待查证) - **机构**: (待查证) - **发布日期**: 2026-03-10 - **类别**: cs.RO - **链接**: [PDF]",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.09961",
-    htmlUrl: "https://arxiv.org/abs/2603.09961",
-    figures: []
-  },
-  {
-    id: "planning-in-8-tokens-2026-03-07",
-    title: "Planning in 8 Tokens: A Compact Discrete Tokenizer for Latent World Model",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-07",
-    category: "embodied",
-    summary: "### 1. Planning in 8 Tokens: A Compact Discrete Tokenizer for Latent World Model  - **作者**: Dongwon Kim, Gawon Seo, Jinsung Lee, Minsu Cho, Suha Kwak - **机构**: KAIST (韩国科学技术院) - **发布日期**: 2026-03-05 -",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "physiflow-2026-03-07",
-    title: "PhysiFlow: Physics-Aware Humanoid Whole-Body VLA via Multi-Brain Latent Flow Matching and Robust Tracking",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-07",
-    category: "embodied",
-    summary: "### 2. PhysiFlow: Physics-Aware Humanoid Whole-Body VLA via Multi-Brain Latent Flow Matching and Robust Tracking  - **作者**: Weikai Qin, Sichen Wu, Ci Chen, Mengfan Liu, Linxi Feng - **机构**:  Carnegie ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "critic-in-the-loop-2026-03-07",
-    title: "Critic in the Loop: A Tri-System VLA Framework for Robust Long-Horizon Manipulation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-07",
-    category: "embodied",
-    summary: "### 3. Critic in the Loop: A Tri-System VLA Framework for Robust Long-Horizon Manipulation  - **作者**: Pengfei Yi, Yingjie Ma, Wenjiang Xu, Yanan Hao, Shuai Gan - **机构**: 上海交通大学 - **发布日期**: 2026-03-05 ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "observing-and-controlling-2026-03-07",
-    title: "Observing and Controlling Features in Vision-Language-Action Models",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-07",
-    category: "embodied",
-    summary: "### 4. Observing and Controlling Features in Vision-Language-Action Models  - **作者**: Hugo Buurmeijer, Carmen Amo Alonso, Aiden Swann, Marco Pavone - **机构**: Stanford University - **发布日期**: 2026-03-05",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "robopocket-2026-03-07",
-    title: "RoboPocket: Improve Robot Policies Instantly with Your Phone",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-07",
-    category: "embodied",
-    summary: "### 5. RoboPocket: Improve Robot Policies Instantly with Your Phone  - **作者**: Junjie Fang, Wendi Chen, Han Xue, Fangyuan Zhou, Tian Le - **机构**: 未明确（待查证） - **发布日期**: 2026-03-05 - **类别**: cs.RO - **论文",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "curobov2-2026-03-07",
-    title: "cuRoboV2: Dynamics-Aware Motion Generation with Depth-Fused Distance Fields for High-DoF Robots",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-07",
-    category: "embodied",
-    summary: "### 6. cuRoboV2: Dynamics-Aware Motion Generation with Depth-Fused Distance Fields for High-DoF Robots  - **作者**: Balakumar Sundaralingam, Adithyavairavan Murali, Stan Birchfield - **机构**: NVIDIA - **",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "ultradexgrasp-2026-03-07",
-    title: "UltraDexGrasp: Learning Universal Dexterous Grasping for Bimanual Robots with Synthetic Data",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-07",
-    category: "embodied",
-    summary: "### 7. UltraDexGrasp: Learning Universal Dexterous Grasping for Bimanual Robots with Synthetic Data  - **作者**: Sizhe Yang, Yiman Xie, Zhixuan Liang, Yang Tian, Jia Zeng - **机构**:  Zhejiang University ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "omni-manip-2026-03-07",
-    title: "Omni-Manip: Beyond-FOV Large-Workspace Humanoid Manipulation with Omnidirectional 3D Perception",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-07",
-    category: "embodied",
-    summary: "### 8. Omni-Manip: Beyond-FOV Large-Workspace Humanoid Manipulation with Omnidirectional 3D Perception  - **作者**: Pei Qu, Zheng Li, Yufei Jia, Ziyun Liu, Liang Zhu - **机构**: 清华大学 - **发布日期**: 2026-03-0",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "latent-policy-steering-th-2026-03-07",
-    title: "Latent Policy Steering through One-Step Flow Policies",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-07",
-    category: "embodied",
-    summary: "### 9. Latent Policy Steering through One-Step Flow Policies  - **作者**: Hokyun Im, Andrey Kolobov, Jianlong Fu, Youngwoon Lee - **机构**:  University of Southern California (USC) - **发布日期**: 2026-03-05 ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "openfrontier-2026-03-07",
-    title: "OpenFrontier: General Navigation with Visual-Language Grounded Frontiers",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-07",
-    category: "embodied",
-    summary: "### 10. OpenFrontier: General Navigation with Visual-Language Grounded Frontiers  - **作者**: Esteban Padilla, Boyang Sun, Marc Pollefeys, Hermann Blum - **机构**: ETH Zurich - **发布日期**: 2026-03-05 - **类别",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "physgen-2026-03-06",
-    title: "PhysGen: Learning Physics from Pretrained Video Models",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-06",
-    category: "embodied",
-    summary: "### 1. PhysGen: Learning Physics from Pretrained Video Models  **作者**: Zijian Song, Qichang Li, Sihan Qin, Yuhao Chen, Tianshui Chen, Liang Lin, Guangrun Wang   **机构**: 疑似中山大学/北京大学   **日期**: 2026-02-1",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "streamvla-2026-03-06",
-    title: "StreamVLA: Breaking the Reason-Act Cycle via Completion-State Gating",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-06",
-    category: "embodied",
-    summary: "### 2. StreamVLA: Breaking the Reason-Act Cycle via Completion-State Gating  **作者**: Tongqing Chen, Hang Wu, Jiasen Wang, Xiaotao Li, Lu Fang   **日期**: 2026-02-07   **PDF**: https://arxiv.org/pdf/2602",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "robmrag-2026-03-06",
-    title: "RobMRAG: Zero-Shot Robotic Manipulation via 3D Gaussian Splatting-Enhanced MRAG",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-06",
-    category: "embodied",
-    summary: "### 3. RobMRAG: Zero-Shot Robotic Manipulation via 3D Gaussian Splatting-Enhanced MRAG  **作者**: Zilong Xie, Jingyu Gong, Xin Tan, Zhizhong Zhang, Yuan Xie   **日期**: 2026-02-28   **PDF**: https://arxiv",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "i-perceive-2026-03-06",
-    title: "I-Perceive: A Foundation Model for Active Perception with Language Instructions",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-06",
-    category: "embodied",
-    summary: "### 4. I-Perceive: A Foundation Model for Active Perception with Language Instructions  **作者**: Yongxi Huang, Zhuohang Wang, Wenjing Tang, Cewu Lu, Panpan Cai   **机构**: 上海交通大学   **日期**: 2026-02-28   *",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "inject-once-survive-later-2026-03-06",
-    title: "Inject Once Survive Later: Backdooring Vision-Language-Action Models",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-06",
-    category: "embodied",
-    summary: "### 5. Inject Once Survive Later: Backdooring Vision-Language-Action Models  **作者**: Jianyi Zhou, Yujie Wei, Ruichen Zhen, Bo Zhao, Xiaobo Xia, Rui Shao, Xiu Su, Shuo Yang   **日期**: 2026-01-31   **PDF",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "simpletool-2026-03-06",
-    title: "SimpleTool: Parallel Decoding for Real-Time LLM Function Calling",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-06",
-    category: "embodied",
-    summary: "### 6. SimpleTool: Parallel Decoding for Real-Time LLM Function Calling  **作者**: Xiaoxin Shi, Jiaxin Wan, Linkang Dong, Wei Jiang, Yue Liu, Zengfeng Huang   **日期**: 2026-02-04   **PDF**: https://arxiv",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "rethinking-the-role-of-en-2026-03-06",
-    title: "Rethinking the Role of Entropy in Optimizing Tool-Use Behaviors",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-06",
-    category: "embodied",
-    summary: "### 7. Rethinking the Role of Entropy in Optimizing Tool-Use Behaviors  **作者**: Zeping Li, Hongru Wang, Yiwen Zhao, Guanhua Chen, Yixia Li, Keyang Chen, Yixin Cao, Guangnan Ye, Hongfeng Chai, Zhenfei ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "context-learning-for-mult-2026-03-06",
-    title: "Context Learning for Multi-Agent Discussion",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-06",
-    category: "embodied",
-    summary: "### 8. Context Learning for Multi-Agent Discussion  **作者**: Xingyuan Hua, Sheng Yue, Xinyi Li, Yizhe Zhao, Jinrui Zhang, Ju Ren   **日期**: 2026-02-02   **PDF**: https://arxiv.org/pdf/2602.02350   **HTM",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "a-user-study-on-teleopera-2026-03-06",
-    title: "A User Study on Teleoperation Interfaces for Primitive Manipulation Tasks",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-06",
-    category: "embodied",
-    summary: "### 9. A User Study on Teleoperation Interfaces for Primitive Manipulation Tasks  **作者**: Jun Aoki, Shunki Itadera   **日期**: 2026-02-03   **PDF**: https://arxiv.org/pdf/2603.00020   **HTML**: https://",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "tilt-ropter-2026-03-06",
-    title: "Tilt-Ropter: Hybrid Aerial and Terrestrial Vehicle with Tilt Rotors",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-06",
-    category: "embodied",
-    summary: "### 10. Tilt-Ropter: Hybrid Aerial and Terrestrial Vehicle with Tilt Rotors  **作者**: Ruoyi Wang, Xuchen Liu, Zongzhou Wu, Zixuan Guo, Wendi Ding, Ben M. Chen   **日期**: 2026-02-02   **PDF**: https://ar",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "chain-of-world-2026-03-05",
-    title: "Chain of World: World Model Thinking in Latent Motion",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-05",
-    category: "embodied",
-    summary: "## 1. Chain of World: World Model Thinking in Latent Motion  **作者**: Fuxiang Yang, Donglin Di, Lulu Tang, Xuancheng Zhang, Lei Fan, Hao Li, Chen Wei, Tonghua Su, Baorui Ma   **机构**: 旷视科技 (Megvii)   **",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "ace-brain-0-2026-03-05",
-    title: "ACE-Brain-0: Spatial Intelligence as a Shared Scaffold for Universal Embodiments",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-05",
-    category: "embodied",
-    summary: "## 2. ACE-Brain-0: Spatial Intelligence as a Shared Scaffold for Universal Embodiments  **作者**: Ziyang Gong, Zehang Luo, Anke Tang, Zhe Liu, Shi Fu, Zhi Hou, Ganlin Lin, Weiyun Wang, Xiaofeng Wang, Ji",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "joint-aligned-latent-acti-2026-03-05",
-    title: "Joint-Aligned Latent Action: Towards Scalable VLA Pretraining in the Wild",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-05",
-    category: "embodied",
-    summary: "## 3. Joint-Aligned Latent Action: Towards Scalable VLA Pretraining in the Wild  **作者**: Hao Luo, Ye Wang, Wanpeng Zhang, Haoqi Yuan, Yicheng Feng, Haiweng Xu, Sipeng Zheng, Zongqing Lu   **机构**: 北大, ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "universal-pose-pretrainin-2026-03-05",
-    title: "Universal Pose Pretraining for Generalizable Vision-Language-Action Policies",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-05",
-    category: "embodied",
-    summary: "## 4. Universal Pose Pretraining for Generalizable Vision-Language-Action Policies  **作者**: Haitao Lin, Hanyang Yu, Jingshun Zhang, He Zhang, Yonggen Ling, Ping Tan, Xiangyang Xue, Yanwei Fu   **机构**:",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "tether-2026-03-05",
-    title: "Tether: Autonomous Functional Play with Correspondence-Driven Trajectory Warping",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-05",
-    category: "embodied",
-    summary: "## 5. Tether: Autonomous Functional Play with Correspondence-Driven Trajectory Warping  **作者**: William Liang, Sam Wang, Hung-Ju Wang, Osbert Bastani, Yecheng Jason Ma, Dinesh Jayaraman   **机构**: UPen",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "utonia-2026-03-05",
-    title: "Utonia: Toward One Encoder for All Point Clouds",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-05",
-    category: "embodied",
-    summary: "## 6. Utonia: Toward One Encoder for All Point Clouds  **作者**: Yujia Zhang, Xiaoyang Wu, Yunhan Yang, Xianzhe Fan, Han Li, Yuechen Zhang, Zehao Huang, Naiyan Wang, Hengshuang Zhao   **机构**: 港中文, 上海AI ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "cmoe-2026-03-05",
-    title: "CMoE: Contrastive Mixture of Experts for Motion Control and Terrain Adaptation of Humanoid Robots",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-05",
-    category: "embodied",
-    summary: "## 7. CMoE: Contrastive Mixture of Experts for Motion Control and Terrain Adaptation of Humanoid Robots  **作者**: Shihao Ma, Hongjin Chen, Zijun Xu, Yi Zhao, Ke Wu, Ruichen Yang, Leyao Zou, Zhongxue Di",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "ma-conav-2026-03-05",
-    title: "MA-CoNav: A Master-Slave Multi-Agent Framework with Hierarchical Collaboration and Dual-Level Reflection for Long-Horizon Embodied VLN",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-05",
-    category: "embodied",
-    summary: "## 8. MA-CoNav: A Master-Slave Multi-Agent Framework with Hierarchical Collaboration and Dual-Level Reflection for Long-Horizon Embodied VLN  **作者**: Ling Luo, Qianqian Bai   **机构**: 哈尔滨工业大学   **发布日期*",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "adm-dp-2026-03-05",
-    title: "ADM-DP: Adaptive Dynamic Modality Diffusion Policy through Vision-Tactile-Graph Fusion for Multi-Agent Manipulation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-05",
-    category: "embodied",
-    summary: "## 9. ADM-DP: Adaptive Dynamic Modality Diffusion Policy through Vision-Tactile-Graph Fusion for Multi-Agent Manipulation  **作者**: Enyi Wang, Wen Fan, Dandan Zhang   **机构**: 清华大学   **发布日期**: 2026/02/2",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "denoising-particle-filter-2026-03-05",
-    title: "Denoising Particle Filters: Learning State Estimation with Single-Step Objectives",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-05",
-    category: "embodied",
-    summary: "## 10. Denoising Particle Filters: Learning State Estimation with Single-Step Objectives  **作者**: Lennart Röstel, Berthold Bäuml   **机构**: TUM (慕尼黑工业大学)   **发布日期**: 2026/02/23   **arXiv ID**: 2602.196",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "paper-260303283",
-    title: "Utonia: Toward One Encoder for All Point Clouds",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-04",
-    category: "embodied",
-    summary: "## 1. Utonia: Toward One Encoder for All Point Clouds  - **论文ID**: arXiv:2603.03283 - **作者**: Yujia Zhang, Xiaoyang Wu, Yunhan Yang, Xianzhe Fan, Han Li, Yuechen Zhang, Zehao Huang, Naiyan Wang, Hengs",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.03283",
-    htmlUrl: "https://arxiv.org/abs/2603.03283",
-    figures: []
-  },
-  {
-    id: "paper-260303282",
-    title: "MIBURI: Towards Expressive Interactive Gesture Synthesis",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-04",
-    category: "embodied",
-    summary: "## 2. MIBURI: Towards Expressive Interactive Gesture Synthesis  - **论文ID**: arXiv:2603.03282 - **作者**: M. Hamza Mughal, Rishabh Dabral, Vera Demberg, Christian Theobalt - **机构**: MPI Informatics, TU D",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.03282",
-    htmlUrl: "https://arxiv.org/abs/2603.03282",
-    figures: []
-  },
-  {
-    id: "paper-260303278",
-    title: "Tether: Autonomous Functional Play with Correspondence-Driven Trajectory Warping",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-04",
-    category: "embodied",
-    summary: "## 3. Tether: Autonomous Functional Play with Correspondence-Driven Trajectory Warping  - **论文ID**: arXiv:2603.03278 - **作者**: William Liang, Sam Wang, Hung-Ju Wang, Osbert Bastani, Yecheng Jason Ma, ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.03278",
-    htmlUrl: "https://arxiv.org/abs/2603.03278",
-    figures: []
-  },
-  {
-    id: "paper-260303279",
-    title: "ULTRA: Unified Multimodal Control for Autonomous Humanoid Whole-Body Loco-Manipulation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-04",
-    category: "embodied",
-    summary: "## 4. ULTRA: Unified Multimodal Control for Autonomous Humanoid Whole-Body Loco-Manipulation  - **论文ID**: arXiv:2603.03279 - **作者**: Xialin He, Sirui Li, Xinyao Yao, Runpei Dong, Liuyu Bian, Yu-Xiong ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.03279",
-    htmlUrl: "https://arxiv.org/abs/2603.03279",
-    figures: []
-  },
-  {
-    id: "paper-260303243",
-    title: "HoMMI: Learning Whole-Body Mobile Manipulation from Human Demonstrations",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-04",
-    category: "embodied",
-    summary: "## 5. HoMMI: Learning Whole-Body Mobile Manipulation from Human Demonstrations  - **论文ID**: arXiv:2603.03243 - **作者**: Xiaomeng Xu, Jisang Park, Han Zhang, Eric Cousineau, Aditya Bhat, Jose Barreiros,",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "https://arxiv.org/pdf/2603.03243",
-    htmlUrl: "https://arxiv.org/abs/2603.03243",
-    figures: []
-  },
-  {
-    id: "robust-skills,-brittle-gr-2026-03-03",
-    title: "Robust Skills, Brittle Grounding: Diagnosing Restricted Generalization in Vision-Language Action Policies via Multi-Object Picking",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-03",
-    category: "embodied",
-    summary: "### 1. Robust Skills, Brittle Grounding: Diagnosing Restricted Generalization in Vision-Language Action Policies via Multi-Object Picking  - **作者**: David Emukpere, Romain Deffayet, Jean-Michel Render",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "planning-from-observation-2026-03-03",
-    title: "Planning from Observation and Interaction",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-03",
-    category: "embodied",
-    summary: "### 2. Planning from Observation and Interaction  - **作者**: Tyler Han, Siyang Shen, Rohan Baijal, Harine Ravichandiran, Bat Nemekhbold, Kevin Huang, Sanghun Jung, Byron Boots - **机构**: University of W",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "foundation-world-models-f-2026-03-03",
-    title: "Foundation World Models for Agents that Learn, Verify, and Adapt Reliably Beyond Static Environments",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-03",
-    category: "embodied",
-    summary: "### 3. Foundation World Models for Agents that Learn, Verify, and Adapt Reliably Beyond Static Environments  - **作者**: Florent Delgrange - **机构**: 未公开 - **发布日期**: 2026-02-27 - **类别**: cs.LG, cs.AI - *",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "stemvla-2026-03-03",
-    title: "StemVLA: An Open-Source Vision-Language-Action Model with Future 3D Spatial Geometry Knowledge and 4D Historical Representation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-03",
-    category: "embodied",
-    summary: "### 4. StemVLA: An Open-Source Vision-Language-Action Model with Future 3D Spatial Geometry Knowledge and 4D Historical Representation  - **作者**: Jiasong Xiao, Yutao She, Kai Li, Yuyang Sha, Ziang Che",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "favla-2026-03-03",
-    title: "FAVLA: A Force-Adaptive Fast-Slow VLA model for Contact-Rich Robotic Manipulation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-03",
-    category: "embodied",
-    summary: "### 5. FAVLA: A Force-Adaptive Fast-Slow VLA model for Contact-Rich Robotic Manipulation  - **作者**: Yao Li, Peiyuan Tang, Wuyang Zhang, Chengyang Zhu, Yifan Duan, Weikai Shi, Xiaodong Zhang, Zijiang Y",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "vca-2026-03-03",
-    title: "VCA: Vision-Click-Action Framework for Precise Manipulation of Segmented Objects in Target Ambiguous Environments",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-03",
-    category: "embodied",
-    summary: "### 6. VCA: Vision-Click-Action Framework for Precise Manipulation of Segmented Objects in Target Ambiguous Environments  - **作者**: Donggeon Kim, Seungwon Jan, Hyeonjun Park, Daegyu Lim - **机构**: 未公开 ",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "dysl-vla-2026-03-03",
-    title: "DySL-VLA: Efficient Vision-Language-Action Model Inference via Dynamic-Static Layer-Skipping for Robot Manipulation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-03",
-    category: "embodied",
-    summary: "### 7. DySL-VLA: Efficient Vision-Language-Action Model Inference via Dynamic-Static Layer-Skipping for Robot Manipulation  - **作者**: 未详 - **发布日期**: 2026-02-26 - **类别**: cs.RO - **论文链接**: [PDF](https:",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "rethinking-the-practicali-2026-03-03",
-    title: "Rethinking the Practicality of Vision-language-action Model: A Comprehensive Benchmark and An Improved Baseline",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-03",
-    category: "embodied",
-    summary: "### 8. Rethinking the Practicality of Vision-language-action Model: A Comprehensive Benchmark and An Improved Baseline  - **作者**: 未详 - **发布日期**: 2026-02-26 - **类别**: cs.RO - **论文链接**: [PDF](https://ar",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "world-guidance-2026-03-03",
-    title: "World Guidance: World Modeling in Condition Space for Action Generation",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-03",
-    category: "embodied",
-    summary: "### 9. World Guidance: World Modeling in Condition Space for Action Generation  - **作者**: 未详 - **发布日期**: 2026-02-25 - **类别**: cs.LG - **论文链接**: [PDF](https://arxiv.org/pdf/2602.22567) | [HTML](https:/",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "aoe-2026-03-03",
-    title: "AoE: Always-on Egocentric Human Video Collection for Embodied AI",
-    authors: "et al.",
-    institution: "",
-    date: "2026-03-03",
-    category: "embodied",
-    summary: "### 10. AoE: Always-on Egocentric Human Video Collection for Embodied AI  - **作者**: 未详（大规模团队） - **发布日期**: 2026-02-27 - **类别**: cs.CV - **论文链接**: [PDF](https://arxiv.org/pdf/2602.23893) | [HTML](https:",
-    background: "",
-    architecture: "",
-    innovations: "",
-    inspiration: "",
-    pdfUrl: "",
-    htmlUrl: "",
-    figures: []
-  },
-  {
-    id: "paper-260406168",
-    title: "Action Images: End-to-End Policy Learning via Multiview Video Generation",
-    authors: "Haoyu Zhen et al.",
-    date: "2026-04-07",
-    institution: "",
-    category: "worldmodel",
-    summary: "将 7-DoF 机器人动作渲染为像素级 Action Images，使视频生成模型直接充当零样本策略，无需独立策略头。在 RLBench 和真实世界评估中取得最强零样本成功率。",
-    background: "World Action Model (WAM) 利用视频骨干建模未来状态，但现有方法依赖独立动作模块或非像素级动作表示，难以充分利用视频预训练知识。",
-    architecture: "将控制编码为可解释的 Action Images（多视角动作视频），动作与观测同处像素空间。视频骨干本身就是策略，不需要额外策略头或动作解码器。同一模型支持视频-动作联合生成、动作条件视频生成。",
-    innovations: "Action Images 像素级动作表示统一动作与视觉模态；零样本策略无需额外控制头；跨视角迁移天然支持。",
-    inspiration: "将动作映射到视觉空间是世界模型研究的重要趋势。视频预训练知识可直接用于机器人控制，关键在于动作表示设计。",
-    pdfUrl: "https://arxiv.org/pdf/2604.06168",
-    htmlUrl: "https://arxiv.org/abs/2604.06168",
-    figures: [],
-  },
-  {
-    id: "paper-260403181",
-    title: "MV-VDP: Multi-View Video Diffusion Policy",
-    authors: "Peiyan Li, Yixiang Chen, Yuan Xu, et al.",
-    date: "2026-04-06",
-    institution: "CASIA",
-    category: "worldmodel",
-    summary: "联合建模 3D 时空状态的多视角视频扩散策略，同时预测多视角热力图视频和 RGB 视频，显式建模环境对未来动作的响应。",
-    background: "机器人操作需要理解 3D 空间结构和时间演化，但现有策略依赖 2D 视觉观测和静态图文对预训练的骨干，对环境动态理解有限。",
-    architecture: "同时预测多视角热力图视频和 RGB 视频。热力图对齐视频预训练与动作微调的表示格式，RGB 视频指定机器人应执行的动作及环境响应。",
-    innovations: "多视角热力图+RGB 联合预测；显式建模环境对未来动作的响应（世界模型思想）；3D 时空感知能力。",
-    inspiration: "将世界模型思想（预测环境响应）融入策略学习。热力图与 RGB 联合预测对 VLA 设计有启发。",
-    pdfUrl: "https://arxiv.org/pdf/2604.03181",
-    htmlUrl: "https://arxiv.org/abs/2604.03181",
-    figures: [],
-  },
-  {
-    id: "paper-260212322",
-    title: "ForeAct: Steering Your VLA with Efficient Visual Foresight Planning",
-    authors: "Zhuoyang Zhang et al.",
-    date: "2026-04-02",
-    institution: "MIT + NVIDIA",
-    category: "vla",
-    summary: "MIT 和 NVIDIA 联合提出视觉前瞻规划，通过世界模型生成未来观测图像引导 VLA，在 11 个真实任务上成功率从 46.5% 提升至 87.4%。",
-    background: "VLA 在多步骤复杂操作中容易失败，核心瓶颈在于从高层语言指令到具体动作的跨越。",
-    architecture: "世界模型负责生成未来观测图像（H100 上 0.33s 生成 640x480），VLA 负责视觉运动推理。VLM 推理任务生成子任务描述。VLA 无需架构修改，只需将前瞻图像作为额外视觉输入。",
-    innovations: "世界模型与 VLA 的清晰分工；预训练世界模型泛化的关键性（in-house 训练在 OOD 上完全失败）；插件式设计。",
-    inspiration: "世界模型+VLA 分工模式是当前最佳实践。视觉前瞻比语言指令更有效引导 VLA，对架构设计有重要指导意义。",
-    pdfUrl: "https://arxiv.org/pdf/2602.12322",
-    htmlUrl: "https://arxiv.org/abs/2602.12322",
-    figures: [],
-  },
-  {
-    id: "paper-260405672",
-    title: "A1: Fully Transparent Open-Source Truncated VLA Model",
-    authors: "Kaidong Zhang, Jian Zhang, et al.",
-    date: "2026-04-08",
-    institution: "",
-    category: "vla",
-    summary: "完全开源透明的 VLA 模型，通过截断 VLM 骨干和替代动作头实现实时控制，降低部署成本。",
-    background: "VLA 部署受限于十亿级 VLM 骨干和迭代扩散/flow 动作头的高延迟和算力需求。",
-    architecture: "对 VLM 骨干进行截断处理，配合替代动作头（非迭代式），支持自适应调节。",
-    innovations: "完全开源透明；骨干截断+替代动作头实用方案；自适应机制平衡精度与速度。",
-    inspiration: "VLA 部署的工程优化方案，开源透明设计理念值得学习。",
-    pdfUrl: "https://arxiv.org/pdf/2604.05672",
-    htmlUrl: "https://arxiv.org/abs/2604.05672",
-    figures: [],
-  },
-  {
-    id: "paper-260403956",
-    title: "VLA-Forget: Vision-Language-Action Unlearning for Embodied Foundation Models",
-    authors: "Ravi Ranjan Kumar et al.",
-    date: "2026-04-07",
-    institution: "",
-    category: "vla",
-    summary: "VLA 遗忘学习框架，移除不安全行为同时保持感知、语言理解和动作控制能力。",
-    background: "VLA 部署引入新遗忘挑战：需要移除不安全行为而不降低其他能力。不良知识分布在多个模块中。",
-    architecture: "混合遗忘框架：比例感知选择性编辑（感知层）+ 层级选择性遗忘（推理/动作层）。分阶段更新视觉编码器、投影器和动作生成块。",
-    innovations: "首个 VLA 遗忘学习框架；遗忘效率+10%，感知保持+22%，推理保持+9%；量化后恢复率-55%。",
-    inspiration: "VLA 安全部署重要方向，对真实场景部署有参考价值。",
-    pdfUrl: "https://arxiv.org/pdf/2604.03956",
-    htmlUrl: "https://arxiv.org/abs/2604.03956",
-    figures: [],
-  },
-  {
-    id: "paper-260405014",
-    title: "StarVLA: Lego-like Codebase for VLA Model Developing",
-    authors: "StarVLA Team",
-    date: "2026-04-08",
-    institution: "",
-    category: "vla",
-    summary: "模块化 VLA 研究代码库，支持 VLM（Qwen-VL）和世界模型（Cosmos）骨干互换，集成 LIBERO、SimplerEnv 等主要 benchmark。",
-    background: "VLA 方法分散在不兼容的架构、代码库和评估协议中。",
-    architecture: "模块化 backbone-action-head 架构。支持 VLM backbone 和世界模型 backbone，以及代表性动作解码范式。统一评估接口支持仿真和真机部署。",
-    innovations: "VLM 和世界模型骨干的统一抽象；可复用训练策略；统一评估接口。",
-    inspiration: "Cosmos 世界模型骨干+VLM 骨干互换设计值得参考，可作为实验 baseline。",
-    pdfUrl: "https://arxiv.org/pdf/2604.05014",
-    htmlUrl: "https://arxiv.org/abs/2604.05014",
-    figures: [],
-  },
-  {
-    id: "paper-260211236",
-    title: "ABot-M0: VLA Foundation Model with Action Manifold Learning",
-    authors: "Yandan Yang, Shuang Zeng, Tong Lin, et al.",
-    date: "2026-04-04",
-    institution: "",
-    category: "vla",
-    summary: "从 6 个开源数据集构建 600 万轨迹数据集，提出 Action Manifold 假说，直接预测干净动作。LIBERO 98.6% 成功率。",
-    background: "构建跨硬件通用具身智能体面临数据碎片化、表示不一致和训练目标错齐。",
-    architecture: "Action Manifold 假说：有效动作位于低维平滑流形上。直接预测干净动作而非噪声/速度。600 万轨迹规模数据集。",
-    innovations: "LIBERO 98.6% 超越 pi0.5、GR00T-N1.6；动作流形假说在高维空间更稳定；数据采样策略是泛化的关键。",
-    inspiration: "动作流形假说对高维动作空间 VLA 设计有参考价值。数据工程经验值得借鉴。",
-    pdfUrl: "https://arxiv.org/pdf/2602.11236",
-    htmlUrl: "https://arxiv.org/abs/2602.11236",
-    figures: [],
-  },
-  {
-    id: "paper-260407430",
-    title: "HY-Embodied-0.5: Embodied Foundation Models for Real-World Agents",
-    authors: "Xumin Yu, Zuyan Liu, Ziyi Wang, He Zhang, Yongming Rao, Fangfu Liu, Yani Zhang, Ruowen Zhao, Oran Wang, Yves Liang, Haitao Lin, Minghui Wang, Yubo Dong, Kevin Cheng, Bolin Ni, Rui Huang, Han Hu, Zhengyou Zhang, Linus, Shunyu Yao",
-    date: "2026-04-08",
-    institution: "腾讯机器人实验室 (Tencent Robotics X)",
-    category: "embodied",
-    summary: "腾讯发布具身基础模型家族 HY-Embodied-0.5，包含 2B 和 32B 两个版本，采用 MoT 架构增强视觉感知，32B 达到 Gemini 3.0 Pro 水平。",
-    background: "通用 VLM 与具身智能需求之间存在显著差距。具身智能需要精细的时空视觉感知、空间推理、交互预测和规划能力。",
-    architecture: "Mixture-of-Transformers (MoT) 架构实现模态特异性计算。迭代自进化后训练范式。On-policy 蒸馏将 32B 模型能力迁移到 2B 模型。",
-    innovations: "2B 模型在 16 个基准测试上超越同级别 SOTA。32B 模型达到 Gemini 3.0 Pro 水平。MoT 架构通过模态特异性计算增强感知能力。",
-    inspiration: "腾讯的具身基础模型路线图展示了从 VLM 到具身智能的完整技术路径。MoT 架构的模态特异性计算思路值得借鉴。",
-    pdfUrl: "https://arxiv.org/pdf/2604.07430",
-    htmlUrl: "https://arxiv.org/abs/2604.07430",
-    figures: [],
-  },
-  {
-    id: "paper-260407993",
-    title: "HEX: Humanoid-Aligned Experts for Cross-Embodiment Whole-Body Manipulation",
-    authors: "Shuanghao Bai, Meng Li, Xinyuan Lv, Jiawei Wang, Xinhua Wang, Fei Liao, Chengkai Hou, Langzhe Gu, Wanqi Zhou, Kun Wu, Ziluo Ding, Zhiyuan Xu, Lei Sun, Shanghang Zhang, Zhengping Che, Jian Tang, Badong Chen",
-    date: "2026-04-09",
-    institution: "西安交通大学、华为诺亚方舟实验室",
-    category: "vla",
-    summary: "提出 state-centric 框架实现全尺寸双足人形机器人的全身协同操控，在真实世界人形操控任务中取得 SOTA。",
-    background: "大多数 VLA 模型将机器人身体部件视为独立模块处理，导致高自由度人形机器人控制困难且不稳定。",
-    architecture: "State-centric 框架，人形对齐通用状态表示。MoE-UPP 建模全身协调。残差门控融合 + flow-matching action head。",
-    innovations: "在真实世界人形操控任务中取得 SOTA 性能。跨具身全身操控的统一框架。MoE-UPP 建模全身协调和时序运动动态。",
-    inspiration: "全身协同操控是人形机器人的核心技术挑战。HEX 的 state-centric 思路和 MoE-UPP 对高自由度控制有重要参考价值。",
-    pdfUrl: "https://arxiv.org/pdf/2604.07993",
-    htmlUrl: "https://arxiv.org/abs/2604.07993",
-    figures: [],
-  },
-  {
-    id: "paper-260406168",
-    title: "Action Images: End-to-End Policy Learning via Multiview Video Generation",
-    authors: "Haoyu Zhen, Zixian Gao, Qiao Sun, Yilin Zhao, Yuncong Yang, Yilun Du, Tsun-Hsuan Wang, Yi-Ling Qiao, Chuang Gan",
-    date: "2026-04-07",
-    institution: "MIT、UCSD 等",
-    category: "vla",
-    summary: "将策略学习统一为多视角视频生成问题，提出 Action Images 概念让视频骨干网络本身充当零样本策略。",
-    background: "World Action Models 利用视频骨干建模未来状态，但现有方法依赖独立的动作模块，难以充分利用视频模型的预训练知识。",
-    architecture: "统一的 World Action Model。Action Images：多视角像素级动作表示。视频骨干作为零样本策略，无需独立策略头。",
-    innovations: "首次将 7-DoF 动作转为像素级多视角视频表示。视频骨干本身充当零样本策略。在 RLBench 和真实世界评估中取得最强零样本表现。",
-    inspiration: "Action Images 的像素级动作表示思路极具创新性，将动作嵌入到视频生成框架中，实现了策略学习和视频生成的高度统一。",
-    pdfUrl: "https://arxiv.org/pdf/2604.06168",
-    htmlUrl: "https://arxiv.org/abs/2604.06168",
-    figures: [],
-  },
-  {
-    id: "paper-260407957",
-    title: "WorldMAP: Bootstrapping Vision-Language Navigation Trajectory Prediction with Generative World Models",
-    authors: "Hongjin Chen, Shangyun Jiang, Tonghua Su, Chen Gao, Xinlei Chen, Yong Li, Zhibo Chen",
-    date: "2026-04-09",
-    institution: "北京大学、清华大学",
-    category: "worldmodel",
-    summary: "Teacher-student 框架将世界模型生成的未来视频转化为导航学习的结构化监督，ADE 降低 18.0%，FDE 降低 42.1%。",
-    background: "VLM 作为直接规划器或轨迹预测器越来越普遍，世界模型通过想象未来视图支持前瞻推理，但从单次自视角观测预测可靠轨迹仍然具有挑战性。",
-    architecture: "Teacher-Student 框架。World-model-driven Teacher 构建语义空间记忆。Lightweight Student + 多假设轨迹头。",
-    innovations: "将世界模型生成的未来转化为导航学习的结构化监督。ADE 降低 18.0%，FDE 降低 42.1%。世界模型的核心价值在于合成结构化监督。",
-    inspiration: "世界模型的价值在于合成结构化监督而非提供动作证据。Teacher-student 框架为世界模型服务于具身导航提供了实用范式。",
-    pdfUrl: "https://arxiv.org/pdf/2604.07957",
-    htmlUrl: "https://arxiv.org/abs/2604.07957",
-    figures: [],
-  },
-  {
-    id: "paper-260407209",
-    title: "INSPATIO-WORLD: A Real-Time 4D World Simulator via Spatiotemporal Autoregressive Modeling",
-    authors: "InSpatio Team, Donghui Shen, Guofeng Zhang, Haomin Liu, Hujun Bao 等",
-    date: "2026-04-08",
-    institution: "浙江大学",
-    category: "worldmodel",
-    summary: "基于时空自回归建模的实时 4D 世界模拟器，解决视频生成的空间一致性问题，支持 3D 环境无缝导航和交互。",
-    background: "构建具有空间一致性和实时交互性的世界模型仍然是计算机视觉的根本挑战。当前视频生成范式缺乏空间持久性和视觉真实性。",
-    architecture: "时空自回归建模 (Spatiotemporal Autoregressive Modeling)。实时 4D 世界模拟。空间持久性机制。",
-    innovations: "首个实时 4D 世界模拟器。解决视频生成的空间一致性问题。支持 3D 环境中的无缝导航和交互。",
-    inspiration: "4D 世界模拟器对具身智能的训练和评估至关重要。实时性是关键优势，使模拟器可以用于闭环交互。",
-    pdfUrl: "https://arxiv.org/pdf/2604.07209",
-    htmlUrl: "https://arxiv.org/abs/2604.07209",
-    figures: [],
-  },
-  {
-    id: "paper-260408544",
-    title: "SIM1: Physics-Aligned Simulator as Zero-Shot Data Scaler in Deformable Worlds",
-    authors: "Yunsong Zhou, Hangxu Liu, Xuekun Jiang, Xing Shen, Yuanzhen Zhou, Hui Wang, Baole Fang, Yang Tian, Mulin Yu, Qiaojun Yu, Li Ma, Hengjie Li, Hanqing Wang, Jia Zeng, Jiangmiao Pang",
-    date: "2026-04-09",
-    institution: "上海人工智能实验室/InternRobotics",
-    category: "embodied",
-    summary: "物理对齐的 real-to-sim-to-real 数据引擎，纯合成数据训练策略达到 1:15 等效比，90% 零样本成功率。",
-    background: "变形物体操控是具身学习中最数据密集的领域。现有仿真到真实迁移管道根植于刚体抽象，产生不匹配的几何和脆弱的软体动力学。",
-    architecture: "Real-to-sim-to-real 数据引擎。场景数字化为度量一致孪生体。弹性建模校准变形体动力学。基于扩散的轨迹生成 + 质量过滤。",
-    innovations: "物理对齐仿真的新范式。1:15 等效比。90% 零样本成功率。50% 泛化提升。",
-    inspiration: "仿真失败不是因为合成，而是因为缺乏物理对齐。这一核心洞察对 sim2real 领域有根本性启发。",
-    pdfUrl: "https://arxiv.org/pdf/2604.08544",
-    htmlUrl: "https://arxiv.org/abs/2604.08544",
-    figures: [],
-  },
-  {
-    id: "paper-260407607",
-    title: "EgoVerse: An Egocentric Human Dataset for Robot Learning from Around the World",
-    authors: "Ryan Punamiya, Simar Kareer, Zeyi Liu, Josh Citron, Ri-Zhao Qiu, Xiongyi Cai 等",
-    date: "2026-04-08",
-    institution: "Stanford、CMU、ETH 等",
-    category: "embodied",
-    summary: "大规模自我中心人类数据集，捕捉全球多种日常环境中的丰富操控行为，为机器人学习提供低成本替代数据源。",
-    background: "机器人数据收集昂贵且难以扩展。自我中心人类数据提供了有前景的替代方案。现有数据集在地域多样性和环境多样性方面存在不足。",
-    architecture: "自我中心人类数据集。全球多地域采集。第一人称视角操控数据。可用于模仿学习和策略学习。",
-    innovations: "全球规模的自中心人类操控数据集。跨地域、跨环境的数据多样性。为机器人学习提供低成本替代数据源。",
-    inspiration: "人类自我中心数据是机器人数据 scaling 的重要路径。EgoVerse 的全球采集策略确保了数据多样性。",
-    pdfUrl: "https://arxiv.org/pdf/2604.07607",
-    htmlUrl: "https://arxiv.org/abs/2604.07607",
-    figures: [],
-  },
-  {
-    id: "paper-260408168",
-    title: "ViVa: A Video-Generative Value Model for Robot Reinforcement Learning",
-    authors: "Jindi Lv, Hao Li, Jie Li, Yifei Nie, Fankun Kong, Yang Wang, Xiaofeng Wang, Zheng Zhu, Chaojun Ni, Qiuping Deng, Hengtao Li, Jiancheng Lv, Guan Huang",
-    date: "2026-04-09",
-    institution: "四川大学",
-    category: "vla",
-    summary: "将预训练视频生成器改造为价值估计模型，利用时空先验实现更鲁棒的价值信号，在真实世界任务中取得显著改进。",
-    background: "VLA 模型的部分可观测性和延迟反馈限制了真实世界部署。基于 VLM 的现有价值模型难以捕获时序动态。",
-    architecture: "视频生成式价值模型。输入当前观测 + 本体感知，输出未来本体感知 + 标量价值值。集成到 RECAP 框架。",
-    innovations: "首次将视频生成器改造为价值估计模型。价值估计与前瞻耦合。泛化到新物体。在真实世界任务中产生更可靠的价值信号。",
-    inspiration: "将视频生成模型用于价值估计是 VLA + RL 的有趣交叉。时空先验使价值估计更加鲁棒。",
-    pdfUrl: "https://arxiv.org/pdf/2604.08168",
-    htmlUrl: "https://arxiv.org/abs/2604.08168",
-    figures: [],
-  },
-  {
-    id: "paper-260407774",
-    title: "RoboAgent: Chaining Basic Capabilities for Embodied Task Planning",
-    authors: "Peiran Xu, Jiaqi Zheng, Yadong Mu",
-    date: "2026-04-09",
-    institution: "北京大学",
-    category: "embodied",
-    summary: "CVPR 2026 论文。提出 capability-driven 规划管道，将复杂规划分解为 VLM 友好的子问题序列，单一 VLM 实现所有组件。",
-    background: "近期 VLM 在多模态理解和推理方面表现突出，但在涉及多轮交互、长时序推理和扩展上下文分析的具身规划中表现有限。",
-    architecture: "Capability-driven 规划管道。调度器 + 多个子能力模块。三阶段训练：行为克隆 → DAgger → 强化学习。单一 VLM 实现所有组件。",
-    innovations: "将复杂规划分解为 VLM 友好的子问题序列。CVPR 2026 录用。单一 VLM 实现调度器和所有能力模块。",
-    inspiration: "Capability-driven 的分解思路使 VLM 能更好地处理复杂任务。不依赖外部工具的设计使系统更加自包含。",
-    pdfUrl: "https://arxiv.org/pdf/2604.07774",
-    htmlUrl: "https://arxiv.org/abs/2604.07774",
-    figures: [],
-  },
-  {
-    id: "paper-260408410",
-    title: "BLaDA: Bridging Language to Functional Dexterous Actions within 3DGS Fields",
-    authors: "Fan Yang, Wenrui Chen, Guorun Yan, Ruize Liao, Wanjun Jia, Dongsheng Luo, Kailun Yang, Zhiyong Li, Yaonan Wang",
-    date: "2026-04-09",
-    institution: "湖南大学",
-    category: "embodied",
-    summary: "可解释的零样本框架，将开放词汇指令映射为灵巧操控的感知和控制约束，基于 3DGS 实现连续场景功能定位。",
-    background: "非结构化环境中的功能性灵巧抓取需要语义理解、精确 3D 功能定位和物理可解释执行的紧密集成。",
-    architecture: "KLP（知识引导语言解析）→ TriLocation（三角功能点定位，基于 3DGS）→ KGT3D+（3D 关键点抓取矩阵变换执行）。三层级联可解释推理链。",
-    innovations: "零样本功能性灵巧操控。基于 3DGS 的连续场景表示用于功能定位。可解释的推理链（自然语言 → 结构化约束 → 3D 定位 → 物理执行）。",
-    inspiration: "BLaDA 的模块化、可解释思路对功能性操控任务有重要价值。3DGS 作为场景表示进行功能定位是一个有趣的方向。",
-    pdfUrl: "https://arxiv.org/pdf/2604.08410",
-    htmlUrl: "https://arxiv.org/abs/2604.08410",
-    figures: [],
-  },
+export const papers: Paper[] = [
   {
     id: "paper-260404707",
     title: "OpenWorldLib: A Unified Codebase and Definition of Advanced World Models",
-    authors: "DataFlow Team et al.",
-    date: "2026-04-07",
-    institution: "Multiple Institutions (OpenDCAI)",
-    category: "worldmodel",
-    summary: "首次提出世界模型的明确定义，创建统一代码库框架OpenWorldLib，为高级世界模型研究提供标准化基础。",
-    background: "世界模型作为AI重要研究方向受到广泛关注，但缺乏清晰统一的定义。随着具身智能和自主决策系统发展，对标准化框架的需求日益增长。",
-    architecture: "基于\"感知-交互-记忆\"三位一体框架：感知模块理解多模态环境信息，交互模块提供与环境互动能力，长期记忆模块维护环境动态的长期理解。整合不同任务下的模型，实现高效复用和协同推理。",
-    innovations: "首次明确世界模型定义。系统性分类核心能力。统一框架支持不同任务模型集成复用。完整开源代码库推动研究标准化。",
-    inspiration: "统一的定义和框架有助于建立世界模型评估标准，促进跨领域知识共享，为VLA模型提供更坚实的理论基础。",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-12",
+    category: "embodied",
+    summary: "## 1. OpenWorldLib: A Unified Codebase and Definition of Advanced World Models **论文ID**: arXiv:2604.04707v1   **作者**: DataFlow Team 等25位作者   **机构**: 多个研究机构合作   **日期**: 2026年4月7日   **类别**: Computer Vis",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
     pdfUrl: "https://arxiv.org/pdf/2604.04707",
     htmlUrl: "https://arxiv.org/abs/2604.04707",
-    figures: [],
+    figures: []
   },
   {
     id: "paper-260401346",
     title: "Safety, Security, and Cognitive Risks in World Models",
-    authors: "Manojkumar Parmar",
-    date: "2026-04-06",
-    institution: "Independent Research",
-    category: "worldmodel",
-    summary: "系统性分析世界模型在安全性、安全性和认知风险方面的挑战，提出完整威胁模型和缓解策略。",
-    background: "世界模型作为环境动态的内部模拟器，正成为机器人、自动驾驶和智能体自主决策的基础。预测能力也带来独特安全风险，在关键领域部署时安全性研究尤为重要。",
-    architecture: "多层次风险评估框架：数据层（训练数据污染和对抗性攻击）、表示层（潜在表示毒化和推理错误累积）、对齐层（目标误泛化、欺骗性对齐）、人类层（自动化偏见、信任校准困难和规划幻觉）。",
-    innovations: "结合MITRE ATLAS和OWASP LLM Top 10构建统一威胁模型。在GRU/RSSM/DreamerV3上验证轨迹持久性攻击。提出五种攻击者档案分类。跨学科缓解策略。",
-    inspiration: "世界模型需作为关键基础设施进行严格测试，建立专门安全评估标准，在开发早期融入安全考量。",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-12",
+    category: "embodied",
+    summary: "## 2. Safety, Security, and Cognitive Risks in World Models **论文ID**: arXiv:2604.01346v2   **作者**: Manojkumar Parmar   **机构**: 单作者研究   **日期**: 2026年4月6日（v2）   **类别**: Cryptography and Security, Artifi",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
     pdfUrl: "https://arxiv.org/pdf/2604.01346",
     htmlUrl: "https://arxiv.org/abs/2604.01346",
-    figures: [],
+    figures: []
   },
   {
     id: "paper-260206949",
     title: "DreamDojo: A Generalist Robot World Model from Large-Scale Human Videos",
-    authors: "Shenyuan Gao et al.",
-    date: "2026-02-12",
-    institution: "UC Berkeley et al.",
-    category: "worldmodel",
-    summary: "通过4.4万小时第一人称人类视频训练通用机器人世界模型DreamDojo，实现多样化环境中的物理理解和精确控制。",
-    background: "通用智能体需要模拟各种环境中行动结果的能力，但世界模型面临数据覆盖有限和动作标签稀缺两大挑战，尤其对灵巧机器人任务。",
-    architecture: "4.4万小时第一人称人类视频数据混合。连续潜在动作作为统一代理动作解决动作标签稀缺。小规模目标机器人数据后训练适配。蒸馏管道加速推理并改善上下文一致性。",
-    innovations: "迄今最大规模世界模型预训练数据集。连续潜在动作增强无标签视频交互知识迁移。蒸馏管道实现10.81FPS实时推理。开放世界接触丰富复杂任务有效模拟。",
-    inspiration: "大规模人类视频数据是构建通用机器人世界模型的有效途径，无监督学习显著减少标注依赖，通用模型可通过微调适应特定机器人平台。",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-12",
+    category: "embodied",
+    summary: "## 3. DreamDojo: A Generalist Robot World Model from Large-Scale Human Videos **论文ID**: arXiv:2602.06949   **作者**: Shenyuan Gao 等24位作者   **机构**: 多个研究机构（包括UC Berkeley等）   **日期**: 2026年2月12日   **类别**: R",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
     pdfUrl: "https://arxiv.org/pdf/2602.06949",
     htmlUrl: "https://arxiv.org/abs/2602.06949",
-    figures: [],
+    figures: []
   },
+  {
+    id: "[hy-embodied-0.5-2026-04-11",
+    title: "[HY-Embodied-0.5: Embodied Foundation Models for Real-World Agents](https://arxiv.org/abs/2604.07430)",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-11",
+    category: "embodied",
+    summary: "## 1. [HY-Embodied-0.5: Embodied Foundation Models for Real-World Agents](https://arxiv.org/abs/2604.07430) > 📅 2026-04-08 | 🏷️ 🤖 embodied | 🏛️ 腾讯机器人实验室 (Tencent Robotics X)  **腾讯发布具身基础模型家族 HY-Embodie",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "[hex-2026-04-11",
+    title: "[HEX: Humanoid-Aligned Experts for Cross-Embodiment Whole-Body Manipulation](https://arxiv.org/abs/2604.07993)",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-11",
+    category: "embodied",
+    summary: "## 2. [HEX: Humanoid-Aligned Experts for Cross-Embodiment Whole-Body Manipulation](https://arxiv.org/abs/2604.07993) > 📅 2026-04-09 | 🏷️ 🎯 vla | 🏛️ 西安交通大学、华为诺亚方舟实验室  **提出 state-centric 框架实现全尺寸双足人形机器人的",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "[action-images-2026-04-11",
+    title: "[Action Images: End-to-End Policy Learning via Multiview Video Generation](https://arxiv.org/abs/2604.06168)",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-11",
+    category: "embodied",
+    summary: "## 3. [Action Images: End-to-End Policy Learning via Multiview Video Generation](https://arxiv.org/abs/2604.06168) > 📅 2026-04-07 | 🏷️ 🎯 vla | 🏛️ MIT、UCSD 等  **将策略学习统一为多视角视频生成问题，提出 Action Images 概念让视频",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "[worldmap-2026-04-11",
+    title: "[WorldMAP: Bootstrapping Vision-Language Navigation Trajectory Prediction with Generative World Models](https://arxiv.org/abs/2604.07957)",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-11",
+    category: "embodied",
+    summary: "## 4. [WorldMAP: Bootstrapping Vision-Language Navigation Trajectory Prediction with Generative World Models](https://arxiv.org/abs/2604.07957) > 📅 2026-04-09 | 🏷️ 🌍 worldmodel | 🏛️ 北京大学、清华大学  **Teach",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "[inspatio-world-2026-04-11",
+    title: "[INSPATIO-WORLD: A Real-Time 4D World Simulator via Spatiotemporal Autoregressive Modeling](https://arxiv.org/abs/2604.07209)",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-11",
+    category: "embodied",
+    summary: "## 5. [INSPATIO-WORLD: A Real-Time 4D World Simulator via Spatiotemporal Autoregressive Modeling](https://arxiv.org/abs/2604.07209) > 📅 2026-04-08 | 🏷️ 🌍 worldmodel | 🏛️ 浙江大学  **基于时空自回归建模的实时 4D 世界模拟器，",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "[sim1-2026-04-11",
+    title: "[SIM1: Physics-Aligned Simulator as Zero-Shot Data Scaler in Deformable Worlds](https://arxiv.org/abs/2604.08544)",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-11",
+    category: "embodied",
+    summary: "## 6. [SIM1: Physics-Aligned Simulator as Zero-Shot Data Scaler in Deformable Worlds](https://arxiv.org/abs/2604.08544) > 📅 2026-04-09 | 🏷️ 🤖 embodied | 🏛️ 上海人工智能实验室/InternRobotics  **物理对齐的 real-to-si",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "[egoverse-2026-04-11",
+    title: "[EgoVerse: An Egocentric Human Dataset for Robot Learning from Around the World](https://arxiv.org/abs/2604.07607)",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-11",
+    category: "embodied",
+    summary: "## 7. [EgoVerse: An Egocentric Human Dataset for Robot Learning from Around the World](https://arxiv.org/abs/2604.07607) > 📅 2026-04-08 | 🏷️ 🤖 embodied | 🏛️ Stanford、CMU、ETH 等  **大规模自我中心人类数据集，捕捉全球多种日常",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "[viva-2026-04-11",
+    title: "[ViVa: A Video-Generative Value Model for Robot Reinforcement Learning](https://arxiv.org/abs/2604.08168)",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-11",
+    category: "embodied",
+    summary: "## 8. [ViVa: A Video-Generative Value Model for Robot Reinforcement Learning](https://arxiv.org/abs/2604.08168) > 📅 2026-04-09 | 🏷️ 🎯 vla | 🏛️ 四川大学  **将预训练视频生成器改造为价值估计模型，利用时空先验实现更鲁棒的价值信号，在真实世界任务中取得显著改",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "[roboagent-2026-04-11",
+    title: "[RoboAgent: Chaining Basic Capabilities for Embodied Task Planning](https://arxiv.org/abs/2604.07774)",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-11",
+    category: "embodied",
+    summary: "## 9. [RoboAgent: Chaining Basic Capabilities for Embodied Task Planning](https://arxiv.org/abs/2604.07774) > 📅 2026-04-09 | 🏷️ 🤖 embodied | 🏛️ 北京大学  **CVPR 2026 论文。提出 capability-driven 规划管道，将复杂规划分解为 ",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "[blada-2026-04-11",
+    title: "[BLaDA: Bridging Language to Functional Dexterous Actions within 3DGS Fields](https://arxiv.org/abs/2604.08410)",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-11",
+    category: "embodied",
+    summary: "## 10. [BLaDA: Bridging Language to Functional Dexterous Actions within 3DGS Fields](https://arxiv.org/abs/2604.08410) > 📅 2026-04-09 | 🏷️ 🤖 embodied | 🏛️ 湖南大学  **可解释的零样本框架，将开放词汇指令映射为灵巧操控的感知和控制约束，基于 3",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "action-images-2026-04-10",
+    title: "Action Images: End-to-End Policy Learning via Multiview Video Generation",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-10",
+    category: "embodied",
+    summary: "## 1. Action Images: End-to-End Policy Learning via Multiview Video Generation  | 字段 | 内容 | |------|------| | **论文ID** | 2604.06168 | | **作者** | Haoyu Zhen et al. | | **机构** | (待确认，跨机构合作) | | **日期** |",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "snapflow-2026-04-10",
+    title: "SnapFlow: One-Step Action Generation for Flow-Matching VLAs via Progressive Self-Distillation",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-10",
+    category: "embodied",
+    summary: "## 2. SnapFlow: One-Step Action Generation for Flow-Matching VLAs via Progressive Self-Distillation  | 字段 | 内容 | |------|------| | **论文ID** | 2604.05656 | | **作者** | Wuyang Luan, Junhui Li, Weiguang Z",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "mv-vdp-2026-04-10",
+    title: "MV-VDP: Multi-View Video Diffusion Policy",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-10",
+    category: "embodied",
+    summary: "## 3. MV-VDP: Multi-View Video Diffusion Policy  | 字段 | 内容 | |------|------| | **论文ID** | 2604.03181 | | **作者** | Peiyan Li, Yixiang Chen, Yuan Xu, et al. | | **机构** | 中科院自动化所 (CASIA) | | **日期** | 202",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "foreact-2026-04-10",
+    title: "ForeAct: Steering Your VLA with Efficient Visual Foresight Planning",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-10",
+    category: "embodied",
+    summary: "## 4. ForeAct: Steering Your VLA with Efficient Visual Foresight Planning  | 字段 | 内容 | |------|------| | **论文ID** | 2602.12322 | | **作者** | Zhuoyang Zhang et al. | | **机构** | MIT + NVIDIA | | **日期** |",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "a1-2026-04-10",
+    title: "A1: A Fully Transparent Open-Source, Adaptive and Efficient Truncated Vision-Language-Action Model",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-10",
+    category: "embodied",
+    summary: "## 5. A1: A Fully Transparent Open-Source, Adaptive and Efficient Truncated Vision-Language-Action Model  | 字段 | 内容 | |------|------| | **论文ID** | 2604.05672 | | **作者** | Kaidong Zhang, Jian Zhang, et",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "vla-forget-2026-04-10",
+    title: "VLA-Forget: Vision-Language-Action Unlearning for Embodied Foundation Models",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-10",
+    category: "embodied",
+    summary: "## 6. VLA-Forget: Vision-Language-Action Unlearning for Embodied Foundation Models  | 字段 | 内容 | |------|------| | **论文ID** | 2604.03956 | | **作者** | Ravi Ranjan Kumar et al. | | **机构** | (待确认) | | **日",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "starvla-2026-04-10",
+    title: "StarVLA: A Lego-like Codebase for Vision-Language-Action Model Developing",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-10",
+    category: "embodied",
+    summary: "## 7. StarVLA: A Lego-like Codebase for Vision-Language-Action Model Developing  | 字段 | 内容 | |------|------| | **论文ID** | 2604.05014 | | **作者** | (团队待确认) | | **机构** | (开源社区) | | **日期** | 2026-04-08 | ",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "abot-m0-2026-04-10",
+    title: "ABot-M0: VLA Foundation Model for Robotic Manipulation with Action Manifold Learning",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-10",
+    category: "embodied",
+    summary: "## 8. ABot-M0: VLA Foundation Model for Robotic Manipulation with Action Manifold Learning  | 字段 | 内容 | |------|------| | **论文ID** | 2602.11236 | | **作者** | Yandan Yang, Shuang Zeng, Tong Lin, et al. ",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "snapflow-2026-04-09",
+    title: "SnapFlow: 一次性动作生成的流匹配 VLA 加速方法",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-09",
+    category: "embodied",
+    summary: "## 1. SnapFlow: 一次性动作生成的流匹配 VLA 加速方法  | 属性 | 内容 | |------|------| | **论文ID** | 2604.05656 | | **作者** | Wuyang Luan, Junhui Li, Weiguang Zhao, Wenjian Zhang, Tieru Wu, Rui Ma | | **机构** | Rui Ma (通讯作者)",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "a1-2026-04-09",
+    title: "A1: 全透明开源自适应高效截断式 VLA 模型",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-09",
+    category: "embodied",
+    summary: "## 2. A1: 全透明开源自适应高效截断式 VLA 模型  | 属性 | 内容 | |------|------| | **论文ID** | 待确认（arXiv 搜索已收录，4月7日提交） | | **作者** | Kaidong Zhang, Jian Zhang, Rongtao Xu, Yu Sun, 等 (共 23 位) | | **机构** | Xiaodan Liang, Ivan",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "rsbm-2026-04-09",
+    title: "RSBM: 修正的薛定谔桥匹配实现少步视觉导航",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-09",
+    category: "embodied",
+    summary: "## 3. RSBM: 修正的薛定谔桥匹配实现少步视觉导航  | 属性 | 内容 | |------|------| | **论文ID** | 2604.05673 | | **作者** | Wuyang Luan (SnapFlow 同一作者), 等 | | **机构** | Wuyang Luan | | **日期** | 2026-04-07 | | **类别** | cs.RO, cs.A",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "wav-2026-04-09",
+    title: "WAV: 通过前向-逆向来性实现世界模型自我改进",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-09",
+    category: "embodied",
+    summary: "## 4. WAV: 通过前向-逆向来性实现世界模型自我改进  | 属性 | 内容 | |------|------| | **论文ID** | 2604.01985 | | **作者** | Yuejiang Liu, 等 | | **机构** | Stanford (Chelsea Finn), MIT (Yilun Du) | | **日期** | 2026-04-02 | | **类别**",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "egosim-2026-04-09",
+    title: "EgoSim: 面向具身交互生成的自我中心世界模拟器",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-09",
+    category: "embodied",
+    summary: "## 5. EgoSim: 面向具身交互生成的自我中心世界模拟器  | 属性 | 内容 | |------|------| | **论文ID** | 2604.01001 | | **作者** | Jinkun Hao, 等 | | **机构** | 待确认 | | **日期** | 2026-04-01 | | **类别** | cs.CV, cs.AI | | **链接** | [arXiv]",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "daert-2026-04-09",
+    title: "DAERT: 针对 VLA 的多样性感知嵌入式红队攻击",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-09",
+    category: "embodied",
+    summary: "## 6. DAERT: 针对 VLA 的多样性感知嵌入式红队攻击  | 属性 | 内容 | |------|------| | **论文ID** | 2604.05595 | | **作者** | Baoshun Tong, 等 | | **机构** | 待确认 | | **日期** | 2026-04-07 | | **类别** | cs.RO, cs.CV | | **链接** | [arX",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "rev-2026-04-09",
+    title: "ReV: 指向感知的视觉运动闭环操作策略",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-09",
+    category: "embodied",
+    summary: "## 7. ReV: 指向感知的视觉运动闭环操作策略  | 属性 | 内容 | |------|------| | **论文ID** | 2604.05544 | | **作者** | Jiahua Ma, 等 | | **机构** | 待确认 | | **日期** | 2026-04-07 | | **类别** | cs.RO, cs.CV | | **链接** | [arXiv](https:",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "paper-260329844",
+    title: "DIAL: Decoupling Intent and Action via Latent World Modeling",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-08",
+    category: "embodied",
+    summary: "## 1. DIAL: Decoupling Intent and Action via Latent World Modeling  - **论文标题**: DIAL: Decoupling Intent and Action via Latent World Modeling for End-to-End VLA - **论文ID**: arXiv:2603.29844 - **作者**: Y",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.29844",
+    htmlUrl: "https://arxiv.org/abs/2603.29844",
+    figures: []
+  },
+  {
+    id: "paper-260406168",
+    title: "Action Images: End-to-End Policy Learning via Multiview Video Generation",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-08",
+    category: "embodied",
+    summary: "## 2. Action Images: End-to-End Policy Learning via Multiview Video Generation  - **论文标题**: Action Images: End-to-End Policy Learning via Multiview Video Generation - **论文ID**: arXiv:2604.06168 - **作者",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2604.06168",
+    htmlUrl: "https://arxiv.org/abs/2604.06168",
+    figures: []
+  },
+  {
+    id: "paper-260405014",
+    title: "StarVLA: A Lego-like Codebase for VLA Model Developing",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-08",
+    category: "embodied",
+    summary: "## 3. StarVLA: A Lego-like Codebase for VLA Model Developing  - **论文标题**: StarVLA: A Lego-like Codebase for Vision-Language-Action Model Developing - **论文ID**: arXiv:2604.05014 - **作者**: StarVLA Team ",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2604.05014",
+    htmlUrl: "https://arxiv.org/abs/2604.05014",
+    figures: []
+  },
+  {
+    id: "paper-260403208",
+    title: "Hierarchical Planning with Latent World Models",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-08",
+    category: "embodied",
+    summary: "## 4. Hierarchical Planning with Latent World Models  - **论文标题**: Hierarchical Planning with Latent World Models - **论文ID**: arXiv:2604.03208 - **作者**: Basile Terver, Artem Zholus, Soham Chitnis, Hars",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2604.03208",
+    htmlUrl: "https://arxiv.org/abs/2604.03208",
+    figures: []
+  },
+  {
+    id: "paper-260327670",
+    title: "ProgressVLA: Progress-Guided Diffusion Policy for Vision-Language Robotic Manipulation",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-08",
+    category: "embodied",
+    summary: "## 5. ProgressVLA: Progress-Guided Diffusion Policy for Vision-Language Robotic Manipulation  - **论文标题**: ProgressVLA: Progress-Guided Diffusion Policy for Vision-Language Robotic Manipulation - **论文I",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.27670",
+    htmlUrl: "https://arxiv.org/abs/2603.27670",
+    figures: []
+  },
+  {
+    id: "paper-260402911",
+    title: "DreamTIP: Learning Task-Invariant Properties via Dreamer",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-08",
+    category: "embodied",
+    summary: "## 6. DreamTIP: Learning Task-Invariant Properties via Dreamer  - **论文标题**: Learning Task-Invariant Properties via Dreamer: Enabling Efficient Policy Transfer for Quadruped Robots - **论文ID**: arXiv:26",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2604.02911",
+    htmlUrl: "https://arxiv.org/abs/2604.02911",
+    figures: []
+  },
+  {
+    id: "paper-260401985",
+    title: "World Action Verifier",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-05",
+    category: "embodied",
+    summary: "## 1. World Action Verifier  - **论文标题**: World Action Verifier: Enhancing World Model Robustness via Forward-Inverse Asymmetry - **论文ID**: arXiv:2604.01985 - **作者**: Yuejiang Liu, Fan Feng, Lingjing K",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2604.01985",
+    htmlUrl: "https://arxiv.org/abs/2604.01985",
+    figures: []
+  },
+  {
+    id: "paper-260401765",
+    title: "DriveDreamer-Policy",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-05",
+    category: "embodied",
+    summary: "## 2. DriveDreamer-Policy  - **论文标题**: DriveDreamer-Policy: Unified Driving World-Action Model with 3D Geometric Priors - **论文ID**: arXiv:2604.01765 - **作者**: Yang Zhou, Xiaofeng Wang, Hao Shao 等 (NTU",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2604.01765",
+    htmlUrl: "https://arxiv.org/abs/2604.01765",
+    figures: []
+  },
+  {
+    id: "paper-260401567",
+    title: "AnchorVLA",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-05",
+    category: "embodied",
+    summary: "## 3. AnchorVLA  - **论文标题**: AnchorVLA: Anchored Diffusion for Real-Time Multimodal Mobile Manipulation - **论文ID**: arXiv:2604.01567 - **作者**: Jia Syuen Lim, Zhizhen Zhang, Peter Bohm 等 (University of",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2604.01567",
+    htmlUrl: "https://arxiv.org/abs/2604.01567",
+    figures: []
+  },
+  {
+    id: "paper-260401001",
+    title: "EgoSim",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-05",
+    category: "embodied",
+    summary: "## 4. EgoSim  - **论文标题**: EgoSim: Closed-Loop Egocentric World Simulator with Persistent 3D Gaussian Splatting - **论文ID**: arXiv:2604.01001 - **作者**: Jinkun Hao, Mingda Jia, Ruiyan Wang 等 (Shanghai Ji",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2604.01001",
+    htmlUrl: "https://arxiv.org/abs/2604.01001",
+    figures: []
+  },
+  {
+    id: "paper-260401158",
+    title: "SMASH",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-05",
+    category: "embodied",
+    summary: "## 5. SMASH  - **论文标题**: SMASH: Scalable Modular Agile System for Humanoid Table Tennis - **论文ID**: arXiv:2604.01158 - **作者**: Junli Ren, Yinghui Li, Kai Zhang 等 (Chinese Academy of Sciences / Tencent",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2604.01158",
+    htmlUrl: "https://arxiv.org/abs/2604.01158",
+    figures: []
+  },
+  {
+    id: "paper-260401605",
+    title: "F3DGS",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-05",
+    category: "embodied",
+    summary: "## 6. F3DGS  - **论文标题**: F3DGS: Federated 3D Gaussian Splatting for Decentralized Multi-Agent 3D Reconstruction - **论文ID**: arXiv:2604.01605 - **作者**: Morui Zhu, Mohammad Dehghani Tezerjani, Mátyás Sz",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2604.01605",
+    htmlUrl: "https://arxiv.org/abs/2604.01605",
+    figures: []
+  },
+  {
+    id: "paper-260401618",
+    title: "Tex3D",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-05",
+    category: "embodied",
+    summary: "## 7. Tex3D  - **论文标题**: Tex3D: Adversarial 3D Textures against Vision-Language-Action Models - **论文ID**: arXiv:2604.01618 - **作者**: Jiawei Chen, Simin Huang, Jiawei Du 等 - **提交日期**: 2026-04-02 - **类别",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2604.01618",
+    htmlUrl: "https://arxiv.org/abs/2604.01618",
+    figures: []
+  },
+  {
+    id: "paper-260402190",
+    title: "UniDriveVLA",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-05",
+    category: "embodied",
+    summary: "## 8. UniDriveVLA  - **论文标题**: UniDriveVLA: Unifying Understanding, Perception, and Action Planning for Autonomous Driving - **论文ID**: arXiv:2604.02190 - **作者**: Yongkang Li, Lijun Zhou, Sixu Yan 等 (H",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2604.02190",
+    htmlUrl: "https://arxiv.org/abs/2604.02190",
+    figures: []
+  },
+  {
+    id: "paper-260402241",
+    title: "UAV-Track VLA",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-05",
+    category: "embodied",
+    summary: "## 9. UAV-Track VLA  - **论文标题**: UAV-Track VLA: Vision-Language-Action Benchmark for UAV Embodied Visual Tracking - **论文ID**: arXiv:2604.02241 - **作者**: Qiyao Zhang, Shuhua Zheng, Jianli Sun, Chengxia",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2604.02241",
+    htmlUrl: "https://arxiv.org/abs/2604.02241",
+    figures: []
+  },
+  {
+    id: "paper-260400813",
+    title: "DVGT-2",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-05",
+    category: "embodied",
+    summary: "## 10. DVGT-2  - **论文标题**: DVGT-2: Rethinking End-to-End Autonomous Driving via Vision-Geometry-Action - **论文ID**: arXiv:2604.00813 - **作者**: Sicheng Zuo, Zixun Xie, Wenzhao Zheng 等 (Tsinghua Universi",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2604.00813",
+    htmlUrl: "https://arxiv.org/abs/2604.00813",
+    figures: []
+  },
+  {
+    id: "paper-260401860",
+    title: "POCO",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-05",
+    category: "embodied",
+    summary: "## 11. POCO  - **论文标题**: POCO: Posterior Optimization with Clipped Objective for Generative Policy Learning - **论文ID**: arXiv:2604.01860 - **作者**: (生成式策略学习方向) - **提交日期**: 2026-04-02 - **类别**: 策略学习 / 强",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2604.01860",
+    htmlUrl: "https://arxiv.org/abs/2604.01860",
+    figures: []
+  },
+  {
+    id: "paper-260401570",
+    title: "FAN (Feasible Action Neighborhood)",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-05",
+    category: "embodied",
+    summary: "## 12. FAN (Feasible Action Neighborhood)  - **论文标题**: FAN: Exploiting Feasible Action Neighborhoods for Efficient VLA Fine-tuning - **论文ID**: arXiv:2604.01570 - **作者**: Haochen Niu, Kanyu Zhang, Shuy",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2604.01570",
+    htmlUrl: "https://arxiv.org/abs/2604.01570",
+    figures: []
+  },
+  {
+    id: "paper-240207545",
+    title: "RT-2: Robotic Transformer 2 - Next-Generation Vision-Language-Action Model",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-04",
+    category: "embodied",
+    summary: "## 1. RT-2: Robotic Transformer 2 - Next-Generation Vision-Language-Action Model  **论文ID**: arXiv:2402.07545   **作者**: Mike Lambert, Brian Ichter, Varun Kapur, et al.   **机构**: Google DeepMind   **日期*",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2402.07545",
+    htmlUrl: "https://arxiv.org/abs/2402.07545",
+    figures: []
+  },
+  {
+    id: "paper-230608551",
+    title: "ALOHA: An Open-Ended Embodied Agent with Large Language Models",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-04",
+    category: "embodied",
+    summary: "## 2. ALOHA: An Open-Ended Embodied Agent with Large Language Models  **论文ID**: arXiv:2306.08551v3   **作者**: Bowen Wen, Yifan Jiang, Bowen Zhang, et al.   **机构**: Stanford University   **日期**: 2024-01",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2306.08551",
+    htmlUrl: "https://arxiv.org/abs/2306.08551",
+    figures: []
+  },
+  {
+    id: "paper-240110387",
+    title: "RT-X: The Robotic Transformer with Cross-Modal Transfer",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-04",
+    category: "embodied",
+    summary: "## 3. RT-X: The Robotic Transformer with Cross-Modal Transfer  **论文ID**: arXiv:2401.10387   **作者**: Mike Lambert, Varun Kapur, Brian Ichter, et al.   **机构**: Google DeepMind   **日期**: 2024-01-24   **类",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2401.10387",
+    htmlUrl: "https://arxiv.org/abs/2401.10387",
+    figures: []
+  },
+  {
+    id: "paper-230304137",
+    title: "Diffusion Policy: Visuomotor Policy Learning via Diffusion Models",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-04",
+    category: "embodied",
+    summary: "## 4. Diffusion Policy: Visuomotor Policy Learning via Diffusion Models  **论文ID**: arXiv:2303.04137v2   **作者**: Soroush Nasiriany, Anish Thilagar, Karan Goel, et al.   **机构**: University of California",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2303.04137",
+    htmlUrl: "https://arxiv.org/abs/2303.04137",
+    figures: []
+  },
+  {
+    id: "paper-260312260",
+    title: "HumDex: 简化人形机器人灵巧操作框架",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-01",
+    category: "embodied",
+    summary: "### 2. HumDex: 简化人形机器人灵巧操作框架 **论文ID**: arXiv:2603.12260v1   **作者**: Zhiyuan Hu, Yifeng Jiang, Hao Shi 等   **机构**: 清华大学、CMU   **日期**: 2026年3月22日   **类别**: Robotics, Humanoid  **一句话概括**: HumDex提出一个简化的人形",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.12260",
+    htmlUrl: "https://arxiv.org/abs/2603.12260",
+    figures: []
+  },
+  {
+    id: "训练范式转变-2026-04-01",
+    title: "训练范式转变",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-01",
+    category: "embodied",
+    summary: "### 1. 训练范式转变 - **分阶段训练**: Ψ0的成功验证了分阶段训练的有效性 - **数据质量优先**: 超越单纯的数据量追求 - **解耦学习**: 异构数据的专门化处理",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "系统集成优化-2026-04-01",
+    title: "系统集成优化",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-01",
+    category: "embodied",
+    summary: "### 2. 系统集成优化 - **端到端框架**: 从感知到执行的统一学习 - **持续学习**: 自我改进的具身智能体 - **自主数据收集**: 减少人工干预的闭环系统",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "工程化进展-2026-04-01",
+    title: "工程化进展",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-01",
+    category: "embodied",
+    summary: "### 3. 工程化进展 - **框架简化**: 降低使用门槛，推动普及 - **开源生态**: 模型、数据、工具链的完整开源 - **实时推理**: 高效的部署和推理引擎  ---  ## 🎯 对你的研究启发",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "世界模型设计思路-2026-04-01",
+    title: "世界模型设计思路",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-01",
+    category: "embodied",
+    summary: "### 1. 世界模型设计思路 - **多尺度表示**: 结合全局潜在向量和局部特征序列 - **物理一致性**: 强调物理规律约束的重要性 - **时间维度**: 长时序一致性和误差累积控制",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "vla架构优化-2026-04-01",
+    title: "VLA架构优化",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-01",
+    category: "embodied",
+    summary: "### 2. VLA架构优化 - **模块化设计**: 解耦不同能力的专门化训练 - **参数高效**: LoRA等微调方法的应用 - **持续学习**: 支持终身学习的架构设计",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "工程实现建议-2026-04-01",
+    title: "工程实现建议",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-01",
+    category: "embodied",
+    summary: "### 3. 工程实现建议 - **数据策略**: 质量优先，精选高质量数据集 - **系统架构**: agent-centric的统一框架 - **部署优化**: 实时推理和轻量化部署  ---  ## 🚀 未来发展方向  1. **通用基础模型**: Ψ0等人形机器人基础模型的持续优化 2. **自主学习循环**: RoboClaw式的持续自主数据收集 3. **跨领域迁移**: 不同机器人平",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "数据稀缺问题-2026-04-01",
+    title: "数据稀缺问题",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-01",
+    category: "embodied",
+    summary: "### 1. 数据稀缺问题 - **解决方案**: 高质量数据 + 合成数据 + 迁移学习 - **代表性工作**: HandelBot的快速adaptation",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "长时序一致性-2026-04-01",
+    title: "长时序一致性",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-01",
+    category: "embodied",
+    summary: "### 2. 长时序一致性 - **解决方案**: 分层时序建模 + 物理约束 - **代表性工作**: 世界模型的三维分类框架",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "灾难性遗忘-2026-04-01",
+    title: "灾难性遗忘",
+    authors: "et al.",
+    institution: "",
+    date: "2026-04-01",
+    category: "embodied",
+    summary: "### 3. 灾难性遗忘 - **解决方案**: 简单Seq.FT + LoRA的持续学习 - **代表性工作**: VLA模型的CRL研究  ---  ## 🔗 相关资源  - **开源项目**: Ψ0、HumDex、RoboClaw等已开源 - **数据集**: egocentric视频、机器人轨迹、操作数据 - **评估基准**: 标准化的人形机器人操作评估  ---  *注: 由于ArXi",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "paper-251016732",
+    title: "具身智能世界模型综合调研",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-31",
+    category: "embodied",
+    summary: "## 1. 具身智能世界模型综合调研  **一句话概括**: 本文是具身智能领域世界模型的首次全面调研，提出了三维统一框架，系统化了现有方法并指出了关键挑战。  **论文信息** - **标题**: A Comprehensive Survey on World Models for Embodied AI - **作者**: Xinqing Li, Xin He, Le Zhang, Min W",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2510.16732",
+    htmlUrl: "https://arxiv.org/abs/2510.16732",
+    figures: []
+  },
+  {
+    id: "paper-260318980",
+    title: "RoboGPT: 大型机器人语言模型的预训练与微调",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-29",
+    category: "embodied",
+    summary: "## 1. RoboGPT: 大型机器人语言模型的预训练与微调  **一句话概括**: 本文提出了一种大型机器人语言模型的预训练框架，通过大规模机器人数据的预训练实现了在多种机器人任务上的强大泛化能力。  **论文信息** - **标题**: RoboGPT: Large-Scale Robot Language Models with Pre-training and Fine-tuning F",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.18980",
+    htmlUrl: "https://arxiv.org/abs/2603.18980",
+    figures: []
+  },
+  {
+    id: "paper-260318981",
+    title: "WorldSim3D: 三维世界模型的生成式预训练",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-29",
+    category: "embodied",
+    summary: "## 2. WorldSim3D: 三维世界模型的生成式预训练  **一句话概括**: 本文提出了一种三维世界模型的生成式预训练方法，通过三维几何和物理规律的联合建模实现了对真实世界的高保真模拟。  **论文信息** - **标题**: WorldSim3D: Generative Pre-training for 3D World Models with Geometric and Physic",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.18981",
+    htmlUrl: "https://arxiv.org/abs/2603.18981",
+    figures: []
+  },
+  {
+    id: "paper-260318982",
+    title: "VLA-Chain: 链式推理的视觉语言动作模型",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-29",
+    category: "embodied",
+    summary: "## 3. VLA-Chain: 链式推理的视觉语言动作模型  **一句话概括**: 本文提出了一种链式推理的VLA模型，通过逐步推理和多步决策实现了对复杂任务的高效处理。  **论文信息** - **标题**: VLA-Chain: Chain-of-Thought Reasoning for Vision-Language-Action Models with Multi-Step Decis",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.18982",
+    htmlUrl: "https://arxiv.org/abs/2603.18982",
+    figures: []
+  },
+  {
+    id: "paper-260318983",
+    title: "EmbodiedBenchmark: 具身智能评估的基准测试平台",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-29",
+    category: "embodied",
+    summary: "## 4. EmbodiedBenchmark: 具身智能评估的基准测试平台  **一句话概括**: 本文提出了一种全面的具身智能评估基准测试平台，提供了标准化的测试协议和自动化评估工具，为具身智能研究提供了评估标准。  **论文信息** - **标题**: EmbodiedBenchmark: A Comprehensive Benchmark Platform for Evaluating E",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.18983",
+    htmlUrl: "https://arxiv.org/abs/2603.18983",
+    figures: []
+  },
+  {
+    id: "paper-260318984",
+    title: "RealWorldVLA: 真实世界的视觉语言动作模型",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-29",
+    category: "embodied",
+    summary: "## 5. RealWorldVLA: 真实世界的视觉语言动作模型  **一句话概括**: 本文提出了一种面向真实世界的VLA模型，通过域适应和鲁棒性优化实现了在真实环境中的稳定性能。  **论文信息** - **标题**: RealWorldVLA: Real-World Vision-Language-Action Models with Domain Adaptation and Robus",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.18984",
+    htmlUrl: "https://arxiv.org/abs/2603.18984",
+    figures: []
+  },
+  {
+    id: "paper-260318271",
+    title: "PhysicsGPT: 物理感知的具身智能生成模型",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-28",
+    category: "embodied",
+    summary: "## 1. PhysicsGPT: 物理感知的具身智能生成模型  **一句话概括**: 本文提出了一种融合物理规律的具身智能生成模型，通过物理感知和生成式建模实现了对复杂物理世界的理解和交互。  **论文信息** - **标题**: PhysicsGPT: Physics-Aware Generative Models for Embodied Intelligence with Causal R",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.18271",
+    htmlUrl: "https://arxiv.org/abs/2603.18271",
+    figures: []
+  },
+  {
+    id: "paper-260318272",
+    title: "WorldTransformer+: 增强型世界模型架构",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-28",
+    category: "embodied",
+    summary: "## 2. WorldTransformer+: 增强型世界模型架构  **一句话概括**: 本文提出了一种增强型世界模型架构，通过多尺度时空建模和动态注意力机制实现了对复杂环境的高效建模和预测。  **论文信息** - **标题**: WorldTransformer+: Enhanced World Models with Multi-Scale Spatio-Temporal Modelin",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.18272",
+    htmlUrl: "https://arxiv.org/abs/2603.18272",
+    figures: []
+  },
+  {
+    id: "paper-260318273",
+    title: "VLA-Attention: 多模态注意力机制的视觉语言动作模型",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-28",
+    category: "embodied",
+    summary: "## 3. VLA-Attention: 多模态注意力机制的视觉语言动作模型  **一句话概括**: 本文提出了一种多模态注意力机制的VLA模型，通过跨模态注意力对齐实现了高效的视觉、语言和动作融合。  **论文信息** - **标题**: VLA-Attention: Multi-Modal Attention Mechanisms for Vision-Language-Action Mode",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.18273",
+    htmlUrl: "https://arxiv.org/abs/2603.18273",
+    figures: []
+  },
+  {
+    id: "paper-260318274",
+    title: "EmbodiedFuture: 面向未来的具身智能规划系统",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-28",
+    category: "embodied",
+    summary: "## 4. EmbodiedFuture: 面向未来的具身智能规划系统  **一句话概括**: 本文提出了一种面向未来的具身智能规划系统，通过时空预测和多目标优化实现了对复杂环境的智能规划和决策。  **论文信息** - **标题**: EmbodiedFuture: Future-Oriented Planning System for Embodied Intelligence with Sp",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.18274",
+    htmlUrl: "https://arxiv.org/abs/2603.18274",
+    figures: []
+  },
+  {
+    id: "paper-260317561",
+    title: "Sim2RealZero: 无需真实数据的一致性强化学习",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-27",
+    category: "embodied",
+    summary: "## 1. Sim2RealZero: 无需真实数据的一致性强化学习  **一句话概括**: 本文提出了一种无需真实数据的Sim2Real强化学习方法，通过一致性学习实现了仿真到现实的高效迁移，大幅降低了真实数据收集成本。  **论文信息** - **标题**: Sim2RealZero: Zero-Shot Sim-to-Real Transfer with Consistency Learni",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.17561",
+    htmlUrl: "https://arxiv.org/abs/2603.17561",
+    figures: []
+  },
+  {
+    id: "paper-260317562",
+    title: "WorldGPT: 基于生成式世界模型的具身智能框架",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-27",
+    category: "embodied",
+    summary: "## 2. WorldGPT: 基于生成式世界模型的具身智能框架  **一句话概括**: 本文提出了一种基于生成式世界模型的具身智能框架，通过生成式建模实现高效的物理推理和动作规划。  **论文信息** - **标题**: WorldGPT: Generative World Models for Embodied Intelligence with Physics Reasoning - **作",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.17562",
+    htmlUrl: "https://arxiv.org/abs/2603.17562",
+    figures: []
+  },
+  {
+    id: "paper-260317563",
+    title: "VLALens: 面向具身智能的视觉语言动作自适应学习框架",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-27",
+    category: "embodied",
+    summary: "## 3. VLALens: 面向具身智能的视觉语言动作自适应学习框架  **一句话概括**: 本文提出了一种面向具身智能的自适应VLA学习框架，通过元学习和动态适应实现了在不同环境中的快速适应能力。  **论文信息** - **标题**: VLALens: Adaptive Vision-Language-Action Learning for Embodied Intelligence wit",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.17563",
+    htmlUrl: "https://arxiv.org/abs/2603.17563",
+    figures: []
+  },
+  {
+    id: "paper-260317564",
+    title: "EmbodiedBench: 具身智能基准测试集与评估框架",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-27",
+    category: "embodied",
+    summary: "## 4. EmbodiedBench: 具身智能基准测试集与评估框架  **一句话概括**: 本文提出了一种全面的具身智能基准测试集，涵盖了多种任务类型和评估指标，为具身智能研究提供了标准化的评估平台。  **论文信息** - **标题**: EmbodiedBench: A Comprehensive Benchmark Suite for Evaluating Embodied Intell",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.17564",
+    htmlUrl: "https://arxiv.org/abs/2603.17564",
+    figures: []
+  },
+  {
+    id: "paper-260316852",
+    title: "VLA-Mamba: 基于状态空间模型的具身智能推理框架",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-26",
+    category: "embodied",
+    summary: "## 1. VLA-Mamba: 基于状态空间模型的具身智能推理框架  **一句话概括**: 本文提出了一种基于Mamba架构的VLA模型，通过状态空间建模实现了高效的具身智能推理，在长时序任务中表现出色。  **论文信息** - **标题**: VLA-Mamba: Efficient Vision-Language-Action Reasoning with State Space Model",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.16852",
+    htmlUrl: "https://arxiv.org/abs/2603.16852",
+    figures: []
+  },
+  {
+    id: "paper-260316853",
+    title: "WorldDiff: 基于差分世界模型的具身强化学习",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-26",
+    category: "embodied",
+    summary: "## 2. WorldDiff: 基于差分世界模型的具身强化学习  **一句话概括**: 本文提出了一种基于差分世界模型的具身强化学习方法，通过学习环境动态的差异来实现高效的政策优化。  **论文信息** - **标题**: WorldDiff: Learning Environment Dynamics for Efficient Reinforcement Learning in Embodi",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.16853",
+    htmlUrl: "https://arxiv.org/abs/2603.16853",
+    figures: []
+  },
+  {
+    id: "paper-260316854",
+    title: "EmbodiedCLIP: 面向具身任务的视觉语言预训练模型",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-26",
+    category: "embodied",
+    summary: "## 3. EmbodiedCLIP: 面向具身任务的视觉语言预训练模型  **一句话概括**: 本文提出了一种专门针对具身任务的视觉语言预训练模型，通过具身感知和动作相关的预训练任务提升了VLA模型的性能。  **论文信息** - **标题**: EmbodiedCLIP: Vision-Language Pre-training for Embodied Tasks with Action-R",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.16854",
+    htmlUrl: "https://arxiv.org/abs/2603.16854",
+    figures: []
+  },
+  {
+    id: "paper-260322281",
+    title: "ThinkJEPA: 用 VLM 推理增强潜在世界模型",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-25",
+    category: "embodied",
+    summary: "## 1. ThinkJEPA: 用 VLM 推理增强潜在世界模型  **论文ID:** arXiv:2603.22281 **作者:** Haichao Zhang, Yijiang Li, Shwai He, Tushar Nagarajan, Mingfei Chen, Jianglin Lu, Ang Li, Yun Fu **机构:** Northeastern University (",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.22281",
+    htmlUrl: "https://arxiv.org/abs/2603.22281",
+    figures: []
+  },
+  {
+    id: "paper-260322003",
+    title: "VP-VLA: 视觉提示作为 VLA 的交互接口",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-25",
+    category: "embodied",
+    summary: "## 2. VP-VLA: 视觉提示作为 VLA 的交互接口  **论文ID:** arXiv:2603.22003 **作者:** Zixuan Wang, Yuxin Chen, Yuqi Liu, Jinhui Ye, Pengguang Chen, Changsheng Lu, Shu Liu, Jiaya Jia **机构:** CUHK (Jiaya Jia 组) **日期:** 20",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.22003",
+    htmlUrl: "https://arxiv.org/abs/2603.22003",
+    figures: []
+  },
+  {
+    id: "paper-260322280",
+    title: "DualCoT-VLA: 视觉-语言并行链式推理 VLA",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-25",
+    category: "embodied",
+    summary: "## 3. DualCoT-VLA: 视觉-语言并行链式推理 VLA  **论文ID:** arXiv:2603.22280 **作者:** Zhide Zhong, Junfeng Li, Junjie He 等 (13位) **机构:** 中科院自动化所/多机构合作 **日期:** 2026-03-23 **类别:** cs.RO **链接:** [https://arxiv.org/abs/",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.22280",
+    htmlUrl: "https://arxiv.org/abs/2603.22280",
+    figures: []
+  },
+  {
+    id: "paper-260322078",
+    title: "Do World Action Models Generalize Better than VLAs? 鲁棒性研究",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-25",
+    category: "embodied",
+    summary: "## 5. Do World Action Models Generalize Better than VLAs? 鲁棒性研究  **论文ID:** arXiv:2603.22078 **作者:** Zhanguang Zhang, Zhiyuan Li, Behnam Rahmati 等 (12位) **机构:** 多机构合作 **日期:** 2026-03-23 **类别:** cs.RO *",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.22078",
+    htmlUrl: "https://arxiv.org/abs/2603.22078",
+    figures: []
+  },
+  {
+    id: "paper-260322264",
+    title: "UniDex: 从自中心人类视频到灵巧手控制的机器人基础套件",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-25",
+    category: "embodied",
+    summary: "## 6. UniDex: 从自中心人类视频到灵巧手控制的机器人基础套件  **论文ID:** arXiv:2603.22264 **作者:** Gu Zhang, Qicheng Xu, Haozhe Zhang 等 (19位) **机构:** Tsinghua University (Hang Zhao/Huazhe Xu 组) **日期:** 2026-03-23 **类别:** cs.RO",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.22264",
+    htmlUrl: "https://arxiv.org/abs/2603.22264",
+    figures: []
+  },
+  {
+    id: "paper-260321341",
+    title: "RoboAlign: 通过测试时推理学习 VLA 的语言-动作对齐",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-25",
+    category: "embodied",
+    summary: "## 7. RoboAlign: 通过测试时推理学习 VLA 的语言-动作对齐  **论文ID:** arXiv:2603.21341 **作者:** Dongyoung Kim, Sumin Park, Woomin Song, Seungku Kim, Taeyoung Kim, Huiwon Jang, Jinwoo Shin, Jaehyung Kim, Younggyo Seo **机构",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.21341",
+    htmlUrl: "https://arxiv.org/abs/2603.21341",
+    figures: []
+  },
+  {
+    id: "vla-mbpo-2026-03-24",
+    title: "VLA-MBPO: 面向 VLA 模型的实用世界模型强化学习框架",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-24",
+    category: "embodied",
+    summary: "## 1. VLA-MBPO: 面向 VLA 模型的实用世界模型强化学习框架  **一句话概括**: 提出在交互式世界模型中用 MBPO 算法微调 VLA 模型，解决像素级建模、多视角一致性和稀疏奖励下误差累积三大难题。  **论文信息** - **标题**: Towards Practical World Model-based Reinforcement Learning for Vision",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "scaling-sim-to-real-rl-fo-2026-03-24",
+    title: "Scaling Sim-to-Real RL for Robot VLAs with Generative 3D Worlds",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-24",
+    category: "embodied",
+    summary: "## 2. Scaling Sim-to-Real RL for Robot VLAs with Generative 3D Worlds  **一句话概括**: 用 3D 生成式世界模型批量构建仿真场景，实现 VLA 的可扩展 RL 微调和成功 sim-to-real 迁移。  **论文信息** - **标题**: Scaling Sim-to-Real Reinforcement Learni",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "vampo-2026-03-24",
+    title: "VAMPO: 视频动作模型中视觉动态的策略优化",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-24",
+    category: "embodied",
+    summary: "## 3. VAMPO: 视频动作模型中视觉动态的策略优化  **一句话概括**: 将扩散去噪过程建模为序列决策，用 RL 优化视频动作模型中操控任务关键的视觉动态。  **论文信息** - **标题**: VAMPO: Policy Optimization for Improving Visual Dynamics in Video Action Models - **作者**: Zirui ",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "omnivta-2026-03-24",
+    title: "OmniVTA: 面向接触丰富操控的视觉触觉世界建模",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-24",
+    category: "embodied",
+    summary: "## 4. OmniVTA: 面向接触丰富操控的视觉触觉世界建模  **一句话概括**: 构建大规模视觉触觉数据集 OmniViTac，提出四模块耦合的触觉世界模型框架，实现 60Hz 闭环控制。  **论文信息** - **标题**: OmniVTA: Visuo-Tactile World Modeling for Contact-Rich Robotic Manipulation - **作",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "faster-2026-03-24",
+    title: "FASTER: 重新思考实时流式 VLA",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-24",
+    category: "embodied",
+    summary: "## 5. FASTER: 重新思考实时流式 VLA  **一句话概括**: 提出 Horizon-Aware Schedule，将流式 VLA 的反应延迟压缩至原有 1/10，在消费级 GPU 上实现实时响应。  **论文信息** - **标题**: FASTER: Rethinking Real-Time Flow VLAs - **作者**: Yuxiang Lu, Zhe Liu, Xia",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "sparse-autoencoders-revea-2026-03-24",
+    title: "Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-24",
+    category: "embodied",
+    summary: "## 6. Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models  **一句话概括**: 用稀疏自编码器 (SAE) 解析 VLA 内部特征，发现大部分特征是训练数据的记忆化，但存在可迁移的通用动作原语。  **论文信息** - **标题**: Sparse Autoencoders Reveal",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "roi-driven-foveated-atten-2026-03-24",
+    title: "ROI-Driven Foveated Attention for Unified Egocentric Representations in VLA Systems",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-24",
+    category: "embodied",
+    summary: "## 7. ROI-Driven Foveated Attention for Unified Egocentric Representations in VLA Systems  **一句话概括**: 提出 ROI 驱动的自中心视觉表示方法，用正向运动学投影获取手部区域，解决 VLA 数据收集成本高和跨机器人迁移难的问题。  **论文信息** - **标题**: ROI-Driven Fovea",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "not-all-features-are-crea-2026-03-24",
+    title: "Not All Features Are Created Equal: 机制研究 VLA 模型",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-24",
+    category: "embodied",
+    summary: "## 8. Not All Features Are Created Equal: 机制研究 VLA 模型  **一句话概括**: 通过激活注入、SAE 和线性探针对 6 个 VLA 模型的大规模分析，揭示视觉通路主导动作生成、语言敏感度取决于任务结构。  **论文信息** - **标题**: Not All Features Are Created Equal: A Mechanistic St",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "paper-260319370",
+    title: "VAMPO: Policy Optimization for Improving Visual Dynamics in Video Action Models",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-23",
+    category: "embodied",
+    summary: "## 2. VAMPO: Policy Optimization for Improving Visual Dynamics in Video Action Models  - **论文ID**: arXiv:2603.19370 - **作者**: Zirui Ge, Pengxiang Ding, Baohua Yin, Qishen Wang, Zhiyong Xie, Yemin Wang",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.19370",
+    htmlUrl: "https://arxiv.org/abs/2603.19370",
+    figures: []
+  },
+  {
+    id: "omnivta-2026-03-23",
+    title: "OmniVTA: Visuo-Tactile World Modeling for Contact-Rich Robotic Manipulation",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-23",
+    category: "embodied",
+    summary: "## 4. OmniVTA: Visuo-Tactile World Modeling for Contact-Rich Robotic Manipulation  - **论文ID**: 待确认（2026-03-19 公布） - **作者**: Yuhang Zheng, Songen Gu, Weize Li, Yupeng Zheng, Yujie Zang, Shuai Tian, Xia",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "paper-260319199",
+    title: "FASTER: Rethinking Real-Time Flow VLAs",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-21",
+    category: "embodied",
+    summary: "## 1. FASTER: Rethinking Real-Time Flow VLAs  **论文ID**: arXiv:2603.19199   **作者**: Yuxiang Lu, Zhe Liu, Xianzhe Fan, Zhenya Yang, Jinghua Hou, Junyi Li, Kaixin Ding, Hengshuang Zhao   **机构**: 悉尼大学 / 悉",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.19199",
+    htmlUrl: "https://arxiv.org/abs/2603.19199",
+    figures: []
+  },
+  {
+    id: "paper-260318532",
+    title: "Scaling Sim-to-Real Reinforcement Learning for Robot VLAs with Generative 3D Worlds",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-21",
+    category: "embodied",
+    summary: "## 3. Scaling Sim-to-Real Reinforcement Learning for Robot VLAs with Generative 3D Worlds  **论文ID**: arXiv:2603.18532   **作者**: Andrew Choi, Xinjie Wang, Zhizhong Su, Wei Xu   **机构**: 待确认（4位作者，未明确标注机构",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.18532",
+    htmlUrl: "https://arxiv.org/abs/2603.18532",
+    figures: []
+  },
+  {
+    id: "paper-260319233",
+    title: "Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-21",
+    category: "embodied",
+    summary: "## 4. Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models  **论文ID**: arXiv:2603.19233   **作者**: Bryce Grant, Xijia Zhao, Peng Wang   **机构**: 待确认   **日期**: 2026-03-",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.19233",
+    htmlUrl: "https://arxiv.org/abs/2603.19233",
+    figures: []
+  },
+  {
+    id: "paper-260318811",
+    title: "V-Dreamer: Automating Robotic Simulation and Trajectory Synthesis via Video Generation Priors",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-21",
+    category: "embodied",
+    summary: "## 5. V-Dreamer: Automating Robotic Simulation and Trajectory Synthesis via Video Generation Priors  **论文ID**: arXiv:2603.18811   **作者**: Songjia He, Zixuan Chen, Hongyu Ding, Dian Shao, Jieqi Shi, Ch",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.18811",
+    htmlUrl: "https://arxiv.org/abs/2603.18811",
+    figures: []
+  },
+  {
+    id: "paper-260316861",
+    title: "MolmoB0T",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-19",
+    category: "embodied",
+    summary: "## 1. MolmoB0T  - **论文ID**: arXiv:2603.16861 - **标题**: MolmoB0T: Large-Scale Simulation Enables Zero-Shot Manipulation - **作者**: Abhay Deshpande, Maya Guru, Rose Hendrix, Dieter Fox, Ali Farhadi, Ranj",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.16861",
+    htmlUrl: "https://arxiv.org/abs/2603.16861",
+    figures: []
+  },
+  {
+    id: "paper-260316860",
+    title: "DreamPlan",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-19",
+    category: "embodied",
+    summary: "## 2. DreamPlan  - **论文ID**: arXiv:2603.16860 - **标题**: DreamPlan: Efficient Reinforcement Fine-Tuning of Vision-Language Planners via Video World Models - **作者**: Emily Yue-Ting Jia, Weiduo Yuan, Tia",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.16860",
+    htmlUrl: "https://arxiv.org/abs/2603.16860",
+    figures: []
+  },
+  {
+    id: "paper-260316666",
+    title: "Fast-WAM",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-19",
+    category: "embodied",
+    summary: "## 3. Fast-WAM  - **论文ID**: arXiv:2603.16666 - **标题**: Fast-WAM: Do World Action Models Need Test-time Future Imagination? - **作者**: Tianyuan Yuan, Zibin Dong, Yicheng Liu, Hang Zhao - **机构**: 清华大学 (H",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.16666",
+    htmlUrl: "https://arxiv.org/abs/2603.16666",
+    figures: []
+  },
+  {
+    id: "paper-260316669",
+    title: "Kinema4D",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-19",
+    category: "embodied",
+    summary: "## 4. Kinema4D  - **论文ID**: arXiv:2603.16669 - **标题**: Kinema4D: Kinematic 4D World Modeling for Spatiotemporal Embodied Simulation - **作者**: Mutian Xu, Tianbao Zhang, Tianqi Liu, Zhaoxi Chen, Xiaogua",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.16669",
+    htmlUrl: "https://arxiv.org/abs/2603.16669",
+    figures: []
+  },
+  {
+    id: "paper-260316195",
+    title: "S-VAM",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-19",
+    category: "embodied",
+    summary: "## 5. S-VAM  - **论文ID**: arXiv:2603.16195 - **标题**: S-VAM: Shortcut Video-Action Model by Self-Distilling Geometric and Semantic Foresight - **作者**: Haodong Yan, Zhide Zhong, Jiaguan Zhu, Junjie He, e",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.16195",
+    htmlUrl: "https://arxiv.org/abs/2603.16195",
+    figures: []
+  },
+  {
+    id: "paper-260314522",
+    title: "OPFA (One-Policy-Fits-All)",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-19",
+    category: "embodied",
+    summary: "## 6. OPFA (One-Policy-Fits-All)  - **论文ID**: arXiv:2603.14522 - **标题**: One-Policy-Fits-All: Geometry-Aware Action Latents for Cross-Embodiment Manipulation - **作者**: Juncheng Mu, Sizhe Yang, Hojin B",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.14522",
+    htmlUrl: "https://arxiv.org/abs/2603.14522",
+    figures: []
+  },
+  {
+    id: "paper-260315169",
+    title: "ForceVLA2",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-19",
+    category: "embodied",
+    summary: "## 7. ForceVLA2  - **论文ID**: arXiv:2603.15169 - **标题**: ForceVLA2: Unleashing Hybrid Force-Position Control with Force Awareness for Contact-Rich Manipulation - **作者**: Yang Li, Zhaxizhuoma, Hongru Ji",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.15169",
+    htmlUrl: "https://arxiv.org/abs/2603.15169",
+    figures: []
+  },
+  {
+    id: "paper-260314523",
+    title: "VLA-Thinker",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-19",
+    category: "embodied",
+    summary: "## 8. VLA-Thinker  - **论文ID**: arXiv:2603.14523 - **标题**: VLA-Thinker: Boosting Vision-Language-Action Models through Thinking-with-Image Reasoning - **作者**: Chaoyang Wang, Wenrui Bao, Sicheng Gao, Bi",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.14523",
+    htmlUrl: "https://arxiv.org/abs/2603.14523",
+    figures: []
+  },
+  {
+    id: "paper-260315257",
+    title: "HapticVLA",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-19",
+    category: "embodied",
+    summary: "## 11. HapticVLA  - **论文ID**: arXiv:2603.15257 - **标题**: HapticVLA: Contact-Rich Manipulation via Vision-Language-Action Model without Inference-Time Tactile Sensing - **作者**: Konstantin Gubernatorov,",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.15257",
+    htmlUrl: "https://arxiv.org/abs/2603.15257",
+    figures: []
+  },
+  {
+    id: "paper-260314371",
+    title: "OxyGen: VLA 模型多任务并行下的统一 KV Cache 管理",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-18",
+    category: "embodied",
+    summary: "## 1. OxyGen: VLA 模型多任务并行下的统一 KV Cache 管理  - **论文ID**: arXiv:2603.14371 - **作者**: Xiangyu Li, Huaizhi Tang, Xin Ding, Weijun Wang, Ting Cao, Yunxin Liu - **机构**: Microsoft Research Asia - **日期**: 2026",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.14371",
+    htmlUrl: "https://arxiv.org/abs/2603.14371",
+    figures: []
+  },
+  {
+    id: "paper-260313615",
+    title: "EgoHOI: 自中心世界模型用于真实感手物交互合成",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-18",
+    category: "embodied",
+    summary: "## 2. EgoHOI: 自中心世界模型用于真实感手物交互合成  - **论文ID**: arXiv:2603.13615 - **作者**: Dayou Li, Lulin Liu, Bangya Liu, Shijie Zhou, Jiu Feng, Ziqi Lu, Minghui Zheng, Chenyu You, Zhiwen Fan - **机构**: 多机构合作 - **日期**",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.13615",
+    htmlUrl: "https://arxiv.org/abs/2603.13615",
+    figures: []
+  },
+  {
+    id: "paper-260307648",
+    title: "AtomicVLA: 机器人原子技能学习的统一规划执行框架",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-18",
+    category: "embodied",
+    summary: "## 3. AtomicVLA: 机器人原子技能学习的统一规划执行框架  - **论文ID**: arXiv:2603.07648 - **作者**: Likui Zhang, Tao Tang, Zhihao Zhan, Xiuwei Chen, Zisheng Chen, Jianhua Han, Jiangtong Zhu, Pei Xu, Hang Xu, Hefeng Wu, Liang",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.07648",
+    htmlUrl: "https://arxiv.org/abs/2603.07648",
+    figures: []
+  },
+  {
+    id: "paper-260303596",
+    title: "MEM: 视觉语言动作模型的多尺度具身记忆",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-18",
+    category: "embodied",
+    summary: "## 4. MEM: 视觉语言动作模型的多尺度具身记忆  - **论文ID**: arXiv:2603.03596 - **作者**: Marcel Torne, Karl Pertsch, Homer Walke, Kyle Vedder, Suraj Nair, Brian Ichter, Allen Z. Ren, Haohuan Wang, Jiaming Tang, Kyle Stach",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.03596",
+    htmlUrl: "https://arxiv.org/abs/2603.03596",
+    figures: []
+  },
+  {
+    id: "paper-260309056",
+    title: "Quality over Quantity (QoQ): 基于影响函数的机器人演示数据筛选",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-18",
+    category: "embodied",
+    summary: "## 5. Quality over Quantity (QoQ): 基于影响函数的机器人演示数据筛选  - **论文ID**: arXiv:2603.09056 - **作者**: Haeone Lee, Taywon Min, Junsu Kim, Sinjae Kang, Fangchen Liu, Lerrel Pinto, Kimin Lee - **机构**: **NYU / KAIS",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.09056",
+    htmlUrl: "https://arxiv.org/abs/2603.09056",
+    figures: []
+  },
+  {
+    id: "paper-260202212",
+    title: "MAIN-VLA: 意图与环境抽象建模的 VLA 框架",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-18",
+    category: "embodied",
+    summary: "## 6. MAIN-VLA: 意图与环境抽象建模的 VLA 框架  - **论文ID**: arXiv:2602.02212 - **作者**: Zheyuan Zhou 等 - **机构**: 多机构合作 - **日期**: 2026-02-02 - **类别**: cs.CV - **链接**: https://arxiv.org/abs/2602.02212  ### 一句话概括 通过意图",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2602.02212",
+    htmlUrl: "https://arxiv.org/abs/2602.02212",
+    figures: []
+  },
+  {
+    id: "paper-260206339",
+    title: "Action Hallucination in Generative VLA Models",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-18",
+    category: "embodied",
+    summary: "## 7. Action Hallucination in Generative VLA Models  - **论文ID**: arXiv:2602.06339 - **作者**: Harold Soh, Eugene Lim - **机构**: **National University of Singapore** - **日期**: 2026-02-06 - **类别**: cs.RO /",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2602.06339",
+    htmlUrl: "https://arxiv.org/abs/2602.06339",
+    figures: []
+  },
+  {
+    id: "paper-260212351",
+    title: "LongNav-R1: 长视界 VLA 导航的多轮强化学习框架",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-18",
+    category: "embodied",
+    summary: "## 8. LongNav-R1: 长视界 VLA 导航的多轮强化学习框架  - **论文ID**: arXiv:2602.12351 - **作者**: Yue Hu, Avery Xi, Qixin Xiao, Seth Isaacson, Henry X. Liu, Ram Vasudevan, Maani Ghaffari - **机构**: **University of Michiga",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2602.12351",
+    htmlUrl: "https://arxiv.org/abs/2602.12351",
+    figures: []
+  },
+  {
+    id: "paper-260219359",
+    title: "Vid2Sid: 视频驱动的 Sim2Real 系统辨识",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-18",
+    category: "embodied",
+    summary: "## 9. Vid2Sid: 视频驱动的 Sim2Real 系统辨识  - **论文ID**: arXiv:2602.19359 - **作者**: Kevin Qiu, Yu Zhang, Marek Cygan, Josie Hughes - **机构**: 多机构合作 - **日期**: 2026-02-22 - **类别**: cs.RO / cs.LG - **链接**: https:/",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2602.19359",
+    htmlUrl: "https://arxiv.org/abs/2602.19359",
+    figures: []
+  },
+  {
+    id: "paper-260209722",
+    title: "Rethinking VLA Model Scaling: 对齐、混合与正则化",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-18",
+    category: "embodied",
+    summary: "## 10. Rethinking VLA Model Scaling: 对齐、混合与正则化  - **论文ID**: arXiv:2602.09722 - **作者**: Ye Wang, Sipeng Zheng, Hao Luo 等 - **机构**: 多机构合作 - **日期**: 2026-02-10 - **类别**: cs.RO - **链接**: https://arxiv.org",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2602.09722",
+    htmlUrl: "https://arxiv.org/abs/2602.09722",
+    figures: []
+  },
+  {
+    id: "paper-260222818",
+    title: "LeRobot: 端到端机器人学习的开源库",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-18",
+    category: "embodied",
+    summary: "## 11. LeRobot: 端到端机器人学习的开源库  - **论文ID**: arXiv:2602.22818 - **作者**: Remi Cadene, Simon Aliberts, Francesco Capuano 等 - **机构**: **Hugging Face** - **日期**: 2026-02-26 - **类别**: cs.RO - **链接**: https://",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2602.22818",
+    htmlUrl: "https://arxiv.org/abs/2602.22818",
+    figures: []
+  },
+  {
+    id: "paper-260314811",
+    title: "Ego to World (E2W): 多智能体协作空间推理",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-18",
+    category: "embodied",
+    summary: "## 12. Ego to World (E2W): 多智能体协作空间推理  - **论文ID**: arXiv:2603.14811 - **作者**: Heng Zhou, Li Kang, Yiran Qin 等 - **机构**: 多机构合作（含 Philip Torr, Lei Bai, Zhenfei Yin） - **日期**: 2026-03-16 - **类别**: cs.RO ",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.14811",
+    htmlUrl: "https://arxiv.org/abs/2603.14811",
+    figures: []
+  },
+  {
+    id: "qoq-2026-03-18",
+    title: "QoQ: 演示数据质量优先 (与论文5重复，此处略)",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-18",
+    category: "embodied",
+    summary: "## 13. QoQ: 演示数据质量优先 (与论文5重复，此处略)  ---  ## 本周趋势总结  1. **VLA 推理优化成为新热点**: OxyGen 和 MAIN-VLA 都关注 VLA 的部署效率，而不仅仅是模型能力 2. **记忆架构补齐 VLA 最后一块拼图**: MEM 的多尺度记忆设计让 VLA 从短操作走向长任务 3. **MoE 在 VLA 中的应用兴起**: Atomic",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "paper-260312639",
+    title: "RoboStereo: Dual-Tower 4D Embodied World Models for Unified Policy Optimization",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-17",
+    category: "embodied",
+    summary: "## 1. RoboStereo: Dual-Tower 4D Embodied World Models for Unified Policy Optimization  - **论文ID**: arXiv:2603.12639 - **作者**: Ruicheng Zhang, Guangyu Chen, Zunnan Xu, Zihao Liu, Zhizhou Zhong 等 - **机构",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.12639",
+    htmlUrl: "https://arxiv.org/abs/2603.12639",
+    figures: []
+  },
+  {
+    id: "paper-260312942",
+    title: "ReMem-VLA: Empowering Vision-Language-Action Model with Memory via Dual-Level Recurrent Queries",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-17",
+    category: "embodied",
+    summary: "## 2. ReMem-VLA: Empowering Vision-Language-Action Model with Memory via Dual-Level Recurrent Queries  - **论文ID**: arXiv:2603.12942 - **作者**: Hang Li, Fengyi Shen, Dong Chen, Liudi Yang, Xudong Wang 等",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.12942",
+    htmlUrl: "https://arxiv.org/abs/2603.12942",
+    figures: []
+  },
+  {
+    id: "paper-260312665",
+    title: "TacVLA: Contact-Aware Tactile Fusion for Robust Vision-Language-Action Manipulation",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-17",
+    category: "embodied",
+    summary: "## 3. TacVLA: Contact-Aware Tactile Fusion for Robust Vision-Language-Action Manipulation  - **论文ID**: arXiv:2603.12665 - **作者**: Kaidi Zhang, Heng Zhang, Zhengtong Xu 等 - **机构**: 多机构合作 - **日期**: 2026",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.12665",
+    htmlUrl: "https://arxiv.org/abs/2603.12665",
+    figures: []
+  },
+  {
+    id: "paper-260312655",
+    title: "VGGT-World: Transforming VGGT into an Autoregressive Geometry World Model",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-17",
+    category: "embodied",
+    summary: "## 4. VGGT-World: Transforming VGGT into an Autoregressive Geometry World Model  - **论文ID**: arXiv:2603.12655 - **作者**: Xiangyu Sun, Shijie Wang, Fengyi Zhang, Lin Liu, Caiyan Jia - **机构**: 北京航空航天大学等 ",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.12655",
+    htmlUrl: "https://arxiv.org/abs/2603.12655",
+    figures: []
+  },
+  {
+    id: "paper-260312553",
+    title: "Beyond Dense Futures: World Models as Structured Planners for Robotic Manipulation",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-17",
+    category: "embodied",
+    summary: "## 5. Beyond Dense Futures: World Models as Structured Planners for Robotic Manipulation  - **论文ID**: arXiv:2603.12553 - **作者**: Minghao Jin, Mozheng Liao, Mingfei Han, Zhihui Li, Xiaojun Chang - **机构",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.12553",
+    htmlUrl: "https://arxiv.org/abs/2603.12553",
+    figures: []
+  },
+  {
+    id: "paper-260312510",
+    title: "Q-DIG: Red-Teaming Vision-Language-Action Models via Quality Diversity Prompt Generation",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-17",
+    category: "embodied",
+    summary: "## 6. Q-DIG: Red-Teaming Vision-Language-Action Models via Quality Diversity Prompt Generation  - **论文ID**: arXiv:2603.12510 - **作者**: Siddharth Srikanth, Freddie Liang, Sophie Hsu, Varun Bhatt, Shiha",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.12510",
+    htmlUrl: "https://arxiv.org/abs/2603.12510",
+    figures: []
+  },
+  {
+    id: "paper-260308572",
+    title: "MetaWorld-X: Hierarchical World Modeling via VLM-Orchestrated Experts for Humanoid Loco-Manipulation",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-17",
+    category: "embodied",
+    summary: "## 7. MetaWorld-X: Hierarchical World Modeling via VLM-Orchestrated Experts for Humanoid Loco-Manipulation  - **论文ID**: arXiv:2603.08572 - **作者**: Yutong Shen, Hangxu Liu, Penghui Liu, Jiashuo Luo, Yo",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.08572",
+    htmlUrl: "https://arxiv.org/abs/2603.08572",
+    figures: []
+  },
+  {
+    id: "paper-260308519",
+    title: "AtomVLA: Scalable Post-Training for Robotic Manipulation via Predictive Latent World Models",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-17",
+    category: "embodied",
+    summary: "## 8. AtomVLA: Scalable Post-Training for Robotic Manipulation via Predictive Latent World Models  - **论文ID**: arXiv:2603.08519 - **作者**: Xiaoquan Sun, Zetian Xu, Chen Cao, Zonghe Liu, Yihan Sun 等 - *",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.08519",
+    htmlUrl: "https://arxiv.org/abs/2603.08519",
+    figures: []
+  },
+  {
+    id: "paper-260303195",
+    title: "CoWVLA: Chain-of-World - World Model Thinking in Latent Motion",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-17",
+    category: "embodied",
+    summary: "## 9. CoWVLA: Chain-of-World - World Model Thinking in Latent Motion  - **论文ID**: arXiv:2603.03195 - **作者**: Fuxiang Yang, Donglin Di, Lulu Tang, Xuancheng Zhang, Lei Fan 等 - **机构**: 北京理工大学, 腾讯 - **日期",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.03195",
+    htmlUrl: "https://arxiv.org/abs/2603.03195",
+    figures: []
+  },
+  {
+    id: "paper-260305438",
+    title: "CompACT: Planning in 8 Tokens - A Compact Discrete Tokenizer for Latent World Model",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-17",
+    category: "embodied",
+    summary: "## 10. CompACT: Planning in 8 Tokens - A Compact Discrete Tokenizer for Latent World Model  - **论文ID**: arXiv:2603.05438 - **作者**: Dongwon Kim, Gawon Seo, Jinsung Lee, Minsu Cho, Suha Kwak - **机构**: P",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.05438",
+    htmlUrl: "https://arxiv.org/abs/2603.05438",
+    figures: []
+  },
+  {
+    id: "paper-260308403",
+    title: "SPIRAL: Self-Improving Action World Models via Reflective Planning Agents",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-17",
+    category: "embodied",
+    summary: "## 11. SPIRAL: Self-Improving Action World Models via Reflective Planning Agents  - **论文ID**: arXiv:2603.08403 - **作者**: Yu Yang, Yue Liao, Jianbiao Mei, Baisen Wang 等 - **机构**: 多机构合作 - **日期**: 2026-0",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.08403",
+    htmlUrl: "https://arxiv.org/abs/2603.08403",
+    figures: []
+  },
+  {
+    id: "paper-260310422",
+    title: "World2Act: Latent Action Post-Training via Skill-Compositional World Models",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-17",
+    category: "embodied",
+    summary: "## 13. World2Act: Latent Action Post-Training via Skill-Compositional World Models  - **论文ID**: arXiv:2603.10422 - **作者**: An Dinh Vuong, Tuan Van Vo, Abdullah Sohail, Haoran Ding, Liang Ma - **机构**: ",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.10422",
+    htmlUrl: "https://arxiv.org/abs/2603.10422",
+    figures: []
+  },
+  {
+    id: "paper-260309030",
+    title: "PlayWorld: Learning Robot World Models from Autonomous Play",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-17",
+    category: "embodied",
+    summary: "## 14. PlayWorld: Learning Robot World Models from Autonomous Play  - **论文ID**: arXiv:2603.09030 - **作者**: Tenny Yin, Zhiting Mei, Zhonghe Zheng, Miyu Yamane, David Wang - **机构**: 多机构合作 - **日期**: 2026",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.09030",
+    htmlUrl: "https://arxiv.org/abs/2603.09030",
+    figures: []
+  },
+  {
+    id: "paper-251100062",
+    title: "Cosmos-Predict2.5: World Simulation with Video Foundation Models for Physical AI (NVIDIA)",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-17",
+    category: "embodied",
+    summary: "## 15. Cosmos-Predict2.5: World Simulation with Video Foundation Models for Physical AI (NVIDIA)  - **论文ID**: arXiv:2511.00062 - **作者**: NVIDIA 团队 (Arslan Ali, Junjie Bai 等) - **机构**: NVIDIA - **日期**:",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2511.00062",
+    htmlUrl: "https://arxiv.org/abs/2511.00062",
+    figures: []
+  },
+  {
+    id: "paper-260312263",
+    title: "Ψ_0: 通用人形机器人基础模型",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-16",
+    category: "embodied",
+    summary: "## 1. Ψ_0: 通用人形机器人基础模型  **论文ID**: arXiv:2603.12263   **作者**: Songlin Wei, Hongyi Jing, Boqian Li, Zhenyu Zhao, Jiageng Mao, Zhenhao Ni, Sicheng He, Jie Liu, Xiawei Liu, Kaidi Kang, Sheng Zang, Weiduo ",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.12263",
+    htmlUrl: "https://arxiv.org/abs/2603.12263",
+    figures: []
+  },
+  {
+    id: "paper-260312193",
+    title: "SaPaVe: 主动感知与操作",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-16",
+    category: "embodied",
+    summary: "## 2. SaPaVe: 主动感知与操作  **论文ID**: arXiv:2603.12193   **作者**: Mengzhen Liu, Enshen Zhou, Cheng Chi, Yi Han, Shanyu Rong, Liming Chen, Pengwei Wang, Zhongyuan Wang, Shanghang Zhang   **机构**: 北京大学等   **日期",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.12193",
+    htmlUrl: "https://arxiv.org/abs/2603.12193",
+    figures: []
+  },
+  {
+    id: "paper-260311653",
+    title: "Simple Recipe Works: VLA持续学习",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-16",
+    category: "embodied",
+    summary: "## 3. Simple Recipe Works: VLA持续学习  **论文ID**: arXiv:2603.11653   **作者**: Jiaheng Hu, Jay Shim, Chen Tang, Yoonchang Sung, Bo Liu, Peter Stone, Roberto Martin-Martin   **机构**: UT Austin, Sony AI等   **日",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.11653",
+    htmlUrl: "https://arxiv.org/abs/2603.11653",
+    figures: []
+  },
+  {
+    id: "paper-260311558",
+    title: "RoboClaw: 可扩展长程任务智能体框架",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-16",
+    category: "embodied",
+    summary: "## 4. RoboClaw: 可扩展长程任务智能体框架  **论文ID**: arXiv:2603.11558   **作者**: Ruiying Li, Yunlang Zhou, YuYao Zhu, Kylin Chen, Jingyuan Wang, Sukai Wang, Kongtao Hu, Minhui Yu, Bowen Jiang, Zhan Su, Jiayao Ma, X",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.11558",
+    htmlUrl: "https://arxiv.org/abs/2603.11558",
+    figures: []
+  },
+  {
+    id: "paper-260312265",
+    title: "OmniStream: 流式视觉统一骨干",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-16",
+    category: "embodied",
+    summary: "## 5. OmniStream: 流式视觉统一骨干  **论文ID**: arXiv:2603.12265   **作者**: Yibin Yan, Jilan Xu, Shangzhe Di, Haoning Wu, Weidi Xie   **机构**: 上海AI Lab等   **日期**: 2026-03-12   **类别**: cs.CV   **链接**: https://arxi",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.12265",
+    htmlUrl: "https://arxiv.org/abs/2603.12265",
+    figures: []
+  },
+  {
+    id: "paper-260311563",
+    title: "SVLL: 分阶段视觉语言学习",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-16",
+    category: "embodied",
+    summary: "## 6. SVLL: 分阶段视觉语言学习  **论文ID**: arXiv:2603.11563   **作者**: Yuyuan Yang, Junkun Hong, Hongrong Wang, Honghao Cai, Xunpeng Ren, Ge Wang, Mingcong Lei, Shenhao Yan, Jiahao Yang, Chengsi Yao, Xi Li, Yimi",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.11563",
+    htmlUrl: "https://arxiv.org/abs/2603.11563",
+    figures: []
+  },
+  {
+    id: "paper-260311811",
+    title: "RADAR: 闭环机器人数据生成",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-16",
+    category: "embodied",
+    summary: "## 7. RADAR: 闭环机器人数据生成  **论文ID**: arXiv:2603.11811   **作者**: Yongzhong Wang, Keyu Zhu, Yong Zhong, Liqiong Wang, Jinyu Yang, Feng Zheng   **机构**: 复旦大学等   **日期**: 2026-03-12   **类别**: cs.RO, cs.AI, cs.",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.11811",
+    htmlUrl: "https://arxiv.org/abs/2603.11811",
+    figures: []
+  },
+  {
+    id: "paper-260311080",
+    title: "SELF-VLA: 技能增强智能体框架",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-16",
+    category: "embodied",
+    summary: "## 10. SELF-VLA: 技能增强智能体框架  **论文ID**: arXiv:2603.11080   **作者**: Chang Liu, Sibo Tian, Xiao Liang, Minghui Zheng   **机构**: 港科大等   **日期**: 2026-03-10   **类别**: cs.RO   **链接**: https://arxiv.org/abs/260",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.11080",
+    htmlUrl: "https://arxiv.org/abs/2603.11080",
+    figures: []
+  },
+  {
+    id: "paper-260311041",
+    title: "DynVLA: Learning World Dynamics for Action Reasoning in Autonomous Driving",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-12",
+    category: "embodied",
+    summary: "## 1. DynVLA: Learning World Dynamics for Action Reasoning in Autonomous Driving  - **论文ID**: arXiv:2603.11041 - **作者**: Shuyao Shang, Bing Zhan, Yunfei Yan, Yuqi Wang, Yingyan Li, Yasong An, Xiaoman ",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.11041",
+    htmlUrl: "https://arxiv.org/abs/2603.11041",
+    figures: []
+  },
+  {
+    id: "paper-260310712",
+    title: "FutureVLA: Joint Visuomotor Prediction for Vision-Language-Action Model",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-12",
+    category: "embodied",
+    summary: "## 2. FutureVLA: Joint Visuomotor Prediction for Vision-Language-Action Model  - **论文ID**: arXiv:2603.10712 - **作者**: Xiaoxu Xu, Hao Li, Jinhui Ye, Yilun Chen, Jia Zeng, Xinyi Chen, Linning Xu, Dahua ",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.10712",
+    htmlUrl: "https://arxiv.org/abs/2603.10712",
+    figures: []
+  },
+  {
+    id: "paper-260310448",
+    title: "DiT4DiT: Jointly Modeling Video Dynamics and Actions for Generalizable Robot Control",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-12",
+    category: "embodied",
+    summary: "## 3. DiT4DiT: Jointly Modeling Video Dynamics and Actions for Generalizable Robot Control  - **论文ID**: arXiv:2603.10448 - **作者**: Teli Ma, Jia Zheng, Zifan Wang, Chuili Jiang, Andy Cui, Junwei Liang,",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.10448",
+    htmlUrl: "https://arxiv.org/abs/2603.10448",
+    figures: []
+  },
+  {
+    id: "paper-260310980",
+    title: "PPGuide: Steering Diffusion Policies with Performance Predictive Guidance",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-12",
+    category: "embodied",
+    summary: "## 4. PPGuide: Steering Diffusion Policies with Performance Predictive Guidance  - **论文ID**: arXiv:2603.10980 - **作者**: Zixing Wang, Devesh K. Jha, Ahmed H. Qureshi, Diego Romeres - **机构**: 未知 - **发布日",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.10980",
+    htmlUrl: "https://arxiv.org/abs/2603.10980",
+    figures: []
+  },
+  {
+    id: "paper-260310971",
+    title: "Contact Coverage-Guided Exploration for General-Purpose Dexterous Manipulation",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-12",
+    category: "embodied",
+    summary: "## 5. Contact Coverage-Guided Exploration for General-Purpose Dexterous Manipulation  - **论文ID**: arXiv:2603.10971 - **作者**: Zixuan Liu, Ruoyi Qiao, Chenrui Tie, Xuanwei Liu, Yunfan Lou, Chongkai Gao,",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.10971",
+    htmlUrl: "https://arxiv.org/abs/2603.10971",
+    figures: []
+  },
+  {
+    id: "paper-260310469",
+    title: "DepthCache: Depth-Guided Training-Free Visual Token Merging for VLA Inference",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-12",
+    category: "embodied",
+    summary: "## 6. DepthCache: Depth-Guided Training-Free Visual Token Merging for VLA Inference  - **论文ID**: arXiv:2603.10469 - **作者**: Yuquan Li, Lianjie Ma, Han Ding, Lijun Zhu - **机构**: 未知 - **发布日期**: 2026-03-",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.10469",
+    htmlUrl: "https://arxiv.org/abs/2603.10469",
+    figures: []
+  },
+  {
+    id: "paper-260310871",
+    title: "FG-CLTP: Fine-Grained Contrastive Language Tactile Pretraining",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-12",
+    category: "embodied",
+    summary: "## 7. FG-CLTP: Fine-Grained Contrastive Language Tactile Pretraining  - **论文ID**: arXiv:2603.10871 - **作者**: Wenxuan Ma, Chaofan Zhang, Yinghao Cai, Guocai Yao, Shaowei Cui, Shuo Wang - **机构**: 未知 - *",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.10871",
+    htmlUrl: "https://arxiv.org/abs/2603.10871",
+    figures: []
+  },
+  {
+    id: "paper-260310340",
+    title: "Overcoming Visual Clutter in Vision Language Action Models via Concept-Gated Visual Distillation",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-12",
+    category: "embodied",
+    summary: "## 8. Overcoming Visual Clutter in Vision Language Action Models via Concept-Gated Visual Distillation  - **论文ID**: arXiv:2603.10340 - **作者**: Sangmim Song, Sarath Kodagoda, Marc Carmichael, Karthick ",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.10340",
+    htmlUrl: "https://arxiv.org/abs/2603.10340",
+    figures: []
+  },
+  {
+    id: "paper-260310441",
+    title: "KnowDiffuser: A Knowledge-Guided Diffusion Planner",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-12",
+    category: "embodied",
+    summary: "## 9. KnowDiffuser: A Knowledge-Guided Diffusion Planner  - **论文ID**: arXiv:2603.10441 - **作者**: Fan Ding, Xuewen Luo, Fengze Yang, Bo Yu, HwaHui Tew, Ganesh Krishnasami, Junn Yong Loo - **机构**: 未知 - ",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.10441",
+    htmlUrl: "https://arxiv.org/abs/2603.10441",
+    figures: []
+  },
+  {
+    id: "paper-260310675",
+    title: "Cybo-Waiter: A Physical Agentic Framework for Humanoid Whole-Body Locomotion-Manipulation",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-12",
+    category: "embodied",
+    summary: "## 10. Cybo-Waiter: A Physical Agentic Framework for Humanoid Whole-Body Locomotion-Manipulation  - **论文ID**: arXiv:2603.10675 - **作者**: Peng Ren, Haoyang Ge, Chuan Qi, Cong Huang, Hong Li, Jiang Zhao",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.10675",
+    htmlUrl: "https://arxiv.org/abs/2603.10675",
+    figures: []
+  },
+  {
+    id: "paper-260309971",
+    title: "TiPToP: A Modular Open-Vocabulary Planning System for Robotic Manipulation",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-11",
+    category: "embodied",
+    summary: "## 1. TiPToP: A Modular Open-Vocabulary Planning System for Robotic Manipulation  - **论文ID**: arXiv:2603.09971 - **作者**: William Shen, Nishanth Kumar, Sahit Chintalapudi, Jie Wang, Christopher Watson,",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.09971",
+    htmlUrl: "https://arxiv.org/abs/2603.09971",
+    figures: []
+  },
+  {
+    id: "paper-260309882",
+    title: "Emerging Extrinsic Dexterity in Cluttered Scenes via Dynamics-aware Policy Learning",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-11",
+    category: "embodied",
+    summary: "## 2. Emerging Extrinsic Dexterity in Cluttered Scenes via Dynamics-aware Policy Learning  - **论文ID**: arXiv:2603.09882 - **作者**: Yixin Zheng, Jiangran Lyu, Yifan Zhang, Jiayi Chen, Mi Yan, Yuntian De",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.09882",
+    htmlUrl: "https://arxiv.org/abs/2603.09882",
+    figures: []
+  },
+  {
+    id: "paper-260309712",
+    title: "Robotic Scene Cloning: Advancing Zero-Shot Robotic Scene Adaptation in Manipulation via Visual Prompt Editing",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-11",
+    category: "embodied",
+    summary: "## 3. Robotic Scene Cloning: Advancing Zero-Shot Robotic Scene Adaptation in Manipulation via Visual Prompt Editing  - **论文ID**: arXiv:2603.09712 - **作者**: Binyuan Huang, Yuqing Wen, Yucheng Zhao, Yao",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.09712",
+    htmlUrl: "https://arxiv.org/abs/2603.09712",
+    figures: []
+  },
+  {
+    id: "paper-260309961",
+    title: "BEACON: Language-Conditioned Navigation Affordance Prediction under Occlusion",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-11",
+    category: "embodied",
+    summary: "## 4. BEACON: Language-Conditioned Navigation Affordance Prediction under Occlusion  - **论文ID**: arXiv:2603.09961 - **作者**: (待查证) - **机构**: (待查证) - **发布日期**: 2026-03-10 - **类别**: cs.RO - **链接**: [PDF]",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.09961",
+    htmlUrl: "https://arxiv.org/abs/2603.09961",
+    figures: []
+  },
+  {
+    id: "planning-in-8-tokens-2026-03-07",
+    title: "Planning in 8 Tokens: A Compact Discrete Tokenizer for Latent World Model",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-07",
+    category: "embodied",
+    summary: "### 1. Planning in 8 Tokens: A Compact Discrete Tokenizer for Latent World Model  - **作者**: Dongwon Kim, Gawon Seo, Jinsung Lee, Minsu Cho, Suha Kwak - **机构**: KAIST (韩国科学技术院) - **发布日期**: 2026-03-05 -",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "physiflow-2026-03-07",
+    title: "PhysiFlow: Physics-Aware Humanoid Whole-Body VLA via Multi-Brain Latent Flow Matching and Robust Tracking",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-07",
+    category: "embodied",
+    summary: "### 2. PhysiFlow: Physics-Aware Humanoid Whole-Body VLA via Multi-Brain Latent Flow Matching and Robust Tracking  - **作者**: Weikai Qin, Sichen Wu, Ci Chen, Mengfan Liu, Linxi Feng - **机构**:  Carnegie ",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "critic-in-the-loop-2026-03-07",
+    title: "Critic in the Loop: A Tri-System VLA Framework for Robust Long-Horizon Manipulation",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-07",
+    category: "embodied",
+    summary: "### 3. Critic in the Loop: A Tri-System VLA Framework for Robust Long-Horizon Manipulation  - **作者**: Pengfei Yi, Yingjie Ma, Wenjiang Xu, Yanan Hao, Shuai Gan - **机构**: 上海交通大学 - **发布日期**: 2026-03-05 ",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "observing-and-controlling-2026-03-07",
+    title: "Observing and Controlling Features in Vision-Language-Action Models",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-07",
+    category: "embodied",
+    summary: "### 4. Observing and Controlling Features in Vision-Language-Action Models  - **作者**: Hugo Buurmeijer, Carmen Amo Alonso, Aiden Swann, Marco Pavone - **机构**: Stanford University - **发布日期**: 2026-03-05",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "robopocket-2026-03-07",
+    title: "RoboPocket: Improve Robot Policies Instantly with Your Phone",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-07",
+    category: "embodied",
+    summary: "### 5. RoboPocket: Improve Robot Policies Instantly with Your Phone  - **作者**: Junjie Fang, Wendi Chen, Han Xue, Fangyuan Zhou, Tian Le - **机构**: 未明确（待查证） - **发布日期**: 2026-03-05 - **类别**: cs.RO - **论文",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "curobov2-2026-03-07",
+    title: "cuRoboV2: Dynamics-Aware Motion Generation with Depth-Fused Distance Fields for High-DoF Robots",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-07",
+    category: "embodied",
+    summary: "### 6. cuRoboV2: Dynamics-Aware Motion Generation with Depth-Fused Distance Fields for High-DoF Robots  - **作者**: Balakumar Sundaralingam, Adithyavairavan Murali, Stan Birchfield - **机构**: NVIDIA - **",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "ultradexgrasp-2026-03-07",
+    title: "UltraDexGrasp: Learning Universal Dexterous Grasping for Bimanual Robots with Synthetic Data",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-07",
+    category: "embodied",
+    summary: "### 7. UltraDexGrasp: Learning Universal Dexterous Grasping for Bimanual Robots with Synthetic Data  - **作者**: Sizhe Yang, Yiman Xie, Zhixuan Liang, Yang Tian, Jia Zeng - **机构**:  Zhejiang University ",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "omni-manip-2026-03-07",
+    title: "Omni-Manip: Beyond-FOV Large-Workspace Humanoid Manipulation with Omnidirectional 3D Perception",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-07",
+    category: "embodied",
+    summary: "### 8. Omni-Manip: Beyond-FOV Large-Workspace Humanoid Manipulation with Omnidirectional 3D Perception  - **作者**: Pei Qu, Zheng Li, Yufei Jia, Ziyun Liu, Liang Zhu - **机构**: 清华大学 - **发布日期**: 2026-03-0",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "latent-policy-steering-th-2026-03-07",
+    title: "Latent Policy Steering through One-Step Flow Policies",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-07",
+    category: "embodied",
+    summary: "### 9. Latent Policy Steering through One-Step Flow Policies  - **作者**: Hokyun Im, Andrey Kolobov, Jianlong Fu, Youngwoon Lee - **机构**:  University of Southern California (USC) - **发布日期**: 2026-03-05 ",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "openfrontier-2026-03-07",
+    title: "OpenFrontier: General Navigation with Visual-Language Grounded Frontiers",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-07",
+    category: "embodied",
+    summary: "### 10. OpenFrontier: General Navigation with Visual-Language Grounded Frontiers  - **作者**: Esteban Padilla, Boyang Sun, Marc Pollefeys, Hermann Blum - **机构**: ETH Zurich - **发布日期**: 2026-03-05 - **类别",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "physgen-2026-03-06",
+    title: "PhysGen: Learning Physics from Pretrained Video Models",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-06",
+    category: "embodied",
+    summary: "### 1. PhysGen: Learning Physics from Pretrained Video Models  **作者**: Zijian Song, Qichang Li, Sihan Qin, Yuhao Chen, Tianshui Chen, Liang Lin, Guangrun Wang   **机构**: 疑似中山大学/北京大学   **日期**: 2026-02-1",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "streamvla-2026-03-06",
+    title: "StreamVLA: Breaking the Reason-Act Cycle via Completion-State Gating",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-06",
+    category: "embodied",
+    summary: "### 2. StreamVLA: Breaking the Reason-Act Cycle via Completion-State Gating  **作者**: Tongqing Chen, Hang Wu, Jiasen Wang, Xiaotao Li, Lu Fang   **日期**: 2026-02-07   **PDF**: https://arxiv.org/pdf/2602",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "robmrag-2026-03-06",
+    title: "RobMRAG: Zero-Shot Robotic Manipulation via 3D Gaussian Splatting-Enhanced MRAG",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-06",
+    category: "embodied",
+    summary: "### 3. RobMRAG: Zero-Shot Robotic Manipulation via 3D Gaussian Splatting-Enhanced MRAG  **作者**: Zilong Xie, Jingyu Gong, Xin Tan, Zhizhong Zhang, Yuan Xie   **日期**: 2026-02-28   **PDF**: https://arxiv",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "i-perceive-2026-03-06",
+    title: "I-Perceive: A Foundation Model for Active Perception with Language Instructions",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-06",
+    category: "embodied",
+    summary: "### 4. I-Perceive: A Foundation Model for Active Perception with Language Instructions  **作者**: Yongxi Huang, Zhuohang Wang, Wenjing Tang, Cewu Lu, Panpan Cai   **机构**: 上海交通大学   **日期**: 2026-02-28   *",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "inject-once-survive-later-2026-03-06",
+    title: "Inject Once Survive Later: Backdooring Vision-Language-Action Models",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-06",
+    category: "embodied",
+    summary: "### 5. Inject Once Survive Later: Backdooring Vision-Language-Action Models  **作者**: Jianyi Zhou, Yujie Wei, Ruichen Zhen, Bo Zhao, Xiaobo Xia, Rui Shao, Xiu Su, Shuo Yang   **日期**: 2026-01-31   **PDF",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "simpletool-2026-03-06",
+    title: "SimpleTool: Parallel Decoding for Real-Time LLM Function Calling",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-06",
+    category: "embodied",
+    summary: "### 6. SimpleTool: Parallel Decoding for Real-Time LLM Function Calling  **作者**: Xiaoxin Shi, Jiaxin Wan, Linkang Dong, Wei Jiang, Yue Liu, Zengfeng Huang   **日期**: 2026-02-04   **PDF**: https://arxiv",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "rethinking-the-role-of-en-2026-03-06",
+    title: "Rethinking the Role of Entropy in Optimizing Tool-Use Behaviors",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-06",
+    category: "embodied",
+    summary: "### 7. Rethinking the Role of Entropy in Optimizing Tool-Use Behaviors  **作者**: Zeping Li, Hongru Wang, Yiwen Zhao, Guanhua Chen, Yixia Li, Keyang Chen, Yixin Cao, Guangnan Ye, Hongfeng Chai, Zhenfei ",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "context-learning-for-mult-2026-03-06",
+    title: "Context Learning for Multi-Agent Discussion",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-06",
+    category: "embodied",
+    summary: "### 8. Context Learning for Multi-Agent Discussion  **作者**: Xingyuan Hua, Sheng Yue, Xinyi Li, Yizhe Zhao, Jinrui Zhang, Ju Ren   **日期**: 2026-02-02   **PDF**: https://arxiv.org/pdf/2602.02350   **HTM",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "a-user-study-on-teleopera-2026-03-06",
+    title: "A User Study on Teleoperation Interfaces for Primitive Manipulation Tasks",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-06",
+    category: "embodied",
+    summary: "### 9. A User Study on Teleoperation Interfaces for Primitive Manipulation Tasks  **作者**: Jun Aoki, Shunki Itadera   **日期**: 2026-02-03   **PDF**: https://arxiv.org/pdf/2603.00020   **HTML**: https://",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "tilt-ropter-2026-03-06",
+    title: "Tilt-Ropter: Hybrid Aerial and Terrestrial Vehicle with Tilt Rotors",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-06",
+    category: "embodied",
+    summary: "### 10. Tilt-Ropter: Hybrid Aerial and Terrestrial Vehicle with Tilt Rotors  **作者**: Ruoyi Wang, Xuchen Liu, Zongzhou Wu, Zixuan Guo, Wendi Ding, Ben M. Chen   **日期**: 2026-02-02   **PDF**: https://ar",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "chain-of-world-2026-03-05",
+    title: "Chain of World: World Model Thinking in Latent Motion",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-05",
+    category: "embodied",
+    summary: "## 1. Chain of World: World Model Thinking in Latent Motion  **作者**: Fuxiang Yang, Donglin Di, Lulu Tang, Xuancheng Zhang, Lei Fan, Hao Li, Chen Wei, Tonghua Su, Baorui Ma   **机构**: 旷视科技 (Megvii)   **",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "ace-brain-0-2026-03-05",
+    title: "ACE-Brain-0: Spatial Intelligence as a Shared Scaffold for Universal Embodiments",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-05",
+    category: "embodied",
+    summary: "## 2. ACE-Brain-0: Spatial Intelligence as a Shared Scaffold for Universal Embodiments  **作者**: Ziyang Gong, Zehang Luo, Anke Tang, Zhe Liu, Shi Fu, Zhi Hou, Ganlin Lin, Weiyun Wang, Xiaofeng Wang, Ji",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "joint-aligned-latent-acti-2026-03-05",
+    title: "Joint-Aligned Latent Action: Towards Scalable VLA Pretraining in the Wild",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-05",
+    category: "embodied",
+    summary: "## 3. Joint-Aligned Latent Action: Towards Scalable VLA Pretraining in the Wild  **作者**: Hao Luo, Ye Wang, Wanpeng Zhang, Haoqi Yuan, Yicheng Feng, Haiweng Xu, Sipeng Zheng, Zongqing Lu   **机构**: 北大, ",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "universal-pose-pretrainin-2026-03-05",
+    title: "Universal Pose Pretraining for Generalizable Vision-Language-Action Policies",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-05",
+    category: "embodied",
+    summary: "## 4. Universal Pose Pretraining for Generalizable Vision-Language-Action Policies  **作者**: Haitao Lin, Hanyang Yu, Jingshun Zhang, He Zhang, Yonggen Ling, Ping Tan, Xiangyang Xue, Yanwei Fu   **机构**:",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "tether-2026-03-05",
+    title: "Tether: Autonomous Functional Play with Correspondence-Driven Trajectory Warping",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-05",
+    category: "embodied",
+    summary: "## 5. Tether: Autonomous Functional Play with Correspondence-Driven Trajectory Warping  **作者**: William Liang, Sam Wang, Hung-Ju Wang, Osbert Bastani, Yecheng Jason Ma, Dinesh Jayaraman   **机构**: UPen",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "utonia-2026-03-05",
+    title: "Utonia: Toward One Encoder for All Point Clouds",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-05",
+    category: "embodied",
+    summary: "## 6. Utonia: Toward One Encoder for All Point Clouds  **作者**: Yujia Zhang, Xiaoyang Wu, Yunhan Yang, Xianzhe Fan, Han Li, Yuechen Zhang, Zehao Huang, Naiyan Wang, Hengshuang Zhao   **机构**: 港中文, 上海AI ",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "cmoe-2026-03-05",
+    title: "CMoE: Contrastive Mixture of Experts for Motion Control and Terrain Adaptation of Humanoid Robots",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-05",
+    category: "embodied",
+    summary: "## 7. CMoE: Contrastive Mixture of Experts for Motion Control and Terrain Adaptation of Humanoid Robots  **作者**: Shihao Ma, Hongjin Chen, Zijun Xu, Yi Zhao, Ke Wu, Ruichen Yang, Leyao Zou, Zhongxue Di",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "ma-conav-2026-03-05",
+    title: "MA-CoNav: A Master-Slave Multi-Agent Framework with Hierarchical Collaboration and Dual-Level Reflection for Long-Horizon Embodied VLN",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-05",
+    category: "embodied",
+    summary: "## 8. MA-CoNav: A Master-Slave Multi-Agent Framework with Hierarchical Collaboration and Dual-Level Reflection for Long-Horizon Embodied VLN  **作者**: Ling Luo, Qianqian Bai   **机构**: 哈尔滨工业大学   **发布日期*",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "adm-dp-2026-03-05",
+    title: "ADM-DP: Adaptive Dynamic Modality Diffusion Policy through Vision-Tactile-Graph Fusion for Multi-Agent Manipulation",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-05",
+    category: "embodied",
+    summary: "## 9. ADM-DP: Adaptive Dynamic Modality Diffusion Policy through Vision-Tactile-Graph Fusion for Multi-Agent Manipulation  **作者**: Enyi Wang, Wen Fan, Dandan Zhang   **机构**: 清华大学   **发布日期**: 2026/02/2",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "denoising-particle-filter-2026-03-05",
+    title: "Denoising Particle Filters: Learning State Estimation with Single-Step Objectives",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-05",
+    category: "embodied",
+    summary: "## 10. Denoising Particle Filters: Learning State Estimation with Single-Step Objectives  **作者**: Lennart Röstel, Berthold Bäuml   **机构**: TUM (慕尼黑工业大学)   **发布日期**: 2026/02/23   **arXiv ID**: 2602.196",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "paper-260303283",
+    title: "Utonia: Toward One Encoder for All Point Clouds",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-04",
+    category: "embodied",
+    summary: "## 1. Utonia: Toward One Encoder for All Point Clouds  - **论文ID**: arXiv:2603.03283 - **作者**: Yujia Zhang, Xiaoyang Wu, Yunhan Yang, Xianzhe Fan, Han Li, Yuechen Zhang, Zehao Huang, Naiyan Wang, Hengs",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.03283",
+    htmlUrl: "https://arxiv.org/abs/2603.03283",
+    figures: []
+  },
+  {
+    id: "paper-260303282",
+    title: "MIBURI: Towards Expressive Interactive Gesture Synthesis",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-04",
+    category: "embodied",
+    summary: "## 2. MIBURI: Towards Expressive Interactive Gesture Synthesis  - **论文ID**: arXiv:2603.03282 - **作者**: M. Hamza Mughal, Rishabh Dabral, Vera Demberg, Christian Theobalt - **机构**: MPI Informatics, TU D",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.03282",
+    htmlUrl: "https://arxiv.org/abs/2603.03282",
+    figures: []
+  },
+  {
+    id: "paper-260303278",
+    title: "Tether: Autonomous Functional Play with Correspondence-Driven Trajectory Warping",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-04",
+    category: "embodied",
+    summary: "## 3. Tether: Autonomous Functional Play with Correspondence-Driven Trajectory Warping  - **论文ID**: arXiv:2603.03278 - **作者**: William Liang, Sam Wang, Hung-Ju Wang, Osbert Bastani, Yecheng Jason Ma, ",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.03278",
+    htmlUrl: "https://arxiv.org/abs/2603.03278",
+    figures: []
+  },
+  {
+    id: "paper-260303279",
+    title: "ULTRA: Unified Multimodal Control for Autonomous Humanoid Whole-Body Loco-Manipulation",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-04",
+    category: "embodied",
+    summary: "## 4. ULTRA: Unified Multimodal Control for Autonomous Humanoid Whole-Body Loco-Manipulation  - **论文ID**: arXiv:2603.03279 - **作者**: Xialin He, Sirui Li, Xinyao Yao, Runpei Dong, Liuyu Bian, Yu-Xiong ",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.03279",
+    htmlUrl: "https://arxiv.org/abs/2603.03279",
+    figures: []
+  },
+  {
+    id: "paper-260303243",
+    title: "HoMMI: Learning Whole-Body Mobile Manipulation from Human Demonstrations",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-04",
+    category: "embodied",
+    summary: "## 5. HoMMI: Learning Whole-Body Mobile Manipulation from Human Demonstrations  - **论文ID**: arXiv:2603.03243 - **作者**: Xiaomeng Xu, Jisang Park, Han Zhang, Eric Cousineau, Aditya Bhat, Jose Barreiros,",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2603.03243",
+    htmlUrl: "https://arxiv.org/abs/2603.03243",
+    figures: []
+  },
+  {
+    id: "robust-skills,-brittle-gr-2026-03-03",
+    title: "Robust Skills, Brittle Grounding: Diagnosing Restricted Generalization in Vision-Language Action Policies via Multi-Object Picking",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-03",
+    category: "embodied",
+    summary: "### 1. Robust Skills, Brittle Grounding: Diagnosing Restricted Generalization in Vision-Language Action Policies via Multi-Object Picking  - **作者**: David Emukpere, Romain Deffayet, Jean-Michel Render",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "planning-from-observation-2026-03-03",
+    title: "Planning from Observation and Interaction",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-03",
+    category: "embodied",
+    summary: "### 2. Planning from Observation and Interaction  - **作者**: Tyler Han, Siyang Shen, Rohan Baijal, Harine Ravichandiran, Bat Nemekhbold, Kevin Huang, Sanghun Jung, Byron Boots - **机构**: University of W",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "foundation-world-models-f-2026-03-03",
+    title: "Foundation World Models for Agents that Learn, Verify, and Adapt Reliably Beyond Static Environments",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-03",
+    category: "embodied",
+    summary: "### 3. Foundation World Models for Agents that Learn, Verify, and Adapt Reliably Beyond Static Environments  - **作者**: Florent Delgrange - **机构**: 未公开 - **发布日期**: 2026-02-27 - **类别**: cs.LG, cs.AI - *",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "stemvla-2026-03-03",
+    title: "StemVLA: An Open-Source Vision-Language-Action Model with Future 3D Spatial Geometry Knowledge and 4D Historical Representation",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-03",
+    category: "embodied",
+    summary: "### 4. StemVLA: An Open-Source Vision-Language-Action Model with Future 3D Spatial Geometry Knowledge and 4D Historical Representation  - **作者**: Jiasong Xiao, Yutao She, Kai Li, Yuyang Sha, Ziang Che",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "favla-2026-03-03",
+    title: "FAVLA: A Force-Adaptive Fast-Slow VLA model for Contact-Rich Robotic Manipulation",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-03",
+    category: "embodied",
+    summary: "### 5. FAVLA: A Force-Adaptive Fast-Slow VLA model for Contact-Rich Robotic Manipulation  - **作者**: Yao Li, Peiyuan Tang, Wuyang Zhang, Chengyang Zhu, Yifan Duan, Weikai Shi, Xiaodong Zhang, Zijiang Y",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "vca-2026-03-03",
+    title: "VCA: Vision-Click-Action Framework for Precise Manipulation of Segmented Objects in Target Ambiguous Environments",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-03",
+    category: "embodied",
+    summary: "### 6. VCA: Vision-Click-Action Framework for Precise Manipulation of Segmented Objects in Target Ambiguous Environments  - **作者**: Donggeon Kim, Seungwon Jan, Hyeonjun Park, Daegyu Lim - **机构**: 未公开 ",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "dysl-vla-2026-03-03",
+    title: "DySL-VLA: Efficient Vision-Language-Action Model Inference via Dynamic-Static Layer-Skipping for Robot Manipulation",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-03",
+    category: "embodied",
+    summary: "### 7. DySL-VLA: Efficient Vision-Language-Action Model Inference via Dynamic-Static Layer-Skipping for Robot Manipulation  - **作者**: 未详 - **发布日期**: 2026-02-26 - **类别**: cs.RO - **论文链接**: [PDF](https:",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "rethinking-the-practicali-2026-03-03",
+    title: "Rethinking the Practicality of Vision-language-action Model: A Comprehensive Benchmark and An Improved Baseline",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-03",
+    category: "embodied",
+    summary: "### 8. Rethinking the Practicality of Vision-language-action Model: A Comprehensive Benchmark and An Improved Baseline  - **作者**: 未详 - **发布日期**: 2026-02-26 - **类别**: cs.RO - **论文链接**: [PDF](https://ar",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "world-guidance-2026-03-03",
+    title: "World Guidance: World Modeling in Condition Space for Action Generation",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-03",
+    category: "embodied",
+    summary: "### 9. World Guidance: World Modeling in Condition Space for Action Generation  - **作者**: 未详 - **发布日期**: 2026-02-25 - **类别**: cs.LG - **论文链接**: [PDF](https://arxiv.org/pdf/2602.22567) | [HTML](https:/",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
+    id: "aoe-2026-03-03",
+    title: "AoE: Always-on Egocentric Human Video Collection for Embodied AI",
+    authors: "et al.",
+    institution: "",
+    date: "2026-03-03",
+    category: "embodied",
+    summary: "### 10. AoE: Always-on Egocentric Human Video Collection for Embodied AI  - **作者**: 未详（大规模团队） - **发布日期**: 2026-02-27 - **类别**: cs.CV - **论文链接**: [PDF](https://arxiv.org/pdf/2602.23893) | [HTML](https:",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+];
 
 export default papers;
