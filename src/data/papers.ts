@@ -20,6 +20,22 @@ export interface Paper {
 
 export const papers: Paper[] = [
   {
+    id: "trisplat-2026-05-27",
+    title: "TriSplat",
+    authors: "et al.",
+    institution: "",
+    date: "2026-05-27",
+    category: "embodied",
+    summary: "## 5. TriSplat  **一句话概括**: 提出 TriSplat，一种前馈 3D 场景重建模型，直接输出三角形原语集合而非高斯分布，首次实现从稀疏无位姿图像到 simulation-ready 三角网格的单次前向传播。  **论文信息** - **标题**: TriSplat: Simulation-Ready Feed-Forward 3D Scene Reconstruction ",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "",
+    htmlUrl: "",
+    figures: []
+  },
+  {
     id: "ψ₀-2026-05-26",
     title: "Ψ₀: An Open Foundation Model Towards Universal Humanoid Loco-Manipulation",
     authors: "et al.",
