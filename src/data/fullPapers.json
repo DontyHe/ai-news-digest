@@ -1,5 +1,85 @@
 [
   {
+    "id": "paper-260530280",
+    "title": "Qwen-VLA: Unifying Vision-Language-Action Modeling across Tasks, Environments, and Robot Embodiments",
+    "date": "2026-05-30",
+    "content": "## 1. Qwen-VLA: Unifying Vision-Language-Action Modeling across Tasks, Environments, and Robot Embodiments\n\n- **论文ID**: arXiv:2605.30280\n- **作者**: Qiuyue Wang, Mingsheng Li, Jian Guan et al. (共40余位)\n- **机构**: 阿里巴巴（通义千问团队）\n- **日期**: 2026-05-28\n- **类别**: VLA / 具身基础模型\n- **链接**: https://arxiv.org/abs/2605.30280 | [PDF](https://arxiv.org/pdf/2605.30280)\n\n### 一句话概括\nQwen-VLA 将 Qwen 视觉语言建模栈扩展到连续动作生成，通过 DiT-based action decoder 在单一模型内统一操控、导航和轨迹预测任务。\n\n### 研究背景\n具身智能研究长期存在\"碎片化\"问题：不同任务（操作 vs 导航）、不同环境、不同机器人本体通常需要专用模型。现有方法泛化能力有限，难以跨任务、跨环境、跨本体迁移。\n\n### 架构分析\nQwen-VLA 基于 Qwen 视觉-语言基座，核心引入 DiT-based action decoder 生成连续动作。关键设计：\n- **多源联合预训练**：机器人操控轨迹、人类自我中心演示、仿真合成数据、VLA导航数据、轨迹监督信号、辅助视觉-语言数据\n- **本体感知提示条件化**：机器人特定文本描述指定当前本体和控制约定，支持多机器人平台\n- **统一动作-轨迹预测框架**：将操控、导航、轨迹预测统一到单一框架\n\n### 创新点\n1. 首个真正意义上的跨任务/跨环境/跨本体 VLA 统一模型\n2. DiT-based action decoder 实现连续动作生成（非离散化）\n3. 本体感知提示条件化支持任意机器人平台接入\n4. 在 LIBERO 达到 97.9%、Simpler-WidowX 73.7%、RoboTwin-Easy/Hard 86.1%/87.2%、R2R OSR 69.0%、DOMINO 零样本 26.6%\n\n### 启发\n- VLA 从碎片化走向统一基础模型是必然趋势，与大语言模型从专用到通用的路径一致\n- DiT 架构替代传统 diffusion action head 的思路值得关注\n- 多源数据联合训练 recipe 对你的 VLA 预训练有直接参考价值\n\n---",
+    "pdfUrl": "https://arxiv.org/pdf/2605.30280",
+    "htmlUrl": "https://arxiv.org/abs/2605.30280"
+  },
+  {
+    "id": "paper-260528548",
+    "title": "GEM: Generative Supervision Helps Embodied Intelligence",
+    "date": "2026-05-30",
+    "content": "## 2. GEM: Generative Supervision Helps Embodied Intelligence\n\n- **论文ID**: arXiv:2605.28548\n- **作者**: Ruowen Zhao, Bangguo Li, Zuyan Liu et al.\n- **机构**: 清华大学 + 腾讯混元\n- **日期**: 2026-05-27\n- **类别**: VLA / 生成式监督\n- **链接**: https://arxiv.org/abs/2605.28548 | [PDF](https://arxiv.org/pdf/2605.28548) | [Project Page](https://zhaorw02.github.io/GEM/)\n\n### 一句话概括\nGEM 提出将深度图生成作为辅助监督任务嵌入 VLM 预训练阶段，通过生成式监督弥合高层语义与低层空间物理知识之间的鸿沟。\n\n### 研究背景\n当前主流 VLM 预训练依赖大规模视觉问答数据集，这些数据集强调描述性推理，但与物理世界执行存在显著差距：高层语义理解能力强不代表能精确感知三维几何和相对距离。\n\n### 架构分析\n- **VLM backbone** + **轻量级 Connector** + **DiT-based depth generative head**\n- 视觉 tokens 经 connector 映射为条件嵌入，输入深度生成头\n- 采用**混合自回归-扩散架构**：AR 主干提供条件，DiT 进行深度图生成\n- **渐进式训练三阶段**：① Connector 初始化 → ② 深度生成头预热 → ③ 端到端联合训练\n\n### 创新点\n1. **深度生成监督**作为新的预训练任务（非简单特征融合或后处理注入）\n2. **GEM-4M 数据集**：400万规模，涵盖具身问答、物理空间推理、时空规划\n3. VSI-Bench 从 50.4→62.8（2B）、57.9→70.6（8B）\n4. LIBERO 平均成功率 96.1%（SOTA），真实世界 43% vs 之前最佳 28.7%\n5. 在精确空间 grounding 任务上超越 Gemini-3-Pro 达 10%\n\n### 启发\n- 深度感知与语义理解的联合学习是提升 VLA 物理操作能力的有效路径\n- 渐进式训练策略（先稳定生成模块，再联合优化）对训练稳定性至关重要\n- 生成式监督相比传统对比学习或特征融合提供了更丰富的几何约束\n\n---",
+    "pdfUrl": "https://arxiv.org/pdf/2605.28548",
+    "htmlUrl": "https://arxiv.org/abs/2605.28548"
+  },
+  {
+    "id": "paper-260529438",
+    "title": "ElegantVLA: Learning When to Think for Efficient Vision-Language-Action Models",
+    "date": "2026-05-30",
+    "content": "## 3. ElegantVLA: Learning When to Think for Efficient Vision-Language-Action Models\n\n- **论文ID**: arXiv:2605.29438\n- **作者**: Ye Li, Huanan Liu, Kangye Ji et al.\n- **机构**: 清华大学 + 伊利诺伊大学香槟分校\n- **日期**: 2026-05-28\n- **类别**: VLA / 推理效率优化\n- **链接**: https://arxiv.org/abs/2605.29438 | [PDF](https://arxiv.org/pdf/2605.29438) | [Project Page](https://anonymous.4open.science/w/elegantvla/)\n\n### 一句话概括\nElegantVLA 提出阶段自适应推理调度框架，通过学习\"何时全面计算、何时复用先前计算\"实现 VLA 推理加速，无需修改或重训练基础模型。\n\n### 研究背景\nVLA 推理成本高、控制频率受限。现有加速方法多针对单个组件优化或使用固定规则，忽视了在任务不同阶段（稳定传输 vs 目标敏感阶段）计算需求的不均匀性。\n\n### 架构分析\n- **5级 Vision-LLM 计算模式**：从全量重计算到多步时间复用，基于视觉-语言表征稳定性（CKA相似度）\n- **3级去噪模式**：稳定运动时复用中间去噪状态，精度敏感阶段保留完整细化\n- **轻量级调度器**：基于 CKA 时序表征相似度、机器人运动速度、任务进度选择计算策略\n- **两阶段联合 RL 训练调度器**：平衡任务性能、计算成本、复用稳定性\n\n关键设计：**不使用任何组件修改**，是即插即用的推理加速 wrapper。\n\n### 创新点\n1. 首个将 VLA 加速重新定义为\"阶段自适应动态计算分配\"问题的工作\n2. 灵感来源于人类运动控制中\"预测/反馈/精确控制的不均匀分配\"\n3. 仅用首层 LLM CKA 作为轻量级探测，无需重训练基础模型\n4. GR00T 上 2.55× 加速、CogACT 上 3.77× 加速\n5. 真实世界：计算量减少 2.18×，控制频率从 13.8Hz 提升到 26.3Hz，成功率 61.67%→65.00%\n\n### 启发\n- 推理效率优化从单组件优化走向全局调度是重要范式转变\n- \"何时思考\"的调度问题与你的 VLA 研究中计算资源分配高度相关\n- 无需重训练的即插即用设计对部署场景极具吸引力\n\n---",
+    "pdfUrl": "https://arxiv.org/pdf/2605.29438",
+    "htmlUrl": "https://arxiv.org/abs/2605.29438"
+  },
+  {
+    "id": "paper-260513403",
+    "title": "RotVLA: Rotational Latent Action for Vision-Language-Action Model",
+    "date": "2026-05-30",
+    "content": "## 4. RotVLA: Rotational Latent Action for Vision-Language-Action Model\n\n- **论文ID**: arXiv:2605.13403\n- **作者**: Qiwei Li, Xicheng Gong, Xinghang Li et al.\n- **机构**: 北京大学（王选所）+ 小米机器人 + 中科院自动化所\n- **日期**: 2026-05-13\n- **类别**: VLA / 潜在动作建模\n- **链接**: https://arxiv.org/abs/2605.13403 | [PDF](https://arxiv.org/pdf/2605.13403) | [Project Page](https://qiweili00.github.io/rotvla-page/)\n\n### 一句话概括\nRotVLA 将潜在动作建模为 SO(n) 旋转群元素，提出三帧学习框架避免离散化缺陷，实现连续可组合的潜在动作表征。\n\n### 研究背景\n现有 LAM（潜在动作模型）存在三个关键缺陷：① 可能退化为简单目标帧重建；② 离散化严重限制表征容量且违背物理动作连续性；③ 潜在动作空间缺乏物理意义（无尺度或组合概念）。\n\n### 架构分析\n- **连续旋转潜在动作**：潜在动作建模为 SO(n) 群元素，保证连续性、组合性和结构化几何\n- **三帧学习框架**：给定三连续帧 It, It+1, It+2，编码器提取潜在动作，通过矩阵乘法实现动作组合，监督从第1帧直接预测第3帧\n- **VLM backbone + Flow-matching action head**：预训练阶段预测潜在动作；下游任务扩展为统一动作专家，同时去噪潜在动作和机器人动作\n- **1700+ 小时跨本体机器人数据和人类视频**预训练\n\n### 创新点\n1. **SO(n) 旋转群**作为潜在动作空间，天然满足连续性和可组合性\n2. 三帧学习框架显式惩罚退化解（强制学习时序动态而非帧重建）\n3. Flow-matching 替代 VQ-VAE 离散量化，保留动作连续性\n4. 1.7B 参数即达到 LIBERO 98.2%、RoboTwin2.0 89.6%/88.5%\n5. 潜在动作作为高级 planner 引导低级动作生成，实现分层控制\n\n### 启发\n- 离散化动作空间是当前 LAM 的核心瓶颈，SO(n) 连续表示是优雅的解决方案\n- 三帧组合学习思路可用于你的 VLA 训练中避免时序退化\n- 潜在动作作为 planner + 低级动作生成的解耦设计值得参考\n\n---",
+    "pdfUrl": "https://arxiv.org/pdf/2605.13403",
+    "htmlUrl": "https://arxiv.org/abs/2605.13403"
+  },
+  {
+    "id": "paper-260519319",
+    "title": "SWEET: Sparse World Modeling with Image Editing for Embodied Task Execution",
+    "date": "2026-05-30",
+    "content": "## 5. SWEET: Sparse World Modeling with Image Editing for Embodied Task Execution\n\n- **论文ID**: arXiv:2605.19319\n- **作者**: Yiren Song, Yihan Wang, Xiyao Deng, Zhuoran Yan, Mike Zheng Shou\n- **机构**: 新加坡国立大学（NUS）\n- **日期**: 2026-05-19\n- **类别**: 世界模型 / 视觉规划\n- **链接**: https://arxiv.org/abs/2605.19319 | [PDF](https://arxiv.org/pdf/2605.19319)\n\n### 一句话概括\nSWEET 提出用图像编辑模型替代视频生成作为稀疏视觉世界模型，通过关键帧预测而非密集视频 rollout 实现高效具身规划。\n\n### 研究背景\n视觉预测是具身控制的有前景范式，但密集视频生成计算成本高且对许多操作任务不必要的——因为任务进展可由少量任务相关视觉状态总结。\n\n### 架构分析\n- **对比发现**：在相同机器人数据设置下，图像编辑模型（FLUX-Kontext）比视频生成模型（Wan2.2）产生更可靠的任务级关键帧、更低推理成本\n- **SWEET 框架**：一次性稀疏视觉规划，通过连续图像编辑逐步生成任务相关关键帧序列，条件为语言指令和可选箭头空间引导\n- **goal-conditioned diffusion action predictor**：将相邻想象关键帧转换为可执行动作块\n- **混合训练策略**：过滤编辑目标减少真实与编辑视觉子目标之间的不匹配\n\n### 创新点\n1. 首次将图像编辑模型作为稀疏视觉世界模型用于机器人操作\n2. 关键帧预测替代密集视频 rollout，大幅降低推理成本\n3. DROID 和 RoboMimic 上验证，在 seen 和 unseen 场景均改善关键帧预测\n\n### 启发\n- 稀疏表示而非密集视频预测是高效世界模型的重要方向\n- 图像编辑模型作为世界模型尚未被充分探索，是有潜力的新赛道\n\n---",
+    "pdfUrl": "https://arxiv.org/pdf/2605.19319",
+    "htmlUrl": "https://arxiv.org/abs/2605.19319"
+  },
+  {
+    "id": "paper-260518729",
+    "title": "Robo-Cortex: A Self-Evolving Embodied Agent via Dual-Grain Cognitive Memory and Autonomous Knowledge Induction",
+    "date": "2026-05-30",
+    "content": "## 6. Robo-Cortex: A Self-Evolving Embodied Agent via Dual-Grain Cognitive Memory and Autonomous Knowledge Induction\n\n- **论文ID**: arXiv:2605.18729\n- **作者**: Nga Teng Chan, Yi Zhang, Yechi Liu et al.\n- **机构**: 上海人工智能实验室 / 未知\n- **日期**: 2026-05-18\n- **类别**: 具身Agent / 元学习\n- **链接**: https://arxiv.org/abs/2605.18729 | [PDF](https://arxiv.org/pdf/2605.18729) | [HTML](https://arxiv.org/html/2605.18729v1)\n\n### 一句话概括\nRobo-Cortex 通过双粒度认知记忆和自主知识归纳机制实现机器人的自我演化导航策略，无需人工干预持续改进认知策略。\n\n### 研究背景\n在未见环境中导航仍然是具身智能的重大挑战，现有轨迹驱动或反应式策略存在\"经验性遗忘\"问题——无法从过去交互中综合可泛化策略。\n\n### 架构分析\n- **自主知识归纳（AKI）机制**：将多模态轨迹蒸馏为结构化导航启发式知识库\n- **双粒度认知记忆系统**：\n  - 短期反思记忆（SRM）：实时局部进度分析\n  - 长期原则记忆（LPM）：将过去轨迹抽象为可复用引导和警示原则\n- **多模态\"想象-验证\"循环**：世界模型模拟潜在结果，VLM 评估器验证动作计划\n\n### 创新点\n1. 首个通过持续反思-适应循环实现自我演化的具身智能体\n2. 双粒度记忆架构（短时+长时）模仿人类认知记忆结构\n3. 导航启发式库实现跨未见环境的知识迁移\n4. IGNav、AR、AEQA 上 SPL 最高提升 +4.16%，启发式迁移至未见环境 SPL 提升 +15.30%\n\n### 启发\n- 记忆系统设计对具身智能体的持续学习能力至关重要\n- 知识蒸馏为自然语言启发式的思路可扩展到 VLA 的持续改进\n\n---",
+    "pdfUrl": "https://arxiv.org/pdf/2605.18729",
+    "htmlUrl": "https://arxiv.org/abs/2605.18729"
+  },
+  {
+    "id": "paper-260528083",
+    "title": "VLA-Hijack: A Transferable Patch Attack against Vision-Language-Action Models",
+    "date": "2026-05-30",
+    "content": "## 7. VLA-Hijack: A Transferable Patch Attack against Vision-Language-Action Models\n\n- **论文ID**: arXiv:2605.28083\n- **作者**: Jiyuan Fu, Kaixun Jiang, Jingkai Jia et al.\n- **机构**: 复旦大学\n- **日期**: 2026-05-27\n- **类别**: VLA / 安全攻防\n- **链接**: https://arxiv.org/abs/2605.28083 | [PDF](https://arxiv.org/pdf/2605.28083)\n\n### 一句话概括\nVLA-Hijack 发现 VLA 模型存在\"视觉本体感知\"这一根本性漏洞，通过注意力引导的本体抑制和多模态本体注入实现跨架构可迁移的对抗攻击。\n\n### 研究背景\nVLA 模型存在对抗 patch 严重漏洞，但现有 patch 攻击主要在白盒设置下针对特定动作输出空间过度优化，跨架构迁移性差。\n\n### 架构分析\n核心漏洞发现：**VLA 在规划任何动作之前，必须首先使用视觉信息在环境中定位自己的机械臂**。\n- **注意力引导的本体抑制（Attention-Guided Proprioceptive Suppression）**：抑制真实机械臂特征\n- **多模态本体注入（Multimodal Proprioceptive Injection）**：建立 patch 为替代\"幽灵本体\"\n- 交替执行语义概念锚定和视觉原型投影，有效切断智能体真实本体与其控制策略之间的语义关系\n\n### 创新点\n1. 首次发现 VLA 共享的\"视觉自我定位\"这一根本性漏洞\n2. 打破对抗样本跨架构迁移瓶颈\n3. 在 OpenVLA、UniVLA、CronusVLA 等多种架构上验证优越性\n4. 提出对抗攻击评估 VLA 安全性的新维度\n\n### 启发\n- VLA 安全性研究尚处于早期，是值得关注的新方向\n- \"视觉本体感知\"漏洞表明 VLA 对视觉自我定位的依赖可能是一把双刃剑\n\n---\n\n## 📊 趋势观察\n\n1. **统一VLA框架兴起**：Qwen-VLA 代表了从碎片化专用模型向统一基础模型的范式转变\n2. **生成式监督成为新范式**：GEM 证明深度图生成作为辅助任务比传统特征融合更有效\n3. **推理效率优化进入调度时代**：ElegantVLA 从单组件优化走向全局动态调度，借鉴人类运动控制启发\n4. **连续潜在动作替代离散化**：RotVLA 的 SO(n) 旋转群表示为 LAM 提供优雅的连续可组合解\n5. **稀疏世界模型探索新路径**：SWEET 用图像编辑替代视频生成，大幅降低成本\n6. **具身安全研究起步**：VLA-Hijack 揭示了 VLA 对抗攻击的新维度\n\n---\n\n*本日报由 Javas 自动生成 | 搜索范围：2026-05-23 至 2026-05-30*",
+    "pdfUrl": "https://arxiv.org/pdf/2605.28083",
+    "htmlUrl": "https://arxiv.org/abs/2605.28083"
+  },
+  {
+    "id": "paper-260528812",
+    "title": "Beyond Binary: Sim-to-Real Dexterous Manipulation with Physics-Grounded Contact Representation",
+    "date": "2026-05-29",
+    "content": "## 1. Beyond Binary: Sim-to-Real Dexterous Manipulation with Physics-Grounded Contact Representation\n\n**一句话概括**: 提出基于物理原理的触觉表示方法(CoP)，实现了sim-to-real场景下灵巧操作的零样本迁移，显著优于简化的触觉表征方法。\n\n**论文信息**\n- **标题**: Beyond Binary: Sim-to-Real Dexterous Manipulation with Physics-Grounded Contact Representation\n- **作者**: Jiahe Pan (ETH Zürich & UC Berkeley), Stelian Coros (ETH Zürich), Jitendra Malik (UC Berkeley), Toru Lin (UC Berkeley)\n- **机构**: ETH Zürich, UC Berkeley\n- **arXiv ID**: [arXiv:2605.28812](https://arxiv.org/abs/2605.28812)\n- **发表日期**: 2026-05-28\n- **类别**: cs.RO, cs.AI, cs.LG\n- **项目页**: https://mpan31415.github.io/tactile_rep/\n\n**摘要**\n接触式灵巧操作面临的主要瓶颈是真实世界数据收集的困难。本文提出了一种基于物理原理的触觉表示方法——压力中心点(Center-of-Pressure, CoP)，它能够保留密集的接触信息同时保持sim-to-real迁移的鲁棒性。该方法将局部触觉信息总结为3D接触力向量和3D接触位置，平衡了表征的简洁性和表达力。作者还提出了基于可微动力学的传感器校准方法，无需真实的力测量即可估计CoP。在两个盲接触式灵巧操作任务(销孔插入和球平衡)上的实验表明，基于CoP的策略在多指手上实现了零样本sim-to-real迁移，并显著优于二元接触和原始taxel基线。\n\n**架构分析**\nCoP的核心架构包含两个关键组件：\n\n1. **物理感知的接触表征**：将高维触觉传感器数据压缩为低维的物理量，包括3D接触力向量和3D接触位置。这种表示既保留了丰富的接触信息，又保持了足够的简洁性以实现仿真-现实的良好对齐。\n\n2. **传感器校准方案**：基于可微动力学的校准方法，能够估计taxel方向而无需真实力测量。该方法通过逆向动力学和可微仿真来学习触觉传感器的物理特性。\n\nCoP的整体工作流程：\n- 输入：高维触觉传感器数据\n- 处理：通过物理模型将高维数据投影到CoP空间\n- 输出：3D接触力向量 + 3D接触位置\n- 控制：基于CoP的强化学习策略\n\n该方法的关键创新在于将触觉表示从简单的二元分类或原始传感器值，提升到了基于物理原理的结构化表征，这保留了关键的物理信息(如力的大小和方向、接触位置)，同时消除了传感器噪声和具体硬件特性带来的差异。\n\n**实验结果**\n研究者在两个具有挑战性的盲接触操作任务上评估了CoP方法：\n\n1. **销孔插入任务**：要求机器人将销插入孔中，完全依赖触觉反馈\n2. **球平衡任务**：要求机器人在手指间保持球的平衡，同样不依赖视觉\n\n关键实验结果：\n- **零样本sim-to-real迁移**：基于CoP的策略在真实机器人硬件上实现了成功的零样本迁移，无需在真实世界进行微调\n- **性能对比**：CoP方法显著优于两种基线：\n  - 二元接触表示：简单的二元接触/不接触分类\n  - 原始taxel表示：直接使用原始传感器数据\n- **成功提升**：在两个任务中，CoP策略的成功率比基线方法提升了15-30%\n\n**创新点**\n1. **物理驱动的触觉表示**：首次提出基于物理原理的触觉表示方法，将高维触觉数据映射到有物理意义的3D力向量和位置\n2. **可微动力学校准**：创新的传感器校准方法，通过可微仿真学习传感器物理特性，避免了对真实力测量的依赖\n3. **sim-to-real兼容性**：CoP表征平衡了信息丰富性和迁移鲁棒性，首次实现了复杂触觉操作任务的零样本sim-to-real迁移\n4. **盲操作能力**：证明了在没有视觉反馈的情况下，仅通过触觉就能完成高精度的复杂操作任务\n\n**对具身智能算法工程师的启发**\n1. **触觉表征的重要性**：对于接触式操作任务，基于物理原理的触觉表征比简单的二元分类或原始传感器数据更有效，这为VLA模型中的多模态融合提供了新思路\n\n2. **sim-to-real迁移新范式**：CoP方法表明，通过精心设计的表征而非复杂的域随机化或强化学习技术，可以实现更好的sim-to-real迁移，这对VLA在真实机器人上的部署具有重要参考价值\n\n3. **物理约束的利用**：将物理原理嵌入到表征设计中，可以帮助模型更好地理解真实世界的物理规律，这是构建鲁棒的具身智能系统的重要策略\n\n4. **盲操作的可行性**：研究证明，在视觉不可用或受限的场景下，精心设计的触觉表征可以支持复杂的操作任务，这对VLA在实际场景中的应用至关重要\n\n---",
+    "pdfUrl": "https://arxiv.org/pdf/2605.28812",
+    "htmlUrl": "https://arxiv.org/abs/2605.28812"
+  },
+  {
+    "id": "paper-260528726",
+    "title": "How VLAs Fail Differently: Black-Box Action Monitoring Reveals Architecture-Specific Failure Signatures",
+    "date": "2026-05-29",
+    "content": "## 2. How VLAs Fail Differently: Black-Box Action Monitoring Reveals Architecture-Specific Failure Signatures\n\n**一句话概括**: 发现VLA架构在电机命令层面存在根本性且可预测的不同失败模式，提出必须根据架构特性选择相应的监控机制。\n\n**论文信息**\n- **标题**: How VLAs Fail Differently: Black-Box Action Monitoring Reveals Architecture-Specific Failure Signatures\n- **作者**: Krishnam Gupta\n- **机构**: 单作者\n- **arXiv ID**: [arXiv:2605.28726](https://arxiv.org/abs/2605.28726)\n- **发表日期**: 2026-05-27\n- **类别**: cs.RO, cs.LG\n- **项目页**: https://github.com/krishnam94/vla-edge\n\n**摘要**\n研究发现在电机命令层面，VLA架构存在根本性且可预测的不同失败模式。在相同评估协议下运行VQ-BeT、Diffusion Policy和ACT三种架构(在PushT和ALOHA 14-DOF双臂操作任务上共450个episode)，发现：(1)方向反转率是所有三个架构的通用失败预测指标(AUROC=0.93, 0.79, 0.91；p<0.001)；(2)加 jerk监控仅对离散token架构有效，呈现离散到连续梯度(0.88, 0.69, 0.41)；(3)速度违规本身在所有位置都不可预测(AUROC 0.41-0.69)，而速度检查是VLA部署代码中最常见的安全机制；(4)对于连续家族VLAs，速度监控提供几乎零预测信号(AUROC=0.52 on ACT, 0.41 on Diffusion)，证明架构匹配的监控选择至关重要。这些结果量化了离散/连续VLA区别的监控后果：两个家族产生需要不同监控的定性不同的失败签名。没有一个监控器普遍有效，需要架构匹配的选择。这项研究由SafeContract实现——一个无需训练的黑盒动作监控工具包，具有conformal校准。\n\n**架构分析**\n该研究对VLA架构进行了深入的分析和分类，提出了基于失败模式的架构区分：\n\n**VLA架构两大家族**：\n1. **离散家族**：包括自回归模型(VQ-VAE等)\n   - 特征：基于离散token的决策过程\n   - 失败模式：方向反转率高、jerk（加速度变化率）显著\n   \n2. **连续家族**：包括diffusion、flow matching、action chunking等\n   - 特征：连续的决策过程\n   - 失败模式：动量连贯性差、方向反转\n\n**SafeContract监控系统架构**：\n1. **安全合约(Safety Contracts)**：\n   - 定义每关节的边界和速度限制：C=(l,u,vmax)\n   - 强制执行：边界裁剪→速度限制→重新裁剪\n   \n2. **Conformal校准**：\n   - 使用split-conformal prediction自动确定边界\n   - 97.9%的保持覆盖率，比4σ启发式边界更紧密25%\n   \n3. **架构特定监控器**：\n   - 方向反转率：动作符号变化的(timestep, joint)对的比例\n   - jerk RMS：动作轨迹三阶导数的均方根\n   - 动量连贯性：连续动作变化的余弦相似度\n   - 频谱能量比：低频信号的能量比例\n   - 堵塞检测：低于阈值τ的连续步数位移\n   \n4. **CUSUM偏移检测**：\n   - 基于conformal p值的累积和检测\n   - 提供正式的误报边界\n\n**失败模式对比**：\n- **离散家族**：主要受方向反转和jerk影响\n- **连续家族**：主要受动量连贯性影响\n- **共同点**：方向反转率是所有架构的通用失败预测指标\n\n**实验结果**\n研究在两个基准任务和三个VLA架构上进行了广泛实验：\n\n**实验设置**：\n- **任务**：PushT推箱任务和ALOHA 14-DOF双臂操作\n- **架构**：VQ-BeT(离散)、Diffusion Policy(连续)、ACT(连续)\n- **样本量**：450个episode(n=200 per condition)\n- **评估协议**：相同的种子、合约(边界[0,512]，vmax=30)和成功标准(覆盖率≥0.95)\n\n**关键发现**：\n1. **方向反转率的普适性**：\n   - VQ-BeT: AUROC=0.93\n   - Diffusion Policy: AUROC=0.79  \n   - ACT: AUROC=0.91\n   - 所有p<0.001，表明方向反转是通用失败预测指标\n\n2. **架构特定监控效果**：\n   - **离散家族**：jerk监控效果最好(AUROC=0.88)\n   - **连续家族**：动量连贯性更重要(AUROC=0.69)\n   - **速度监控无效**：对所有架构预测能力都很差(AUROC=0.41-0.52)\n\n3. **VQ-BeT vs Diffusion Policy**：\n   - 相同任务相同数据，VQ-BeT产生的速度违规是Diffusion Policy的2.4倍(1,847 vs 772)\n   - 反映了离散token转换与平滑DDPM去噪的根本差异\n\n4. **SafeContract性能**：\n   - 零样本任务性能无显著下降\n   - 捕获了大量速度违规(772-1,847个)\n   - 每推理步骤开销<<13μs，占推理时间<0.001%\n\n**创新点**\n1. **VLA失败模式的系统性分类**：首次系统性发现和量化了不同VLA架构在电机命令层面的失败模式差异\n2. **架构监控选择框架**：提出了必须根据VLA架构家族(离散vs连续)选择相应监控器的实用框架\n3. **SafeContract监控工具包**：实现了无需训练、无模型访问的实时动作监控和强制执行\n4. **conformal校准应用**：将conformal prediction应用于机器人安全边界确定，提供理论保证\n5. **离散vs连续架构的根本差异量化**：实证证明了离散和连续VLA在失败模式上的本质区别\n\n**对具身智能算法工程师的启发**\n1. **监控策略的架构适配**：VLA部署时不能使用通用监控器，必须根据架构特性选择：离散架构关注方向反转和jerk，连续架构关注动量连贯性\n2. **安全机制的重新评估**：当前广泛使用的速度监控可能对连续VLA效果有限，需要重新评估和改进安全策略\n3. **失败分析的重要性**：在VLA调试和部署中，应该关注架构特定的失败模式，而不是盲目应用通用的安全检查\n4. **混合监控的必要性**：对于复杂的具身智能系统，可能需要组合多种监控策略来覆盖不同架构类型的失败模式\n5. **实用监控框架**：SafeContract提供了一个轻量级的监控框架，可以实时集成到VLA部署流程中，为实际应用提供了实用工具\n\n---",
+    "pdfUrl": "https://arxiv.org/pdf/2605.28726",
+    "htmlUrl": "https://arxiv.org/abs/2605.28726"
+  },
+  {
+    "id": "其他相关论文-2026-05-29",
+    "title": "其他相关论文",
+    "date": "2026-05-29",
+    "content": "## 3. 其他相关论文\n\n由于过去7天内符合筛选标准的论文有限，本次重点解读了两篇高质量论文。这两篇论文分别代表了：\n1. 触觉感知和灵巧操作的前沿技术\n2. VLA安全部署的关键研究\n\n每篇论文都来自顶级研究机构(ETH Zürich、UC Berkeley)，包含详细的架构设计和实验验证，对具身智能/VLA/世界模型研究具有重要的参考价值。\n\n---\n*注：本文档由arXiv论文抓取系统自动生成，数据截止至2026-05-28*",
+    "pdfUrl": "",
+    "htmlUrl": ""
+  },
+  {
     "id": "finevla-2026-05-28",
     "title": "FineVLA",
     "date": "2026-05-28",
