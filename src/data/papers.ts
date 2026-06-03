@@ -3570,7 +3570,39 @@ export const papers: Paper[] = [
     pdfUrl: "",
     htmlUrl: "",
     figures: []
+ 
+  {
+    id: "paper-260600053",
+    title: "VLAMotor: Test-Guided Enhancement of Vision-Language-Action Models via Agent-Based Data Synthesis",
+    authors: "Zeqin Liao, Peifan Ren, Zixu Gao, Hongyu Gong, Lianyu Hu, Wenbing Tang, Yuhong Nan, Zibin Zheng, Yang Liu",
+    institution: "Nanyang Technological University, Sun Yat-sen University, Northwest A&F University",
+    date: "2026-06-03",
+    category: "vla",
+    summary: "首个VLA模型测试-增强一体化框架，通过距离感知测试选择发现失败案例，再利用Agent数据合成修复模型。92.33%测试用例触发VLA失败，微调后成功率提升49.25%，真实硬件提升57.50%。",
+    background: "VLA模型遵循数据驱动范式，训练数据覆盖不足导致边缘场景失败率高。现有研究停留在失败检测，缺乏将失败转化为模型修复监督信号的机制。",
+    architecture: "两阶段pipeline：1) 距离感知测试选择：计算候选到训练样本的latent space距离排序，冗余消除获得紧凑测试集；2) Agent数据合成：VLM抽象失败轨迹→规划修复技能序列→逆运动学执行→成功轨迹自动标注→微调VLA",
+    innovations: "1) 首个VLA增强分析框架；2) 距离感知测试选择；3) 模块化修复原语组合；4) Sim-to-Real验证",
+    inspiration: "失败case可转化为训练数据；latent space距离是选择高价值测试输入的有效信号；仿真数据可有效提升真实部署效果",
+    pdfUrl: "https://arxiv.org/pdf/2606.00053",
+    htmlUrl: "https://arxiv.org/abs/2606.00053",
+    figures: []
   },
+  {
+    id: "paper-260600145",
+    title: "Completion at the Boundary (CaB): Deployable Switching with Completion-Aware Control under Limited Calibration",
+    authors: "Yusuke Sano, Takeshi Itoga",
+    institution: "SECOM Co., Ltd.",
+    date: "2026-06-03",
+    category: "vla",
+    summary: "提出CaB框架，通过预测边界相位Token（Before/Hit/After）同时解决VLA的何时切换和如何稳定切换两个问题。同一BPT后验双用途，无测试时重学，单一全局规则。",
+    background: "VLA缺乏判断指令完成时机的操作接口。切换时机的错误判断在复合指令中会级联导致失败。现有方法将边界证据压缩为单一标量，无法应对不同任务间的极性偏移。",
+    architecture: "单一自回归VLA策略联合预测动作和BPT后验：BPT在事件局部窗口内编码（K=20步），CaB-When将后验转换为切换决策，CaB-How复用后验调节动作生成实现边界稳定控制",
+    innovations: "1) 同一BPT后验双用途；2) 保留双边边界证据；3) 部署友好约束；4) 干预感知E1/E2评估协议",
+    inspiration: "完成信号不等于稳定控制；BPT后验作为显式接口可被外部系统审计；低容量约束设计适用于开放词汇指令空间",
+    pdfUrl: "https://arxiv.org/pdf/2606.00145",
+    htmlUrl: "https://arxiv.org/abs/2606.00145",
+    figures: []
+  }
 ];
 
 export default papers;
