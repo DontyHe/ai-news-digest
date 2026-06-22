@@ -33,6 +33,14 @@ export const socialData: Record<string, Influencer> = {
     categories: ["科技", "AI", "加密货币"],
     recentPosts: [
       {
+        id: "0",
+        content: "Benchmarked Fable 5 vs Opus 4.8 for PR quality. 100 blind tests across 50 brands. Fable beat Opus 77% of the time using GPT-5.5 xhigh as neutral judge. Fable swept 6/7 quality dimensions. Open-source at newsjack.sh",
+        date: "2026-06-10",
+        likes: 0,
+        reposts: 0,
+        url: "https://www.linkedin.com/posts/elvissun_we-benchmarked-fable-5-vs-opus-48-for-pr-activity-7470470613267234816-2xZo"
+      },
+      {
         id: "1",
         content: "2.9M views in one day. Karpathy called my agent swarm setup 'brilliant or severe AI psychosis.' Building a $17k/mo SaaS as a solo founder with a 4-year-old and 6-month-old.",
         date: "2026-03-06",
@@ -67,9 +75,24 @@ export const socialData: Record<string, Influencer> = {
     avatar: "",
     followers: "",
     categories: ["科技", "AI"],
-    recentPosts: []
-  },
-  "karpathy": {
+    recentPosts: [
+      {
+        id: "0",
+        content: "Opus 4.8 is as smart as its benchmarks show but expresses intelligence in a warm and collaborative way. Workflows are a great way to utilize it.",
+        date: "2026-06",
+        likes: 0,
+        reposts: 0,
+        url: "https://x.com/trq212"
+      },
+      {
+        id: "1",
+        content: "Used Fable to edit its own launch video - wrote code for transcription, ffmpeg, colorgrading, Figma MCP, Remotion UI rendering. No video editor touched.",
+        date: "2026-06",
+        likes: 0,
+        reposts: 0,
+        url: "https://x.com/trq212"
+      }
+    ]: {
     id: "karpathy",
     name: "Andrej Karpathy",
     platform: "X (Twitter)",
@@ -77,9 +100,17 @@ export const socialData: Record<string, Influencer> = {
     bio: "特斯拉前AI总监，OpenAI创始成员。专注于自动驾驶、神经网络和计算机视觉。",
     avatar: "https://pbs.twimg.com/profile_images/1296667294148382721/9Pr6XrPB_200x200.jpg",
     followers: "120万",
-    categories: ["自动驾驶", "深度学习", "VLA模型", "教育"],
     recentPosts: [
       {
+        id: "0",
+        content: "No new public tweets found this week. Active primarily on X/Twitter (requires authenticated access).",
+        date: "2026-06-22",
+        likes: 0,
+        reposts: 0,
+        url: "https://x.com/karpathy"
+      },
+      {
+        id: "1",
         id: "1",
         content: "Replied to Sarah Guo's No Priors podcast: on the phase shift in engineering, AI psychosis, claws, AutoResearch, SETI-at-Home movement in AI, model landscape, and second order effects. 575K+ views.",
         date: "2026-03-21",
@@ -123,6 +154,14 @@ export const socialData: Record<string, Influencer> = {
     followers: "100万",
     categories: ["深度学习", "AI理论", "开源", "VLA模型"],
     recentPosts: [
+      {
+        id: "0",
+        content: "Called xAI 'kind of a failure' in CNBC interview. Founding team left or was fired. Warned AI industry bubble: all companies losing money, use funded by investors, can't go on very long. AMI Labs raised ~$1bn on world model thesis.",
+        date: "2026-06-18",
+        likes: 0,
+        reposts: 0,
+        url: "https://x.com/ylecun"
+      },
       {
         id: "1",
         content: "Over 80 technical papers published since January 2022. What about you?",
