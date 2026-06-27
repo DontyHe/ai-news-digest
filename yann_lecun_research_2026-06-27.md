@@ -1,5 +1,5 @@
 # Yann LeCun - Research Digest
-**Date**: 2026-06-26
+**Date**: 2026-06-27
 
 ## Recent Papers
 
@@ -42,16 +42,8 @@
 - **Published**: 2026-05-25
 - **Authors**: David Klindt, **Yann LeCun**, Randall Balestriero
 - **Categories**: stat.ML, cs.LG
-- **Summary**: 证明LeJEPA (alignment + Gaussian regularization) 可以从非线性观测中线性恢复世界潜在变量，即线性可辨识性。在高斯是满足此保证的唯一潜在分布。验证实验从2D到1024维latent，包括像素级机器人控制。
+- **Summary**: 证明LeJEPA在线性可辨识性上的理论保证。在宽泛的世界类别中，Gaussian是唯一能保证线性恢复世界潜变量的分布。通过谱分解和非线性惩罚对齐证明。同时证明近似可辨识性结果，线性正交可辨识性支持最优潜空间规划。
 - **Link**: https://arxiv.org/abs/2605.26379v1
 
-### 6. stable-worldmodel: A Platform for Reproducible World Modeling Research
-- **arXiv**: 2605.21800v1
-- **Published**: 2026-05-20
-- **Authors**: (含 **Yann LeCun**)
-- **Categories**: cs.LG, cs.RO
-- **Summary**: 开源平台，用于标准化和可复现的世界模型研究。提供Lance-based高性能数据层、现代世界模型基线实现、以及系统的in-silico评估环境。
-- **Link**: https://arxiv.org/abs/2605.21800v1
-
 ---
-*Generated: 2026-06-26 08:10 CST*
+*No new papers since 2026-06-26. Generated: 2026-06-27 08:07 CST*

@@ -1,5 +1,5 @@
 # Kaiming He - Research Digest
-**Date**: 2026-06-26
+**Date**: 2026-06-27
 
 ## Recent Papers
 
@@ -38,23 +38,5 @@
 - **Link**: https://arxiv.org/abs/2602.04770v2
 - **Page**: https://lambertae.github.io/projects/drifting/
 
-### 5. One-step Latent-free Image Generation with Pixel Mean Flows (pMF)
-- **arXiv**: 2601.22158v3
-- **Published**: 2026-01-29 (updated 2026-05-09)
-- **Authors**: Yiyang Lu, Susie Lu, Qiao Sun, Hanhong Zhao, Zhicheng Jiang, Xianbang Wang, Tianhong Li, Zhengyang Geng, **Kaiming He**
-- **Categories**: cs.CV
-- **Summary**: 提出pixel MeanFlow (pMF)，分别设计网络输出空间和损失空间。网络目标在假设的低维图像流形上(x-prediction)，损失通过velocity space的MeanFlow定义。ImageNet 256x256一步生成FID 2.22，512x512一步FID 2.48。
-- **Link**: https://arxiv.org/abs/2601.22158v3
-- **Code**: https://github.com/Lyy-iiis/pMF
-
-### 6. Bidirectional Normalizing Flow: From Data to Noise and Back
-- **arXiv**: 2512.10953v1
-- **Published**: 2025-12-11
-- **Authors**: (含 **Kaiming He**)
-- **Categories**: (截断，需补充)
-- **Summary**: 标准NF的forward变换受显式可逆性约束。本文提出双向归一化流，放松forward过程的可逆性约束，同时保持反向生成能力。
-- **Link**: https://arxiv.org/abs/2512.10953v1
-
 ---
-*No new papers since 2026-06-25 digest.*
-*Generated: 2026-06-26 08:10 CST*
+*No new papers since 2026-06-26. Generated: 2026-06-27 08:07 CST*

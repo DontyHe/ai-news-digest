@@ -1,0 +1,70 @@
+// 论文数据 - 由 cron 任务每日更新
+// 更新路径: /home/Hebin/project/ai-news-digest/src/data/papers.ts
+
+export interface Paper {
+  id: string;
+  title: string;
+  authors: string;
+  date: string;
+  institution: string;
+  category: "embodied" | "vla" | "worldmodel" | "ai";
+  summary: string;
+  background: string;
+  architecture: string;
+  innovations: string;
+  inspiration: string;
+  pdfUrl: string;
+  htmlUrl: string;
+  figures: string[];
+}
+
+export const papers: Paper[] = [
+  {
+    id: "insight-vla-2026-06-25",
+    title: "InSight: Self-Guided Skill Acquisition via Steerable VLAs",
+    authors: "Maggie Wang, Lars Osterberg, Stephen Tian, Ola Shorinwa, Jiajun Wu, Mac Schwager",
+    institution: "Stanford University, Princeton University",
+    date: "2026-06-25",
+    category: "vla",
+    summary: "InSight通过使VLA模型在基础动作级别变得可引导，实现了自主技能获取，使机器人能够无需人工演示即可学习新技能。",
+    background: "当前VLA模型的受限于训练数据中的技能，无法应对训练数据未覆盖的新场景。例如，一个被训练为收集岩石的火星机器人可能无法清除落在太阳能电池板上的灰尘，因为它从未学习过清扫行为。传统的强化学习方法需要大量试错，在真实环境中既不实际也不安全。",
+    architecture: "InSight采用两阶段架构：1）自动化基础动作分割：通过VLM计划分解和末端执行器姿态将演示分解为标记的基础动作，使用夹具状态转换和主导末端执行器运动进行对齐，微调VLA使其可通过基础动作标签进行引导。2）VLM引导的技能获取：VLM识别完成新任务所需的基础动作，使用VLM提出的低级控制参数自动尝试缺失的基础动作，VLM验证任务成功，将成功的基础动作回传到训练集。",
+    innovations: "1）基础动作可引导性：首次实现了VLA在基础动作级别的可引导控制；2）自主技能获取循环：VLM不仅作为规划器，还主动识别和获取缺失技能；3）组合技能复用：新获取的基础动作可以组合形成复杂技能，无需额外人工演示；4）零目标技能人工演示：在仿真和真实世界任务中实现了96%的成功率。",
+    inspiration: "1）技能组合思维：将复杂技能分解为可复用的基础动作单元，提高学习效率；2）自我监督学习：利用VLM自动识别和填充技能空白，减少人工标注成本；3）终身学习框架：实现了技能的持续扩展和组合，为机器人的终身学习提供可能；4）现实世界应用：在复杂任务中保持高性能，为实际机器人应用提供新的思路。",
+    pdfUrl: "https://arxiv.org/pdf/2606.24884",
+    htmlUrl: "https://arxiv.org/abs/2606.24884",
+    figures: []
+  },
+  {
+    id: "world-models-pieces-2026-06-25",
+    title: "World Models in Pieces: Structural Certification for General Agents",
+    authors: "Yikai Lu, Yifei Wu, Xinyu Lu, Tongxin Li",
+    institution: "(需要确认机构信息)",
+    date: "2026-06-25",
+    category: "worldmodel",
+    summary: "该研究提出了结构化认证框架，通过将目标条件化的有限性能映射到代理内部世界模型的逐项保证，解决了在广阔世界中通用代理的可靠部署问题。",
+    background: "在广阔世界（big-world）环境中，代理无法具备全知全能的能力，其能力必然分布在世界模型的碎片中。标准的均匀保证无法区分关键瓶颈的理解和不相关的失败。现有方法假设代理在全局范围内是通用的，但实际代理的能力在复杂环境中是不均匀的。",
+    architecture: "该框架的核心是一个转换局部的认证框架：1）问题形式化：定义了环境模型和代理目标的数学基础；2）通用代理vs通用代理：区分了需要全局最优的通用代理和可以在特定目标上表现良好的通用代理；3）结构化认证：将目标条件化的有限性能映射到代理内部世界模型的逐项保证；4）构造性算法：使用深度组合目标来过滤特定转换，区分已掌握的世界模型片段。",
+    innovations: "1）理论基础：证明了通用代理在广阔世界中不是通用的，形式化了这一限制；2）结构化认证：提出了一种新的认证框架，能够在局部转换上提供保证；3）误差界限：证明了认证转换的代理行为可以唯一确定具有O(1/n)+O(δ)误差界限的动力学估计；4）过滤算法：提供了使用深度组合目标隔离特定转换的具体算法。",
+    inspiration: "1）局部思维：在复杂环境中，关注局部可靠的转换而非全局准确性；2）认证思维：为代理的可靠部署提供理论基础，明确知道在哪些区域可以信任代理的决策；3）现实约束：认识到机器人在广阔世界中的根本局限性，设计符合实际的算法；4）误差管理：接受并管理误差，将有限的计算资源集中在关键的转换上。",
+    pdfUrl: "https://arxiv.org/pdf/2606.24842",
+    htmlUrl: "https://arxiv.org/abs/2606.24842",
+    figures: []
+  },
+  {
+    id: "world-value-models-2026-06-25",
+    title: "World Value Models for Robotic Manipulation",
+    authors: "Zhihao Wang, Jianxiong Li, Yu Cui, Yuan Gao, Xianyuan Zhan, Junzhi Yu, Xiao Ma",
+    institution: "(需要确认机构信息)",
+    date: "2026-06-25",
+    category: "worldmodel",
+    summary: "该研究将世界模型与值估计相结合，构建了世界价值模型(WVM)，在机器人操作中提供了准确的任务进展评估，实现了从混合质量数据中学习的高性能策略。",
+    background: "现有的机器人值模型主要基于视觉语言模型(VLM)骨干，这些模型主要在静态或时间稀疏的视觉观测上进行预训练，缺乏值估计所需的时间建模能力。而世界模型自然擅长时间建模和未来规划，使其成为学习可泛化值函数的理想基础。",
+    architecture: "世界价值模型(WVM)的核心架构：1）双时间尺度建模：结合历史上下文进行当前信念的深度时间理解；2）未来规划能力：在值估计中进行长期未来规划；3）多模态机制：集成开放词汇语义知识进行有效的2D-3D对象匹配；4）子优值基准：包含800个子优轨迹的多化身基准，具有高保真人工标注帧注释。",
+    innovations: "1）世界模型融合：首次将世界模型与值估计相结合，创建了专门用于机器人的值模型；2）SOTA性能：在标准基准上实现了最先进的值-序相关(VOC)结果；3）鲁棒性：在子优值基准上保持SOTA性能，证明了处理专家和非专家数据的鲁棒性；4）混合质量学习：能够从混合质量数据中学习，提高了各种策略提取方法的操作性能。",
+    inspiration: "1）多模态融合：结合不同模型的优势，创造更强大的复合模型；2）时间感知：在智能系统中考虑时间维度的重要性；3）数据质量管理：学会处理混合质量数据，提高系统的鲁棒性；4）评估框架：设计全面的评估基准，测试系统在不同条件下的表现。",
+    pdfUrl: "https://arxiv.org/pdf/2606.24742",
+    htmlUrl: "https://arxiv.org/abs/2606.24742",
+    figures: []
+  }
+];
