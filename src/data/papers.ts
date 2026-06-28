@@ -5811,6 +5811,56 @@ export const papers: Paper[] = [
     htmlUrl: "",
     figures: []
   },
+
+  // Papers from June 21-27, 2026
+  {
+    id: "la4vla-2026-06-27",
+    title: "LA4VLA: 无视觉的语言-动作预训练",
+    authors: "Tao Lin et al.",
+    institution: "",
+    date: "2026-06-27",
+    category: "embodied" as const,
+    summary: "提出LA4VLA框架，通过无视觉的语言-动作预训练增强VLA模型的指令跟随能力，解决视觉捷径问题。",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2606.24884",
+    htmlUrl: "https://arxiv.org/abs/2606.24884",
+    figures: []
+  },
+  {
+    id: "regen-2026-06-27",
+    title: "ReGen: 基于世界动作模型的持续模仿学习",
+    authors: "Zhihao Wang et al.",
+    institution: "",
+    date: "2026-06-27",
+    category: "embodied" as const,
+    summary: "利用世界动作模型（WAM）的生成能力合成伪回放轨迹，实现无需存储历史演示的持续模仿学习。",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2606.24742",
+    htmlUrl: "https://arxiv.org/abs/2606.24742",
+    figures: []
+  },
+  {
+    id: "icwm-2026-06-27",
+    title: "ICWM: 面向机器人控制的上下文世界建模",
+    authors: "Siyin Wang et al.",
+    institution: "",
+    date: "2026-06-27",
+    category: "embodied" as const,
+    summary: "将系统辨识视为上下文适应问题，通过任务无关的自主交互历史让VLA模型隐式学习系统配置，实现零样本泛化到新相机视角和机器人形态。",
+    background: "",
+    architecture: "",
+    innovations: "",
+    inspiration: "",
+    pdfUrl: "https://arxiv.org/pdf/2606.24472",
+    htmlUrl: "https://arxiv.org/abs/2606.24472",
+    figures: []
+  },
 ];
 
 export default papers;
