@@ -1,18 +1,12 @@
-# Yann LeCun (@ylecun) Twitter Feed - 2026-06-26
+# Yann LeCun (@ylecun) - Social Media Digest
+**Date**: 2026-06-26
 
-## Status: Access Limitation
-**Note**: Twitter/X access is currently restricted due to API authentication requirements. Direct scraping is not available at this time.
+## Recent Activity
 
-## Alternative Approaches Tried
-- ✅ `https://vxtwitter.com/ylecun` - Successfully accessed but redirects to original Twitter
-- ❌ `https://nitter.net/ylecun` - Timeout error
-- ❌ Direct r.jina.ai fetch - Failed
-- ❌ OpenNews API - Not available
-- ❌ `xurl` tool - Requires authentication
+Unable to fetch recent tweets. Twitter/X authentication not configured. Web search API key also unavailable.
 
-## Recommendation
-Wait for proper API authentication setup or check public RSS feeds if available.
+## Note
+Twitter/X data requires either xurl auth setup or a working web search provider.
 
 ---
-
-*Generated on: 2026-06-26*
+*Generated: 2026-06-26 08:10 CST*

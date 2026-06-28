@@ -1,5 +1,5 @@
 # Kaiming He - Research Digest
-**Date**: 2026-06-26
+**Date**: 2026-06-25
 
 ## Recent Papers
 
@@ -28,33 +28,29 @@
 - **Categories**: cs.LG
 - **Summary**: 通过提升几何预训练解决神经模拟器数据瓶颈。在超过100万样本上预训练，通过合成动态增强几何实现无物理标签的自监督。在汽车/飞机/船舶流体力学和碰撞模拟等工业级benchmark上，减少标注数据需求20-60%，加速收敛2倍。
 - **Link**: https://arxiv.org/abs/2602.20399v2
+- **Code**: https://github.com/Physics-Scaling/GeoPT
 
 ### 4. Generative Modeling via Drifting
 - **arXiv**: 2602.04770v2
 - **Published**: 2026-02-04 (updated 2026-02-06)
 - **Authors**: Mingyang Deng, He Li, Tianhong Li, Yilun Du, **Kaiming He**
 - **Categories**: cs.LG, cs.CV
-- **Summary**: 提出Drifting Models新范式，通过drifting field在训练过程中演化pushforward分布，天然支持一步推理。在ImageNet 256x256上一步生成FID 1.54 (latent) / 1.61 (pixel)，达到SOTA。
+- **Summary**: 提出Drifting Models新范式，通过drifting field驱动样本移动并在分布匹配时达到平衡。训练过程中演化pushforward分布，天然支持一步推理。在ImageNet 256x256上FID 1.54（latent space）和1.61（pixel space），达到一步生成SOTA。
 - **Link**: https://arxiv.org/abs/2602.04770v2
 - **Page**: https://lambertae.github.io/projects/drifting/
 
-### 5. One-step Latent-free Image Generation with Pixel Mean Flows (pMF)
+### 5. One-step Latent-free Image Generation with Pixel Mean Flows
 - **arXiv**: 2601.22158v3
-- **Published**: 2026-01-29 (updated 2026-05-09)
-- **Authors**: Yiyang Lu, Susie Lu, Qiao Sun, Hanhong Zhao, Zhicheng Jiang, Xianbang Wang, Tianhong Li, Zhengyang Geng, **Kaiming He**
-- **Categories**: cs.CV
-- **Summary**: 提出pixel MeanFlow (pMF)，分别设计网络输出空间和损失空间。网络目标在假设的低维图像流形上(x-prediction)，损失通过velocity space的MeanFlow定义。ImageNet 256x256一步生成FID 2.22，512x512一步FID 2.48。
+- **Published**: 2026-01 (updated 2026-05-09)
+- **Authors**: (includes **Kaiming He**)
+- **Categories**: cs.CV, cs.LG
+- **Summary**: 像素空间一步生成方法，无需latent space。
 - **Link**: https://arxiv.org/abs/2601.22158v3
-- **Code**: https://github.com/Lyy-iiis/pMF
 
-### 6. Bidirectional Normalizing Flow: From Data to Noise and Back
-- **arXiv**: 2512.10953v1
-- **Published**: 2025-12-11
-- **Authors**: (含 **Kaiming He**)
-- **Categories**: (截断，需补充)
-- **Summary**: 标准NF的forward变换受显式可逆性约束。本文提出双向归一化流，放松forward过程的可逆性约束，同时保持反向生成能力。
-- **Link**: https://arxiv.org/abs/2512.10953v1
+## Research Trends
+- **核心方向**: 扩散/流模型、一步生成、视觉理解统一
+- **关键洞察**: 图像生成预训练可以作为通用视觉学习者，类似LLM预训练在语言领域的角色
+- **方法论**: 连续embedding空间中的flow matching，避免离散token的限制
 
 ---
-*No new papers since 2026-06-25 digest.*
-*Generated: 2026-06-26 08:10 CST*
+*Generated: 2026-06-25 08:07 CST*
