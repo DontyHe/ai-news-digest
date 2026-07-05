@@ -48,9 +48,9 @@ for query in queries:
     except Exception as e:
         print(f'Error for query {query}: {e}')
 
-# Filter to May 19-26, 2026
-start_date = datetime(2026, 5, 19)
-end_date = datetime(2026, 5, 26)
+# Filter to last 7 days (June 21-27, 2026)
+start_date = datetime(2026, 6, 21)
+end_date = datetime(2026, 6, 27)
 
 filtered = [r for r in all_results if start_date <= datetime.strptime(r['date'], '%Y-%m-%d') <= end_date]
 print(f'Total papers found: {len(all_results)}')
