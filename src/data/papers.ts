@@ -1,5 +1,5 @@
 // Auto-generated paper list for AI News Digest
-// Last updated: 2026-07-09 08:12:59
+// Last updated: 2026-07-09 08:14:11
 
 const papers = [
   {
