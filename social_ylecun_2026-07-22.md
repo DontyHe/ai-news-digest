@@ -1,0 +1,14 @@
+# @ylecun Twitter 追踪 - 2026-07-22
+
+**状态**: 失败
+**抓取时间**: 2026-07-22 08:07 CST
+
+## 尝试方法
+
+1. web_search "from:ylecun site:x.com" (freshness=day) → 失败: missing_minimax_api_key
+2. web_fetch nitter.net/ylecun (via r.jina.ai) → 失败: request timed out
+3. web_fetch xcancel.com/ylecun (via r.jina.ai) → 失败: request timed out
+
+## 近期推文
+
+无数据获取。
