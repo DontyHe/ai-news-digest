@@ -20,6 +20,90 @@ export interface Paper {
 
 export const papers: Paper[] = [
   {
+    id: "wcm-2026-08-05",
+    title: "WCM: 世界评论家模型 - 将世界建模引入VLA强化学习Critic设计",
+    authors: "Senyu Fei, Xiaopeng Yu, Siyin Wang, Xianzhong Zhao, Jingjing Gong, Xipeng Qiu",
+    date: "2026-08-05",
+    institution: "同济大学, 复旦大学, 上海创新学院",
+    category: "vla",
+    summary: "将世界建模与价值估计统一到轻量级LeJEPA架构中，通过联合预测未来潜在状态和估计价值，使critic的表示被显式训练来捕获时序动态。在4个benchmark的149个任务上取得SOTA。",
+    pdfUrl: "https://arxiv.org/pdf/2607.29613",
+    htmlUrl: "https://arxiv.org/html/2607.29613",
+    figures: []
+  },
+  {
+    id: "fasterwam-2026-08-05",
+    title: "Faster-WAM: World Action Models不需要深度Action模块",
+    authors: "Liheng Ma, Rui Heng Yang, Zhanguang Zhang, Mateo Clemente, Ziwen Hu, Tongtong Cao, Yingxue Zhang",
+    date: "2026-08-05",
+    institution: "华为诺亚方舟实验室",
+    category: "worldmodel",
+    summary: "通过Dock of Transformer机制，用单层action DiT搭配30层视频骨干，推理延迟66.5ms比Fast-WAM快3.2倍。KV-Fusion跨层聚合+Video-Action RoPE对齐。",
+    pdfUrl: "https://arxiv.org/pdf/2608.02365",
+    htmlUrl: "https://arxiv.org/html/2608.02365",
+    figures: []
+  },
+  {
+    id: "dreamtrajectory-2026-08-05",
+    title: "DreamTrajectory: 轨迹引导的移动操控世界模型对齐",
+    authors: "Zheng Yang, Wenjie Zhang, Xiangyu Chen, Wenxuan Song, Xianpeng Wang, Yihang Kang, Wen Chen, Lujia Wang, Renjing Xu, Xiaowen Chu",
+    date: "2026-08-05",
+    institution: "香港中文大学(深圳)",
+    category: "vla",
+    summary: "联合生成末端轨迹和全身动作块，通过49M参数的轨迹世界模型做test-time search-predict-score refinement。MS-HAB成功率32.3%→54.8%，真实世界63.3%→90.0%。",
+    pdfUrl: "https://arxiv.org/pdf/2608.01381",
+    htmlUrl: "https://arxiv.org/html/2608.01381",
+    figures: []
+  },
+  {
+    id: "worldactionplanner-2026-08-05",
+    title: "World Action Planner: 基于动作条件世界模型的泛化决策",
+    authors: "Xiangcheng Zhang, Yilun Du",
+    date: "2026-08-05",
+    institution: "哈佛大学",
+    category: "worldmodel",
+    summary: "利用VLM推理能力+多任务pose-image条件世界模型，通过世界模型想象进行iterative action plan refinement。在组合任务、新布局和零样本泛化上显著超越E2E模型。",
+    pdfUrl: "https://arxiv.org/pdf/2607.27599",
+    htmlUrl: "https://arxiv.org/html/2607.27599",
+    figures: []
+  },
+  {
+    id: "df3-2026-08-05",
+    title: "DF3: 无解码器的特征预测世界模型用于自主导航",
+    authors: "Jiaming Chen, Guoan Xu, Aoshen Huang, Haozhuo Zhang, Yang Li, Wei Pan",
+    date: "2026-08-05",
+    institution: "曼彻斯特大学, 上海交通大学",
+    category: "worldmodel",
+    summary: "完全在冻结DINO ViT编码器空间内做未来状态预测，无需解码器。通过MACF机制融合光流warp和潜在交叉相关，零样本部署到四足机器人仿真器。",
+    pdfUrl: "https://arxiv.org/pdf/2608.02428",
+    htmlUrl: "https://arxiv.org/html/2608.02428",
+    figures: []
+  },
+  {
+    id: "odeworld-2026-08-05",
+    title: "ODEWorld: 基于物理时间流的连续预测架构",
+    authors: "Dongxiu Liu, Haoyi Niu, Peng Cheng, Yuan Gao, Xirui Kang, Sangli Teng, Koushil Sreenath, Xianyuan Zhan",
+    date: "2026-08-05",
+    institution: "清华大学AIR, UC Berkeley BAIR",
+    category: "worldmodel",
+    summary: "用ODE在物理时间上建模潜在速度场，实现连续时间世界模型。动力学表示解耦+直接一阶监督解决JEPA表示坍缩，支持任意时间分辨率和反向预测。",
+    pdfUrl: "https://arxiv.org/pdf/2607.27924",
+    htmlUrl: "https://arxiv.org/html/2607.27924",
+    figures: []
+  },
+  {
+    id: "egogenesis-2026-08-05",
+    title: "EgoGenesis: 自我中心世界动作建模与在线锚定投射记忆",
+    authors: "Zexuan Yan, Yuzhou Wu, Yue Ma, Zonghang He, Kaibo Yin, Xiaobing Tu, Yinggui Wang, Jinkui Ren, Xiantao Zhang, Shijian Wang, Jinghong Liu, Linfeng Zhang",
+    date: "2026-08-05",
+    institution: "上海交通大学, 阿里巴巴, HKUST",
+    category: "embodied",
+    summary: "OAPM保持3D场景锚定+A3D-RoPE注入动作几何，生成高质量自我中心操控视频。400生成+400真实轨迹使单臂OOD 77%→84%，双臂53%→70%。",
+    pdfUrl: "https://arxiv.org/pdf/2607.28243",
+    htmlUrl: "https://arxiv.org/html/2607.28243",
+    figures: []
+  },
+  {
     id: "wcm-2026-08-04",
     title: "WCM: 世界评论家模型",
     authors: "et al.",
